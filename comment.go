@@ -127,7 +127,7 @@ func (c *Client) ListCommentReports(ctx context.Context, d types.ListCommentRepo
 	return ar, nil
 }
 
-func (c *Client) MarkCommentReplyRead(ctx context.Context, d types.MarkCommentReplyAsRead) (*types.CommentResponse, error) {
+func (c *Client) MarkCommentReplyAsRead(ctx context.Context, d types.MarkCommentReplyAsRead) (*types.CommentResponse, error) {
 	ar := &types.CommentResponse{}
 	res, err := c.req(ctx, http.MethodPost, "/comment/mark_as_read", d, &ar)
 	if err != nil {
