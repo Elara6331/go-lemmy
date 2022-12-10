@@ -52,7 +52,7 @@ func (c *Client) UnreadRegistrationApplicationCount(ctx context.Context, d types
 	return ar, nil
 }
 
-func (c *Client) ListRegistrationApplications(ctx context.Context, d types.ListRegistrationApplications) (*types.ListRegistrationApplicationsResponse, error) {
+func (c *Client) RegistrationApplications(ctx context.Context, d types.ListRegistrationApplications) (*types.ListRegistrationApplicationsResponse, error) {
 	ar := &types.ListRegistrationApplicationsResponse{}
 	res, err := c.getReq(ctx, http.MethodGet, "/admin/registration_application/list", d, &ar)
 	if err != nil {
