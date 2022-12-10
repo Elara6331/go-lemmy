@@ -14,7 +14,7 @@ type PersonMentionView struct {
 	Recipient                  PersonSafe        `json:"recipient,omitempty" url:"recipient,omitempty"`
 	Counts                     CommentAggregates `json:"counts,omitempty" url:"counts,omitempty"`
 	CreatorBannedFromCommunity bool              `json:"creator_banned_from_community,omitempty" url:"creator_banned_from_community,omitempty"`
-	Subscribed                 SubscribedType    `json:"subscribed,omitempty" url:"subscribed,omitempty"`
+	Subscribed                 bool              `json:"subscribed,omitempty" url:"subscribed,omitempty"`
 	Saved                      bool              `json:"saved,omitempty" url:"saved,omitempty"`
 	CreatorBlocked             bool              `json:"creator_blocked,omitempty" url:"creator_blocked,omitempty"`
 	MyVote                     Optional[int]     `json:"my_vote,omitempty" url:"my_vote,omitempty"`
@@ -73,7 +73,7 @@ type CommentView struct {
 	Community                  CommunitySafe     `json:"community,omitempty" url:"community,omitempty"`
 	Counts                     CommentAggregates `json:"counts,omitempty" url:"counts,omitempty"`
 	CreatorBannedFromCommunity bool              `json:"creator_banned_from_community,omitempty" url:"creator_banned_from_community,omitempty"`
-	Subscribed                 SubscribedType    `json:"subscribed,omitempty" url:"subscribed,omitempty"`
+	Subscribed                 bool              `json:"subscribed,omitempty" url:"subscribed,omitempty"`
 	Saved                      bool              `json:"saved,omitempty" url:"saved,omitempty"`
 	CreatorBlocked             bool              `json:"creator_blocked,omitempty" url:"creator_blocked,omitempty"`
 	MyVote                     Optional[int]     `json:"my_vote,omitempty" url:"my_vote,omitempty"`
@@ -210,7 +210,7 @@ type PersonBlockView struct {
 
 type CommunityView struct {
 	CommunitySafe CommunitySafe       `json:"community_safe,omitempty" url:"community_safe,omitempty"`
-	Subscribed    SubscribedType      `json:"subscribed,omitempty" url:"subscribed,omitempty"`
+	Subscribed    bool                `json:"subscribed,omitempty" url:"subscribed,omitempty"`
 	Blocked       bool                `json:"blocked,omitempty" url:"blocked,omitempty"`
 	Counts        CommunityAggregates `json:"counts,omitempty" url:"counts,omitempty"`
 }
@@ -247,7 +247,7 @@ type CommentReplyView struct {
 	Recipient                  PersonSafe        `json:"recipient,omitempty" url:"recipient,omitempty"`
 	Counts                     CommentAggregates `json:"counts,omitempty" url:"counts,omitempty"`
 	CreatorBannedFromCommunity bool              `json:"creator_banned_from_community,omitempty" url:"creator_banned_from_community,omitempty"`
-	Subscribed                 SubscribedType    `json:"subscribed,omitempty" url:"subscribed,omitempty"`
+	Subscribed                 bool              `json:"subscribed,omitempty" url:"subscribed,omitempty"`
 	Saved                      bool              `json:"saved,omitempty" url:"saved,omitempty"`
 	CreatorBlocked             bool              `json:"creator_blocked,omitempty" url:"creator_blocked,omitempty"`
 	MyVote                     Optional[int]     `json:"my_vote,omitempty" url:"my_vote,omitempty"`
