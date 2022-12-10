@@ -6,7 +6,7 @@ import (
 )
 
 type LemmyResponse struct {
-	Error Optional[string] `json:"error,omitempty" url:"error,omitempty"`
+	Error Optional[string] `json:"error" url:"error,omitempty"`
 }
 
 type HTTPError struct {

@@ -1,10 +1,10 @@
 package types
 
 /*type SiteMetadata struct {
-	Title       Optional[string] `json:"title,omitempty" url:"title,omitempty"`
-	Description Optional[string] `json:"description,omitempty" url:"description,omitempty"`
-	Image       Optional[string] `json:"image,omitempty" url:"image,omitempty"`
-	HTML        Optional[string] `json:"html,omitempty" url:"html,omitempty"`
+	Title       Optional[string] `json:"title" url:"title,omitempty"`
+	Description Optional[string] `json:"description" url:"description,omitempty"`
+	Image       Optional[string] `json:"image" url:"image,omitempty"`
+	HTML        Optional[string] `json:"html" url:"html,omitempty"`
 }*/
 
 type UserOperation int
