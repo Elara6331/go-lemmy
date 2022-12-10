@@ -140,7 +140,7 @@ func resError(res *http.Response, lr types.LemmyResponse) error {
 			Code:   res.StatusCode,
 			ErrStr: lr.Error.MustValue(),
 		}
-	} else if res.StatusCode > 299 {
+	} else if res.StatusCode != http.StatusOK {
 		return types.HTTPError{
 			Code: res.StatusCode,
 		}
