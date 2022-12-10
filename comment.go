@@ -112,7 +112,7 @@ func (c *Client) LikeComment(ctx context.Context, d types.CreateCommentLike) (*t
 	return ar, nil
 }
 
-func (c *Client) ListCommentReports(ctx context.Context, d types.ListCommentReports) (*types.ListCommentReportsResponse, error) {
+func (c *Client) CommentReports(ctx context.Context, d types.ListCommentReports) (*types.ListCommentReportsResponse, error) {
 	ar := &types.ListCommentReportsResponse{}
 	res, err := c.getReq(ctx, http.MethodGet, "/comments/report/list", d, &ar)
 	if err != nil {

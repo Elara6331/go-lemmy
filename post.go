@@ -142,7 +142,7 @@ func (c *Client) LikePost(ctx context.Context, d types.CreatePostLike) (*types.P
 	return ar, nil
 }
 
-func (c *Client) ListPostReports(ctx context.Context, d types.ListPostReports) (*types.ListPostReportsResponse, error) {
+func (c *Client) PostReports(ctx context.Context, d types.ListPostReports) (*types.ListPostReportsResponse, error) {
 	ar := &types.ListPostReportsResponse{}
 	res, err := c.getReq(ctx, http.MethodGet, "/post/report/list", d, &ar)
 	if err != nil {
