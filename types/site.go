@@ -22,8 +22,8 @@ type SearchResponse struct {
 }
 
 type ResolveObject struct {
-	Q    string           `json:"q,omitempty" url:"q,omitempty"`
-	Auth Optional[string] `json:"auth,omitempty" url:"auth,omitempty"`
+	Query string           `json:"q,omitempty" url:"q,omitempty"`
+	Auth  Optional[string] `json:"auth,omitempty" url:"auth,omitempty"`
 }
 
 type ResolveObjectResponse struct {
