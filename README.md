@@ -1,5 +1,7 @@
 # Go-Lemmy
 
+[![Go Reference](https://pkg.go.dev/badge/go.arsenm.dev/go-lemmy.svg)](https://pkg.go.dev/go.arsenm.dev/go-lemmy)
+
 Go bindings to the [Lemmy](https://join-lemmy.org) API
 
 Example:
