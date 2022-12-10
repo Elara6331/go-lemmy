@@ -1,5 +1,17 @@
 package types
 
+type Search struct {
+	CommunityID   Optional[int]         `json:"community_id" url:"community_id"`
+	CommunityName Optional[string]      `json:"community_name" url:"community_name"`
+	CreatorID     Optional[int]         `json:"creator_id" url:"creator_id"`
+	Limit         Optional[int]         `json:"limit" url:"limit"`
+	ListingType   Optional[ListingType] `json:"listing_type" url:"listing_type"`
+	Page          Optional[int]         `json:"page" url:"page"`
+	Query         string                `json:"q" url:"q"`
+	Sort          Optional[SortType]    `json:"sort" url:"sort"`
+	Type          Optional[SearchType]  `json:"type_" url:"type_"`
+}
+
 type SearchResponse struct {
 	Type        string           `json:"type,omitempty" url:"type,omitempty"`
 	Comments    []CommentView    `json:"comments,omitempty" url:"comments,omitempty"`
