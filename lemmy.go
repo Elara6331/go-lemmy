@@ -153,7 +153,7 @@ func (c *Client) setAuth(data any) any {
 	if data == nil {
 		return data
 	}
-	
+
 	val := reflect.New(reflect.TypeOf(data))
 	val.Elem().Set(reflect.ValueOf(data))
 
@@ -162,12 +162,16 @@ func (c *Client) setAuth(data any) any {
 		return data
 	}
 
-	authType := authField.Kind()
-	if authType != reflect.String {
+	switch authField.Type().String() {
+	case "string":
+		authField.SetString(c.token)
+	case "types.Optional[string]":
+		setMtd := authField.MethodByName("Set")
+		out := setMtd.Call([]reflect.Value{reflect.ValueOf(c.token)})
+		authField.Set(out[0])
+	default:
 		return data
 	}
-
-	authField.SetString(c.token)
 
 	return val.Elem().Interface()
 }
