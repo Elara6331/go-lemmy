@@ -204,21 +204,6 @@ func (c *Client) MarkAllAsRead(ctx context.Context, d types.MarkAllAsRead) (*typ
 	return ar, nil
 }
 
-func (c *Client) MarkCommentReplyAsRead(ctx context.Context, d types.MarkCommentReplyAsRead) (*types.CommentResponse, error) {
-	ar := &types.CommentResponse{}
-	res, err := c.req(ctx, http.MethodPost, "/user/mark_as_read", d, &ar)
-	if err != nil {
-		return nil, err
-	}
-
-	err = resError(res, ar.LemmyResponse)
-	if err != nil {
-		return nil, err
-	}
-
-	return ar, nil
-}
-
 func (c *Client) MarkPersonMentionAsRead(ctx context.Context, d types.MarkPersonMentionAsRead) (*types.PersonMentionResponse, error) {
 	ar := &types.PersonMentionResponse{}
 	res, err := c.req(ctx, http.MethodPost, "/user/mention/mark_as_read", d, &ar)
