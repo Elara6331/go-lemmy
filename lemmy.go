@@ -150,6 +150,10 @@ func resError(res *http.Response, lr types.LemmyResponse) error {
 }
 
 func (c *Client) setAuth(data any) any {
+	if data == nil {
+		return data
+	}
+	
 	val := reflect.New(reflect.TypeOf(data))
 	val.Elem().Set(reflect.ValueOf(data))
 
