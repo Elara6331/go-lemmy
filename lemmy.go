@@ -13,16 +13,19 @@ import (
 	"go.arsenm.dev/go-lemmy/types"
 )
 
+// Client is a client for Lemmy's HTTP API
 type Client struct {
 	client  *http.Client
 	baseURL *url.URL
-	token   string
+	Token   string
 }
 
+// New creates a new Lemmy client with the default HTTP client.
 func New(baseURL string) (*Client, error) {
 	return NewWithClient(baseURL, http.DefaultClient)
 }
 
+// NewWithClient creates a new Lemmy client with the given HTTP client
 func NewWithClient(baseURL string, client *http.Client) (*Client, error) {
 	u, err := url.Parse(baseURL)
 	if err != nil {
@@ -33,6 +36,9 @@ func NewWithClient(baseURL string, client *http.Client) (*Client, error) {
 	return &Client{baseURL: u, client: client}, nil
 }
 
+// Login logs in to Lemmy by sending an HTTP request to the
+// login endpoint. It stores the returned token in the client
+// for future use.
 func (c *Client) Login(ctx context.Context, l types.Login) error {
 	var lr types.LoginResponse
 	res, err := c.req(ctx, http.MethodPost, "/user/login", l, &lr)
@@ -45,19 +51,12 @@ func (c *Client) Login(ctx context.Context, l types.Login) error {
 		return err
 	}
 
-	c.token = lr.JWT.MustValue()
+	c.Token = lr.JWT.MustValue()
 
 	return nil
 }
 
-func (c *Client) Token() string {
-	return c.token
-}
-
-func (c *Client) SetToken(t string) {
-	c.token = t
-}
-
+// req makes a request to the server
 func (c *Client) req(ctx context.Context, method string, path string, data, resp any) (*http.Response, error) {
 	data = c.setAuth(data)
 
@@ -98,6 +97,9 @@ func (c *Client) req(ctx context.Context, method string, path string, data, resp
 	return res, nil
 }
 
+// getReq makes a get request to the Lemmy server.
+// It is separate from req() because it uses query
+// parameters rather than a JSON request body.
 func (c *Client) getReq(ctx context.Context, method string, path string, data, resp any) (*http.Response, error) {
 	data = c.setAuth(data)
 
@@ -134,6 +136,7 @@ func (c *Client) getReq(ctx context.Context, method string, path string, data, r
 	return res, nil
 }
 
+// resError returns an error if the given response is an error
 func resError(res *http.Response, lr types.LemmyResponse) error {
 	if lr.Error.IsValid() {
 		return types.LemmyError{
@@ -149,6 +152,11 @@ func resError(res *http.Response, lr types.LemmyResponse) error {
 	}
 }
 
+// setAuth uses reflection to automatically
+// set struct fields called Auth of type
+// string or types.Optional[string] to the
+// authentication token, then returns the
+// updated struct
 func (c *Client) setAuth(data any) any {
 	if data == nil {
 		return data
@@ -164,10 +172,10 @@ func (c *Client) setAuth(data any) any {
 
 	switch authField.Type().String() {
 	case "string":
-		authField.SetString(c.token)
+		authField.SetString(c.Token)
 	case "types.Optional[string]":
 		setMtd := authField.MethodByName("Set")
-		out := setMtd.Call([]reflect.Value{reflect.ValueOf(c.token)})
+		out := setMtd.Call([]reflect.Value{reflect.ValueOf(c.Token)})
 		authField.Set(out[0])
 	default:
 		return data

@@ -49,7 +49,7 @@ func (c *Client) ChangePassword(ctx context.Context, d types.ChangePassword) (*t
 		return nil, err
 	}
 
-	c.token = ar.JWT.MustValue()
+	c.Token = ar.JWT.MustValue()
 
 	return ar, nil
 }
@@ -231,7 +231,7 @@ func (c *Client) PasswordChange(ctx context.Context, d types.PasswordChange) (*t
 		return nil, err
 	}
 
-	c.token = ar.JWT.MustValue()
+	c.Token = ar.JWT.MustValue()
 
 	return ar, nil
 }
@@ -263,7 +263,7 @@ func (c *Client) Register(ctx context.Context, d types.Register) (*types.LoginRe
 		return nil, err
 	}
 
-	c.token = ar.JWT.MustValue()
+	c.Token = ar.JWT.MustValue()
 
 	return ar, nil
 }
@@ -280,7 +280,7 @@ func (c *Client) SaveUserSettings(ctx context.Context, d types.SaveUserSettings)
 		return nil, err
 	}
 
-	c.token = ar.JWT.MustValue()
+	c.Token = ar.JWT.MustValue()
 
 	return ar, nil
 }
