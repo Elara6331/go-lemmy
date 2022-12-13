@@ -59,6 +59,19 @@ func NewWebSocket(baseURL string) (*WSClient, error) {
 	return out, nil
 }
 
+// SetConnectHandler sets the connection handler function
+func (c *WSClient) SetConnectHandler(f func() error) {
+	c.conn.SubscribeHandler = f
+}
+
+// ConnectHandler invokes the connection handler function
+func (c *WSClient) ConnectHandler() error {
+	if c.conn.SubscribeHandler == nil {
+		return nil
+	}
+	return c.conn.SubscribeHandler()
+}
+
 func (c *WSClient) Login(ctx context.Context, l types.Login) error {
 	u := &url.URL{}
 	*u = *c.baseURL
