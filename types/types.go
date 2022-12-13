@@ -1,6 +1,7 @@
 package types
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 )
@@ -27,6 +28,6 @@ func (le LemmyError) Error() string {
 }
 
 type LemmyWebSocketMsg struct {
-	Op   UserOperation `json:"op"`
-	Data any           `json:"data"`
+	Op   UserOperation   `json:"op"`
+	Data json.RawMessage `json:"data"`
 }
