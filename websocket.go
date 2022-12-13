@@ -15,14 +15,17 @@ type authData struct {
 	Auth string `json:"auth"`
 }
 
+// WSClient is a client for Lemmy's WebSocket API
 type WSClient struct {
 	conn    *websocket.Conn
 	baseURL *url.URL
 	respCh  chan types.LemmyWebSocketMsg
 	errCh   chan error
-	token   string
+	Token   string
 }
 
+// NewWebSocket creates and returns a new WSClient, and
+// starts a goroutine to read server responses and errors
 func NewWebSocket(baseURL string) (*WSClient, error) {
 	u, err := url.Parse(baseURL)
 	if err != nil {
@@ -57,6 +60,9 @@ func NewWebSocket(baseURL string) (*WSClient, error) {
 	return out, nil
 }
 
+// Login logs in to Lemmy by sending an HTTP request to the
+// login endpoint. It stores the returned token in the client
+// for future use.
 func (c *WSClient) Login(ctx context.Context, l types.Login) error {
 	u := &url.URL{}
 	*u = *c.baseURL
@@ -72,10 +78,14 @@ func (c *WSClient) Login(ctx context.Context, l types.Login) error {
 	if err != nil {
 		return err
 	}
-	c.token = hc.token
+	c.Token = hc.Token
 	return nil
 }
 
+// Request sends a request to the server. If data is nil,
+// the authentication token will be sent instead. If data
+// has an Auth field, it will be set to the authentication
+// token automatically.
 func (c *WSClient) Request(op types.UserOperation, data any) error {
 	if data == nil {
 		data = authData{}
@@ -94,14 +104,23 @@ func (c *WSClient) Request(op types.UserOperation, data any) error {
 	})
 }
 
+// Responses returns a channel that receives messages from
+// Lemmy.
 func (c *WSClient) Responses() <-chan types.LemmyWebSocketMsg {
 	return c.respCh
 }
 
+// Errors returns a channel that receives errors
+// received while attempting to read responses
 func (c *WSClient) Errors() <-chan error {
 	return c.errCh
 }
 
+// setAuth uses reflection to automatically
+// set struct fields called Auth of type
+// string or types.Optional[string] to the
+// authentication token, then returns the
+// updated struct
 func (c *WSClient) setAuth(data any) any {
 	val := reflect.New(reflect.TypeOf(data))
 	val.Elem().Set(reflect.ValueOf(data))
@@ -113,10 +132,10 @@ func (c *WSClient) setAuth(data any) any {
 
 	switch authField.Type().String() {
 	case "string":
-		authField.SetString(c.token)
+		authField.SetString(c.Token)
 	case "types.Optional[string]":
 		setMtd := authField.MethodByName("Set")
-		out := setMtd.Call([]reflect.Value{reflect.ValueOf(c.token)})
+		out := setMtd.Call([]reflect.Value{reflect.ValueOf(c.Token)})
 		authField.Set(out[0])
 	default:
 		return data
