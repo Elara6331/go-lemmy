@@ -1,97 +1,90 @@
 package types
 
-/*type SiteMetadata struct {
-	Title       Optional[string] `json:"title" url:"title,omitempty"`
-	Description Optional[string] `json:"description" url:"description,omitempty"`
-	Image       Optional[string] `json:"image" url:"image,omitempty"`
-	HTML        Optional[string] `json:"html" url:"html,omitempty"`
-}*/
-
-type UserOperation int
+type UserOperation string
 
 const (
-	LoginOp UserOperation = iota
-	RegisterOp
-	GetCaptchaOp
-	CreateCommunityOp
-	CreatePostOp
-	ListCommunitiesOp
-	GetPostOp
-	GetCommunityOp
-	CreateCommentOp
-	EditCommentOp
-	DeleteCommentOp
-	RemoveCommentOp
-	SaveCommentOp
-	CreateCommentLikeOp
-	GetPostsOp
-	CreatePostLikeOp
-	EditPostOp
-	DeletePostOp
-	RemovePostOp
-	LockPostOp
-	StickyPostOp
-	MarkPostAsReadOp
-	SavePostOp
-	EditCommunityOp
-	DeleteCommunityOp
-	RemoveCommunityOp
-	FollowCommunityOp
-	GetPersonDetailsOp
-	GetRepliesOp
-	GetPersonMentionsOp
-	MarkPersonMentionAsReadOp
-	MarkCommentReplyAsReadOp
-	GetModlogOp
-	BanFromCommunityOp
-	AddModToCommunityOp
-	CreateSiteOp
-	EditSiteOp
-	GetSiteOp
-	AddAdminOp
-	GetUnreadRegistrationApplicationCountOp
-	ListRegistrationApplicationsOp
-	ApproveRegistrationApplicationOp
-	BanPersonOp
-	GetBannedPersonsOp
-	SearchOp
-	ResolveObjectOp
-	MarkAllAsReadOp
-	SaveUserSettingsOp
-	TransferCommunityOp
-	LeaveAdminOp
-	DeleteAccountOp
-	PasswordResetOp
-	PasswordChangeOp
-	CreatePrivateMessageOp
-	EditPrivateMessageOp
-	DeletePrivateMessageOp
-	MarkPrivateMessageAsReadOp
-	CreatePrivateMessageReportOp
-	ResolvePrivateMessageReportOp
-	ListPrivateMessageReportsOp
-	GetPrivateMessagesOp
-	UserJoinOp
-	GetCommentsOp
-	PostJoinOp
-	CommunityJoinOp
-	ChangePasswordOp
-	GetSiteMetadataOp
-	BlockCommunityOp
-	BlockPersonOp
-	PurgePersonOp
-	PurgeCommunityOp
-	PurgePostOp
-	PurgeCommentOp
-	CreateCommentReportOp
-	ResolveCommentReportOp
-	ListCommentReportsOp
-	CreatePostReportOp
-	ResolvePostReportOp
-	ListPostReportsOp
-	GetReportCountOp
-	GetUnreadCountOp
-	VerifyEmailOp
+	UserOpLogin                                 UserOperation = "Login"
+	UserOpRegister                              UserOperation = "Register"
+	UserOpGetCaptcha                            UserOperation = "GetCaptcha"
+	UserOpCreateCommunity                       UserOperation = "CreateCommunity"
+	UserOpCreatePost                            UserOperation = "CreatePost"
+	UserOpListCommunities                       UserOperation = "ListCommunities"
+	UserOpGetPost                               UserOperation = "GetPost"
+	UserOpGetCommunity                          UserOperation = "GetCommunity"
+	UserOpCreateComment                         UserOperation = "CreateComment"
+	UserOpEditComment                           UserOperation = "EditComment"
+	UserOpDeleteComment                         UserOperation = "DeleteComment"
+	UserOpRemoveComment                         UserOperation = "RemoveComment"
+	UserOpSaveComment                           UserOperation = "SaveComment"
+	UserOpCreateCommentLike                     UserOperation = "CreateCommentLike"
+	UserOpGetPosts                              UserOperation = "GetPosts"
+	UserOpCreatePostLike                        UserOperation = "CreatePostLike"
+	UserOpEditPost                              UserOperation = "EditPost"
+	UserOpDeletePost                            UserOperation = "DeletePost"
+	UserOpRemovePost                            UserOperation = "RemovePost"
+	UserOpLockPost                              UserOperation = "LockPost"
+	UserOpFeaturePost                           UserOperation = "FeaturePost"
+	UserOpMarkPostAsRead                        UserOperation = "MarkPostAsRead"
+	UserOpSavePost                              UserOperation = "SavePost"
+	UserOpEditCommunity                         UserOperation = "EditCommunity"
+	UserOpDeleteCommunity                       UserOperation = "DeleteCommunity"
+	UserOpRemoveCommunity                       UserOperation = "RemoveCommunity"
+	UserOpFollowCommunity                       UserOperation = "FollowCommunity"
+	UserOpGetPersonDetails                      UserOperation = "GetPersonDetails"
+	UserOpGetReplies                            UserOperation = "GetReplies"
+	UserOpGetPersonMentions                     UserOperation = "GetPersonMentions"
+	UserOpMarkPersonMentionAsRead               UserOperation = "MarkPersonMentionAsRead"
+	UserOpMarkCommentReplyAsRead                UserOperation = "MarkCommentReplyAsRead"
+	UserOpGetModlog                             UserOperation = "GetModlog"
+	UserOpBanFromCommunity                      UserOperation = "BanFromCommunity"
+	UserOpAddModToCommunity                     UserOperation = "AddModToCommunity"
+	UserOpCreateSite                            UserOperation = "CreateSite"
+	UserOpEditSite                              UserOperation = "EditSite"
+	UserOpGetSite                               UserOperation = "GetSite"
+	UserOpAddAdmin                              UserOperation = "AddAdmin"
+	UserOpGetUnreadRegistrationApplicationCount UserOperation = "GetUnreadRegistrationApplicationCount"
+	UserOpListRegistrationApplications          UserOperation = "ListRegistrationApplications"
+	UserOpApproveRegistrationApplication        UserOperation = "ApproveRegistrationApplication"
+	UserOpBanPerson                             UserOperation = "BanPerson"
+	UserOpGetBannedPersons                      UserOperation = "GetBannedPersons"
+	UserOpSearch                                UserOperation = "Search"
+	UserOpResolveObject                         UserOperation = "ResolveObject"
+	UserOpMarkAllAsRead                         UserOperation = "MarkAllAsRead"
+	UserOpSaveUserSettings                      UserOperation = "SaveUserSettings"
+	UserOpTransferCommunity                     UserOperation = "TransferCommunity"
+	UserOpLeaveAdmin                            UserOperation = "LeaveAdmin"
+	UserOpDeleteAccount                         UserOperation = "DeleteAccount"
+	UserOpPasswordReset                         UserOperation = "PasswordReset"
+	UserOpPasswordChange                        UserOperation = "PasswordChange"
+	UserOpCreatePrivateMessage                  UserOperation = "CreatePrivateMessage"
+	UserOpEditPrivateMessage                    UserOperation = "EditPrivateMessage"
+	UserOpDeletePrivateMessage                  UserOperation = "DeletePrivateMessage"
+	UserOpMarkPrivateMessageAsRead              UserOperation = "MarkPrivateMessageAsRead"
+	UserOpCreatePrivateMessageReport            UserOperation = "CreatePrivateMessageReport"
+	UserOpResolvePrivateMessageReport           UserOperation = "ResolvePrivateMessageReport"
+	UserOpListPrivateMessageReports             UserOperation = "ListPrivateMessageReports"
+	UserOpGetPrivateMessages                    UserOperation = "GetPrivateMessages"
+	UserOpUserJoin                              UserOperation = "UserJoin"
+	UserOpGetComments                           UserOperation = "GetComments"
+	UserOpPostJoin                              UserOperation = "PostJoin"
+	UserOpCommunityJoin                         UserOperation = "CommunityJoin"
+	UserOpChangePassword                        UserOperation = "ChangePassword"
+	UserOpGetSiteMetadata                       UserOperation = "GetSiteMetadata"
+	UserOpBlockCommunity                        UserOperation = "BlockCommunity"
+	UserOpBlockPerson                           UserOperation = "BlockPerson"
+	UserOpPurgePerson                           UserOperation = "PurgePerson"
+	UserOpPurgeCommunity                        UserOperation = "PurgeCommunity"
+	UserOpPurgePost                             UserOperation = "PurgePost"
+	UserOpPurgeComment                          UserOperation = "PurgeComment"
+	UserOpCreateCommentReport                   UserOperation = "CreateCommentReport"
+	UserOpResolveCommentReport                  UserOperation = "ResolveCommentReport"
+	UserOpListCommentReports                    UserOperation = "ListCommentReports"
+	UserOpCreatePostReport                      UserOperation = "CreatePostReport"
+	UserOpResolvePostReport                     UserOperation = "ResolvePostReport"
+	UserOpListPostReports                       UserOperation = "ListPostReports"
+	UserOpGetReportCount                        UserOperation = "GetReportCount"
+	UserOpGetUnreadCount                        UserOperation = "GetUnreadCount"
+	UserOpVerifyEmail                           UserOperation = "VerifyEmail"
 )
 
 type SortType string
