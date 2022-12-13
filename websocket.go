@@ -6,9 +6,8 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
-	"time"
 
-	"github.com/recws-org/recws"
+	"github.com/gorilla/websocket"
 	"go.arsenm.dev/go-lemmy/types"
 )
 
@@ -17,7 +16,7 @@ type authData struct {
 }
 
 type WSClient struct {
-	conn    *recws.RecConn
+	conn    *websocket.Conn
 	baseURL *url.URL
 	respCh  chan types.LemmyWebSocketMsg
 	errCh   chan error
@@ -25,20 +24,19 @@ type WSClient struct {
 }
 
 func NewWebSocket(baseURL string) (*WSClient, error) {
-	ws := &recws.RecConn{
-		KeepAliveTimeout: 10 * time.Second,
-	}
-
 	u, err := url.Parse(baseURL)
 	if err != nil {
 		return nil, err
 	}
 	u = u.JoinPath("/api/v3")
 
-	ws.Dial(u.JoinPath("ws").String(), nil)
+	conn, _, err := websocket.DefaultDialer.Dial(u.JoinPath("ws").String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	out := &WSClient{
-		conn:    ws,
+		conn:    conn,
 		baseURL: u,
 		respCh:  make(chan types.LemmyWebSocketMsg, 10),
 		errCh:   make(chan error, 10),
@@ -47,7 +45,7 @@ func NewWebSocket(baseURL string) (*WSClient, error) {
 	go func() {
 		for {
 			var msg types.LemmyWebSocketMsg
-			err = ws.ReadJSON(&msg)
+			err = conn.ReadJSON(&msg)
 			if err != nil {
 				out.errCh <- err
 				continue
@@ -57,19 +55,6 @@ func NewWebSocket(baseURL string) (*WSClient, error) {
 	}()
 
 	return out, nil
-}
-
-// SetConnectHandler sets the connection handler function
-func (c *WSClient) SetConnectHandler(f func() error) {
-	c.conn.SubscribeHandler = f
-}
-
-// ConnectHandler invokes the connection handler function
-func (c *WSClient) ConnectHandler() error {
-	if c.conn.SubscribeHandler == nil {
-		return nil
-	}
-	return c.conn.SubscribeHandler()
 }
 
 func (c *WSClient) Login(ctx context.Context, l types.Login) error {
