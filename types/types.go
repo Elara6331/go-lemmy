@@ -25,3 +25,8 @@ type LemmyError struct {
 func (le LemmyError) Error() string {
 	return fmt.Sprintf("%d %s: %s", le.Code, http.StatusText(le.Code), le.ErrStr)
 }
+
+type LemmyWebSocketMsg struct {
+	Op   UserOperation `json:"op"`
+	Data any           `json:"data"`
+}
