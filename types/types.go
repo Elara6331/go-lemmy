@@ -28,6 +28,24 @@ func (le LemmyError) Error() string {
 }
 
 type LemmyWebSocketMsg struct {
-	Op   UserOperation   `json:"op"`
+	Op   string          `json:"op"`
 	Data json.RawMessage `json:"data"`
+}
+
+// IsOneOf checks if the message is one of the given operation.
+// Operations must be of type UserOperation or UserOperationCrud.
+func (msg LemmyWebSocketMsg) IsOneOf(ops ...any) bool {
+	for _, op := range ops {
+		switch op := op.(type) {
+		case UserOperation:
+			if string(op) == msg.Op {
+				return true
+			}
+		case UserOperationCrud:
+			if string(op) == msg.Op {
+				return true
+			}
+		}
+	}
+	return false
 }
