@@ -99,7 +99,7 @@ func (c *WSClient) Request(op types.UserOperation, data any) error {
 	}
 
 	return c.conn.WriteJSON(types.LemmyWebSocketMsg{
-		Op:   op,
+		Op:   string(op),
 		Data: d,
 	})
 }
