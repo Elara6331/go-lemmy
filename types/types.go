@@ -32,9 +32,8 @@ type LemmyWebSocketMsg struct {
 	Data json.RawMessage `json:"data"`
 }
 
-// IsOneOf checks if the message is one of the given operation.
-// Operations must be of type UserOperation or UserOperationCrud.
-func (msg LemmyWebSocketMsg) IsOneOf(ops ...any) bool {
+// IsOneOf checks if the message is one of the given operations.
+func (msg LemmyWebSocketMsg) IsOneOf(ops ...Operation) bool {
 	for _, op := range ops {
 		switch op := op.(type) {
 		case UserOperation:
@@ -48,4 +47,16 @@ func (msg LemmyWebSocketMsg) IsOneOf(ops ...any) bool {
 		}
 	}
 	return false
+}
+
+type Operation interface {
+	Operation() string
+}
+
+func (u UserOperation) Operation() string {
+	return string(u)
+}
+
+func (u UserOperationCrud) Operation() string {
+	return string(u)
 }
