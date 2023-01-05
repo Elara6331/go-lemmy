@@ -86,7 +86,7 @@ func (c *WSClient) ClientLogin(ctx context.Context, l types.Login) error {
 // the authentication token will be sent instead. If data
 // has an Auth field, it will be set to the authentication
 // token automatically.
-func (c *WSClient) Request(op types.UserOperation, data any) error {
+func (c *WSClient) Request(op types.Operation, data any) error {
 	if data == nil {
 		data = authData{}
 	}
@@ -99,7 +99,7 @@ func (c *WSClient) Request(op types.UserOperation, data any) error {
 	}
 
 	return c.conn.WriteJSON(types.LemmyWebSocketMsg{
-		Op:   string(op),
+		Op:   op.Operation(),
 		Data: d,
 	})
 }
