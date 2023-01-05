@@ -24,15 +24,8 @@ func (s *StructGenerator) Generate(items []parser.Item) error {
 			st := item.Struct
 			f.Type().Id(st.Name).StructFunc(func(g *jen.Group) {
 				for _, field := range st.Fields {
-					var t jen.Code
-					if field.Type == "time.Time" {
-						t = jen.Qual("time", "Time")
-					} else {
-						t = jen.Id(field.Type)
-					}
-
-					g.Id(field.Name).Add(t).Tag(map[string]string{
-						"json": field.OrigName + ",omitempty",
+					g.Id(field.Name).Id(field.Type).Tag(map[string]string{
+						"json": field.OrigName,
 						"url":  field.OrigName + ",omitempty",
 					})
 				}

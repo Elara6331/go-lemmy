@@ -1,6 +1,6 @@
 package types
 
 type Secret struct {
-	ID        int32  `json:"id,omitempty" url:"id,omitempty"`
-	JwtSecret string `json:"jwt_secret,omitempty" url:"jwt_secret,omitempty"`
+	ID        int32  `json:"id" url:"id,omitempty"`
+	JwtSecret string `json:"jwt_secret" url:"jwt_secret,omitempty"`
 }

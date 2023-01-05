@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"time"
 )
 
 type LemmyResponse struct {
@@ -25,6 +26,31 @@ type LemmyError struct {
 
 func (le LemmyError) Error() string {
 	return fmt.Sprintf("%d %s: %s", le.Code, http.StatusText(le.Code), le.ErrStr)
+}
+
+type LemmyTime struct {
+	time.Time
+}
+
+func (lt *LemmyTime) UnmarshalJSON(b []byte) error {
+	var timeStr string
+	err := json.Unmarshal(b, &timeStr)
+	if err != nil {
+		return err
+	}
+
+	if timeStr == "" {
+		lt.Time = time.Unix(0, 0)
+		return nil
+	}
+
+	t, err := time.Parse("2006-01-02T15:04:05", timeStr)
+	if err != nil {
+		return err
+	}
+
+	lt.Time = t
+	return nil
 }
 
 type LemmyWebSocketMsg struct {
