@@ -1,0 +1,155 @@
+package types
+
+import "time"
+
+type Person struct {
+	ID              int              `json:"id,omitempty" url:"id,omitempty"`
+	Name            string           `json:"name,omitempty" url:"name,omitempty"`
+	DisplayName     Optional[string] `json:"display_name,omitempty" url:"display_name,omitempty"`
+	Avatar          Optional[string] `json:"avatar,omitempty" url:"avatar,omitempty"`
+	Banned          bool             `json:"banned,omitempty" url:"banned,omitempty"`
+	Published       time.Time        `json:"published,omitempty" url:"published,omitempty"`
+	Updated         time.Time        `json:"updated,omitempty" url:"updated,omitempty"`
+	ActorID         string           `json:"actor_id,omitempty" url:"actor_id,omitempty"`
+	Bio             Optional[string] `json:"bio,omitempty" url:"bio,omitempty"`
+	Local           bool             `json:"local,omitempty" url:"local,omitempty"`
+	PrivateKey      Optional[string] `json:"private_key,omitempty" url:"private_key,omitempty"`
+	PublicKey       string           `json:"public_key,omitempty" url:"public_key,omitempty"`
+	LastRefreshedAt time.Time        `json:"last_refreshed_at,omitempty" url:"last_refreshed_at,omitempty"`
+	Banner          Optional[string] `json:"banner,omitempty" url:"banner,omitempty"`
+	Deleted         bool             `json:"deleted,omitempty" url:"deleted,omitempty"`
+	InboxURL        string           `json:"inbox_url,omitempty" url:"inbox_url,omitempty"`
+	SharedInboxURL  Optional[string] `json:"shared_inbox_url,omitempty" url:"shared_inbox_url,omitempty"`
+	MatrixUserID    Optional[string] `json:"matrix_user_id,omitempty" url:"matrix_user_id,omitempty"`
+	Admin           bool             `json:"admin,omitempty" url:"admin,omitempty"`
+	BotAccount      bool             `json:"bot_account,omitempty" url:"bot_account,omitempty"`
+	BanExpires      time.Time        `json:"ban_expires,omitempty" url:"ban_expires,omitempty"`
+}
+type PersonSafe struct {
+	ID             int              `json:"id,omitempty" url:"id,omitempty"`
+	Name           string           `json:"name,omitempty" url:"name,omitempty"`
+	DisplayName    Optional[string] `json:"display_name,omitempty" url:"display_name,omitempty"`
+	Avatar         Optional[string] `json:"avatar,omitempty" url:"avatar,omitempty"`
+	Banned         bool             `json:"banned,omitempty" url:"banned,omitempty"`
+	Published      time.Time        `json:"published,omitempty" url:"published,omitempty"`
+	Updated        time.Time        `json:"updated,omitempty" url:"updated,omitempty"`
+	ActorID        string           `json:"actor_id,omitempty" url:"actor_id,omitempty"`
+	Bio            Optional[string] `json:"bio,omitempty" url:"bio,omitempty"`
+	Local          bool             `json:"local,omitempty" url:"local,omitempty"`
+	Banner         Optional[string] `json:"banner,omitempty" url:"banner,omitempty"`
+	Deleted        bool             `json:"deleted,omitempty" url:"deleted,omitempty"`
+	InboxURL       string           `json:"inbox_url,omitempty" url:"inbox_url,omitempty"`
+	SharedInboxURL Optional[string] `json:"shared_inbox_url,omitempty" url:"shared_inbox_url,omitempty"`
+	MatrixUserID   Optional[string] `json:"matrix_user_id,omitempty" url:"matrix_user_id,omitempty"`
+	Admin          bool             `json:"admin,omitempty" url:"admin,omitempty"`
+	BotAccount     bool             `json:"bot_account,omitempty" url:"bot_account,omitempty"`
+	BanExpires     time.Time        `json:"ban_expires,omitempty" url:"ban_expires,omitempty"`
+}
+type PersonAlias1 struct {
+	ID              int              `json:"id,omitempty" url:"id,omitempty"`
+	Name            string           `json:"name,omitempty" url:"name,omitempty"`
+	DisplayName     Optional[string] `json:"display_name,omitempty" url:"display_name,omitempty"`
+	Avatar          Optional[string] `json:"avatar,omitempty" url:"avatar,omitempty"`
+	Banned          bool             `json:"banned,omitempty" url:"banned,omitempty"`
+	Published       time.Time        `json:"published,omitempty" url:"published,omitempty"`
+	Updated         time.Time        `json:"updated,omitempty" url:"updated,omitempty"`
+	ActorID         string           `json:"actor_id,omitempty" url:"actor_id,omitempty"`
+	Bio             Optional[string] `json:"bio,omitempty" url:"bio,omitempty"`
+	Local           bool             `json:"local,omitempty" url:"local,omitempty"`
+	PrivateKey      Optional[string] `json:"private_key,omitempty" url:"private_key,omitempty"`
+	PublicKey       string           `json:"public_key,omitempty" url:"public_key,omitempty"`
+	LastRefreshedAt time.Time        `json:"last_refreshed_at,omitempty" url:"last_refreshed_at,omitempty"`
+	Banner          Optional[string] `json:"banner,omitempty" url:"banner,omitempty"`
+	Deleted         bool             `json:"deleted,omitempty" url:"deleted,omitempty"`
+	InboxURL        string           `json:"inbox_url,omitempty" url:"inbox_url,omitempty"`
+	SharedInboxURL  Optional[string] `json:"shared_inbox_url,omitempty" url:"shared_inbox_url,omitempty"`
+	MatrixUserID    Optional[string] `json:"matrix_user_id,omitempty" url:"matrix_user_id,omitempty"`
+	Admin           bool             `json:"admin,omitempty" url:"admin,omitempty"`
+	BotAccount      bool             `json:"bot_account,omitempty" url:"bot_account,omitempty"`
+	BanExpires      time.Time        `json:"ban_expires,omitempty" url:"ban_expires,omitempty"`
+}
+type PersonSafeAlias1 struct {
+	ID             int              `json:"id,omitempty" url:"id,omitempty"`
+	Name           string           `json:"name,omitempty" url:"name,omitempty"`
+	DisplayName    Optional[string] `json:"display_name,omitempty" url:"display_name,omitempty"`
+	Avatar         Optional[string] `json:"avatar,omitempty" url:"avatar,omitempty"`
+	Banned         bool             `json:"banned,omitempty" url:"banned,omitempty"`
+	Published      time.Time        `json:"published,omitempty" url:"published,omitempty"`
+	Updated        time.Time        `json:"updated,omitempty" url:"updated,omitempty"`
+	ActorID        string           `json:"actor_id,omitempty" url:"actor_id,omitempty"`
+	Bio            Optional[string] `json:"bio,omitempty" url:"bio,omitempty"`
+	Local          bool             `json:"local,omitempty" url:"local,omitempty"`
+	Banner         Optional[string] `json:"banner,omitempty" url:"banner,omitempty"`
+	Deleted        bool             `json:"deleted,omitempty" url:"deleted,omitempty"`
+	InboxURL       string           `json:"inbox_url,omitempty" url:"inbox_url,omitempty"`
+	SharedInboxURL Optional[string] `json:"shared_inbox_url,omitempty" url:"shared_inbox_url,omitempty"`
+	MatrixUserID   Optional[string] `json:"matrix_user_id,omitempty" url:"matrix_user_id,omitempty"`
+	Admin          bool             `json:"admin,omitempty" url:"admin,omitempty"`
+	BotAccount     bool             `json:"bot_account,omitempty" url:"bot_account,omitempty"`
+	BanExpires     time.Time        `json:"ban_expires,omitempty" url:"ban_expires,omitempty"`
+}
+type PersonAlias2 struct {
+	ID              int              `json:"id,omitempty" url:"id,omitempty"`
+	Name            string           `json:"name,omitempty" url:"name,omitempty"`
+	DisplayName     Optional[string] `json:"display_name,omitempty" url:"display_name,omitempty"`
+	Avatar          Optional[string] `json:"avatar,omitempty" url:"avatar,omitempty"`
+	Banned          bool             `json:"banned,omitempty" url:"banned,omitempty"`
+	Published       time.Time        `json:"published,omitempty" url:"published,omitempty"`
+	Updated         time.Time        `json:"updated,omitempty" url:"updated,omitempty"`
+	ActorID         string           `json:"actor_id,omitempty" url:"actor_id,omitempty"`
+	Bio             Optional[string] `json:"bio,omitempty" url:"bio,omitempty"`
+	Local           bool             `json:"local,omitempty" url:"local,omitempty"`
+	PrivateKey      Optional[string] `json:"private_key,omitempty" url:"private_key,omitempty"`
+	PublicKey       string           `json:"public_key,omitempty" url:"public_key,omitempty"`
+	LastRefreshedAt time.Time        `json:"last_refreshed_at,omitempty" url:"last_refreshed_at,omitempty"`
+	Banner          Optional[string] `json:"banner,omitempty" url:"banner,omitempty"`
+	Deleted         bool             `json:"deleted,omitempty" url:"deleted,omitempty"`
+	InboxURL        string           `json:"inbox_url,omitempty" url:"inbox_url,omitempty"`
+	SharedInboxURL  Optional[string] `json:"shared_inbox_url,omitempty" url:"shared_inbox_url,omitempty"`
+	MatrixUserID    Optional[string] `json:"matrix_user_id,omitempty" url:"matrix_user_id,omitempty"`
+	Admin           bool             `json:"admin,omitempty" url:"admin,omitempty"`
+	BotAccount      bool             `json:"bot_account,omitempty" url:"bot_account,omitempty"`
+	BanExpires      time.Time        `json:"ban_expires,omitempty" url:"ban_expires,omitempty"`
+}
+type PersonSafeAlias2 struct {
+	ID             int              `json:"id,omitempty" url:"id,omitempty"`
+	Name           string           `json:"name,omitempty" url:"name,omitempty"`
+	DisplayName    Optional[string] `json:"display_name,omitempty" url:"display_name,omitempty"`
+	Avatar         Optional[string] `json:"avatar,omitempty" url:"avatar,omitempty"`
+	Banned         bool             `json:"banned,omitempty" url:"banned,omitempty"`
+	Published      time.Time        `json:"published,omitempty" url:"published,omitempty"`
+	Updated        time.Time        `json:"updated,omitempty" url:"updated,omitempty"`
+	ActorID        string           `json:"actor_id,omitempty" url:"actor_id,omitempty"`
+	Bio            Optional[string] `json:"bio,omitempty" url:"bio,omitempty"`
+	Local          bool             `json:"local,omitempty" url:"local,omitempty"`
+	Banner         Optional[string] `json:"banner,omitempty" url:"banner,omitempty"`
+	Deleted        bool             `json:"deleted,omitempty" url:"deleted,omitempty"`
+	InboxURL       string           `json:"inbox_url,omitempty" url:"inbox_url,omitempty"`
+	SharedInboxURL Optional[string] `json:"shared_inbox_url,omitempty" url:"shared_inbox_url,omitempty"`
+	MatrixUserID   Optional[string] `json:"matrix_user_id,omitempty" url:"matrix_user_id,omitempty"`
+	Admin          bool             `json:"admin,omitempty" url:"admin,omitempty"`
+	BotAccount     bool             `json:"bot_account,omitempty" url:"bot_account,omitempty"`
+	BanExpires     time.Time        `json:"ban_expires,omitempty" url:"ban_expires,omitempty"`
+}
+type PersonForm struct {
+	Name            string                     `json:"name,omitempty" url:"name,omitempty"`
+	DisplayName     Optional[Optional[string]] `json:"display_name,omitempty" url:"display_name,omitempty"`
+	Avatar          Optional[Optional[string]] `json:"avatar,omitempty" url:"avatar,omitempty"`
+	Banned          Optional[bool]             `json:"banned,omitempty" url:"banned,omitempty"`
+	Published       time.Time                  `json:"published,omitempty" url:"published,omitempty"`
+	Updated         time.Time                  `json:"updated,omitempty" url:"updated,omitempty"`
+	ActorID         Optional[string]           `json:"actor_id,omitempty" url:"actor_id,omitempty"`
+	Bio             Optional[Optional[string]] `json:"bio,omitempty" url:"bio,omitempty"`
+	Local           Optional[bool]             `json:"local,omitempty" url:"local,omitempty"`
+	PrivateKey      Optional[Optional[string]] `json:"private_key,omitempty" url:"private_key,omitempty"`
+	PublicKey       Optional[string]           `json:"public_key,omitempty" url:"public_key,omitempty"`
+	LastRefreshedAt time.Time                  `json:"last_refreshed_at,omitempty" url:"last_refreshed_at,omitempty"`
+	Banner          Optional[Optional[string]] `json:"banner,omitempty" url:"banner,omitempty"`
+	Deleted         Optional[bool]             `json:"deleted,omitempty" url:"deleted,omitempty"`
+	InboxURL        Optional[string]           `json:"inbox_url,omitempty" url:"inbox_url,omitempty"`
+	SharedInboxURL  Optional[Optional[string]] `json:"shared_inbox_url,omitempty" url:"shared_inbox_url,omitempty"`
+	MatrixUserID    Optional[Optional[string]] `json:"matrix_user_id,omitempty" url:"matrix_user_id,omitempty"`
+	Admin           Optional[bool]             `json:"admin,omitempty" url:"admin,omitempty"`
+	BotAccount      Optional[bool]             `json:"bot_account,omitempty" url:"bot_account,omitempty"`
+	BanExpires      time.Time                  `json:"ban_expires,omitempty" url:"ban_expires,omitempty"`
+}

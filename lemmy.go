@@ -36,23 +36,16 @@ func NewWithClient(baseURL string, client *http.Client) (*Client, error) {
 	return &Client{baseURL: u, client: client}, nil
 }
 
-// Login logs in to Lemmy by sending an HTTP request to the
+// ClientLogin logs in to Lemmy by sending an HTTP request to the
 // login endpoint. It stores the returned token in the client
 // for future use.
-func (c *Client) Login(ctx context.Context, l types.Login) error {
-	var lr types.LoginResponse
-	res, err := c.req(ctx, http.MethodPost, "/user/login", l, &lr)
+func (c *Client) ClientLogin(ctx context.Context, l types.Login) error {
+	lr, err := c.Login(ctx, l)
 	if err != nil {
 		return err
 	}
 
-	err = resError(res, lr.LemmyResponse)
-	if err != nil {
-		return err
-	}
-
-	c.Token = lr.JWT.MustValue()
-
+	c.Token = lr.Jwt.MustValue()
 	return nil
 }
 

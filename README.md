@@ -9,23 +9,23 @@ Example:
 ```go
 ctx := context.Background()
 
-c, err := lemmy.New("https://lemmy.ml")
+c, err := lemmy.New("https://lemmygrad.ml")
 if err != nil {
-    panic(err)
+	panic(err)
 }
 
-err = c.Login(ctx, types.Login{
-    UsernameOrEmail: "email@example.com",
-    Password:        `TestPwd`,
+err = c.ClientLogin(ctx, types.Login{
+	UsernameOrEmail: "user@example.com",
+	Password:        `TestPwd`,
 })
 if err != nil {
-    panic(err)
+	panic(err)
 }
 
 _, err = c.SaveUserSettings(ctx, types.SaveUserSettings{
-    BotAccount: types.NewOptional(true),
+	BotAccount: types.NewOptional(true),
 })
 if err != nil {
-    panic(err)
+	panic(err)
 }
 ```
