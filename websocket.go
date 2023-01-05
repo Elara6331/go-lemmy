@@ -60,10 +60,10 @@ func NewWebSocket(baseURL string) (*WSClient, error) {
 	return out, nil
 }
 
-// Login logs in to Lemmy by sending an HTTP request to the
+// ClientLogin logs in to Lemmy by sending an HTTP request to the
 // login endpoint. It stores the returned token in the client
 // for future use.
-func (c *WSClient) Login(ctx context.Context, l types.Login) error {
+func (c *WSClient) ClientLogin(ctx context.Context, l types.Login) error {
 	u := &url.URL{}
 	*u = *c.baseURL
 
@@ -74,7 +74,7 @@ func (c *WSClient) Login(ctx context.Context, l types.Login) error {
 	}
 
 	hc := &Client{baseURL: u, client: http.DefaultClient}
-	err := hc.Login(ctx, l)
+	err := hc.ClientLogin(ctx, l)
 	if err != nil {
 		return err
 	}
