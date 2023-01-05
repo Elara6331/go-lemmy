@@ -3,34 +3,34 @@ package types
 type SortType string
 
 const (
-	SortTypeActive       = "Active"
-	SortTypeHot          = "Hot"
-	SortTypeNew          = "New"
-	SortTypeTopDay       = "TopDay"
-	SortTypeTopWeek      = "TopWeek"
-	SortTypeTopMonth     = "TopMonth"
-	SortTypeTopYear      = "TopYear"
-	SortTypeTopAll       = "TopAll"
-	SortTypeMostComments = "MostComments"
-	SortTypeNewComments  = "NewComments"
+	SortTypeActive       SortType = "Active"
+	SortTypeHot          SortType = "Hot"
+	SortTypeNew          SortType = "New"
+	SortTypeTopDay       SortType = "TopDay"
+	SortTypeTopWeek      SortType = "TopWeek"
+	SortTypeTopMonth     SortType = "TopMonth"
+	SortTypeTopYear      SortType = "TopYear"
+	SortTypeTopAll       SortType = "TopAll"
+	SortTypeMostComments SortType = "MostComments"
+	SortTypeNewComments  SortType = "NewComments"
 )
 
 type ListingType string
 
 const (
-	ListingTypeAll        = "All"
-	ListingTypeLocal      = "Local"
-	ListingTypeSubscribed = "Subscribed"
-	ListingTypeCommunity  = "Community"
+	ListingTypeAll        ListingType = "All"
+	ListingTypeLocal      ListingType = "Local"
+	ListingTypeSubscribed ListingType = "Subscribed"
+	ListingTypeCommunity  ListingType = "Community"
 )
 
 type SearchType string
 
 const (
-	SearchTypeAll         = "All"
-	SearchTypeComments    = "Comments"
-	SearchTypePosts       = "Posts"
-	SearchTypeCommunities = "Communities"
-	SearchTypeUsers       = "Users"
-	SearchTypeUrl         = "Url"
+	SearchTypeAll         SearchType = "All"
+	SearchTypeComments    SearchType = "Comments"
+	SearchTypePosts       SearchType = "Posts"
+	SearchTypeCommunities SearchType = "Communities"
+	SearchTypeUsers       SearchType = "Users"
+	SearchTypeUrl         SearchType = "Url"
 )

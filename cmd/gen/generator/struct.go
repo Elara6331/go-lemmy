@@ -4,8 +4,8 @@ import (
 	"io"
 	"strings"
 
-	"go.arsenm.dev/go-lemmy/cmd/gen/parser"
 	"github.com/dave/jennifer/jen"
+	"go.arsenm.dev/go-lemmy/cmd/gen/parser"
 )
 
 type StructGenerator struct {
@@ -47,7 +47,7 @@ func (s *StructGenerator) Generate(items []parser.Item) error {
 
 			f.Const().DefsFunc(func(g *jen.Group) {
 				for _, member := range e.Members {
-					g.Id(e.Name + string(member)).Op("=").Lit(string(member))
+					g.Id(e.Name + string(member)).Id(e.Name).Op("=").Lit(string(member))
 				}
 			})
 		}
