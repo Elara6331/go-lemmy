@@ -218,7 +218,7 @@ func TransformTypeGo(t string) string {
 	case "i8":
 		t = "int8"
 	case "chrono::NaiveDateTime":
-		return "time.Time"
+		return "LemmyTime"
 	case "Value":
 		return "any"
 	}
