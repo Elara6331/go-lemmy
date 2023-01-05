@@ -3,7 +3,6 @@ package lemmy
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -98,8 +97,6 @@ func (c *WSClient) Request(op types.Operation, data any) error {
 	if err != nil {
 		return err
 	}
-
-	fmt.Println(data, string(d))
 
 	return c.conn.WriteJSON(types.LemmyWebSocketMsg{
 		Op:   op.Operation(),
