@@ -61,15 +61,8 @@ type LemmyWebSocketMsg struct {
 // IsOneOf checks if the message is one of the given operations.
 func (msg LemmyWebSocketMsg) IsOneOf(ops ...Operation) bool {
 	for _, op := range ops {
-		switch op := op.(type) {
-		case UserOperation:
-			if string(op) == msg.Op {
-				return true
-			}
-		case UserOperationCrud:
-			if string(op) == msg.Op {
-				return true
-			}
+		if op.Operation() == msg.Op {
+			return true
 		}
 	}
 	return false
@@ -83,6 +76,6 @@ func (u UserOperation) Operation() string {
 	return string(u)
 }
 
-func (u UserOperationCrud) Operation() string {
+func (u UserOperationCRUD) Operation() string {
 	return string(u)
 }
