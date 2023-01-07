@@ -45,7 +45,7 @@ func (c *Client) ClientLogin(ctx context.Context, l types.Login) error {
 		return err
 	}
 
-	c.Token = lr.Jwt.MustValue()
+	c.Token = lr.JWT.MustValue()
 	return nil
 }
 
