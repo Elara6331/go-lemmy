@@ -89,6 +89,11 @@ func main() {
 			}
 			defer outFl.Close()
 
+			_, err = outFl.WriteString("//  Source: " + path + "\n")
+			if err != nil {
+				return err
+			}
+
 			return generator.NewStruct(outFl, "types").Generate(fileStructs)
 		})
 		if err != nil {
@@ -135,7 +140,8 @@ func main() {
 		}
 	}
 
-	rf, err := os.Open(filepath.Join(*lemmyDir, routesFile))
+	routesPath := filepath.Join(*lemmyDir, routesFile)
+	rf, err := os.Open(routesPath)
 	if err != nil {
 		panic(err)
 	}
@@ -152,6 +158,11 @@ func main() {
 		panic(err)
 	}
 	defer orf.Close()
+
+	_, err = orf.WriteString("//  Source: " + routesPath + "\n")
+	if err != nil {
+		panic(err)
+	}
 
 	err = generator.NewRoutes(orf, "lemmy").Generate(routes, impls)
 	if err != nil {
