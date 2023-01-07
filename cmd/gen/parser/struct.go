@@ -71,6 +71,7 @@ func (s *StructParser) Parse() ([]Item, error) {
 			if slices.Contains(s.Skip, structName) {
 				continue
 			}
+			structName = s.TransformName(structName)
 
 			// If the line ends with "}", this is a struct with no fields
 			if strings.HasSuffix(line, "}\n") {
@@ -97,8 +98,9 @@ func (s *StructParser) Parse() ([]Item, error) {
 			enumName := enumRegex.FindStringSubmatch(line)[1]
 			if slices.Contains(s.Skip, enumName) {
 				continue
-
 			}
+			enumName = s.TransformName(enumName)
+
 			members, err := s.parseEnumMemebers()
 			if err != nil {
 				return nil, err
@@ -232,6 +234,8 @@ func TransformTypeGo(t string) string {
 //	Example: TransformNameGo("post_id") // returns "PostID"
 func TransformNameGo(s string) string {
 	out := ""
+
+	s = strings.ReplaceAll(s, "Crud", "CRUD")
 
 	splitName := strings.Split(s, "_")
 	for _, segment := range splitName {
