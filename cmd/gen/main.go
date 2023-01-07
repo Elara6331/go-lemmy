@@ -10,7 +10,13 @@ import (
 
 	"go.arsenm.dev/go-lemmy/cmd/gen/generator"
 	"go.arsenm.dev/go-lemmy/cmd/gen/parser"
+	"go.arsenm.dev/logger"
+	"go.arsenm.dev/logger/log"
 )
+
+func init() {
+	log.Logger = logger.NewPretty(os.Stderr)
+}
 
 var implDirs = [...]string{
 	"crates/api_crud/src",
@@ -97,7 +103,7 @@ func main() {
 			return generator.NewStruct(outFl, "types").Generate(fileStructs)
 		})
 		if err != nil {
-			panic(err)
+			log.Fatal("Error walking directory while parsing structs").Err(err).Str("dir", dir).Send()
 		}
 	}
 
@@ -136,36 +142,36 @@ func main() {
 			return nil
 		})
 		if err != nil {
-			panic(err)
+			log.Fatal("Error walking directory while parsing impls").Err(err).Str("dir", dir).Send()
 		}
 	}
 
 	routesPath := filepath.Join(*lemmyDir, routesFile)
 	rf, err := os.Open(routesPath)
 	if err != nil {
-		panic(err)
+		log.Fatal("Error opening routes file").Err(err).Send()
 	}
 	defer rf.Close()
 
 	rp := parser.NewRoutes(rf)
 	routes, err := rp.Parse()
 	if err != nil {
-		panic(err)
+		log.Fatal("Error parsing routes file").Err(err).Send()
 	}
 
 	orf, err := os.Create(filepath.Join(*outDir, "routes.gen.go"))
 	if err != nil {
-		panic(err)
+		log.Fatal("Error creating routes output file").Err(err).Send()
 	}
 	defer orf.Close()
 
 	_, err = orf.WriteString("//  Source: " + routesPath + "\n")
 	if err != nil {
-		panic(err)
+		log.Fatal("Error writing source string to routes file").Err(err).Send()
 	}
 
 	err = generator.NewRoutes(orf, "lemmy").Generate(routes, impls)
 	if err != nil {
-		panic(err)
+		log.Fatal("Error generating output routes file").Err(err).Send()
 	}
 }
