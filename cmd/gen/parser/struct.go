@@ -242,6 +242,10 @@ func TransformNameGo(s string) string {
 			out += "URL"
 		case "nsfw":
 			out += "NSFW"
+		case "jwt":
+			out += "JWT"
+		case "crud":
+			out += "CRUD"
 		default:
 			if len(segment) == 0 {
 				continue
