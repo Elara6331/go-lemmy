@@ -4,31 +4,10 @@
 
 Go bindings to the [Lemmy](https://join-lemmy.org) API, automatically generated directly from Lemmy's source code using the generator in [cmd/gen](cmd/gen).
 
-Example:
+Examples:
 
-```go
-ctx := context.Background()
-
-c, err := lemmy.New("https://lemmygrad.ml")
-if err != nil {
-	panic(err)
-}
-
-err = c.ClientLogin(ctx, types.Login{
-	UsernameOrEmail: "user@example.com",
-	Password:        `TestPwd`,
-})
-if err != nil {
-	panic(err)
-}
-
-_, err = c.SaveUserSettings(ctx, types.SaveUserSettings{
-	BotAccount: types.NewOptional(true),
-})
-if err != nil {
-	panic(err)
-}
-```
+- HTTP: [examples/http](examples/http)
+- WebSocket: [examples/websocket](examples/websocket)
 
 ### How to generate
 
