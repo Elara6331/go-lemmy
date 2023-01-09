@@ -5,6 +5,7 @@ go 1.19
 retract v0.0.0-20230105203020-27ef17a00e22
 
 require (
+	github.com/cenkalti/backoff/v4 v4.2.0
 	github.com/dave/jennifer v1.6.0
 	github.com/google/go-querystring v1.1.0
 	github.com/gorilla/websocket v1.4.2
