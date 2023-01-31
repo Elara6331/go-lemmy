@@ -79,3 +79,7 @@ func (u UserOperation) Operation() string {
 func (u UserOperationCRUD) Operation() string {
 	return string(u)
 }
+
+func (u UserOperationApub) Operation() string {
+	return string(u)
+}

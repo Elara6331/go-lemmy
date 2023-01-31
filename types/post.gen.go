@@ -10,6 +10,7 @@ type CreatePost struct {
 	Body        Optional[string] `json:"body" url:"body,omitempty"`
 	Honeypot    Optional[string] `json:"honeypot" url:"honeypot,omitempty"`
 	NSFW        Optional[bool]   `json:"nsfw" url:"nsfw,omitempty"`
+	LanguageID  Optional[int]    `json:"language_id" url:"language_id,omitempty"`
 	Auth        string           `json:"auth" url:"auth,omitempty"`
 }
 type PostResponse struct {
@@ -17,13 +18,13 @@ type PostResponse struct {
 	LemmyResponse
 }
 type GetPost struct {
-	ID   int              `json:"id" url:"id,omitempty"`
-	Auth Optional[string] `json:"auth" url:"auth,omitempty"`
+	ID        Optional[int]    `json:"id" url:"id,omitempty"`
+	CommentID Optional[int]    `json:"comment_id" url:"comment_id,omitempty"`
+	Auth      Optional[string] `json:"auth" url:"auth,omitempty"`
 }
 type GetPostResponse struct {
 	PostView      PostView                 `json:"post_view" url:"post_view,omitempty"`
 	CommunityView CommunityView            `json:"community_view" url:"community_view,omitempty"`
-	Comments      []CommentView            `json:"comments" url:"comments,omitempty"`
 	Moderators    []CommunityModeratorView `json:"moderators" url:"moderators,omitempty"`
 	Online        uint                     `json:"online" url:"online,omitempty"`
 	LemmyResponse
@@ -48,12 +49,13 @@ type CreatePostLike struct {
 	Auth   string `json:"auth" url:"auth,omitempty"`
 }
 type EditPost struct {
-	PostID int              `json:"post_id" url:"post_id,omitempty"`
-	Name   Optional[string] `json:"name" url:"name,omitempty"`
-	URL    Optional[string] `json:"url" url:"url,omitempty"`
-	Body   Optional[string] `json:"body" url:"body,omitempty"`
-	NSFW   Optional[bool]   `json:"nsfw" url:"nsfw,omitempty"`
-	Auth   string           `json:"auth" url:"auth,omitempty"`
+	PostID     int              `json:"post_id" url:"post_id,omitempty"`
+	Name       Optional[string] `json:"name" url:"name,omitempty"`
+	URL        Optional[string] `json:"url" url:"url,omitempty"`
+	Body       Optional[string] `json:"body" url:"body,omitempty"`
+	NSFW       Optional[bool]   `json:"nsfw" url:"nsfw,omitempty"`
+	LanguageID Optional[int]    `json:"language_id" url:"language_id,omitempty"`
+	Auth       string           `json:"auth" url:"auth,omitempty"`
 }
 type DeletePost struct {
 	PostID  int    `json:"post_id" url:"post_id,omitempty"`
@@ -76,10 +78,11 @@ type LockPost struct {
 	Locked bool   `json:"locked" url:"locked,omitempty"`
 	Auth   string `json:"auth" url:"auth,omitempty"`
 }
-type StickyPost struct {
-	PostID   int    `json:"post_id" url:"post_id,omitempty"`
-	Stickied bool   `json:"stickied" url:"stickied,omitempty"`
-	Auth     string `json:"auth" url:"auth,omitempty"`
+type FeaturePost struct {
+	PostID      int             `json:"post_id" url:"post_id,omitempty"`
+	Featured    bool            `json:"featured" url:"featured,omitempty"`
+	FeatureType PostFeatureType `json:"feature_type" url:"feature_type,omitempty"`
+	Auth        string          `json:"auth" url:"auth,omitempty"`
 }
 type SavePost struct {
 	PostID int    `json:"post_id" url:"post_id,omitempty"`
@@ -119,8 +122,8 @@ type GetSiteMetadataResponse struct {
 	LemmyResponse
 }
 type SiteMetadata struct {
-	Title       Optional[string] `json:"title" url:"title,omitempty"`
-	Description Optional[string] `json:"description" url:"description,omitempty"`
-	Image       Optional[string] `json:"image" url:"image,omitempty"`
-	Html        Optional[string] `json:"html" url:"html,omitempty"`
+	Title         Optional[string] `json:"title" url:"title,omitempty"`
+	Description   Optional[string] `json:"description" url:"description,omitempty"`
+	Image         Optional[string] `json:"image" url:"image,omitempty"`
+	EmbedVideoURL Optional[string] `json:"embed_video_url" url:"embed_video_url,omitempty"`
 }

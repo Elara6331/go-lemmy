@@ -35,7 +35,7 @@ type SaveUserSettings struct {
 	Theme                    Optional[string] `json:"theme" url:"theme,omitempty"`
 	DefaultSortType          Optional[int16]  `json:"default_sort_type" url:"default_sort_type,omitempty"`
 	DefaultListingType       Optional[int16]  `json:"default_listing_type" url:"default_listing_type,omitempty"`
-	Lang                     Optional[string] `json:"lang" url:"lang,omitempty"`
+	InterfaceLanguage        Optional[string] `json:"interface_language" url:"interface_language,omitempty"`
 	Avatar                   Optional[string] `json:"avatar" url:"avatar,omitempty"`
 	Banner                   Optional[string] `json:"banner" url:"banner,omitempty"`
 	DisplayName              Optional[string] `json:"display_name" url:"display_name,omitempty"`
@@ -48,6 +48,7 @@ type SaveUserSettings struct {
 	ShowBotAccounts          Optional[bool]   `json:"show_bot_accounts" url:"show_bot_accounts,omitempty"`
 	ShowReadPosts            Optional[bool]   `json:"show_read_posts" url:"show_read_posts,omitempty"`
 	ShowNewPostNotifs        Optional[bool]   `json:"show_new_post_notifs" url:"show_new_post_notifs,omitempty"`
+	DiscussionLanguages      Optional[[]int]  `json:"discussion_languages" url:"discussion_languages,omitempty"`
 	Auth                     string           `json:"auth" url:"auth,omitempty"`
 }
 type ChangePassword struct {
@@ -80,7 +81,7 @@ type GetPersonDetailsResponse struct {
 	LemmyResponse
 }
 type GetRepliesResponse struct {
-	Replies []CommentView `json:"replies" url:"replies,omitempty"`
+	Replies []CommentReplyView `json:"replies" url:"replies,omitempty"`
 	LemmyResponse
 }
 type GetPersonMentionsResponse struct {
@@ -130,18 +131,18 @@ type BlockPersonResponse struct {
 	LemmyResponse
 }
 type GetReplies struct {
-	Sort       Optional[SortType] `json:"sort" url:"sort,omitempty"`
-	Page       Optional[int64]    `json:"page" url:"page,omitempty"`
-	Limit      Optional[int64]    `json:"limit" url:"limit,omitempty"`
-	UnreadOnly Optional[bool]     `json:"unread_only" url:"unread_only,omitempty"`
-	Auth       string             `json:"auth" url:"auth,omitempty"`
+	Sort       Optional[CommentSortType] `json:"sort" url:"sort,omitempty"`
+	Page       Optional[int64]           `json:"page" url:"page,omitempty"`
+	Limit      Optional[int64]           `json:"limit" url:"limit,omitempty"`
+	UnreadOnly Optional[bool]            `json:"unread_only" url:"unread_only,omitempty"`
+	Auth       string                    `json:"auth" url:"auth,omitempty"`
 }
 type GetPersonMentions struct {
-	Sort       Optional[SortType] `json:"sort" url:"sort,omitempty"`
-	Page       Optional[int64]    `json:"page" url:"page,omitempty"`
-	Limit      Optional[int64]    `json:"limit" url:"limit,omitempty"`
-	UnreadOnly Optional[bool]     `json:"unread_only" url:"unread_only,omitempty"`
-	Auth       string             `json:"auth" url:"auth,omitempty"`
+	Sort       Optional[CommentSortType] `json:"sort" url:"sort,omitempty"`
+	Page       Optional[int64]           `json:"page" url:"page,omitempty"`
+	Limit      Optional[int64]           `json:"limit" url:"limit,omitempty"`
+	UnreadOnly Optional[bool]            `json:"unread_only" url:"unread_only,omitempty"`
+	Auth       string                    `json:"auth" url:"auth,omitempty"`
 }
 type MarkPersonMentionAsRead struct {
 	PersonMentionID int    `json:"person_mention_id" url:"person_mention_id,omitempty"`
@@ -150,6 +151,15 @@ type MarkPersonMentionAsRead struct {
 }
 type PersonMentionResponse struct {
 	PersonMentionView PersonMentionView `json:"person_mention_view" url:"person_mention_view,omitempty"`
+	LemmyResponse
+}
+type MarkCommentReplyAsRead struct {
+	CommentReplyID int    `json:"comment_reply_id" url:"comment_reply_id,omitempty"`
+	Read           bool   `json:"read" url:"read,omitempty"`
+	Auth           string `json:"auth" url:"auth,omitempty"`
+}
+type CommentReplyResponse struct {
+	CommentReplyView CommentReplyView `json:"comment_reply_view" url:"comment_reply_view,omitempty"`
 	LemmyResponse
 }
 type DeleteAccount struct {
@@ -170,48 +180,15 @@ type PasswordChangeAfterReset struct {
 	Password       string `json:"password" url:"password,omitempty"`
 	PasswordVerify string `json:"password_verify" url:"password_verify,omitempty"`
 }
-type CreatePrivateMessage struct {
-	Content     string `json:"content" url:"content,omitempty"`
-	RecipientID int    `json:"recipient_id" url:"recipient_id,omitempty"`
-	Auth        string `json:"auth" url:"auth,omitempty"`
-}
-type EditPrivateMessage struct {
-	PrivateMessageID int    `json:"private_message_id" url:"private_message_id,omitempty"`
-	Content          string `json:"content" url:"content,omitempty"`
-	Auth             string `json:"auth" url:"auth,omitempty"`
-}
-type DeletePrivateMessage struct {
-	PrivateMessageID int    `json:"private_message_id" url:"private_message_id,omitempty"`
-	Deleted          bool   `json:"deleted" url:"deleted,omitempty"`
-	Auth             string `json:"auth" url:"auth,omitempty"`
-}
-type MarkPrivateMessageAsRead struct {
-	PrivateMessageID int    `json:"private_message_id" url:"private_message_id,omitempty"`
-	Read             bool   `json:"read" url:"read,omitempty"`
-	Auth             string `json:"auth" url:"auth,omitempty"`
-}
-type GetPrivateMessages struct {
-	UnreadOnly Optional[bool]  `json:"unread_only" url:"unread_only,omitempty"`
-	Page       Optional[int64] `json:"page" url:"page,omitempty"`
-	Limit      Optional[int64] `json:"limit" url:"limit,omitempty"`
-	Auth       string          `json:"auth" url:"auth,omitempty"`
-}
-type PrivateMessagesResponse struct {
-	PrivateMessages []PrivateMessageView `json:"private_messages" url:"private_messages,omitempty"`
-	LemmyResponse
-}
-type PrivateMessageResponse struct {
-	PrivateMessageView PrivateMessageView `json:"private_message_view" url:"private_message_view,omitempty"`
-	LemmyResponse
-}
 type GetReportCount struct {
 	CommunityID Optional[int] `json:"community_id" url:"community_id,omitempty"`
 	Auth        string        `json:"auth" url:"auth,omitempty"`
 }
 type GetReportCountResponse struct {
-	CommunityID    Optional[int] `json:"community_id" url:"community_id,omitempty"`
-	CommentReports int64         `json:"comment_reports" url:"comment_reports,omitempty"`
-	PostReports    int64         `json:"post_reports" url:"post_reports,omitempty"`
+	CommunityID           Optional[int]   `json:"community_id" url:"community_id,omitempty"`
+	CommentReports        int64           `json:"comment_reports" url:"comment_reports,omitempty"`
+	PostReports           int64           `json:"post_reports" url:"post_reports,omitempty"`
+	PrivateMessageReports Optional[int64] `json:"private_message_reports" url:"private_message_reports,omitempty"`
 	LemmyResponse
 }
 type GetUnreadCount struct {

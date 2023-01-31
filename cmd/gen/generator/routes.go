@@ -26,7 +26,7 @@ func (r *RoutesGenerator) Generate(routes []parser.Route, impls map[string]strin
 
 		f.Func().Params(
 			jen.Id("c").Id("*Client"),
-		).Id(strings.TrimPrefix(r.Struct, "Get")).Params(
+		).Id(transformName(r.Struct)).Params(
 			jen.Id("ctx").Qual("context", "Context"),
 			jen.Id("data").Qual("go.arsenm.dev/go-lemmy/types", r.Struct),
 		).Params(
@@ -60,4 +60,10 @@ func (r *RoutesGenerator) Generate(routes []parser.Route, impls map[string]strin
 	}
 
 	return f.Render(r.w)
+}
+
+func transformName(s string) string {
+	s = strings.TrimPrefix(s, "Get")
+	s = strings.TrimPrefix(s, "List")
+	return s
 }
