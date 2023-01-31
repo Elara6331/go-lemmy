@@ -4,52 +4,45 @@
 package types
 
 type Site struct {
-	ID                         int32            `json:"id" url:"id,omitempty"`
-	Name                       string           `json:"name" url:"name,omitempty"`
-	Sidebar                    Optional[string] `json:"sidebar" url:"sidebar,omitempty"`
-	Published                  LemmyTime        `json:"published" url:"published,omitempty"`
-	Updated                    LemmyTime        `json:"updated" url:"updated,omitempty"`
-	EnableDownvotes            bool             `json:"enable_downvotes" url:"enable_downvotes,omitempty"`
-	OpenRegistration           bool             `json:"open_registration" url:"open_registration,omitempty"`
-	EnableNSFW                 bool             `json:"enable_nsfw" url:"enable_nsfw,omitempty"`
-	Icon                       Optional[string] `json:"icon" url:"icon,omitempty"`
-	Banner                     Optional[string] `json:"banner" url:"banner,omitempty"`
-	Description                Optional[string] `json:"description" url:"description,omitempty"`
-	CommunityCreationAdminOnly bool             `json:"community_creation_admin_only" url:"community_creation_admin_only,omitempty"`
-	RequireEmailVerification   bool             `json:"require_email_verification" url:"require_email_verification,omitempty"`
-	RequireApplication         bool             `json:"require_application" url:"require_application,omitempty"`
-	ApplicationQuestion        Optional[string] `json:"application_question" url:"application_question,omitempty"`
-	PrivateInstance            bool             `json:"private_instance" url:"private_instance,omitempty"`
-	ActorID                    string           `json:"actor_id" url:"actor_id,omitempty"`
-	LastRefreshedAt            LemmyTime        `json:"last_refreshed_at" url:"last_refreshed_at,omitempty"`
-	InboxURL                   string           `json:"inbox_url" url:"inbox_url,omitempty"`
-	PrivateKey                 Optional[string] `json:"private_key" url:"private_key,omitempty"`
-	PublicKey                  string           `json:"public_key" url:"public_key,omitempty"`
-	DefaultTheme               string           `json:"default_theme" url:"default_theme,omitempty"`
-	DefaultPostListingType     string           `json:"default_post_listing_type" url:"default_post_listing_type,omitempty"`
-	LegalInformation           Optional[string] `json:"legal_information" url:"legal_information,omitempty"`
+	ID              int              `json:"id" url:"id,omitempty"`
+	Name            string           `json:"name" url:"name,omitempty"`
+	Sidebar         Optional[string] `json:"sidebar" url:"sidebar,omitempty"`
+	Published       LemmyTime        `json:"published" url:"published,omitempty"`
+	Updated         LemmyTime        `json:"updated" url:"updated,omitempty"`
+	Icon            Optional[string] `json:"icon" url:"icon,omitempty"`
+	Banner          Optional[string] `json:"banner" url:"banner,omitempty"`
+	Description     Optional[string] `json:"description" url:"description,omitempty"`
+	ActorID         string           `json:"actor_id" url:"actor_id,omitempty"`
+	LastRefreshedAt LemmyTime        `json:"last_refreshed_at" url:"last_refreshed_at,omitempty"`
+	InboxURL        string           `json:"inbox_url" url:"inbox_url,omitempty"`
+	PrivateKey      Optional[string] `json:"private_key" url:"private_key,omitempty"`
+	PublicKey       string           `json:"public_key" url:"public_key,omitempty"`
+	InstanceID      int              `json:"instance_id" url:"instance_id,omitempty"`
 }
-type SiteForm struct {
-	Name                       string                     `json:"name" url:"name,omitempty"`
-	Sidebar                    Optional[Optional[string]] `json:"sidebar" url:"sidebar,omitempty"`
-	Updated                    LemmyTime                  `json:"updated" url:"updated,omitempty"`
-	EnableDownvotes            Optional[bool]             `json:"enable_downvotes" url:"enable_downvotes,omitempty"`
-	OpenRegistration           Optional[bool]             `json:"open_registration" url:"open_registration,omitempty"`
-	EnableNSFW                 Optional[bool]             `json:"enable_nsfw" url:"enable_nsfw,omitempty"`
-	Icon                       Optional[Optional[string]] `json:"icon" url:"icon,omitempty"`
-	Banner                     Optional[Optional[string]] `json:"banner" url:"banner,omitempty"`
-	Description                Optional[Optional[string]] `json:"description" url:"description,omitempty"`
-	CommunityCreationAdminOnly Optional[bool]             `json:"community_creation_admin_only" url:"community_creation_admin_only,omitempty"`
-	RequireEmailVerification   Optional[bool]             `json:"require_email_verification" url:"require_email_verification,omitempty"`
-	RequireApplication         Optional[bool]             `json:"require_application" url:"require_application,omitempty"`
-	ApplicationQuestion        Optional[Optional[string]] `json:"application_question" url:"application_question,omitempty"`
-	PrivateInstance            Optional[bool]             `json:"private_instance" url:"private_instance,omitempty"`
-	ActorID                    Optional[string]           `json:"actor_id" url:"actor_id,omitempty"`
-	LastRefreshedAt            LemmyTime                  `json:"last_refreshed_at" url:"last_refreshed_at,omitempty"`
-	InboxURL                   Optional[string]           `json:"inbox_url" url:"inbox_url,omitempty"`
-	PrivateKey                 Optional[Optional[string]] `json:"private_key" url:"private_key,omitempty"`
-	PublicKey                  Optional[string]           `json:"public_key" url:"public_key,omitempty"`
-	DefaultTheme               Optional[string]           `json:"default_theme" url:"default_theme,omitempty"`
-	DefaultPostListingType     Optional[string]           `json:"default_post_listing_type" url:"default_post_listing_type,omitempty"`
-	LegalInformation           Optional[string]           `json:"legal_information" url:"legal_information,omitempty"`
+type SiteInsertForm struct {
+	Name            string           `json:"name" url:"name,omitempty"`
+	Sidebar         Optional[string] `json:"sidebar" url:"sidebar,omitempty"`
+	Updated         LemmyTime        `json:"updated" url:"updated,omitempty"`
+	Icon            Optional[string] `json:"icon" url:"icon,omitempty"`
+	Banner          Optional[string] `json:"banner" url:"banner,omitempty"`
+	Description     Optional[string] `json:"description" url:"description,omitempty"`
+	ActorID         Optional[string] `json:"actor_id" url:"actor_id,omitempty"`
+	LastRefreshedAt LemmyTime        `json:"last_refreshed_at" url:"last_refreshed_at,omitempty"`
+	InboxURL        Optional[string] `json:"inbox_url" url:"inbox_url,omitempty"`
+	PrivateKey      Optional[string] `json:"private_key" url:"private_key,omitempty"`
+	PublicKey       Optional[string] `json:"public_key" url:"public_key,omitempty"`
+	InstanceID      int              `json:"instance_id" url:"instance_id,omitempty"`
+}
+type SiteUpdateForm struct {
+	Name            Optional[string]           `json:"name" url:"name,omitempty"`
+	Sidebar         Optional[Optional[string]] `json:"sidebar" url:"sidebar,omitempty"`
+	Updated         LemmyTime                  `json:"updated" url:"updated,omitempty"`
+	Icon            Optional[Optional[string]] `json:"icon" url:"icon,omitempty"`
+	Banner          Optional[Optional[string]] `json:"banner" url:"banner,omitempty"`
+	Description     Optional[Optional[string]] `json:"description" url:"description,omitempty"`
+	ActorID         Optional[string]           `json:"actor_id" url:"actor_id,omitempty"`
+	LastRefreshedAt LemmyTime                  `json:"last_refreshed_at" url:"last_refreshed_at,omitempty"`
+	InboxURL        Optional[string]           `json:"inbox_url" url:"inbox_url,omitempty"`
+	PrivateKey      Optional[Optional[string]] `json:"private_key" url:"private_key,omitempty"`
+	PublicKey       Optional[string]           `json:"public_key" url:"public_key,omitempty"`
 }

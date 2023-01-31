@@ -12,10 +12,16 @@ type Activity struct {
 	ApID      string         `json:"ap_id" url:"ap_id,omitempty"`
 	Sensitive Optional[bool] `json:"sensitive" url:"sensitive,omitempty"`
 }
-type ActivityForm struct {
+type ActivityInsertForm struct {
 	Data      any            `json:"data" url:"data,omitempty"`
 	Local     Optional[bool] `json:"local" url:"local,omitempty"`
 	Updated   LemmyTime      `json:"updated" url:"updated,omitempty"`
 	ApID      string         `json:"ap_id" url:"ap_id,omitempty"`
-	Sensitive bool           `json:"sensitive" url:"sensitive,omitempty"`
+	Sensitive Optional[bool] `json:"sensitive" url:"sensitive,omitempty"`
+}
+type ActivityUpdateForm struct {
+	Data      any                      `json:"data" url:"data,omitempty"`
+	Local     Optional[bool]           `json:"local" url:"local,omitempty"`
+	Updated   LemmyTime                `json:"updated" url:"updated,omitempty"`
+	Sensitive Optional[Optional[bool]] `json:"sensitive" url:"sensitive,omitempty"`
 }

@@ -4,45 +4,42 @@
 package types
 
 type Comment struct {
-	ID        int           `json:"id" url:"id,omitempty"`
-	CreatorID int           `json:"creator_id" url:"creator_id,omitempty"`
-	PostID    int           `json:"post_id" url:"post_id,omitempty"`
-	ParentID  Optional[int] `json:"parent_id" url:"parent_id,omitempty"`
-	Content   string        `json:"content" url:"content,omitempty"`
-	Removed   bool          `json:"removed" url:"removed,omitempty"`
-	Read      bool          `json:"read" url:"read,omitempty"`
-	Published LemmyTime     `json:"published" url:"published,omitempty"`
-	Updated   LemmyTime     `json:"updated" url:"updated,omitempty"`
-	Deleted   bool          `json:"deleted" url:"deleted,omitempty"`
-	ApID      string        `json:"ap_id" url:"ap_id,omitempty"`
-	Local     bool          `json:"local" url:"local,omitempty"`
+	ID            int       `json:"id" url:"id,omitempty"`
+	CreatorID     int       `json:"creator_id" url:"creator_id,omitempty"`
+	PostID        int       `json:"post_id" url:"post_id,omitempty"`
+	Content       string    `json:"content" url:"content,omitempty"`
+	Removed       bool      `json:"removed" url:"removed,omitempty"`
+	Published     LemmyTime `json:"published" url:"published,omitempty"`
+	Updated       LemmyTime `json:"updated" url:"updated,omitempty"`
+	Deleted       bool      `json:"deleted" url:"deleted,omitempty"`
+	ApID          string    `json:"ap_id" url:"ap_id,omitempty"`
+	Local         bool      `json:"local" url:"local,omitempty"`
+	Path          string    `json:"path" url:"path,omitempty"`
+	Distinguished bool      `json:"distinguished" url:"distinguished,omitempty"`
+	LanguageID    int       `json:"language_id" url:"language_id,omitempty"`
 }
-type CommentAlias1 struct {
-	ID        int           `json:"id" url:"id,omitempty"`
-	CreatorID int           `json:"creator_id" url:"creator_id,omitempty"`
-	PostID    int           `json:"post_id" url:"post_id,omitempty"`
-	ParentID  Optional[int] `json:"parent_id" url:"parent_id,omitempty"`
-	Content   string        `json:"content" url:"content,omitempty"`
-	Removed   bool          `json:"removed" url:"removed,omitempty"`
-	Read      bool          `json:"read" url:"read,omitempty"`
-	Published LemmyTime     `json:"published" url:"published,omitempty"`
-	Updated   LemmyTime     `json:"updated" url:"updated,omitempty"`
-	Deleted   bool          `json:"deleted" url:"deleted,omitempty"`
-	ApID      string        `json:"ap_id" url:"ap_id,omitempty"`
-	Local     bool          `json:"local" url:"local,omitempty"`
+type CommentInsertForm struct {
+	CreatorID     int              `json:"creator_id" url:"creator_id,omitempty"`
+	PostID        int              `json:"post_id" url:"post_id,omitempty"`
+	Content       string           `json:"content" url:"content,omitempty"`
+	Removed       Optional[bool]   `json:"removed" url:"removed,omitempty"`
+	Published     LemmyTime        `json:"published" url:"published,omitempty"`
+	Updated       LemmyTime        `json:"updated" url:"updated,omitempty"`
+	Deleted       Optional[bool]   `json:"deleted" url:"deleted,omitempty"`
+	ApID          Optional[string] `json:"ap_id" url:"ap_id,omitempty"`
+	Local         Optional[bool]   `json:"local" url:"local,omitempty"`
+	Distinguished Optional[bool]   `json:"distinguished" url:"distinguished,omitempty"`
+	LanguageID    Optional[int]    `json:"language_id" url:"language_id,omitempty"`
 }
-type CommentForm struct {
-	CreatorID int              `json:"creator_id" url:"creator_id,omitempty"`
-	PostID    int              `json:"post_id" url:"post_id,omitempty"`
-	Content   string           `json:"content" url:"content,omitempty"`
-	ParentID  Optional[int]    `json:"parent_id" url:"parent_id,omitempty"`
-	Removed   Optional[bool]   `json:"removed" url:"removed,omitempty"`
-	Read      Optional[bool]   `json:"read" url:"read,omitempty"`
-	Published LemmyTime        `json:"published" url:"published,omitempty"`
-	Updated   LemmyTime        `json:"updated" url:"updated,omitempty"`
-	Deleted   Optional[bool]   `json:"deleted" url:"deleted,omitempty"`
-	ApID      Optional[string] `json:"ap_id" url:"ap_id,omitempty"`
-	Local     Optional[bool]   `json:"local" url:"local,omitempty"`
+type CommentUpdateForm struct {
+	Content       Optional[string] `json:"content" url:"content,omitempty"`
+	Removed       Optional[bool]   `json:"removed" url:"removed,omitempty"`
+	Updated       LemmyTime        `json:"updated" url:"updated,omitempty"`
+	Deleted       Optional[bool]   `json:"deleted" url:"deleted,omitempty"`
+	ApID          Optional[string] `json:"ap_id" url:"ap_id,omitempty"`
+	Local         Optional[bool]   `json:"local" url:"local,omitempty"`
+	Distinguished Optional[bool]   `json:"distinguished" url:"distinguished,omitempty"`
+	LanguageID    Optional[int]    `json:"language_id" url:"language_id,omitempty"`
 }
 type CommentLike struct {
 	ID        int32     `json:"id" url:"id,omitempty"`

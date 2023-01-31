@@ -35,7 +35,7 @@ var structDirs = [...]string{
 	"crates/websocket/src/lib.rs",
 }
 
-const routesFile = "src/api_routes.rs"
+const routesFile = "src/api_routes_http.rs"
 
 func main() {
 	lemmyDir := flag.String("lemmy-dir", "lemmy", "Path to Lemmy repository")

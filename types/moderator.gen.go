@@ -29,17 +29,19 @@ type ModLockPostForm struct {
 	PostID      int            `json:"post_id" url:"post_id,omitempty"`
 	Locked      Optional[bool] `json:"locked" url:"locked,omitempty"`
 }
-type ModStickyPost struct {
-	ID          int32          `json:"id" url:"id,omitempty"`
-	ModPersonID int            `json:"mod_person_id" url:"mod_person_id,omitempty"`
-	PostID      int            `json:"post_id" url:"post_id,omitempty"`
-	Stickied    Optional[bool] `json:"stickied" url:"stickied,omitempty"`
-	When        LemmyTime      `json:"when_" url:"when_,omitempty"`
+type ModFeaturePost struct {
+	ID                  int32     `json:"id" url:"id,omitempty"`
+	ModPersonID         int       `json:"mod_person_id" url:"mod_person_id,omitempty"`
+	PostID              int       `json:"post_id" url:"post_id,omitempty"`
+	Featured            bool      `json:"featured" url:"featured,omitempty"`
+	When                LemmyTime `json:"when_" url:"when_,omitempty"`
+	IsFeaturedCommunity bool      `json:"is_featured_community" url:"is_featured_community,omitempty"`
 }
-type ModStickyPostForm struct {
-	ModPersonID int            `json:"mod_person_id" url:"mod_person_id,omitempty"`
-	PostID      int            `json:"post_id" url:"post_id,omitempty"`
-	Stickied    Optional[bool] `json:"stickied" url:"stickied,omitempty"`
+type ModFeaturePostForm struct {
+	ModPersonID         int  `json:"mod_person_id" url:"mod_person_id,omitempty"`
+	PostID              int  `json:"post_id" url:"post_id,omitempty"`
+	Featured            bool `json:"featured" url:"featured,omitempty"`
+	IsFeaturedCommunity bool `json:"is_featured_community" url:"is_featured_community,omitempty"`
 }
 type ModRemoveComment struct {
 	ID          int32            `json:"id" url:"id,omitempty"`
@@ -158,4 +160,48 @@ type ModAddForm struct {
 	ModPersonID   int            `json:"mod_person_id" url:"mod_person_id,omitempty"`
 	OtherPersonID int            `json:"other_person_id" url:"other_person_id,omitempty"`
 	Removed       Optional[bool] `json:"removed" url:"removed,omitempty"`
+}
+type AdminPurgePerson struct {
+	ID            int32            `json:"id" url:"id,omitempty"`
+	AdminPersonID int              `json:"admin_person_id" url:"admin_person_id,omitempty"`
+	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
+	When          LemmyTime        `json:"when_" url:"when_,omitempty"`
+}
+type AdminPurgePersonForm struct {
+	AdminPersonID int              `json:"admin_person_id" url:"admin_person_id,omitempty"`
+	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
+}
+type AdminPurgeCommunity struct {
+	ID            int32            `json:"id" url:"id,omitempty"`
+	AdminPersonID int              `json:"admin_person_id" url:"admin_person_id,omitempty"`
+	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
+	When          LemmyTime        `json:"when_" url:"when_,omitempty"`
+}
+type AdminPurgeCommunityForm struct {
+	AdminPersonID int              `json:"admin_person_id" url:"admin_person_id,omitempty"`
+	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
+}
+type AdminPurgePost struct {
+	ID            int32            `json:"id" url:"id,omitempty"`
+	AdminPersonID int              `json:"admin_person_id" url:"admin_person_id,omitempty"`
+	CommunityID   int              `json:"community_id" url:"community_id,omitempty"`
+	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
+	When          LemmyTime        `json:"when_" url:"when_,omitempty"`
+}
+type AdminPurgePostForm struct {
+	AdminPersonID int              `json:"admin_person_id" url:"admin_person_id,omitempty"`
+	CommunityID   int              `json:"community_id" url:"community_id,omitempty"`
+	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
+}
+type AdminPurgeComment struct {
+	ID            int32            `json:"id" url:"id,omitempty"`
+	AdminPersonID int              `json:"admin_person_id" url:"admin_person_id,omitempty"`
+	PostID        int              `json:"post_id" url:"post_id,omitempty"`
+	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
+	When          LemmyTime        `json:"when_" url:"when_,omitempty"`
+}
+type AdminPurgeCommentForm struct {
+	AdminPersonID int              `json:"admin_person_id" url:"admin_person_id,omitempty"`
+	PostID        int              `json:"post_id" url:"post_id,omitempty"`
+	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
 }

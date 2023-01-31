@@ -9,10 +9,12 @@ type GetCommunity struct {
 	Auth Optional[string] `json:"auth" url:"auth,omitempty"`
 }
 type GetCommunityResponse struct {
-	CommunityView CommunityView            `json:"community_view" url:"community_view,omitempty"`
-	Site          Optional[Site]           `json:"site" url:"site,omitempty"`
-	Moderators    []CommunityModeratorView `json:"moderators" url:"moderators,omitempty"`
-	Online        uint                     `json:"online" url:"online,omitempty"`
+	CommunityView       CommunityView            `json:"community_view" url:"community_view,omitempty"`
+	Site                Optional[Site]           `json:"site" url:"site,omitempty"`
+	Moderators          []CommunityModeratorView `json:"moderators" url:"moderators,omitempty"`
+	Online              uint                     `json:"online" url:"online,omitempty"`
+	DiscussionLanguages []int                    `json:"discussion_languages" url:"discussion_languages,omitempty"`
+	DefaultPostLanguage Optional[int]            `json:"default_post_language" url:"default_post_language,omitempty"`
 	LemmyResponse
 }
 type CreateCommunity struct {
@@ -23,10 +25,12 @@ type CreateCommunity struct {
 	Banner                  Optional[string] `json:"banner" url:"banner,omitempty"`
 	NSFW                    Optional[bool]   `json:"nsfw" url:"nsfw,omitempty"`
 	PostingRestrictedToMods Optional[bool]   `json:"posting_restricted_to_mods" url:"posting_restricted_to_mods,omitempty"`
+	DiscussionLanguages     Optional[[]int]  `json:"discussion_languages" url:"discussion_languages,omitempty"`
 	Auth                    string           `json:"auth" url:"auth,omitempty"`
 }
 type CommunityResponse struct {
-	CommunityView CommunityView `json:"community_view" url:"community_view,omitempty"`
+	CommunityView       CommunityView `json:"community_view" url:"community_view,omitempty"`
+	DiscussionLanguages []int         `json:"discussion_languages" url:"discussion_languages,omitempty"`
 	LemmyResponse
 }
 type ListCommunities struct {
@@ -72,6 +76,7 @@ type EditCommunity struct {
 	Banner                  Optional[string] `json:"banner" url:"banner,omitempty"`
 	NSFW                    Optional[bool]   `json:"nsfw" url:"nsfw,omitempty"`
 	PostingRestrictedToMods Optional[bool]   `json:"posting_restricted_to_mods" url:"posting_restricted_to_mods,omitempty"`
+	DiscussionLanguages     Optional[[]int]  `json:"discussion_languages" url:"discussion_languages,omitempty"`
 	Auth                    string           `json:"auth" url:"auth,omitempty"`
 }
 type HideCommunity struct {
