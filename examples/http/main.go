@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 
-	"go.arsenm.dev/go-lemmy"
-	"go.arsenm.dev/go-lemmy/types"
+	"go.elara.ws/go-lemmy"
+	"go.elara.ws/go-lemmy/types"
 )
 
 func main() {

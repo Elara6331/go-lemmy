@@ -12,7 +12,7 @@ import (
 
 	"github.com/cenkalti/backoff/v4"
 	"github.com/gorilla/websocket"
-	"go.arsenm.dev/go-lemmy/types"
+	"go.elara.ws/go-lemmy/types"
 )
 
 type authData struct {

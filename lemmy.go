@@ -10,7 +10,7 @@ import (
 	"reflect"
 
 	"github.com/google/go-querystring/query"
-	"go.arsenm.dev/go-lemmy/types"
+	"go.elara.ws/go-lemmy/types"
 )
 
 // Client is a client for Lemmy's HTTP API

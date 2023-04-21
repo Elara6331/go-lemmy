@@ -17,12 +17,12 @@ github.com/mattn/go-isatty v0.0.14/go.mod h1:7GGIvUiUoEMVVmxf/4nioHXj79iQHKdU27k
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
-github.com/stretchr/testify v1.7.2 h1:4jaiDzPyXQvSd7D0EjG45355tLlV3VOECpq10pLC+8s=
 github.com/stretchr/testify v1.7.2/go.mod h1:R6va5+xMeoiuVRoj+gSkQ7d3FALtqAAGI1FQKckRals=
+github.com/stretchr/testify v1.8.0 h1:pSgiaMZlXftHpm5L7V1+rVB+AZJydKsMxsQBIJw4PKk=
 github.com/xo/terminfo v0.0.0-20210125001918-ca9a967f8778 h1:QldyIu/L63oPpyvQmHgvgickp1Yw510KJOqX7H24mg8=
 github.com/xo/terminfo v0.0.0-20210125001918-ca9a967f8778/go.mod h1:2MuV+tbUrU1zIOPMxZ5EncGwgmMJsa+9ucAQZXxsObs=
-go.arsenm.dev/logger v0.0.0-20230104225304-d706171ea6df h1:8mBHvEe7BJmpOeKSMA5YLqrGo9dCpePocTeR0C1+/2w=
-go.arsenm.dev/logger v0.0.0-20230104225304-d706171ea6df/go.mod h1:RV2qydKDdoyaRkhAq8JEGvojR8eJ6bjq5WnSIlH7gYw=
+go.elara.ws/logger v0.0.0-20230421022458-e80700db2090 h1:RVC8XvWo6Yw4HUshqx4TSzuBDScDghafU6QFRJ4xPZg=
+go.elara.ws/logger v0.0.0-20230421022458-e80700db2090/go.mod h1:qng49owViqsW5Aey93lwBXONw20oGbJIoLVscB16mPM=
 golang.org/x/exp v0.0.0-20230105000112-eab7a2c85304 h1:YUqj+XKtfrn3kXjFIiZ8jwKROD7ioAOOHUuo3ZZ2opc=
 golang.org/x/exp v0.0.0-20230105000112-eab7a2c85304/go.mod h1:CxIveKay+FTh1D0yPZemJVgC/95VzuuOLq5Qi4xnoYc=
 golang.org/x/sys v0.0.0-20210330210617-4fbd30eecc44/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=

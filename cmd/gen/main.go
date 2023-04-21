@@ -8,10 +8,10 @@ import (
 	"strconv"
 	"strings"
 
-	"go.arsenm.dev/go-lemmy/cmd/gen/generator"
-	"go.arsenm.dev/go-lemmy/cmd/gen/parser"
-	"go.arsenm.dev/logger"
-	"go.arsenm.dev/logger/log"
+	"go.elara.ws/go-lemmy/cmd/gen/generator"
+	"go.elara.ws/go-lemmy/cmd/gen/parser"
+	"go.elara.ws/logger"
+	"go.elara.ws/logger/log"
 )
 
 func init() {
