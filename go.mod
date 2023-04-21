@@ -1,8 +1,6 @@
-module go.arsenm.dev/go-lemmy
+module go.elara.ws/go-lemmy
 
 go 1.19
-
-retract v0.0.0-20230105203020-27ef17a00e22
 
 require (
 	github.com/cenkalti/backoff/v4 v4.2.0
