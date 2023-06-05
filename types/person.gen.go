@@ -18,7 +18,9 @@ type Register struct {
 	Honeypot       Optional[string] `json:"honeypot" url:"honeypot,omitempty"`
 	Answer         Optional[string] `json:"answer" url:"answer,omitempty"`
 }
-type GetCaptcha struct{}
+type GetCaptcha struct {
+	Auth Optional[string] `json:"auth" url:"auth,omitempty"`
+}
 type GetCaptchaResponse struct {
 	Ok Optional[CaptchaResponse] `json:"ok" url:"ok,omitempty"`
 	LemmyResponse

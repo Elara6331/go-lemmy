@@ -167,6 +167,13 @@ type GetSiteResponse struct {
 	Taglines            Optional[[]Tagline]          `json:"taglines" url:"taglines,omitempty"`
 	LemmyResponse
 }
+type GetFederatedInstances struct {
+	Auth Optional[string] `json:"auth" url:"auth,omitempty"`
+}
+type GetFederatedInstancesResponse struct {
+	FederatedInstances Optional[FederatedInstances] `json:"federated_instances" url:"federated_instances,omitempty"`
+	LemmyResponse
+}
 type MyUserInfo struct {
 	LocalUserView       LocalUserSettingsView    `json:"local_user_view" url:"local_user_view,omitempty"`
 	Follows             []CommunityFollowerView  `json:"follows" url:"follows,omitempty"`

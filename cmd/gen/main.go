@@ -44,7 +44,7 @@ func main() {
 
 	baseStructDir := filepath.Join(*outDir, "types")
 	sp := parser.NewStruct(nil)
-	sp.Skip = []string{"LemmyContext"}
+	sp.Skip = []string{"LemmyContext", "Recipient", "WsMessage", "Connect", "SessionInfo"}
 	for _, structDir := range structDirs {
 		dir := filepath.Join(*lemmyDir, structDir)
 		err := filepath.WalkDir(dir, func(path string, d fs.DirEntry, err error) error {
