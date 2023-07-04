@@ -1,6 +1,6 @@
 # Go-Lemmy
 
-[![Go Reference](https://pkg.go.dev/badge/go.arsenm.dev/go-lemmy.svg)](https://pkg.go.dev/go.arsenm.dev/go-lemmy)
+[![Go Reference](https://pkg.go.dev/badge/go.arsenm.dev/go-lemmy.svg)](https://pkg.go.dev/go.elara.ws/go-lemmy)
 
 Go bindings to the [Lemmy](https://join-lemmy.org) API, automatically generated directly from Lemmy's source code using the generator in [cmd/gen](cmd/gen).
 
