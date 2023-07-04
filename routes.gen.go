@@ -224,21 +224,9 @@ func (c *Client) AddModToCommunity(ctx context.Context, data types.AddModToCommu
 	}
 	return resData, nil
 }
-func (c *Client) CommunityJoin(ctx context.Context, data types.CommunityJoin) (*types.CommunityJoinResponse, error) {
-	resData := &types.CommunityJoinResponse{}
-	res, err := c.req(ctx, "POST", "/community/join", data, &resData)
-	if err != nil {
-		return nil, err
-	}
-	err = resError(res, resData.LemmyResponse)
-	if err != nil {
-		return nil, err
-	}
-	return resData, nil
-}
-func (c *Client) ModJoin(ctx context.Context, data types.ModJoin) (*types.ModJoinResponse, error) {
-	resData := &types.ModJoinResponse{}
-	res, err := c.req(ctx, "POST", "/community/mod/join", data, &resData)
+func (c *Client) FederatedInstances(ctx context.Context, data types.GetFederatedInstances) (*types.GetFederatedInstancesResponse, error) {
+	resData := &types.GetFederatedInstancesResponse{}
+	res, err := c.getReq(ctx, "GET", "/federated_instances", data, &resData)
 	if err != nil {
 		return nil, err
 	}
@@ -380,18 +368,6 @@ func (c *Client) SavePost(ctx context.Context, data types.SavePost) (*types.Post
 	}
 	return resData, nil
 }
-func (c *Client) PostJoin(ctx context.Context, data types.PostJoin) (*types.PostJoinResponse, error) {
-	resData := &types.PostJoinResponse{}
-	res, err := c.req(ctx, "POST", "/post/join", data, &resData)
-	if err != nil {
-		return nil, err
-	}
-	err = resError(res, resData.LemmyResponse)
-	if err != nil {
-		return nil, err
-	}
-	return resData, nil
-}
 func (c *Client) CreatePostReport(ctx context.Context, data types.CreatePostReport) (*types.PostReportResponse, error) {
 	resData := &types.PostReportResponse{}
 	res, err := c.req(ctx, "POST", "/post/report", data, &resData)
@@ -503,6 +479,18 @@ func (c *Client) RemoveComment(ctx context.Context, data types.RemoveComment) (*
 func (c *Client) MarkCommentReplyAsRead(ctx context.Context, data types.MarkCommentReplyAsRead) (*types.CommentReplyResponse, error) {
 	resData := &types.CommentReplyResponse{}
 	res, err := c.req(ctx, "POST", "/comment/mark_as_read", data, &resData)
+	if err != nil {
+		return nil, err
+	}
+	err = resError(res, resData.LemmyResponse)
+	if err != nil {
+		return nil, err
+	}
+	return resData, nil
+}
+func (c *Client) DistinguishComment(ctx context.Context, data types.DistinguishComment) (*types.CommentResponse, error) {
+	resData := &types.CommentResponse{}
+	res, err := c.req(ctx, "POST", "/comment/distinguish", data, &resData)
 	if err != nil {
 		return nil, err
 	}
@@ -692,18 +680,6 @@ func (c *Client) Register(ctx context.Context, data types.Register) (*types.Logi
 	}
 	return resData, nil
 }
-func (c *Client) Captcha(ctx context.Context, data types.GetCaptcha) (*types.GetCaptchaResponse, error) {
-	resData := &types.GetCaptchaResponse{}
-	res, err := c.getReq(ctx, "GET", "/user/get_captcha", data, &resData)
-	if err != nil {
-		return nil, err
-	}
-	err = resError(res, resData.LemmyResponse)
-	if err != nil {
-		return nil, err
-	}
-	return resData, nil
-}
 func (c *Client) PersonDetails(ctx context.Context, data types.GetPersonDetails) (*types.GetPersonDetailsResponse, error) {
 	resData := &types.GetPersonDetailsResponse{}
 	res, err := c.getReq(ctx, "GET", "/user", data, &resData)
@@ -743,18 +719,6 @@ func (c *Client) MarkPersonMentionAsRead(ctx context.Context, data types.MarkPer
 func (c *Client) Replies(ctx context.Context, data types.GetReplies) (*types.GetRepliesResponse, error) {
 	resData := &types.GetRepliesResponse{}
 	res, err := c.getReq(ctx, "GET", "/user/replies", data, &resData)
-	if err != nil {
-		return nil, err
-	}
-	err = resError(res, resData.LemmyResponse)
-	if err != nil {
-		return nil, err
-	}
-	return resData, nil
-}
-func (c *Client) UserJoin(ctx context.Context, data types.UserJoin) (*types.UserJoinResponse, error) {
-	resData := &types.UserJoinResponse{}
-	res, err := c.req(ctx, "POST", "/user/join", data, &resData)
 	if err != nil {
 		return nil, err
 	}
@@ -982,7 +946,7 @@ func (c *Client) ApproveRegistrationApplication(ctx context.Context, data types.
 }
 func (c *Client) PurgePerson(ctx context.Context, data types.PurgePerson) (*types.PurgeItemResponse, error) {
 	resData := &types.PurgeItemResponse{}
-	res, err := c.req(ctx, "POST", "/admin/purge/person", data, &resData)
+	res, err := c.req(ctx, "POST", "/admin/person", data, &resData)
 	if err != nil {
 		return nil, err
 	}
@@ -994,7 +958,7 @@ func (c *Client) PurgePerson(ctx context.Context, data types.PurgePerson) (*type
 }
 func (c *Client) PurgeCommunity(ctx context.Context, data types.PurgeCommunity) (*types.PurgeItemResponse, error) {
 	resData := &types.PurgeItemResponse{}
-	res, err := c.req(ctx, "POST", "/admin/purge/community", data, &resData)
+	res, err := c.req(ctx, "POST", "/admin/community", data, &resData)
 	if err != nil {
 		return nil, err
 	}
@@ -1006,7 +970,7 @@ func (c *Client) PurgeCommunity(ctx context.Context, data types.PurgeCommunity) 
 }
 func (c *Client) PurgePost(ctx context.Context, data types.PurgePost) (*types.PurgeItemResponse, error) {
 	resData := &types.PurgeItemResponse{}
-	res, err := c.req(ctx, "POST", "/admin/purge/post", data, &resData)
+	res, err := c.req(ctx, "POST", "/admin/post", data, &resData)
 	if err != nil {
 		return nil, err
 	}
@@ -1018,7 +982,43 @@ func (c *Client) PurgePost(ctx context.Context, data types.PurgePost) (*types.Pu
 }
 func (c *Client) PurgeComment(ctx context.Context, data types.PurgeComment) (*types.PurgeItemResponse, error) {
 	resData := &types.PurgeItemResponse{}
-	res, err := c.req(ctx, "POST", "/admin/purge/comment", data, &resData)
+	res, err := c.req(ctx, "POST", "/admin/comment", data, &resData)
+	if err != nil {
+		return nil, err
+	}
+	err = resError(res, resData.LemmyResponse)
+	if err != nil {
+		return nil, err
+	}
+	return resData, nil
+}
+func (c *Client) CreateCustomEmoji(ctx context.Context, data types.CreateCustomEmoji) (*types.CustomEmojiResponse, error) {
+	resData := &types.CustomEmojiResponse{}
+	res, err := c.req(ctx, "POST", "/custom_emoji", data, &resData)
+	if err != nil {
+		return nil, err
+	}
+	err = resError(res, resData.LemmyResponse)
+	if err != nil {
+		return nil, err
+	}
+	return resData, nil
+}
+func (c *Client) EditCustomEmoji(ctx context.Context, data types.EditCustomEmoji) (*types.CustomEmojiResponse, error) {
+	resData := &types.CustomEmojiResponse{}
+	res, err := c.req(ctx, "PUT", "/custom_emoji", data, &resData)
+	if err != nil {
+		return nil, err
+	}
+	err = resError(res, resData.LemmyResponse)
+	if err != nil {
+		return nil, err
+	}
+	return resData, nil
+}
+func (c *Client) DeleteCustomEmoji(ctx context.Context, data types.DeleteCustomEmoji) (*types.DeleteCustomEmojiResponse, error) {
+	resData := &types.DeleteCustomEmojiResponse{}
+	res, err := c.req(ctx, "POST", "/custom_emoji/delete", data, &resData)
 	if err != nil {
 		return nil, err
 	}

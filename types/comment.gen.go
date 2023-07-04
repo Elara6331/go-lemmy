@@ -16,12 +16,16 @@ type GetComment struct {
 	Auth Optional[string] `json:"auth" url:"auth,omitempty"`
 }
 type EditComment struct {
-	CommentID     int              `json:"comment_id" url:"comment_id,omitempty"`
-	Content       Optional[string] `json:"content" url:"content,omitempty"`
-	Distinguished Optional[bool]   `json:"distinguished" url:"distinguished,omitempty"`
-	LanguageID    Optional[int]    `json:"language_id" url:"language_id,omitempty"`
-	FormID        Optional[string] `json:"form_id" url:"form_id,omitempty"`
-	Auth          string           `json:"auth" url:"auth,omitempty"`
+	CommentID  int              `json:"comment_id" url:"comment_id,omitempty"`
+	Content    Optional[string] `json:"content" url:"content,omitempty"`
+	LanguageID Optional[int]    `json:"language_id" url:"language_id,omitempty"`
+	FormID     Optional[string] `json:"form_id" url:"form_id,omitempty"`
+	Auth       string           `json:"auth" url:"auth,omitempty"`
+}
+type DistinguishComment struct {
+	CommentID     int    `json:"comment_id" url:"comment_id,omitempty"`
+	Distinguished bool   `json:"distinguished" url:"distinguished,omitempty"`
+	Auth          string `json:"auth" url:"auth,omitempty"`
 }
 type DeleteComment struct {
 	CommentID int    `json:"comment_id" url:"comment_id,omitempty"`

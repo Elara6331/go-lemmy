@@ -26,7 +26,7 @@ type GetPostResponse struct {
 	PostView      PostView                 `json:"post_view" url:"post_view,omitempty"`
 	CommunityView CommunityView            `json:"community_view" url:"community_view,omitempty"`
 	Moderators    []CommunityModeratorView `json:"moderators" url:"moderators,omitempty"`
-	Online        uint                     `json:"online" url:"online,omitempty"`
+	CrossPosts    []PostView               `json:"cross_posts" url:"cross_posts,omitempty"`
 	LemmyResponse
 }
 type GetPosts struct {

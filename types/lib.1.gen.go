@@ -6,17 +6,20 @@ package types
 type SortType string
 
 const (
-	SortTypeActive       SortType = "Active"
-	SortTypeHot          SortType = "Hot"
-	SortTypeNew          SortType = "New"
-	SortTypeOld          SortType = "Old"
-	SortTypeTopDay       SortType = "TopDay"
-	SortTypeTopWeek      SortType = "TopWeek"
-	SortTypeTopMonth     SortType = "TopMonth"
-	SortTypeTopYear      SortType = "TopYear"
-	SortTypeTopAll       SortType = "TopAll"
-	SortTypeMostComments SortType = "MostComments"
-	SortTypeNewComments  SortType = "NewComments"
+	SortTypeActive        SortType = "Active"
+	SortTypeHot           SortType = "Hot"
+	SortTypeNew           SortType = "New"
+	SortTypeOld           SortType = "Old"
+	SortTypeTopDay        SortType = "TopDay"
+	SortTypeTopWeek       SortType = "TopWeek"
+	SortTypeTopMonth      SortType = "TopMonth"
+	SortTypeTopYear       SortType = "TopYear"
+	SortTypeTopAll        SortType = "TopAll"
+	SortTypeMostComments  SortType = "MostComments"
+	SortTypeNewComments   SortType = "NewComments"
+	SortTypeTopHour       SortType = "TopHour"
+	SortTypeTopSixHour    SortType = "TopSixHour"
+	SortTypeTopTwelveHour SortType = "TopTwelveHour"
 )
 
 type CommentSortType string
@@ -34,6 +37,14 @@ const (
 	ListingTypeAll        ListingType = "All"
 	ListingTypeLocal      ListingType = "Local"
 	ListingTypeSubscribed ListingType = "Subscribed"
+)
+
+type RegistrationMode string
+
+const (
+	RegistrationModeClosed             RegistrationMode = "Closed"
+	RegistrationModeRequireApplication RegistrationMode = "RequireApplication"
+	RegistrationModeOpen               RegistrationMode = "Open"
 )
 
 type SearchType string

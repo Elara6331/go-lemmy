@@ -23,29 +23,11 @@ type Community struct {
 	FollowersURL            string           `json:"followers_url" url:"followers_url,omitempty"`
 	InboxURL                string           `json:"inbox_url" url:"inbox_url,omitempty"`
 	SharedInboxURL          Optional[string] `json:"shared_inbox_url" url:"shared_inbox_url,omitempty"`
+	Hidden                  bool             `json:"hidden" url:"hidden,omitempty"`
+	PostingRestrictedToMods bool             `json:"posting_restricted_to_mods" url:"posting_restricted_to_mods,omitempty"`
+	InstanceID              int              `json:"instance_id" url:"instance_id,omitempty"`
 	ModeratorsURL           Optional[string] `json:"moderators_url" url:"moderators_url,omitempty"`
 	FeaturedURL             Optional[string] `json:"featured_url" url:"featured_url,omitempty"`
-	Hidden                  bool             `json:"hidden" url:"hidden,omitempty"`
-	PostingRestrictedToMods bool             `json:"posting_restricted_to_mods" url:"posting_restricted_to_mods,omitempty"`
-	InstanceID              int              `json:"instance_id" url:"instance_id,omitempty"`
-}
-type CommunitySafe struct {
-	ID                      int              `json:"id" url:"id,omitempty"`
-	Name                    string           `json:"name" url:"name,omitempty"`
-	Title                   string           `json:"title" url:"title,omitempty"`
-	Description             Optional[string] `json:"description" url:"description,omitempty"`
-	Removed                 bool             `json:"removed" url:"removed,omitempty"`
-	Published               LemmyTime        `json:"published" url:"published,omitempty"`
-	Updated                 LemmyTime        `json:"updated" url:"updated,omitempty"`
-	Deleted                 bool             `json:"deleted" url:"deleted,omitempty"`
-	NSFW                    bool             `json:"nsfw" url:"nsfw,omitempty"`
-	ActorID                 string           `json:"actor_id" url:"actor_id,omitempty"`
-	Local                   bool             `json:"local" url:"local,omitempty"`
-	Icon                    Optional[string] `json:"icon" url:"icon,omitempty"`
-	Banner                  Optional[string] `json:"banner" url:"banner,omitempty"`
-	Hidden                  bool             `json:"hidden" url:"hidden,omitempty"`
-	PostingRestrictedToMods bool             `json:"posting_restricted_to_mods" url:"posting_restricted_to_mods,omitempty"`
-	InstanceID              int              `json:"instance_id" url:"instance_id,omitempty"`
 }
 type CommunityInsertForm struct {
 	Name                    string           `json:"name" url:"name,omitempty"`

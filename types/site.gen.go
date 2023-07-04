@@ -16,22 +16,22 @@ type Search struct {
 	Auth          Optional[string]      `json:"auth" url:"auth,omitempty"`
 }
 type SearchResponse struct {
-	Type        string           `json:"type_" url:"type_,omitempty"`
-	Comments    []CommentView    `json:"comments" url:"comments,omitempty"`
-	Posts       []PostView       `json:"posts" url:"posts,omitempty"`
-	Communities []CommunityView  `json:"communities" url:"communities,omitempty"`
-	Users       []PersonViewSafe `json:"users" url:"users,omitempty"`
+	Type        SearchType      `json:"type_" url:"type_,omitempty"`
+	Comments    []CommentView   `json:"comments" url:"comments,omitempty"`
+	Posts       []PostView      `json:"posts" url:"posts,omitempty"`
+	Communities []CommunityView `json:"communities" url:"communities,omitempty"`
+	Users       []PersonView    `json:"users" url:"users,omitempty"`
 	LemmyResponse
 }
 type ResolveObject struct {
-	Q    string           `json:"q" url:"q,omitempty"`
-	Auth Optional[string] `json:"auth" url:"auth,omitempty"`
+	Q    string `json:"q" url:"q,omitempty"`
+	Auth string `json:"auth" url:"auth,omitempty"`
 }
 type ResolveObjectResponse struct {
-	Comment   Optional[CommentView]    `json:"comment" url:"comment,omitempty"`
-	Post      Optional[PostView]       `json:"post" url:"post,omitempty"`
-	Community Optional[CommunityView]  `json:"community" url:"community,omitempty"`
-	Person    Optional[PersonViewSafe] `json:"person" url:"person,omitempty"`
+	Comment   Optional[CommentView]   `json:"comment" url:"comment,omitempty"`
+	Post      Optional[PostView]      `json:"post" url:"post,omitempty"`
+	Community Optional[CommunityView] `json:"community" url:"community,omitempty"`
+	Person    Optional[PersonView]    `json:"person" url:"person,omitempty"`
 	LemmyResponse
 }
 type GetModlog struct {
@@ -39,9 +39,9 @@ type GetModlog struct {
 	CommunityID   Optional[int]              `json:"community_id" url:"community_id,omitempty"`
 	Page          Optional[int64]            `json:"page" url:"page,omitempty"`
 	Limit         Optional[int64]            `json:"limit" url:"limit,omitempty"`
-	Auth          Optional[string]           `json:"auth" url:"auth,omitempty"`
 	Type          Optional[ModlogActionType] `json:"type_" url:"type_,omitempty"`
 	OtherPersonID Optional[int]              `json:"other_person_id" url:"other_person_id,omitempty"`
+	Auth          Optional[string]           `json:"auth" url:"auth,omitempty"`
 }
 type GetModlogResponse struct {
 	RemovedPosts           []ModRemovePostView        `json:"removed_posts" url:"removed_posts,omitempty"`
@@ -74,7 +74,7 @@ type CreateSite struct {
 	ApplicationQuestion        Optional[string]           `json:"application_question" url:"application_question,omitempty"`
 	PrivateInstance            Optional[bool]             `json:"private_instance" url:"private_instance,omitempty"`
 	DefaultTheme               Optional[string]           `json:"default_theme" url:"default_theme,omitempty"`
-	DefaultPostListingType     Optional[string]           `json:"default_post_listing_type" url:"default_post_listing_type,omitempty"`
+	DefaultPostListingType     Optional[ListingType]      `json:"default_post_listing_type" url:"default_post_listing_type,omitempty"`
 	LegalInformation           Optional[string]           `json:"legal_information" url:"legal_information,omitempty"`
 	ApplicationEmailAdmins     Optional[bool]             `json:"application_email_admins" url:"application_email_admins,omitempty"`
 	HideModlogModNames         Optional[bool]             `json:"hide_modlog_mod_names" url:"hide_modlog_mod_names,omitempty"`
@@ -117,7 +117,7 @@ type EditSite struct {
 	ApplicationQuestion        Optional[string]           `json:"application_question" url:"application_question,omitempty"`
 	PrivateInstance            Optional[bool]             `json:"private_instance" url:"private_instance,omitempty"`
 	DefaultTheme               Optional[string]           `json:"default_theme" url:"default_theme,omitempty"`
-	DefaultPostListingType     Optional[string]           `json:"default_post_listing_type" url:"default_post_listing_type,omitempty"`
+	DefaultPostListingType     Optional[ListingType]      `json:"default_post_listing_type" url:"default_post_listing_type,omitempty"`
 	LegalInformation           Optional[string]           `json:"legal_information" url:"legal_information,omitempty"`
 	ApplicationEmailAdmins     Optional[bool]             `json:"application_email_admins" url:"application_email_admins,omitempty"`
 	HideModlogModNames         Optional[bool]             `json:"hide_modlog_mod_names" url:"hide_modlog_mod_names,omitempty"`
@@ -152,19 +152,19 @@ type GetSite struct {
 	Auth Optional[string] `json:"auth" url:"auth,omitempty"`
 }
 type SiteResponse struct {
-	SiteView SiteView `json:"site_view" url:"site_view,omitempty"`
+	SiteView SiteView  `json:"site_view" url:"site_view,omitempty"`
+	Taglines []Tagline `json:"taglines" url:"taglines,omitempty"`
 	LemmyResponse
 }
 type GetSiteResponse struct {
-	SiteView            SiteView                     `json:"site_view" url:"site_view,omitempty"`
-	Admins              []PersonViewSafe             `json:"admins" url:"admins,omitempty"`
-	Online              uint                         `json:"online" url:"online,omitempty"`
-	Version             string                       `json:"version" url:"version,omitempty"`
-	MyUser              Optional[MyUserInfo]         `json:"my_user" url:"my_user,omitempty"`
-	FederatedInstances  Optional[FederatedInstances] `json:"federated_instances" url:"federated_instances,omitempty"`
-	AllLanguages        []Language                   `json:"all_languages" url:"all_languages,omitempty"`
-	DiscussionLanguages []int                        `json:"discussion_languages" url:"discussion_languages,omitempty"`
-	Taglines            Optional[[]Tagline]          `json:"taglines" url:"taglines,omitempty"`
+	SiteView            SiteView             `json:"site_view" url:"site_view,omitempty"`
+	Admins              []PersonView         `json:"admins" url:"admins,omitempty"`
+	Version             string               `json:"version" url:"version,omitempty"`
+	MyUser              Optional[MyUserInfo] `json:"my_user" url:"my_user,omitempty"`
+	AllLanguages        []Language           `json:"all_languages" url:"all_languages,omitempty"`
+	DiscussionLanguages []int                `json:"discussion_languages" url:"discussion_languages,omitempty"`
+	Taglines            []Tagline            `json:"taglines" url:"taglines,omitempty"`
+	CustomEmojis        []CustomEmojiView    `json:"custom_emojis" url:"custom_emojis,omitempty"`
 	LemmyResponse
 }
 type GetFederatedInstances struct {
@@ -175,7 +175,7 @@ type GetFederatedInstancesResponse struct {
 	LemmyResponse
 }
 type MyUserInfo struct {
-	LocalUserView       LocalUserSettingsView    `json:"local_user_view" url:"local_user_view,omitempty"`
+	LocalUserView       LocalUserView            `json:"local_user_view" url:"local_user_view,omitempty"`
 	Follows             []CommunityFollowerView  `json:"follows" url:"follows,omitempty"`
 	Moderates           []CommunityModeratorView `json:"moderates" url:"moderates,omitempty"`
 	CommunityBlocks     []CommunityBlockView     `json:"community_blocks" url:"community_blocks,omitempty"`
@@ -186,9 +186,9 @@ type LeaveAdmin struct {
 	Auth string `json:"auth" url:"auth,omitempty"`
 }
 type FederatedInstances struct {
-	Linked  []string           `json:"linked" url:"linked,omitempty"`
-	Allowed Optional[[]string] `json:"allowed" url:"allowed,omitempty"`
-	Blocked Optional[[]string] `json:"blocked" url:"blocked,omitempty"`
+	Linked  []Instance `json:"linked" url:"linked,omitempty"`
+	Allowed []Instance `json:"allowed" url:"allowed,omitempty"`
+	Blocked []Instance `json:"blocked" url:"blocked,omitempty"`
 }
 type PurgePerson struct {
 	PersonID int              `json:"person_id" url:"person_id,omitempty"`

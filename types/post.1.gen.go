@@ -18,10 +18,10 @@ type Post struct {
 	NSFW              bool             `json:"nsfw" url:"nsfw,omitempty"`
 	EmbedTitle        Optional[string] `json:"embed_title" url:"embed_title,omitempty"`
 	EmbedDescription  Optional[string] `json:"embed_description" url:"embed_description,omitempty"`
-	EmbedVideoURL     Optional[string] `json:"embed_video_url" url:"embed_video_url,omitempty"`
 	ThumbnailURL      Optional[string] `json:"thumbnail_url" url:"thumbnail_url,omitempty"`
 	ApID              string           `json:"ap_id" url:"ap_id,omitempty"`
 	Local             bool             `json:"local" url:"local,omitempty"`
+	EmbedVideoURL     Optional[string] `json:"embed_video_url" url:"embed_video_url,omitempty"`
 	LanguageID        int              `json:"language_id" url:"language_id,omitempty"`
 	FeaturedCommunity bool             `json:"featured_community" url:"featured_community,omitempty"`
 	FeaturedLocal     bool             `json:"featured_local" url:"featured_local,omitempty"`

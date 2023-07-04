@@ -27,27 +27,6 @@ type Person struct {
 	BanExpires      LemmyTime        `json:"ban_expires" url:"ban_expires,omitempty"`
 	InstanceID      int              `json:"instance_id" url:"instance_id,omitempty"`
 }
-type PersonSafe struct {
-	ID             int              `json:"id" url:"id,omitempty"`
-	Name           string           `json:"name" url:"name,omitempty"`
-	DisplayName    Optional[string] `json:"display_name" url:"display_name,omitempty"`
-	Avatar         Optional[string] `json:"avatar" url:"avatar,omitempty"`
-	Banned         bool             `json:"banned" url:"banned,omitempty"`
-	Published      LemmyTime        `json:"published" url:"published,omitempty"`
-	Updated        LemmyTime        `json:"updated" url:"updated,omitempty"`
-	ActorID        string           `json:"actor_id" url:"actor_id,omitempty"`
-	Bio            Optional[string] `json:"bio" url:"bio,omitempty"`
-	Local          bool             `json:"local" url:"local,omitempty"`
-	Banner         Optional[string] `json:"banner" url:"banner,omitempty"`
-	Deleted        bool             `json:"deleted" url:"deleted,omitempty"`
-	InboxURL       string           `json:"inbox_url" url:"inbox_url,omitempty"`
-	SharedInboxURL Optional[string] `json:"shared_inbox_url" url:"shared_inbox_url,omitempty"`
-	MatrixUserID   Optional[string] `json:"matrix_user_id" url:"matrix_user_id,omitempty"`
-	Admin          bool             `json:"admin" url:"admin,omitempty"`
-	BotAccount     bool             `json:"bot_account" url:"bot_account,omitempty"`
-	BanExpires     LemmyTime        `json:"ban_expires" url:"ban_expires,omitempty"`
-	InstanceID     int              `json:"instance_id" url:"instance_id,omitempty"`
-}
 type PersonInsertForm struct {
 	Name            string           `json:"name" url:"name,omitempty"`
 	PublicKey       string           `json:"public_key" url:"public_key,omitempty"`

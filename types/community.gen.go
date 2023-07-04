@@ -12,9 +12,7 @@ type GetCommunityResponse struct {
 	CommunityView       CommunityView            `json:"community_view" url:"community_view,omitempty"`
 	Site                Optional[Site]           `json:"site" url:"site,omitempty"`
 	Moderators          []CommunityModeratorView `json:"moderators" url:"moderators,omitempty"`
-	Online              uint                     `json:"online" url:"online,omitempty"`
 	DiscussionLanguages []int                    `json:"discussion_languages" url:"discussion_languages,omitempty"`
-	DefaultPostLanguage Optional[int]            `json:"default_post_language" url:"default_post_language,omitempty"`
 	LemmyResponse
 }
 type CreateCommunity struct {
@@ -54,8 +52,8 @@ type BanFromCommunity struct {
 	Auth        string           `json:"auth" url:"auth,omitempty"`
 }
 type BanFromCommunityResponse struct {
-	PersonView PersonViewSafe `json:"person_view" url:"person_view,omitempty"`
-	Banned     bool           `json:"banned" url:"banned,omitempty"`
+	PersonView PersonView `json:"person_view" url:"person_view,omitempty"`
+	Banned     bool       `json:"banned" url:"banned,omitempty"`
 	LemmyResponse
 }
 type AddModToCommunity struct {

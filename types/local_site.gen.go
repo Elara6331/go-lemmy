@@ -14,21 +14,20 @@ type LocalSite struct {
 	ApplicationQuestion        Optional[string] `json:"application_question" url:"application_question,omitempty"`
 	PrivateInstance            bool             `json:"private_instance" url:"private_instance,omitempty"`
 	DefaultTheme               string           `json:"default_theme" url:"default_theme,omitempty"`
-	DefaultPostListingType     string           `json:"default_post_listing_type" url:"default_post_listing_type,omitempty"`
+	DefaultPostListingType     ListingType      `json:"default_post_listing_type" url:"default_post_listing_type,omitempty"`
 	LegalInformation           Optional[string] `json:"legal_information" url:"legal_information,omitempty"`
 	HideModlogModNames         bool             `json:"hide_modlog_mod_names" url:"hide_modlog_mod_names,omitempty"`
 	ApplicationEmailAdmins     bool             `json:"application_email_admins" url:"application_email_admins,omitempty"`
 	SlurFilterRegex            Optional[string] `json:"slur_filter_regex" url:"slur_filter_regex,omitempty"`
 	ActorNameMaxLength         int32            `json:"actor_name_max_length" url:"actor_name_max_length,omitempty"`
 	FederationEnabled          bool             `json:"federation_enabled" url:"federation_enabled,omitempty"`
-	FederationDebug            bool             `json:"federation_debug" url:"federation_debug,omitempty"`
 	FederationWorkerCount      int32            `json:"federation_worker_count" url:"federation_worker_count,omitempty"`
 	CaptchaEnabled             bool             `json:"captcha_enabled" url:"captcha_enabled,omitempty"`
 	CaptchaDifficulty          string           `json:"captcha_difficulty" url:"captcha_difficulty,omitempty"`
-	RegistrationMode           RegistrationMode `json:"registration_mode" url:"registration_mode,omitempty"`
-	ReportsEmailAdmins         bool             `json:"reports_email_admins" url:"reports_email_admins,omitempty"`
 	Published                  LemmyTime        `json:"published" url:"published,omitempty"`
 	Updated                    LemmyTime        `json:"updated" url:"updated,omitempty"`
+	RegistrationMode           RegistrationMode `json:"registration_mode" url:"registration_mode,omitempty"`
+	ReportsEmailAdmins         bool             `json:"reports_email_admins" url:"reports_email_admins,omitempty"`
 }
 type LocalSiteInsertForm struct {
 	SiteID                     int                        `json:"site_id" url:"site_id,omitempty"`
@@ -40,14 +39,13 @@ type LocalSiteInsertForm struct {
 	ApplicationQuestion        Optional[string]           `json:"application_question" url:"application_question,omitempty"`
 	PrivateInstance            Optional[bool]             `json:"private_instance" url:"private_instance,omitempty"`
 	DefaultTheme               Optional[string]           `json:"default_theme" url:"default_theme,omitempty"`
-	DefaultPostListingType     Optional[string]           `json:"default_post_listing_type" url:"default_post_listing_type,omitempty"`
+	DefaultPostListingType     Optional[ListingType]      `json:"default_post_listing_type" url:"default_post_listing_type,omitempty"`
 	LegalInformation           Optional[string]           `json:"legal_information" url:"legal_information,omitempty"`
 	HideModlogModNames         Optional[bool]             `json:"hide_modlog_mod_names" url:"hide_modlog_mod_names,omitempty"`
 	ApplicationEmailAdmins     Optional[bool]             `json:"application_email_admins" url:"application_email_admins,omitempty"`
 	SlurFilterRegex            Optional[string]           `json:"slur_filter_regex" url:"slur_filter_regex,omitempty"`
 	ActorNameMaxLength         Optional[int32]            `json:"actor_name_max_length" url:"actor_name_max_length,omitempty"`
 	FederationEnabled          Optional[bool]             `json:"federation_enabled" url:"federation_enabled,omitempty"`
-	FederationDebug            Optional[bool]             `json:"federation_debug" url:"federation_debug,omitempty"`
 	FederationWorkerCount      Optional[int32]            `json:"federation_worker_count" url:"federation_worker_count,omitempty"`
 	CaptchaEnabled             Optional[bool]             `json:"captcha_enabled" url:"captcha_enabled,omitempty"`
 	CaptchaDifficulty          Optional[string]           `json:"captcha_difficulty" url:"captcha_difficulty,omitempty"`
@@ -63,14 +61,13 @@ type LocalSiteUpdateForm struct {
 	ApplicationQuestion        Optional[Optional[string]] `json:"application_question" url:"application_question,omitempty"`
 	PrivateInstance            Optional[bool]             `json:"private_instance" url:"private_instance,omitempty"`
 	DefaultTheme               Optional[string]           `json:"default_theme" url:"default_theme,omitempty"`
-	DefaultPostListingType     Optional[string]           `json:"default_post_listing_type" url:"default_post_listing_type,omitempty"`
+	DefaultPostListingType     Optional[ListingType]      `json:"default_post_listing_type" url:"default_post_listing_type,omitempty"`
 	LegalInformation           Optional[Optional[string]] `json:"legal_information" url:"legal_information,omitempty"`
 	HideModlogModNames         Optional[bool]             `json:"hide_modlog_mod_names" url:"hide_modlog_mod_names,omitempty"`
 	ApplicationEmailAdmins     Optional[bool]             `json:"application_email_admins" url:"application_email_admins,omitempty"`
 	SlurFilterRegex            Optional[Optional[string]] `json:"slur_filter_regex" url:"slur_filter_regex,omitempty"`
 	ActorNameMaxLength         Optional[int32]            `json:"actor_name_max_length" url:"actor_name_max_length,omitempty"`
 	FederationEnabled          Optional[bool]             `json:"federation_enabled" url:"federation_enabled,omitempty"`
-	FederationDebug            Optional[bool]             `json:"federation_debug" url:"federation_debug,omitempty"`
 	FederationWorkerCount      Optional[int32]            `json:"federation_worker_count" url:"federation_worker_count,omitempty"`
 	CaptchaEnabled             Optional[bool]             `json:"captcha_enabled" url:"captcha_enabled,omitempty"`
 	CaptchaDifficulty          Optional[string]           `json:"captcha_difficulty" url:"captcha_difficulty,omitempty"`
@@ -78,10 +75,3 @@ type LocalSiteUpdateForm struct {
 	ReportsEmailAdmins         Optional[bool]             `json:"reports_email_admins" url:"reports_email_admins,omitempty"`
 	Updated                    LemmyTime                  `json:"updated" url:"updated,omitempty"`
 }
-type RegistrationMode string
-
-const (
-	RegistrationModeClosed             RegistrationMode = "Closed"
-	RegistrationModeRequireApplication RegistrationMode = "RequireApplication"
-	RegistrationModeOpen               RegistrationMode = "Open"
-)

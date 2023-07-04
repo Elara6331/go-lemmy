@@ -118,6 +118,7 @@ func (s *StructParser) Parse() ([]Item, error) {
 }
 
 func (s *StructParser) parseStructFields() ([]Field, error) {
+	encountered := map[string]struct{}{}
 	var out []Field
 	for {
 		line, err := s.r.ReadString('\n')
@@ -142,6 +143,12 @@ func (s *StructParser) parseStructFields() ([]Field, error) {
 		sm := fieldRegex.FindStringSubmatch(line)
 		if sm[1] == "Example" {
 			continue
+		}
+
+		if _, ok := encountered[sm[1]]; ok {
+			continue
+		} else {
+			encountered[sm[1]] = struct{}{}
 		}
 
 		out = append(out, Field{
