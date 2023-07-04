@@ -7,7 +7,6 @@ Go bindings to the [Lemmy](https://join-lemmy.org) API, automatically generated 
 Examples:
 
 - HTTP: [examples/http](examples/http)
-- WebSocket: [examples/websocket](examples/websocket)
 
 ### How to generate
 
