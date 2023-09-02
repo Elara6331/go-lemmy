@@ -32,6 +32,10 @@ type LemmyTime struct {
 	time.Time
 }
 
+func (lt LemmyTime) MarshalJSON() ([]byte, error) {
+	return json.Marshal(lt.Time.Format("2006-01-02T15:04:05"))
+}
+
 func (lt *LemmyTime) UnmarshalJSON(b []byte) error {
 	var timeStr string
 	err := json.Unmarshal(b, &timeStr)
