@@ -72,7 +72,7 @@ func transformType(name, t string) string {
 
 	switch t {
 	case "number":
-		return "float64"
+		return "int64"
 	case "boolean":
 		return "bool"
 	default:
@@ -89,6 +89,8 @@ func transformFieldName(s string) string {
 		"Jwt", "JWT",
 		"Crud", "CRUD",
 		"Pm", "PM",
+		"Totp", "TOTP",
+		"2fa", "2FA",
 	).Replace(s)
 	return s
 }
