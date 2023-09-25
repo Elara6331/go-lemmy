@@ -91,6 +91,10 @@ func transformFieldName(s string) string {
 		"Pm", "PM",
 		"Totp", "TOTP",
 		"2fa", "2FA",
+		"Png", "PNG",
+		"Uuid", "UUID",
+		"Wav", "WAV",
+		"Ap", "AP",
 	).Replace(s)
 	return s
 }

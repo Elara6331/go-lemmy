@@ -60,8 +60,3 @@ func (lt *LemmyTime) UnmarshalJSON(b []byte) error {
 	lt.Time = t
 	return nil
 }
-
-type LemmyWebSocketMsg struct {
-	Op   string          `json:"op"`
-	Data json.RawMessage `json:"data"`
-}
