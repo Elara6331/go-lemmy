@@ -52,7 +52,7 @@ func (s *StructGenerator) Generate(items []extractor.Struct) error {
 }
 
 func getType(f extractor.Field) string {
-	t := transformType(f.Type)
+	t := transformType(f.Name, f.Type)
 	if f.IsArray {
 		t = "[]" + t
 	}
@@ -62,14 +62,21 @@ func getType(f extractor.Field) string {
 	return t
 }
 
-func transformType(s string) string {
-	switch s {
+func transformType(name, t string) string {
+	// Some time fields are strings in the JS client,
+	// use LemmyTime for those
+	switch name {
+	case "published", "updated":
+		return "LemmyTime"
+	}
+
+	switch t {
 	case "number":
 		return "float64"
 	case "boolean":
 		return "bool"
 	default:
-		return s
+		return t
 	}
 }
 
@@ -81,6 +88,7 @@ func transformFieldName(s string) string {
 		"Nsfw", "NSFW",
 		"Jwt", "JWT",
 		"Crud", "CRUD",
+		"Pm", "PM",
 	).Replace(s)
 	return s
 }
