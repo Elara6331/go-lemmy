@@ -66,7 +66,7 @@ func transformType(name, t string) string {
 	// Some time fields are strings in the JS client,
 	// use LemmyTime for those
 	switch name {
-	case "published", "updated":
+	case "published", "updated", "when_":
 		return "LemmyTime"
 	}
 
