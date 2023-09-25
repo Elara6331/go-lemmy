@@ -66,6 +66,14 @@ func (o Optional[T]) ValueOr(fallback T) T {
 	return fallback
 }
 
+func (o Optional[T]) ValueOrEmpty() T {
+	if o.value != nil {
+		return *o.value
+	}
+	var value T
+	return value
+}
+
 func (o Optional[T]) MarshalJSON() ([]byte, error) {
 	return json.Marshal(o.value)
 }
