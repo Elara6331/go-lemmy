@@ -32,20 +32,17 @@ func NewWithClient(baseURL string, client *http.Client) (*Client, error) {
 		return nil, err
 	}
 	u = u.JoinPath("/api/v3")
-
 	return &Client{baseURL: u, client: client}, nil
 }
 
-// ClientLogin logs in to Lemmy by sending an HTTP request to the
-// login endpoint. It stores the returned token in the client
-// for future use.
+// ClientLogin logs in to Lemmy by calling the Lemmy endpoint,
+// and stores the returned token for use in future requests.
 func (c *Client) ClientLogin(ctx context.Context, l types.Login) error {
 	lr, err := c.Login(ctx, l)
 	if err != nil {
 		return err
 	}
-
-	c.Token = lr.JWT.MustValue()
+	c.Token = lr.JWT.ValueOrEmpty()
 	return nil
 }
 
@@ -91,7 +88,7 @@ func (c *Client) req(ctx context.Context, method string, path string, data, resp
 }
 
 // getReq makes a get request to the Lemmy server.
-// It is separate from req() because it uses query
+// It's separate from req() because it uses query
 // parameters rather than a JSON request body.
 func (c *Client) getReq(ctx context.Context, method string, path string, data, resp any) (*http.Response, error) {
 	data = c.setAuth(data)
@@ -129,7 +126,7 @@ func (c *Client) getReq(ctx context.Context, method string, path string, data, r
 	return res, nil
 }
 
-// resError returns an error if the given response is an error
+// resError returns an error if the the response contains an error
 func resError(res *http.Response, lr types.LemmyResponse) error {
 	if lr.Error.IsValid() {
 		return types.LemmyError{
