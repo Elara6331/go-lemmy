@@ -7,6 +7,10 @@ import (
 	"time"
 )
 
+type EmptyResponse struct {
+	LemmyResponse
+}
+
 type LemmyResponse struct {
 	Error Optional[string] `json:"error" url:"error,omitempty"`
 }
