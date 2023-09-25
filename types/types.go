@@ -11,6 +11,10 @@ type EmptyResponse struct {
 	LemmyResponse
 }
 
+type EmptyData struct {
+	Auth string `json:"auth" url:"auth,omitempty"`
+}
+
 type LemmyResponse struct {
 	Error Optional[string] `json:"error" url:"error,omitempty"`
 }

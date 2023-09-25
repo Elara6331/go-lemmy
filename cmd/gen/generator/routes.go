@@ -26,10 +26,12 @@ func (r *RoutesGenerator) Generate(routes []extractor.Route) error {
 		f.Comment(r.Summary)
 		f.Func().Params(
 			jen.Id("c").Id("*Client"),
-		).Id(transformName(r.Name)).Params(
-			jen.Id("ctx").Qual("context", "Context"),
-			jen.Id("data").Qual("go.elara.ws/go-lemmy/types", r.ParamsName),
-		).ParamsFunc(func(g *jen.Group) {
+		).Id(transformName(r.Name)).ParamsFunc(func(g *jen.Group) {
+			g.Id("ctx").Qual("context", "Context")
+			if r.ParamsName != "" {
+				g.Id("data").Qual("go.elara.ws/go-lemmy/types", r.ParamsName)
+			}
+		}).ParamsFunc(func(g *jen.Group) {
 			if r.ReturnName != "" {
 				g.Op("*").Qual("go.elara.ws/go-lemmy/types", r.ReturnName)
 			}
@@ -38,6 +40,10 @@ func (r *RoutesGenerator) Generate(routes []extractor.Route) error {
 			returnName := r.ReturnName
 			if returnName == "" {
 				returnName = "EmptyResponse"
+			}
+
+			if r.ParamsName == "" {
+				g.Id("data").Op(":=").Qual("go.elara.ws/go-lemmy/types", "EmptyData").Block()
 			}
 
 			g.Id("resData").Op(":=").Op("&").Qual("go.elara.ws/go-lemmy/types", returnName).Block()
