@@ -3,12 +3,9 @@ package lemmy
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"net/url"
 )
-
-var ErrOptionalEmpty = errors.New("optional value is empty")
 
 // Optional represents an optional value
 type Optional[T any] struct {
@@ -51,11 +48,11 @@ func (o Optional[T]) MustValue() T {
 }
 
 // Value returns the value in the optional.
-func (o Optional[T]) Value() (T, error) {
+func (o Optional[T]) Value() (T, bool) {
 	if o.value != nil {
-		return *o.value, ErrOptionalEmpty
+		return *o.value, true
 	}
-	return *new(T), nil
+	return *new(T), false
 }
 
 // ValueOr returns the value inside the optional if it exists, or else it returns fallback
