@@ -25,8 +25,7 @@ func main() {
 		log.Fatal("Error creating extractor").Err(err).Send()
 	}
 
-	routes := e.Routes()
-	structs := e.Structs(routes)
+	routes, structs := e.Extract()
 
 	err = os.MkdirAll(filepath.Join(*outDir, "types"), 0o755)
 	if err != nil {

@@ -35,7 +35,7 @@ func (s *StructGenerator) Generate(items []extractor.Struct) error {
 		} else {
 			f.Type().Id(item.Name).StructFunc(func(g *jen.Group) {
 				for _, field := range item.Fields {
-					g.Id(transformFieldName(field.Name)).Id(getType(field)).Tag(map[string]string{
+					g.Id(transformFieldName(field.Name)).Add(getType(field)).Tag(map[string]string{
 						"json": field.Name,
 						"url":  field.Name + ",omitempty",
 					})
@@ -51,7 +51,19 @@ func (s *StructGenerator) Generate(items []extractor.Struct) error {
 	return f.Render(s.w)
 }
 
-func getType(f extractor.Field) string {
+func getType(f extractor.Field) jen.Code {
+	// Some time fields are strings in the JS client,
+	// use time.Time for those
+	switch f.Name {
+	case "published", "updated", "when_":
+		return jen.Qual("time", "Time")
+	}
+
+	// Rank types such as hot_rank and hot_rank_active may be floats.
+	if strings.Contains(f.Name, "rank") {
+		return jen.Float64()
+	}
+
 	t := transformType(f.Name, f.Type)
 	if f.IsArray {
 		t = "[]" + t
@@ -59,17 +71,10 @@ func getType(f extractor.Field) string {
 	if f.IsOptional {
 		t = "Optional[" + t + "]"
 	}
-	return t
+	return jen.Id(t)
 }
 
 func transformType(name, t string) string {
-	// Some time fields are strings in the JS client,
-	// use LemmyTime for those
-	switch name {
-	case "published", "updated", "when_":
-		return "LemmyTime"
-	}
-
 	switch t {
 	case "number":
 		return "int64"
@@ -94,7 +99,6 @@ func transformFieldName(s string) string {
 		"Png", "PNG",
 		"Uuid", "UUID",
 		"Wav", "WAV",
-		"Ap", "AP",
 	).Replace(s)
 	return s
 }

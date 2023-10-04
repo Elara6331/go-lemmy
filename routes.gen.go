@@ -91,6 +91,20 @@ func (c *Client) BlockCommunity(ctx context.Context, data types.BlockCommunity) 
 	return resData, nil
 }
 
+// Block an instance.
+func (c *Client) BlockInstance(ctx context.Context, data types.BlockInstance) (*types.BlockInstanceResponse, error) {
+	resData := &types.BlockInstanceResponse{}
+	res, err := c.req(ctx, "POST", "/site/block", data, &resData)
+	if err != nil {
+		return nil, err
+	}
+	err = resError(res, resData.LemmyResponse)
+	if err != nil {
+		return nil, err
+	}
+	return resData, nil
+}
+
 // Block a person.
 func (c *Client) BlockPerson(ctx context.Context, data types.BlockPerson) (*types.BlockPersonResponse, error) {
 	resData := &types.BlockPersonResponse{}
@@ -456,9 +470,9 @@ func (c *Client) FollowCommunity(ctx context.Context, data types.FollowCommunity
 }
 
 // Get a list of banned users
-func (c *Client) BannedPersons(ctx context.Context, data types.GetBannedPersons) (*types.BannedPersonsResponse, error) {
+func (c *Client) BannedPersons(ctx context.Context) (*types.BannedPersonsResponse, error) {
 	resData := &types.BannedPersonsResponse{}
-	res, err := c.getReq(ctx, "GET", "/user/banned", data, &resData)
+	res, err := c.getReq(ctx, "GET", "/user/banned", nil, &resData)
 	if err != nil {
 		return nil, err
 	}
@@ -470,9 +484,9 @@ func (c *Client) BannedPersons(ctx context.Context, data types.GetBannedPersons)
 }
 
 // Fetch a Captcha.
-func (c *Client) Captcha(ctx context.Context, data types.GetCaptcha) (*types.GetCaptchaResponse, error) {
+func (c *Client) Captcha(ctx context.Context) (*types.GetCaptchaResponse, error) {
 	resData := &types.GetCaptchaResponse{}
-	res, err := c.getReq(ctx, "GET", "/user/get_captcha", data, &resData)
+	res, err := c.getReq(ctx, "GET", "/user/get_captcha", nil, &resData)
 	if err != nil {
 		return nil, err
 	}
@@ -526,9 +540,9 @@ func (c *Client) Community(ctx context.Context, data types.GetCommunity) (*types
 }
 
 // Fetch federated instances.
-func (c *Client) FederatedInstances(ctx context.Context, data types.GetFederatedInstances) (*types.GetFederatedInstancesResponse, error) {
+func (c *Client) FederatedInstances(ctx context.Context) (*types.GetFederatedInstancesResponse, error) {
 	resData := &types.GetFederatedInstancesResponse{}
-	res, err := c.getReq(ctx, "GET", "/federated_instances", data, &resData)
+	res, err := c.getReq(ctx, "GET", "/federated_instances", nil, &resData)
 	if err != nil {
 		return nil, err
 	}
@@ -652,9 +666,9 @@ func (c *Client) ReportCount(ctx context.Context, data types.GetReportCount) (*t
 }
 
 // Gets the site, and your user data.
-func (c *Client) Site(ctx context.Context, data types.GetSite) (*types.GetSiteResponse, error) {
+func (c *Client) Site(ctx context.Context) (*types.GetSiteResponse, error) {
 	resData := &types.GetSiteResponse{}
-	res, err := c.getReq(ctx, "GET", "/site", data, &resData)
+	res, err := c.getReq(ctx, "GET", "/site", nil, &resData)
 	if err != nil {
 		return nil, err
 	}
@@ -680,9 +694,9 @@ func (c *Client) SiteMetadata(ctx context.Context, data types.GetSiteMetadata) (
 }
 
 // Get your unread counts
-func (c *Client) UnreadCount(ctx context.Context, data types.GetUnreadCount) (*types.GetUnreadCountResponse, error) {
+func (c *Client) UnreadCount(ctx context.Context) (*types.GetUnreadCountResponse, error) {
 	resData := &types.GetUnreadCountResponse{}
-	res, err := c.getReq(ctx, "GET", "/user/unread_count", data, &resData)
+	res, err := c.getReq(ctx, "GET", "/user/unread_count", nil, &resData)
 	if err != nil {
 		return nil, err
 	}
@@ -694,9 +708,23 @@ func (c *Client) UnreadCount(ctx context.Context, data types.GetUnreadCount) (*t
 }
 
 // Get the unread registration applications count.
-func (c *Client) UnreadRegistrationApplicationCount(ctx context.Context, data types.GetUnreadRegistrationApplicationCount) (*types.GetUnreadRegistrationApplicationCountResponse, error) {
+func (c *Client) UnreadRegistrationApplicationCount(ctx context.Context) (*types.GetUnreadRegistrationApplicationCountResponse, error) {
 	resData := &types.GetUnreadRegistrationApplicationCountResponse{}
-	res, err := c.getReq(ctx, "GET", "/admin/registration_application/count", data, &resData)
+	res, err := c.getReq(ctx, "GET", "/admin/registration_application/count", nil, &resData)
+	if err != nil {
+		return nil, err
+	}
+	err = resError(res, resData.LemmyResponse)
+	if err != nil {
+		return nil, err
+	}
+	return resData, nil
+}
+
+// Hide a community from public view.
+func (c *Client) HideCommunity(ctx context.Context, data types.HideCommunity) (*types.CommunityResponse, error) {
+	resData := &types.CommunityResponse{}
+	res, err := c.req(ctx, "PUT", "/community/hide", data, &resData)
 	if err != nil {
 		return nil, err
 	}
@@ -708,9 +736,9 @@ func (c *Client) UnreadRegistrationApplicationCount(ctx context.Context, data ty
 }
 
 // Leave the Site admins.
-func (c *Client) LeaveAdmin(ctx context.Context, data types.LeaveAdmin) (*types.GetSiteResponse, error) {
+func (c *Client) LeaveAdmin(ctx context.Context) (*types.GetSiteResponse, error) {
 	resData := &types.GetSiteResponse{}
-	res, err := c.req(ctx, "POST", "/user/leave_admin", data, &resData)
+	res, err := c.req(ctx, "POST", "/user/leave_admin", nil, &resData)
 	if err != nil {
 		return nil, err
 	}
@@ -848,9 +876,9 @@ func (c *Client) Login(ctx context.Context, data types.Login) (*types.LoginRespo
 }
 
 // Mark all replies as read.
-func (c *Client) MarkAllAsRead(ctx context.Context, data types.MarkAllAsRead) (*types.GetRepliesResponse, error) {
+func (c *Client) MarkAllAsRead(ctx context.Context) (*types.GetRepliesResponse, error) {
 	resData := &types.GetRepliesResponse{}
-	res, err := c.req(ctx, "POST", "/user/mark_all_as_read", data, &resData)
+	res, err := c.req(ctx, "POST", "/user/mark_all_as_read", nil, &resData)
 	if err != nil {
 		return nil, err
 	}

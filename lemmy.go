@@ -7,7 +7,6 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"reflect"
 
 	"github.com/google/go-querystring/query"
 	"go.elara.ws/go-lemmy/types"
@@ -48,8 +47,6 @@ func (c *Client) ClientLogin(ctx context.Context, l types.Login) error {
 
 // req makes a request to the server
 func (c *Client) req(ctx context.Context, method string, path string, data, resp any) (*http.Response, error) {
-	data = c.setAuth(data)
-
 	var r io.Reader
 	if data != nil {
 		jsonData, err := json.Marshal(data)
@@ -71,6 +68,10 @@ func (c *Client) req(ctx context.Context, method string, path string, data, resp
 
 	req.Header.Add("Content-Type", "application/json")
 
+	if c.Token != "" {
+		req.Header.Add("Authorization", "Bearer "+c.Token)
+	}
+
 	res, err := c.client.Do(req)
 	if err != nil {
 		return nil, err
@@ -91,14 +92,14 @@ func (c *Client) req(ctx context.Context, method string, path string, data, resp
 // It's separate from req() because it uses query
 // parameters rather than a JSON request body.
 func (c *Client) getReq(ctx context.Context, method string, path string, data, resp any) (*http.Response, error) {
-	data = c.setAuth(data)
-
 	getURL := c.baseURL.JoinPath(path)
-	vals, err := query.Values(data)
-	if err != nil {
-		return nil, err
+	if data != nil {
+		vals, err := query.Values(data)
+		if err != nil {
+			return nil, err
+		}
+		getURL.RawQuery = vals.Encode()
 	}
-	getURL.RawQuery = vals.Encode()
 
 	req, err := http.NewRequestWithContext(
 		ctx,
@@ -108,6 +109,10 @@ func (c *Client) getReq(ctx context.Context, method string, path string, data, r
 	)
 	if err != nil {
 		return nil, err
+	}
+
+	if c.Token != "" {
+		req.Header.Add("Authorization", "Bearer "+c.Token)
 	}
 
 	res, err := c.client.Do(req)
@@ -140,36 +145,4 @@ func resError(res *http.Response, lr types.LemmyResponse) error {
 	} else {
 		return nil
 	}
-}
-
-// setAuth uses reflection to automatically
-// set struct fields called Auth of type
-// string or types.Optional[string] to the
-// authentication token, then returns the
-// updated struct
-func (c *Client) setAuth(data any) any {
-	if data == nil {
-		return data
-	}
-
-	val := reflect.New(reflect.TypeOf(data))
-	val.Elem().Set(reflect.ValueOf(data))
-
-	authField := val.Elem().FieldByName("Auth")
-	if !authField.IsValid() {
-		return data
-	}
-
-	switch authField.Type().String() {
-	case "string":
-		authField.SetString(c.Token)
-	case "types.Optional[string]":
-		setMtd := authField.MethodByName("Set")
-		out := setMtd.Call([]reflect.Value{reflect.ValueOf(c.Token)})
-		authField.Set(out[0])
-	default:
-		return data
-	}
-
-	return val.Elem().Interface()
 }

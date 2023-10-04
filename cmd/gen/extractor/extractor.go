@@ -14,9 +14,7 @@ type Route struct {
 	Method     string
 	Path       string
 	ParamsName string
-	ParamsID   int64
 	ReturnName string
-	ReturnID   int64
 }
 
 type Struct struct {
@@ -36,6 +34,7 @@ type Extractor struct {
 	root gjson.Result
 }
 
+// New parses the file at path and returns an extractor with its contents.
 func New(path string) (*Extractor, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
@@ -45,13 +44,20 @@ func New(path string) (*Extractor, error) {
 	return &Extractor{gjson.ParseBytes(data)}, nil
 }
 
-func (e *Extractor) Routes() []Route {
+// Extract reads the JSON document and extracts all the routes and structs from it.
+func (e *Extractor) Extract() ([]Route, []Struct) {
+	structs := map[int64]Struct{}
 	var out []Route
+
+	// Get all the routes in the JSON document
 	routes := e.root.Get("children.#.children.#(kind==2048)#|@flatten")
+
 	for _, route := range routes.Array() {
 		name := route.Get("name").String()
 		signature := route.Get(`signatures.0`)
 
+		// Get the code part of the route's summary.
+		// This will contain the HTTP method and path.
 		httpInfo := signature.Get(`comment.summary.#(kind=="code").text`).String()
 		if !strings.HasPrefix(httpInfo, "`HTTP") {
 			continue
@@ -63,10 +69,38 @@ func (e *Extractor) Routes() []Route {
 			continue
 		}
 
+		// Get the ID and name of the type this function accepts
 		paramsID := signature.Get("parameters.0.type.target").Int()
 		paramsName := signature.Get("parameters.0.type.name").String()
+
+		// Get the ID and name of the type this function returns
 		returnID := signature.Get("type.typeArguments.0.target").Int()
 		returnName := signature.Get("type.typeArguments.0.name").String()
+
+		// Get the referenced structs from the JSON document
+		e.getStructs([]int64{paramsID, returnID}, structs)
+
+		// If the parameters struct contains no fields or union names
+		if len(structs[paramsID].Fields) == 0 && len(structs[paramsID].UnionNames) == 0 {
+			// Delete the params struct from the structs map
+			// to make sure it doesn't get generated
+			delete(structs, paramsID)
+
+			// Set paramsName to an empty string to signify that this route
+			// has no input parameters.
+			paramsName = ""
+		}
+
+		// If the return struct contains no fields or union names
+		if len(structs[returnID].Fields) == 0 && len(structs[returnID].UnionNames) == 0 {
+			// Delete the return struct from the structs map
+			// to make sure it doesn't get generated
+			delete(structs, returnID)
+
+			// Set paramsName to an empty string to signify that this route
+			// has no return value.
+			returnName = ""
+		}
 
 		out = append(out, Route{
 			Name:       name,
@@ -74,26 +108,10 @@ func (e *Extractor) Routes() []Route {
 			Method:     method,
 			Path:       path,
 			ParamsName: paramsName,
-			ParamsID:   paramsID,
 			ReturnName: returnName,
-			ReturnID:   returnID,
 		})
 	}
-	return out
-}
-
-func (e *Extractor) Structs(routes []Route) []Struct {
-	var ids []int64
-	for _, route := range routes {
-		ids = append(ids, route.ParamsID)
-		if route.ReturnID != 0 {
-			ids = append(ids, route.ReturnID)
-		}
-	}
-
-	structs := map[int64]Struct{}
-	e.getStructs(ids, structs)
-	return getKeys(structs)
+	return out, getStructSlice(structs)
 }
 
 func (e *Extractor) getStructs(ids []int64, structs map[int64]Struct) {
@@ -102,6 +120,7 @@ func (e *Extractor) getStructs(ids []int64, structs map[int64]Struct) {
 			continue
 		}
 
+		// Get the struct with the given ID from the JSON document
 		jstruct := e.root.Get(fmt.Sprintf("children.#(id==%d)", id))
 		if !jstruct.Exists() {
 			continue
@@ -122,12 +141,14 @@ func (e *Extractor) getStructs(ids []int64, structs map[int64]Struct) {
 				Fields: fields,
 			}
 
+			// Recursively get any structs referenced by this one
 			e.getStructs(newIDs, structs)
 		}
 
 	}
 }
 
+// unionNames gets all the names of union type members
 func (e *Extractor) unionNames(jstruct gjson.Result) []string {
 	jnames := jstruct.Get("type.types").Array()
 	out := make([]string, len(jnames))
@@ -137,6 +158,8 @@ func (e *Extractor) unionNames(jstruct gjson.Result) []string {
 	return out
 }
 
+// fields gets all the fields in a given struct from the JSON document.
+// It returns the fields and the IDs of any types they referenced.
 func (e *Extractor) fields(jstruct gjson.Result) ([]Field, []int64) {
 	var fields []Field
 	var ids []int64
@@ -153,8 +176,11 @@ func (e *Extractor) fields(jstruct gjson.Result) ([]Field, []int64) {
 
 			switch jfield.Get("type.elementType.type").String() {
 			case "reference":
+				// If this field is referencing another type, add that type's id
+				// to the ids slice.
 				ids = append(ids, jfield.Get("type.elementType.target").Int())
 			case "union":
+				// Convert unions to strings
 				field.Type = "string"
 			}
 		} else {
@@ -162,8 +188,11 @@ func (e *Extractor) fields(jstruct gjson.Result) ([]Field, []int64) {
 
 			switch jfield.Get("type.type").String() {
 			case "reference":
+				// If this field is referencing another type, add that type's id
+				// to the ids slice.
 				ids = append(ids, jfield.Get("type.target").Int())
 			case "union":
+				// Convert unions to strings
 				field.Type = "string"
 			}
 		}
@@ -173,6 +202,8 @@ func (e *Extractor) fields(jstruct gjson.Result) ([]Field, []int64) {
 	return fields, ids
 }
 
+// parseHTTPInfo parses the string from a route's summary,
+// and returns the method and path it uses
 func parseHTTPInfo(httpInfo string) (method, path string) {
 	httpInfo = strings.Trim(httpInfo, "`")
 	method, path, _ = strings.Cut(httpInfo, " ")
@@ -181,7 +212,8 @@ func parseHTTPInfo(httpInfo string) (method, path string) {
 	return method, path
 }
 
-func getKeys(m map[int64]Struct) []Struct {
+// getStructSlice returns all the structs in a map
+func getStructSlice(m map[int64]Struct) []Struct {
 	out := make([]Struct, len(m))
 	i := 0
 	for _, s := range m {

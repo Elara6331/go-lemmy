@@ -2,265 +2,41 @@
 
 package types
 
-type PostReport struct {
-	CreatorID        int64               `json:"creator_id" url:"creator_id,omitempty"`
-	ID               int64               `json:"id" url:"id,omitempty"`
-	OriginalPostBody Optional[string]    `json:"original_post_body" url:"original_post_body,omitempty"`
-	OriginalPostName string              `json:"original_post_name" url:"original_post_name,omitempty"`
-	OriginalPostURL  Optional[string]    `json:"original_post_url" url:"original_post_url,omitempty"`
-	PostID           int64               `json:"post_id" url:"post_id,omitempty"`
-	Published        LemmyTime           `json:"published" url:"published,omitempty"`
-	Reason           string              `json:"reason" url:"reason,omitempty"`
-	Resolved         bool                `json:"resolved" url:"resolved,omitempty"`
-	ResolverID       Optional[int64]     `json:"resolver_id" url:"resolver_id,omitempty"`
-	Updated          Optional[LemmyTime] `json:"updated" url:"updated,omitempty"`
-}
-type CreatePrivateMessageReport struct {
-	Auth             string `json:"auth" url:"auth,omitempty"`
-	PrivateMessageID int64  `json:"private_message_id" url:"private_message_id,omitempty"`
-	Reason           string `json:"reason" url:"reason,omitempty"`
-}
-type GetPersonMentions struct {
-	Auth       string                    `json:"auth" url:"auth,omitempty"`
-	Limit      Optional[int64]           `json:"limit" url:"limit,omitempty"`
-	Page       Optional[int64]           `json:"page" url:"page,omitempty"`
-	Sort       Optional[CommentSortType] `json:"sort" url:"sort,omitempty"`
-	UnreadOnly Optional[bool]            `json:"unread_only" url:"unread_only,omitempty"`
-}
-type Post struct {
-	ApID              string              `json:"ap_id" url:"ap_id,omitempty"`
-	Body              Optional[string]    `json:"body" url:"body,omitempty"`
-	CommunityID       int64               `json:"community_id" url:"community_id,omitempty"`
-	CreatorID         int64               `json:"creator_id" url:"creator_id,omitempty"`
-	Deleted           bool                `json:"deleted" url:"deleted,omitempty"`
-	EmbedDescription  Optional[string]    `json:"embed_description" url:"embed_description,omitempty"`
-	EmbedTitle        Optional[string]    `json:"embed_title" url:"embed_title,omitempty"`
-	EmbedVideoURL     Optional[string]    `json:"embed_video_url" url:"embed_video_url,omitempty"`
-	FeaturedCommunity bool                `json:"featured_community" url:"featured_community,omitempty"`
-	FeaturedLocal     bool                `json:"featured_local" url:"featured_local,omitempty"`
-	ID                int64               `json:"id" url:"id,omitempty"`
-	LanguageID        int64               `json:"language_id" url:"language_id,omitempty"`
-	Local             bool                `json:"local" url:"local,omitempty"`
-	Locked            bool                `json:"locked" url:"locked,omitempty"`
-	Name              string              `json:"name" url:"name,omitempty"`
-	NSFW              bool                `json:"nsfw" url:"nsfw,omitempty"`
-	Published         LemmyTime           `json:"published" url:"published,omitempty"`
-	Removed           bool                `json:"removed" url:"removed,omitempty"`
-	ThumbnailURL      Optional[string]    `json:"thumbnail_url" url:"thumbnail_url,omitempty"`
-	Updated           Optional[LemmyTime] `json:"updated" url:"updated,omitempty"`
-	URL               Optional[string]    `json:"url" url:"url,omitempty"`
-}
-type CustomEmojiKeyword struct {
-	CustomEmojiID int64  `json:"custom_emoji_id" url:"custom_emoji_id,omitempty"`
-	ID            int64  `json:"id" url:"id,omitempty"`
-	Keyword       string `json:"keyword" url:"keyword,omitempty"`
-}
-type DistinguishComment struct {
-	Auth          string `json:"auth" url:"auth,omitempty"`
-	CommentID     int64  `json:"comment_id" url:"comment_id,omitempty"`
-	Distinguished bool   `json:"distinguished" url:"distinguished,omitempty"`
-}
-type AddModToCommunity struct {
-	Added       bool   `json:"added" url:"added,omitempty"`
-	Auth        string `json:"auth" url:"auth,omitempty"`
-	CommunityID int64  `json:"community_id" url:"community_id,omitempty"`
-	PersonID    int64  `json:"person_id" url:"person_id,omitempty"`
-}
-type ResolveObjectResponse struct {
-	Comment   Optional[CommentView]   `json:"comment" url:"comment,omitempty"`
-	Community Optional[CommunityView] `json:"community" url:"community,omitempty"`
-	Person    Optional[PersonView]    `json:"person" url:"person,omitempty"`
-	Post      Optional[PostView]      `json:"post" url:"post,omitempty"`
-	LemmyResponse
-}
-type ModHideCommunity struct {
-	CommunityID int64            `json:"community_id" url:"community_id,omitempty"`
-	Hidden      bool             `json:"hidden" url:"hidden,omitempty"`
-	ID          int64            `json:"id" url:"id,omitempty"`
-	ModPersonID int64            `json:"mod_person_id" url:"mod_person_id,omitempty"`
-	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
-	When        string           `json:"when_" url:"when_,omitempty"`
-}
-type Community struct {
-	ActorID                 string              `json:"actor_id" url:"actor_id,omitempty"`
-	Banner                  Optional[string]    `json:"banner" url:"banner,omitempty"`
-	Deleted                 bool                `json:"deleted" url:"deleted,omitempty"`
-	Description             Optional[string]    `json:"description" url:"description,omitempty"`
-	FollowersURL            string              `json:"followers_url" url:"followers_url,omitempty"`
-	Hidden                  bool                `json:"hidden" url:"hidden,omitempty"`
-	Icon                    Optional[string]    `json:"icon" url:"icon,omitempty"`
-	ID                      int64               `json:"id" url:"id,omitempty"`
-	InboxURL                string              `json:"inbox_url" url:"inbox_url,omitempty"`
-	InstanceID              int64               `json:"instance_id" url:"instance_id,omitempty"`
-	Local                   bool                `json:"local" url:"local,omitempty"`
-	Name                    string              `json:"name" url:"name,omitempty"`
-	NSFW                    bool                `json:"nsfw" url:"nsfw,omitempty"`
-	PostingRestrictedToMods bool                `json:"posting_restricted_to_mods" url:"posting_restricted_to_mods,omitempty"`
-	Published               LemmyTime           `json:"published" url:"published,omitempty"`
-	Removed                 bool                `json:"removed" url:"removed,omitempty"`
-	Title                   string              `json:"title" url:"title,omitempty"`
-	Updated                 Optional[LemmyTime] `json:"updated" url:"updated,omitempty"`
-}
-type CommentReportResponse struct {
-	CommentReportView CommentReportView `json:"comment_report_view" url:"comment_report_view,omitempty"`
-	LemmyResponse
-}
-type GetComment struct {
-	Auth Optional[string] `json:"auth" url:"auth,omitempty"`
-	ID   int64            `json:"id" url:"id,omitempty"`
-}
-type MarkAllAsRead struct {
-	Auth string `json:"auth" url:"auth,omitempty"`
-}
-type CommunityAggregates struct {
-	Comments            int64     `json:"comments" url:"comments,omitempty"`
-	CommunityID         int64     `json:"community_id" url:"community_id,omitempty"`
-	HotRank             int64     `json:"hot_rank" url:"hot_rank,omitempty"`
-	ID                  int64     `json:"id" url:"id,omitempty"`
-	Posts               int64     `json:"posts" url:"posts,omitempty"`
-	Published           LemmyTime `json:"published" url:"published,omitempty"`
-	Subscribers         int64     `json:"subscribers" url:"subscribers,omitempty"`
-	UsersActiveDay      int64     `json:"users_active_day" url:"users_active_day,omitempty"`
-	UsersActiveHalfYear int64     `json:"users_active_half_year" url:"users_active_half_year,omitempty"`
-	UsersActiveMonth    int64     `json:"users_active_month" url:"users_active_month,omitempty"`
-	UsersActiveWeek     int64     `json:"users_active_week" url:"users_active_week,omitempty"`
-}
-type CreateCommunity struct {
-	Auth                    string            `json:"auth" url:"auth,omitempty"`
-	Banner                  Optional[string]  `json:"banner" url:"banner,omitempty"`
-	Description             Optional[string]  `json:"description" url:"description,omitempty"`
-	DiscussionLanguages     Optional[[]int64] `json:"discussion_languages" url:"discussion_languages,omitempty"`
-	Icon                    Optional[string]  `json:"icon" url:"icon,omitempty"`
-	Name                    string            `json:"name" url:"name,omitempty"`
-	NSFW                    Optional[bool]    `json:"nsfw" url:"nsfw,omitempty"`
-	PostingRestrictedToMods Optional[bool]    `json:"posting_restricted_to_mods" url:"posting_restricted_to_mods,omitempty"`
-	Title                   string            `json:"title" url:"title,omitempty"`
-}
-type Site struct {
-	ActorID         string              `json:"actor_id" url:"actor_id,omitempty"`
-	Banner          Optional[string]    `json:"banner" url:"banner,omitempty"`
-	Description     Optional[string]    `json:"description" url:"description,omitempty"`
-	Icon            Optional[string]    `json:"icon" url:"icon,omitempty"`
-	ID              int64               `json:"id" url:"id,omitempty"`
-	InboxURL        string              `json:"inbox_url" url:"inbox_url,omitempty"`
-	InstanceID      int64               `json:"instance_id" url:"instance_id,omitempty"`
-	LastRefreshedAt string              `json:"last_refreshed_at" url:"last_refreshed_at,omitempty"`
-	Name            string              `json:"name" url:"name,omitempty"`
-	PrivateKey      Optional[string]    `json:"private_key" url:"private_key,omitempty"`
-	PublicKey       string              `json:"public_key" url:"public_key,omitempty"`
-	Published       LemmyTime           `json:"published" url:"published,omitempty"`
-	Sidebar         Optional[string]    `json:"sidebar" url:"sidebar,omitempty"`
-	Updated         Optional[LemmyTime] `json:"updated" url:"updated,omitempty"`
-}
-type PrivateMessageView struct {
-	Creator        Person         `json:"creator" url:"creator,omitempty"`
-	PrivateMessage PrivateMessage `json:"private_message" url:"private_message,omitempty"`
-	Recipient      Person         `json:"recipient" url:"recipient,omitempty"`
-}
-type PasswordChangeAfterReset struct {
-	Password       string `json:"password" url:"password,omitempty"`
-	PasswordVerify string `json:"password_verify" url:"password_verify,omitempty"`
-	Token          string `json:"token" url:"token,omitempty"`
-}
-type CommunityView struct {
-	Blocked    bool                `json:"blocked" url:"blocked,omitempty"`
-	Community  Community           `json:"community" url:"community,omitempty"`
-	Counts     CommunityAggregates `json:"counts" url:"counts,omitempty"`
-	Subscribed SubscribedType      `json:"subscribed" url:"subscribed,omitempty"`
-}
-type CommentResponse struct {
-	CommentView  CommentView      `json:"comment_view" url:"comment_view,omitempty"`
-	FormID       Optional[string] `json:"form_id" url:"form_id,omitempty"`
-	RecipientIDs []int64          `json:"recipient_ids" url:"recipient_ids,omitempty"`
-	LemmyResponse
-}
-type CommentView struct {
-	Comment                    Comment           `json:"comment" url:"comment,omitempty"`
-	Community                  Community         `json:"community" url:"community,omitempty"`
-	Counts                     CommentAggregates `json:"counts" url:"counts,omitempty"`
-	Creator                    Person            `json:"creator" url:"creator,omitempty"`
-	CreatorBannedFromCommunity bool              `json:"creator_banned_from_community" url:"creator_banned_from_community,omitempty"`
-	CreatorBlocked             bool              `json:"creator_blocked" url:"creator_blocked,omitempty"`
-	MyVote                     Optional[int64]   `json:"my_vote" url:"my_vote,omitempty"`
-	Post                       Post              `json:"post" url:"post,omitempty"`
-	Saved                      bool              `json:"saved" url:"saved,omitempty"`
-	Subscribed                 SubscribedType    `json:"subscribed" url:"subscribed,omitempty"`
-}
-type SortType string
+import "time"
 
-const (
-	SortTypeActive         SortType = "Active"
-	SortTypeHot            SortType = "Hot"
-	SortTypeNew            SortType = "New"
-	SortTypeOld            SortType = "Old"
-	SortTypeTopDay         SortType = "TopDay"
-	SortTypeTopWeek        SortType = "TopWeek"
-	SortTypeTopMonth       SortType = "TopMonth"
-	SortTypeTopYear        SortType = "TopYear"
-	SortTypeTopAll         SortType = "TopAll"
-	SortTypeMostComments   SortType = "MostComments"
-	SortTypeNewComments    SortType = "NewComments"
-	SortTypeTopHour        SortType = "TopHour"
-	SortTypeTopSixHour     SortType = "TopSixHour"
-	SortTypeTopTwelveHour  SortType = "TopTwelveHour"
-	SortTypeTopThreeMonths SortType = "TopThreeMonths"
-	SortTypeTopSixMonths   SortType = "TopSixMonths"
-	SortTypeTopNineMonths  SortType = "TopNineMonths"
-)
-
-type ModBanFromCommunityView struct {
-	BannedPerson        Person              `json:"banned_person" url:"banned_person,omitempty"`
-	Community           Community           `json:"community" url:"community,omitempty"`
-	ModBanFromCommunity ModBanFromCommunity `json:"mod_ban_from_community" url:"mod_ban_from_community,omitempty"`
-	Moderator           Optional[Person]    `json:"moderator" url:"moderator,omitempty"`
-}
-type GetSiteMetadata struct {
-	URL string `json:"url" url:"url,omitempty"`
-}
-type GetSite struct {
-	Auth Optional[string] `json:"auth" url:"auth,omitempty"`
-}
-type LocalUserView struct {
-	Counts    PersonAggregates `json:"counts" url:"counts,omitempty"`
-	LocalUser LocalUser        `json:"local_user" url:"local_user,omitempty"`
-	Person    Person           `json:"person" url:"person,omitempty"`
-}
-type ListRegistrationApplications struct {
-	Auth       string          `json:"auth" url:"auth,omitempty"`
-	Limit      Optional[int64] `json:"limit" url:"limit,omitempty"`
-	Page       Optional[int64] `json:"page" url:"page,omitempty"`
-	UnreadOnly Optional[bool]  `json:"unread_only" url:"unread_only,omitempty"`
-}
-type CommentReplyView struct {
-	Comment                    Comment           `json:"comment" url:"comment,omitempty"`
-	CommentReply               CommentReply      `json:"comment_reply" url:"comment_reply,omitempty"`
-	Community                  Community         `json:"community" url:"community,omitempty"`
-	Counts                     CommentAggregates `json:"counts" url:"counts,omitempty"`
-	Creator                    Person            `json:"creator" url:"creator,omitempty"`
-	CreatorBannedFromCommunity bool              `json:"creator_banned_from_community" url:"creator_banned_from_community,omitempty"`
-	CreatorBlocked             bool              `json:"creator_blocked" url:"creator_blocked,omitempty"`
-	MyVote                     Optional[int64]   `json:"my_vote" url:"my_vote,omitempty"`
-	Post                       Post              `json:"post" url:"post,omitempty"`
-	Recipient                  Person            `json:"recipient" url:"recipient,omitempty"`
-	Saved                      bool              `json:"saved" url:"saved,omitempty"`
-	Subscribed                 SubscribedType    `json:"subscribed" url:"subscribed,omitempty"`
-}
-type ListCommentReportsResponse struct {
-	CommentReports []CommentReportView `json:"comment_reports" url:"comment_reports,omitempty"`
-	LemmyResponse
+type PostAggregates struct {
+	Comments               int64     `json:"comments" url:"comments,omitempty"`
+	CommunityID            int64     `json:"community_id" url:"community_id,omitempty"`
+	ControversyRank        float64   `json:"controversy_rank" url:"controversy_rank,omitempty"`
+	CreatorID              int64     `json:"creator_id" url:"creator_id,omitempty"`
+	Downvotes              int64     `json:"downvotes" url:"downvotes,omitempty"`
+	FeaturedCommunity      bool      `json:"featured_community" url:"featured_community,omitempty"`
+	FeaturedLocal          bool      `json:"featured_local" url:"featured_local,omitempty"`
+	HotRank                float64   `json:"hot_rank" url:"hot_rank,omitempty"`
+	HotRankActive          float64   `json:"hot_rank_active" url:"hot_rank_active,omitempty"`
+	ID                     int64     `json:"id" url:"id,omitempty"`
+	InstanceID             int64     `json:"instance_id" url:"instance_id,omitempty"`
+	NewestCommentTime      string    `json:"newest_comment_time" url:"newest_comment_time,omitempty"`
+	NewestCommentTimeNecro string    `json:"newest_comment_time_necro" url:"newest_comment_time_necro,omitempty"`
+	PostID                 int64     `json:"post_id" url:"post_id,omitempty"`
+	Published              time.Time `json:"published" url:"published,omitempty"`
+	ScaledRank             float64   `json:"scaled_rank" url:"scaled_rank,omitempty"`
+	Score                  int64     `json:"score" url:"score,omitempty"`
+	Upvotes                int64     `json:"upvotes" url:"upvotes,omitempty"`
 }
 type SaveUserSettings struct {
-	Auth                     string                `json:"auth" url:"auth,omitempty"`
+	AutoExpand               Optional[bool]        `json:"auto_expand" url:"auto_expand,omitempty"`
 	Avatar                   Optional[string]      `json:"avatar" url:"avatar,omitempty"`
 	Banner                   Optional[string]      `json:"banner" url:"banner,omitempty"`
 	Bio                      Optional[string]      `json:"bio" url:"bio,omitempty"`
+	BlurNSFW                 Optional[bool]        `json:"blur_nsfw" url:"blur_nsfw,omitempty"`
 	BotAccount               Optional[bool]        `json:"bot_account" url:"bot_account,omitempty"`
 	DefaultListingType       Optional[ListingType] `json:"default_listing_type" url:"default_listing_type,omitempty"`
 	DefaultSortType          Optional[SortType]    `json:"default_sort_type" url:"default_sort_type,omitempty"`
 	DiscussionLanguages      Optional[[]int64]     `json:"discussion_languages" url:"discussion_languages,omitempty"`
 	DisplayName              Optional[string]      `json:"display_name" url:"display_name,omitempty"`
 	Email                    Optional[string]      `json:"email" url:"email,omitempty"`
-	GenerateTOTP2FA          Optional[bool]        `json:"generate_totp_2fa" url:"generate_totp_2fa,omitempty"`
+	InfiniteScrollEnabled    Optional[bool]        `json:"infinite_scroll_enabled" url:"infinite_scroll_enabled,omitempty"`
 	InterfaceLanguage        Optional[string]      `json:"interface_language" url:"interface_language,omitempty"`
 	MatrixUserID             Optional[string]      `json:"matrix_user_id" url:"matrix_user_id,omitempty"`
 	OpenLinksInNewTab        Optional[bool]        `json:"open_links_in_new_tab" url:"open_links_in_new_tab,omitempty"`
@@ -273,61 +49,33 @@ type SaveUserSettings struct {
 	ShowScores               Optional[bool]        `json:"show_scores" url:"show_scores,omitempty"`
 	Theme                    Optional[string]      `json:"theme" url:"theme,omitempty"`
 }
-type CreateComment struct {
-	Auth       string           `json:"auth" url:"auth,omitempty"`
-	Content    string           `json:"content" url:"content,omitempty"`
-	FormID     Optional[string] `json:"form_id" url:"form_id,omitempty"`
-	LanguageID Optional[int64]  `json:"language_id" url:"language_id,omitempty"`
-	ParentID   Optional[int64]  `json:"parent_id" url:"parent_id,omitempty"`
-	PostID     int64            `json:"post_id" url:"post_id,omitempty"`
+type CustomEmojiKeyword struct {
+	CustomEmojiID int64  `json:"custom_emoji_id" url:"custom_emoji_id,omitempty"`
+	ID            int64  `json:"id" url:"id,omitempty"`
+	Keyword       string `json:"keyword" url:"keyword,omitempty"`
 }
-type DeleteCommunity struct {
-	Auth        string `json:"auth" url:"auth,omitempty"`
-	CommunityID int64  `json:"community_id" url:"community_id,omitempty"`
-	Deleted     bool   `json:"deleted" url:"deleted,omitempty"`
+type PostView struct {
+	Community                  Community       `json:"community" url:"community,omitempty"`
+	Counts                     PostAggregates  `json:"counts" url:"counts,omitempty"`
+	Creator                    Person          `json:"creator" url:"creator,omitempty"`
+	CreatorBannedFromCommunity bool            `json:"creator_banned_from_community" url:"creator_banned_from_community,omitempty"`
+	CreatorBlocked             bool            `json:"creator_blocked" url:"creator_blocked,omitempty"`
+	MyVote                     Optional[int64] `json:"my_vote" url:"my_vote,omitempty"`
+	Post                       Post            `json:"post" url:"post,omitempty"`
+	Read                       bool            `json:"read" url:"read,omitempty"`
+	Saved                      bool            `json:"saved" url:"saved,omitempty"`
+	Subscribed                 SubscribedType  `json:"subscribed" url:"subscribed,omitempty"`
+	UnreadComments             int64           `json:"unread_comments" url:"unread_comments,omitempty"`
 }
-type ModFeaturePost struct {
-	Featured            bool   `json:"featured" url:"featured,omitempty"`
-	ID                  int64  `json:"id" url:"id,omitempty"`
-	IsFeaturedCommunity bool   `json:"is_featured_community" url:"is_featured_community,omitempty"`
-	ModPersonID         int64  `json:"mod_person_id" url:"mod_person_id,omitempty"`
-	PostID              int64  `json:"post_id" url:"post_id,omitempty"`
-	When                string `json:"when_" url:"when_,omitempty"`
-}
-type CustomEmojiResponse struct {
-	CustomEmoji CustomEmojiView `json:"custom_emoji" url:"custom_emoji,omitempty"`
+type GetCommentsResponse struct {
+	Comments []CommentView `json:"comments" url:"comments,omitempty"`
 	LemmyResponse
 }
-type LockPost struct {
-	Auth   string `json:"auth" url:"auth,omitempty"`
-	Locked bool   `json:"locked" url:"locked,omitempty"`
-	PostID int64  `json:"post_id" url:"post_id,omitempty"`
-}
-type AdminPurgeComment struct {
-	AdminPersonID int64            `json:"admin_person_id" url:"admin_person_id,omitempty"`
-	ID            int64            `json:"id" url:"id,omitempty"`
-	PostID        int64            `json:"post_id" url:"post_id,omitempty"`
-	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
-	When          string           `json:"when_" url:"when_,omitempty"`
-}
-type ResolveObject struct {
-	Auth string `json:"auth" url:"auth,omitempty"`
-	Q    string `json:"q" url:"q,omitempty"`
-}
-type GetPost struct {
-	Auth      Optional[string] `json:"auth" url:"auth,omitempty"`
-	CommentID Optional[int64]  `json:"comment_id" url:"comment_id,omitempty"`
-	ID        Optional[int64]  `json:"id" url:"id,omitempty"`
-}
-type ListPostReports struct {
-	Auth           string          `json:"auth" url:"auth,omitempty"`
-	CommunityID    Optional[int64] `json:"community_id" url:"community_id,omitempty"`
-	Limit          Optional[int64] `json:"limit" url:"limit,omitempty"`
-	Page           Optional[int64] `json:"page" url:"page,omitempty"`
-	UnresolvedOnly Optional[bool]  `json:"unresolved_only" url:"unresolved_only,omitempty"`
+type CommunityFollowerView struct {
+	Community Community `json:"community" url:"community,omitempty"`
+	Follower  Person    `json:"follower" url:"follower,omitempty"`
 }
 type EditCommunity struct {
-	Auth                    string            `json:"auth" url:"auth,omitempty"`
 	Banner                  Optional[string]  `json:"banner" url:"banner,omitempty"`
 	CommunityID             int64             `json:"community_id" url:"community_id,omitempty"`
 	Description             Optional[string]  `json:"description" url:"description,omitempty"`
@@ -337,33 +85,94 @@ type EditCommunity struct {
 	PostingRestrictedToMods Optional[bool]    `json:"posting_restricted_to_mods" url:"posting_restricted_to_mods,omitempty"`
 	Title                   Optional[string]  `json:"title" url:"title,omitempty"`
 }
+type Instance struct {
+	Domain    string           `json:"domain" url:"domain,omitempty"`
+	ID        int64            `json:"id" url:"id,omitempty"`
+	Published time.Time        `json:"published" url:"published,omitempty"`
+	Software  Optional[string] `json:"software" url:"software,omitempty"`
+	Updated   time.Time        `json:"updated" url:"updated,omitempty"`
+	Version   Optional[string] `json:"version" url:"version,omitempty"`
+}
 type AdminPurgePost struct {
 	AdminPersonID int64            `json:"admin_person_id" url:"admin_person_id,omitempty"`
 	CommunityID   int64            `json:"community_id" url:"community_id,omitempty"`
 	ID            int64            `json:"id" url:"id,omitempty"`
 	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
-	When          string           `json:"when_" url:"when_,omitempty"`
+	When          time.Time        `json:"when_" url:"when_,omitempty"`
 }
-type ModHideCommunityView struct {
-	Admin            Optional[Person] `json:"admin" url:"admin,omitempty"`
-	Community        Community        `json:"community" url:"community,omitempty"`
-	ModHideCommunity ModHideCommunity `json:"mod_hide_community" url:"mod_hide_community,omitempty"`
+type PurgePerson struct {
+	PersonID int64            `json:"person_id" url:"person_id,omitempty"`
+	Reason   Optional[string] `json:"reason" url:"reason,omitempty"`
 }
-type CreatePostLike struct {
-	Auth   string `json:"auth" url:"auth,omitempty"`
-	PostID int64  `json:"post_id" url:"post_id,omitempty"`
-	Score  int64  `json:"score" url:"score,omitempty"`
+type MarkCommentReplyAsRead struct {
+	CommentReplyID int64 `json:"comment_reply_id" url:"comment_reply_id,omitempty"`
+	Read           bool  `json:"read" url:"read,omitempty"`
 }
-type PostResponse struct {
-	PostView PostView `json:"post_view" url:"post_view,omitempty"`
+type GetFederatedInstancesResponse struct {
+	FederatedInstances Optional[FederatedInstances] `json:"federated_instances" url:"federated_instances,omitempty"`
 	LemmyResponse
+}
+type ModRemoveComment struct {
+	CommentID   int64            `json:"comment_id" url:"comment_id,omitempty"`
+	ID          int64            `json:"id" url:"id,omitempty"`
+	ModPersonID int64            `json:"mod_person_id" url:"mod_person_id,omitempty"`
+	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
+	Removed     bool             `json:"removed" url:"removed,omitempty"`
+	When        time.Time        `json:"when_" url:"when_,omitempty"`
+}
+type ModRemoveCommunityView struct {
+	Community          Community          `json:"community" url:"community,omitempty"`
+	ModRemoveCommunity ModRemoveCommunity `json:"mod_remove_community" url:"mod_remove_community,omitempty"`
+	Moderator          Optional[Person]   `json:"moderator" url:"moderator,omitempty"`
+}
+type GetSiteMetadata struct {
+	URL string `json:"url" url:"url,omitempty"`
+}
+type ListCommunities struct {
+	Limit    Optional[int64]       `json:"limit" url:"limit,omitempty"`
+	Page     Optional[int64]       `json:"page" url:"page,omitempty"`
+	ShowNSFW Optional[bool]        `json:"show_nsfw" url:"show_nsfw,omitempty"`
+	Sort     Optional[SortType]    `json:"sort" url:"sort,omitempty"`
+	Type     Optional[ListingType] `json:"type_" url:"type_,omitempty"`
+}
+type RemoveComment struct {
+	CommentID int64            `json:"comment_id" url:"comment_id,omitempty"`
+	Reason    Optional[string] `json:"reason" url:"reason,omitempty"`
+	Removed   bool             `json:"removed" url:"removed,omitempty"`
+}
+type GetReportCountResponse struct {
+	CommentReports        int64           `json:"comment_reports" url:"comment_reports,omitempty"`
+	CommunityID           Optional[int64] `json:"community_id" url:"community_id,omitempty"`
+	PostReports           int64           `json:"post_reports" url:"post_reports,omitempty"`
+	PrivateMessageReports Optional[int64] `json:"private_message_reports" url:"private_message_reports,omitempty"`
+	LemmyResponse
+}
+type ResolvePostReport struct {
+	ReportID int64 `json:"report_id" url:"report_id,omitempty"`
+	Resolved bool  `json:"resolved" url:"resolved,omitempty"`
+}
+type BanFromCommunityResponse struct {
+	Banned     bool       `json:"banned" url:"banned,omitempty"`
+	PersonView PersonView `json:"person_view" url:"person_view,omitempty"`
+	LemmyResponse
+}
+type BlockPersonResponse struct {
+	Blocked    bool       `json:"blocked" url:"blocked,omitempty"`
+	PersonView PersonView `json:"person_view" url:"person_view,omitempty"`
+	LemmyResponse
+}
+type PrivateMessageReportView struct {
+	Creator               Person               `json:"creator" url:"creator,omitempty"`
+	PrivateMessage        PrivateMessage       `json:"private_message" url:"private_message,omitempty"`
+	PrivateMessageCreator Person               `json:"private_message_creator" url:"private_message_creator,omitempty"`
+	PrivateMessageReport  PrivateMessageReport `json:"private_message_report" url:"private_message_report,omitempty"`
+	Resolver              Optional[Person]     `json:"resolver" url:"resolver,omitempty"`
 }
 type CreateSite struct {
 	ActorNameMaxLength         Optional[int64]            `json:"actor_name_max_length" url:"actor_name_max_length,omitempty"`
 	AllowedInstances           Optional[[]string]         `json:"allowed_instances" url:"allowed_instances,omitempty"`
 	ApplicationEmailAdmins     Optional[bool]             `json:"application_email_admins" url:"application_email_admins,omitempty"`
 	ApplicationQuestion        Optional[string]           `json:"application_question" url:"application_question,omitempty"`
-	Auth                       string                     `json:"auth" url:"auth,omitempty"`
 	Banner                     Optional[string]           `json:"banner" url:"banner,omitempty"`
 	BlockedInstances           Optional[[]string]         `json:"blocked_instances" url:"blocked_instances,omitempty"`
 	CaptchaDifficulty          Optional[string]           `json:"captcha_difficulty" url:"captcha_difficulty,omitempty"`
@@ -400,6 +209,435 @@ type CreateSite struct {
 	SlurFilterRegex            Optional[string]           `json:"slur_filter_regex" url:"slur_filter_regex,omitempty"`
 	Taglines                   Optional[[]string]         `json:"taglines" url:"taglines,omitempty"`
 }
+type BlockInstance struct {
+	Block      bool  `json:"block" url:"block,omitempty"`
+	InstanceID int64 `json:"instance_id" url:"instance_id,omitempty"`
+}
+type SiteAggregates struct {
+	Comments            int64 `json:"comments" url:"comments,omitempty"`
+	Communities         int64 `json:"communities" url:"communities,omitempty"`
+	ID                  int64 `json:"id" url:"id,omitempty"`
+	Posts               int64 `json:"posts" url:"posts,omitempty"`
+	SiteID              int64 `json:"site_id" url:"site_id,omitempty"`
+	Users               int64 `json:"users" url:"users,omitempty"`
+	UsersActiveDay      int64 `json:"users_active_day" url:"users_active_day,omitempty"`
+	UsersActiveHalfYear int64 `json:"users_active_half_year" url:"users_active_half_year,omitempty"`
+	UsersActiveMonth    int64 `json:"users_active_month" url:"users_active_month,omitempty"`
+	UsersActiveWeek     int64 `json:"users_active_week" url:"users_active_week,omitempty"`
+}
+type DeletePrivateMessage struct {
+	Deleted          bool  `json:"deleted" url:"deleted,omitempty"`
+	PrivateMessageID int64 `json:"private_message_id" url:"private_message_id,omitempty"`
+}
+type GetPosts struct {
+	CommunityID   Optional[int64]       `json:"community_id" url:"community_id,omitempty"`
+	CommunityName Optional[string]      `json:"community_name" url:"community_name,omitempty"`
+	DislikedOnly  Optional[bool]        `json:"disliked_only" url:"disliked_only,omitempty"`
+	LikedOnly     Optional[bool]        `json:"liked_only" url:"liked_only,omitempty"`
+	Limit         Optional[int64]       `json:"limit" url:"limit,omitempty"`
+	Page          Optional[int64]       `json:"page" url:"page,omitempty"`
+	PageCursor    Optional[string]      `json:"page_cursor" url:"page_cursor,omitempty"`
+	SavedOnly     Optional[bool]        `json:"saved_only" url:"saved_only,omitempty"`
+	Sort          Optional[SortType]    `json:"sort" url:"sort,omitempty"`
+	Type          Optional[ListingType] `json:"type_" url:"type_,omitempty"`
+}
+type CreatePrivateMessageReport struct {
+	PrivateMessageID int64  `json:"private_message_id" url:"private_message_id,omitempty"`
+	Reason           string `json:"reason" url:"reason,omitempty"`
+}
+type ModBan struct {
+	Banned        bool             `json:"banned" url:"banned,omitempty"`
+	Expires       Optional[string] `json:"expires" url:"expires,omitempty"`
+	ID            int64            `json:"id" url:"id,omitempty"`
+	ModPersonID   int64            `json:"mod_person_id" url:"mod_person_id,omitempty"`
+	OtherPersonID int64            `json:"other_person_id" url:"other_person_id,omitempty"`
+	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
+	When          time.Time        `json:"when_" url:"when_,omitempty"`
+}
+type ModHideCommunityView struct {
+	Admin            Optional[Person] `json:"admin" url:"admin,omitempty"`
+	Community        Community        `json:"community" url:"community,omitempty"`
+	ModHideCommunity ModHideCommunity `json:"mod_hide_community" url:"mod_hide_community,omitempty"`
+}
+type PostListingMode string
+
+const (
+	PostListingModeList      PostListingMode = "List"
+	PostListingModeCard      PostListingMode = "Card"
+	PostListingModeSmallCard PostListingMode = "SmallCard"
+)
+
+type DeletePost struct {
+	Deleted bool  `json:"deleted" url:"deleted,omitempty"`
+	PostID  int64 `json:"post_id" url:"post_id,omitempty"`
+}
+type GetCommunity struct {
+	ID   Optional[int64]  `json:"id" url:"id,omitempty"`
+	Name Optional[string] `json:"name" url:"name,omitempty"`
+}
+type SaveComment struct {
+	CommentID int64 `json:"comment_id" url:"comment_id,omitempty"`
+	Save      bool  `json:"save" url:"save,omitempty"`
+}
+type Post struct {
+	ApID              string           `json:"ap_id" url:"ap_id,omitempty"`
+	Body              Optional[string] `json:"body" url:"body,omitempty"`
+	CommunityID       int64            `json:"community_id" url:"community_id,omitempty"`
+	CreatorID         int64            `json:"creator_id" url:"creator_id,omitempty"`
+	Deleted           bool             `json:"deleted" url:"deleted,omitempty"`
+	EmbedDescription  Optional[string] `json:"embed_description" url:"embed_description,omitempty"`
+	EmbedTitle        Optional[string] `json:"embed_title" url:"embed_title,omitempty"`
+	EmbedVideoURL     Optional[string] `json:"embed_video_url" url:"embed_video_url,omitempty"`
+	FeaturedCommunity bool             `json:"featured_community" url:"featured_community,omitempty"`
+	FeaturedLocal     bool             `json:"featured_local" url:"featured_local,omitempty"`
+	ID                int64            `json:"id" url:"id,omitempty"`
+	LanguageID        int64            `json:"language_id" url:"language_id,omitempty"`
+	Local             bool             `json:"local" url:"local,omitempty"`
+	Locked            bool             `json:"locked" url:"locked,omitempty"`
+	Name              string           `json:"name" url:"name,omitempty"`
+	NSFW              bool             `json:"nsfw" url:"nsfw,omitempty"`
+	Published         time.Time        `json:"published" url:"published,omitempty"`
+	Removed           bool             `json:"removed" url:"removed,omitempty"`
+	ThumbnailURL      Optional[string] `json:"thumbnail_url" url:"thumbnail_url,omitempty"`
+	Updated           time.Time        `json:"updated" url:"updated,omitempty"`
+	URL               Optional[string] `json:"url" url:"url,omitempty"`
+}
+type CustomEmojiView struct {
+	CustomEmoji CustomEmoji          `json:"custom_emoji" url:"custom_emoji,omitempty"`
+	Keywords    []CustomEmojiKeyword `json:"keywords" url:"keywords,omitempty"`
+}
+type GetPostResponse struct {
+	CommunityView CommunityView            `json:"community_view" url:"community_view,omitempty"`
+	CrossPosts    []PostView               `json:"cross_posts" url:"cross_posts,omitempty"`
+	Moderators    []CommunityModeratorView `json:"moderators" url:"moderators,omitempty"`
+	PostView      PostView                 `json:"post_view" url:"post_view,omitempty"`
+	LemmyResponse
+}
+type CreateCommunity struct {
+	Banner                  Optional[string]  `json:"banner" url:"banner,omitempty"`
+	Description             Optional[string]  `json:"description" url:"description,omitempty"`
+	DiscussionLanguages     Optional[[]int64] `json:"discussion_languages" url:"discussion_languages,omitempty"`
+	Icon                    Optional[string]  `json:"icon" url:"icon,omitempty"`
+	Name                    string            `json:"name" url:"name,omitempty"`
+	NSFW                    Optional[bool]    `json:"nsfw" url:"nsfw,omitempty"`
+	PostingRestrictedToMods Optional[bool]    `json:"posting_restricted_to_mods" url:"posting_restricted_to_mods,omitempty"`
+	Title                   string            `json:"title" url:"title,omitempty"`
+}
+type FederatedInstances struct {
+	Allowed []Instance `json:"allowed" url:"allowed,omitempty"`
+	Blocked []Instance `json:"blocked" url:"blocked,omitempty"`
+	Linked  []Instance `json:"linked" url:"linked,omitempty"`
+}
+type PersonMentionResponse struct {
+	PersonMentionView PersonMentionView `json:"person_mention_view" url:"person_mention_view,omitempty"`
+	LemmyResponse
+}
+type Login struct {
+	Password        string           `json:"password" url:"password,omitempty"`
+	TOTP2FAToken    Optional[string] `json:"totp_2fa_token" url:"totp_2fa_token,omitempty"`
+	UsernameOrEmail string           `json:"username_or_email" url:"username_or_email,omitempty"`
+}
+type CommentReplyResponse struct {
+	CommentReplyView CommentReplyView `json:"comment_reply_view" url:"comment_reply_view,omitempty"`
+	LemmyResponse
+}
+type Person struct {
+	ActorID      string           `json:"actor_id" url:"actor_id,omitempty"`
+	Avatar       Optional[string] `json:"avatar" url:"avatar,omitempty"`
+	BanExpires   Optional[string] `json:"ban_expires" url:"ban_expires,omitempty"`
+	Banned       bool             `json:"banned" url:"banned,omitempty"`
+	Banner       Optional[string] `json:"banner" url:"banner,omitempty"`
+	Bio          Optional[string] `json:"bio" url:"bio,omitempty"`
+	BotAccount   bool             `json:"bot_account" url:"bot_account,omitempty"`
+	Deleted      bool             `json:"deleted" url:"deleted,omitempty"`
+	DisplayName  Optional[string] `json:"display_name" url:"display_name,omitempty"`
+	ID           int64            `json:"id" url:"id,omitempty"`
+	InstanceID   int64            `json:"instance_id" url:"instance_id,omitempty"`
+	Local        bool             `json:"local" url:"local,omitempty"`
+	MatrixUserID Optional[string] `json:"matrix_user_id" url:"matrix_user_id,omitempty"`
+	Name         string           `json:"name" url:"name,omitempty"`
+	Published    time.Time        `json:"published" url:"published,omitempty"`
+	Updated      time.Time        `json:"updated" url:"updated,omitempty"`
+}
+type PrivateMessageReportResponse struct {
+	PrivateMessageReportView PrivateMessageReportView `json:"private_message_report_view" url:"private_message_report_view,omitempty"`
+	LemmyResponse
+}
+type PersonBlockView struct {
+	Person Person `json:"person" url:"person,omitempty"`
+	Target Person `json:"target" url:"target,omitempty"`
+}
+type HideCommunity struct {
+	CommunityID int64            `json:"community_id" url:"community_id,omitempty"`
+	Hidden      bool             `json:"hidden" url:"hidden,omitempty"`
+	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
+}
+type LoginResponse struct {
+	JWT                 Optional[string] `json:"jwt" url:"jwt,omitempty"`
+	RegistrationCreated bool             `json:"registration_created" url:"registration_created,omitempty"`
+	VerifyEmailSent     bool             `json:"verify_email_sent" url:"verify_email_sent,omitempty"`
+	LemmyResponse
+}
+type ModRemovePostView struct {
+	Community     Community        `json:"community" url:"community,omitempty"`
+	ModRemovePost ModRemovePost    `json:"mod_remove_post" url:"mod_remove_post,omitempty"`
+	Moderator     Optional[Person] `json:"moderator" url:"moderator,omitempty"`
+	Post          Post             `json:"post" url:"post,omitempty"`
+}
+type BannedPersonsResponse struct {
+	Banned []PersonView `json:"banned" url:"banned,omitempty"`
+	LemmyResponse
+}
+type GetSiteResponse struct {
+	Admins              []PersonView         `json:"admins" url:"admins,omitempty"`
+	AllLanguages        []Language           `json:"all_languages" url:"all_languages,omitempty"`
+	CustomEmojis        []CustomEmojiView    `json:"custom_emojis" url:"custom_emojis,omitempty"`
+	DiscussionLanguages []int64              `json:"discussion_languages" url:"discussion_languages,omitempty"`
+	MyUser              Optional[MyUserInfo] `json:"my_user" url:"my_user,omitempty"`
+	SiteView            SiteView             `json:"site_view" url:"site_view,omitempty"`
+	Taglines            []Tagline            `json:"taglines" url:"taglines,omitempty"`
+	Version             string               `json:"version" url:"version,omitempty"`
+	LemmyResponse
+}
+type PurgeCommunity struct {
+	CommunityID int64            `json:"community_id" url:"community_id,omitempty"`
+	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
+}
+type DeleteComment struct {
+	CommentID int64 `json:"comment_id" url:"comment_id,omitempty"`
+	Deleted   bool  `json:"deleted" url:"deleted,omitempty"`
+}
+type AdminPurgeComment struct {
+	AdminPersonID int64            `json:"admin_person_id" url:"admin_person_id,omitempty"`
+	ID            int64            `json:"id" url:"id,omitempty"`
+	PostID        int64            `json:"post_id" url:"post_id,omitempty"`
+	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
+	When          time.Time        `json:"when_" url:"when_,omitempty"`
+}
+type RemovePost struct {
+	PostID  int64            `json:"post_id" url:"post_id,omitempty"`
+	Reason  Optional[string] `json:"reason" url:"reason,omitempty"`
+	Removed bool             `json:"removed" url:"removed,omitempty"`
+}
+type ResolveObjectResponse struct {
+	Comment   Optional[CommentView]   `json:"comment" url:"comment,omitempty"`
+	Community Optional[CommunityView] `json:"community" url:"community,omitempty"`
+	Person    Optional[PersonView]    `json:"person" url:"person,omitempty"`
+	Post      Optional[PostView]      `json:"post" url:"post,omitempty"`
+	LemmyResponse
+}
+type PersonView struct {
+	Counts PersonAggregates `json:"counts" url:"counts,omitempty"`
+	Person Person           `json:"person" url:"person,omitempty"`
+}
+type LocalUser struct {
+	AcceptedApplication      bool             `json:"accepted_application" url:"accepted_application,omitempty"`
+	Admin                    bool             `json:"admin" url:"admin,omitempty"`
+	AutoExpand               bool             `json:"auto_expand" url:"auto_expand,omitempty"`
+	BlurNSFW                 bool             `json:"blur_nsfw" url:"blur_nsfw,omitempty"`
+	DefaultListingType       ListingType      `json:"default_listing_type" url:"default_listing_type,omitempty"`
+	DefaultSortType          SortType         `json:"default_sort_type" url:"default_sort_type,omitempty"`
+	Email                    Optional[string] `json:"email" url:"email,omitempty"`
+	EmailVerified            bool             `json:"email_verified" url:"email_verified,omitempty"`
+	ID                       int64            `json:"id" url:"id,omitempty"`
+	InfiniteScrollEnabled    bool             `json:"infinite_scroll_enabled" url:"infinite_scroll_enabled,omitempty"`
+	InterfaceLanguage        string           `json:"interface_language" url:"interface_language,omitempty"`
+	OpenLinksInNewTab        bool             `json:"open_links_in_new_tab" url:"open_links_in_new_tab,omitempty"`
+	PersonID                 int64            `json:"person_id" url:"person_id,omitempty"`
+	PostListingMode          PostListingMode  `json:"post_listing_mode" url:"post_listing_mode,omitempty"`
+	SendNotificationsToEmail bool             `json:"send_notifications_to_email" url:"send_notifications_to_email,omitempty"`
+	ShowAvatars              bool             `json:"show_avatars" url:"show_avatars,omitempty"`
+	ShowBotAccounts          bool             `json:"show_bot_accounts" url:"show_bot_accounts,omitempty"`
+	ShowNewPostNotifs        bool             `json:"show_new_post_notifs" url:"show_new_post_notifs,omitempty"`
+	ShowNSFW                 bool             `json:"show_nsfw" url:"show_nsfw,omitempty"`
+	ShowReadPosts            bool             `json:"show_read_posts" url:"show_read_posts,omitempty"`
+	ShowScores               bool             `json:"show_scores" url:"show_scores,omitempty"`
+	Theme                    string           `json:"theme" url:"theme,omitempty"`
+	TOTP2FAEnabled           bool             `json:"totp_2fa_enabled" url:"totp_2fa_enabled,omitempty"`
+	ValidatorTime            string           `json:"validator_time" url:"validator_time,omitempty"`
+}
+type BlockCommunity struct {
+	Block       bool  `json:"block" url:"block,omitempty"`
+	CommunityID int64 `json:"community_id" url:"community_id,omitempty"`
+}
+type BlockPerson struct {
+	Block    bool  `json:"block" url:"block,omitempty"`
+	PersonID int64 `json:"person_id" url:"person_id,omitempty"`
+}
+type RegistrationApplicationResponse struct {
+	RegistrationApplication RegistrationApplicationView `json:"registration_application" url:"registration_application,omitempty"`
+	LemmyResponse
+}
+type CommunityView struct {
+	Blocked    bool                `json:"blocked" url:"blocked,omitempty"`
+	Community  Community           `json:"community" url:"community,omitempty"`
+	Counts     CommunityAggregates `json:"counts" url:"counts,omitempty"`
+	Subscribed SubscribedType      `json:"subscribed" url:"subscribed,omitempty"`
+}
+type ModAddCommunityView struct {
+	Community       Community        `json:"community" url:"community,omitempty"`
+	ModAddCommunity ModAddCommunity  `json:"mod_add_community" url:"mod_add_community,omitempty"`
+	ModdedPerson    Person           `json:"modded_person" url:"modded_person,omitempty"`
+	Moderator       Optional[Person] `json:"moderator" url:"moderator,omitempty"`
+}
+type GetPersonMentions struct {
+	Limit      Optional[int64]           `json:"limit" url:"limit,omitempty"`
+	Page       Optional[int64]           `json:"page" url:"page,omitempty"`
+	Sort       Optional[CommentSortType] `json:"sort" url:"sort,omitempty"`
+	UnreadOnly Optional[bool]            `json:"unread_only" url:"unread_only,omitempty"`
+}
+type ListingType string
+
+const (
+	ListingTypeAll           ListingType = "All"
+	ListingTypeLocal         ListingType = "Local"
+	ListingTypeSubscribed    ListingType = "Subscribed"
+	ListingTypeModeratorView ListingType = "ModeratorView"
+)
+
+type ModRemovePost struct {
+	ID          int64            `json:"id" url:"id,omitempty"`
+	ModPersonID int64            `json:"mod_person_id" url:"mod_person_id,omitempty"`
+	PostID      int64            `json:"post_id" url:"post_id,omitempty"`
+	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
+	Removed     bool             `json:"removed" url:"removed,omitempty"`
+	When        time.Time        `json:"when_" url:"when_,omitempty"`
+}
+type ListRegistrationApplicationsResponse struct {
+	RegistrationApplications []RegistrationApplicationView `json:"registration_applications" url:"registration_applications,omitempty"`
+	LemmyResponse
+}
+type MarkPostAsRead struct {
+	PostID int64 `json:"post_id" url:"post_id,omitempty"`
+	Read   bool  `json:"read" url:"read,omitempty"`
+}
+type MyUserInfo struct {
+	CommunityBlocks     []CommunityBlockView     `json:"community_blocks" url:"community_blocks,omitempty"`
+	DiscussionLanguages []int64                  `json:"discussion_languages" url:"discussion_languages,omitempty"`
+	Follows             []CommunityFollowerView  `json:"follows" url:"follows,omitempty"`
+	InstanceBlocks      []InstanceBlockView      `json:"instance_blocks" url:"instance_blocks,omitempty"`
+	LocalUserView       LocalUserView            `json:"local_user_view" url:"local_user_view,omitempty"`
+	Moderates           []CommunityModeratorView `json:"moderates" url:"moderates,omitempty"`
+	PersonBlocks        []PersonBlockView        `json:"person_blocks" url:"person_blocks,omitempty"`
+}
+type ModlogActionType string
+
+const (
+	ModlogActionTypeAll                  ModlogActionType = "All"
+	ModlogActionTypeModRemovePost        ModlogActionType = "ModRemovePost"
+	ModlogActionTypeModLockPost          ModlogActionType = "ModLockPost"
+	ModlogActionTypeModFeaturePost       ModlogActionType = "ModFeaturePost"
+	ModlogActionTypeModRemoveComment     ModlogActionType = "ModRemoveComment"
+	ModlogActionTypeModRemoveCommunity   ModlogActionType = "ModRemoveCommunity"
+	ModlogActionTypeModBanFromCommunity  ModlogActionType = "ModBanFromCommunity"
+	ModlogActionTypeModAddCommunity      ModlogActionType = "ModAddCommunity"
+	ModlogActionTypeModTransferCommunity ModlogActionType = "ModTransferCommunity"
+	ModlogActionTypeModAdd               ModlogActionType = "ModAdd"
+	ModlogActionTypeModBan               ModlogActionType = "ModBan"
+	ModlogActionTypeModHideCommunity     ModlogActionType = "ModHideCommunity"
+	ModlogActionTypeAdminPurgePerson     ModlogActionType = "AdminPurgePerson"
+	ModlogActionTypeAdminPurgeCommunity  ModlogActionType = "AdminPurgeCommunity"
+	ModlogActionTypeAdminPurgePost       ModlogActionType = "AdminPurgePost"
+	ModlogActionTypeAdminPurgeComment    ModlogActionType = "AdminPurgeComment"
+)
+
+type MarkPersonMentionAsRead struct {
+	PersonMentionID int64 `json:"person_mention_id" url:"person_mention_id,omitempty"`
+	Read            bool  `json:"read" url:"read,omitempty"`
+}
+type TransferCommunity struct {
+	CommunityID int64 `json:"community_id" url:"community_id,omitempty"`
+	PersonID    int64 `json:"person_id" url:"person_id,omitempty"`
+}
+type GetReportCount struct {
+	CommunityID Optional[int64] `json:"community_id" url:"community_id,omitempty"`
+}
+type VerifyEmail struct {
+	Token string `json:"token" url:"token,omitempty"`
+}
+type CommunityResponse struct {
+	CommunityView       CommunityView `json:"community_view" url:"community_view,omitempty"`
+	DiscussionLanguages []int64       `json:"discussion_languages" url:"discussion_languages,omitempty"`
+	LemmyResponse
+}
+type GetUnreadRegistrationApplicationCountResponse struct {
+	RegistrationApplications int64 `json:"registration_applications" url:"registration_applications,omitempty"`
+	LemmyResponse
+}
+type ResolveCommentReport struct {
+	ReportID int64 `json:"report_id" url:"report_id,omitempty"`
+	Resolved bool  `json:"resolved" url:"resolved,omitempty"`
+}
+type ResolveObject struct {
+	Q string `json:"q" url:"q,omitempty"`
+}
+type PrivateMessageView struct {
+	Creator        Person         `json:"creator" url:"creator,omitempty"`
+	PrivateMessage PrivateMessage `json:"private_message" url:"private_message,omitempty"`
+	Recipient      Person         `json:"recipient" url:"recipient,omitempty"`
+}
+type Register struct {
+	Answer         Optional[string] `json:"answer" url:"answer,omitempty"`
+	CaptchaAnswer  Optional[string] `json:"captcha_answer" url:"captcha_answer,omitempty"`
+	CaptchaUUID    Optional[string] `json:"captcha_uuid" url:"captcha_uuid,omitempty"`
+	Email          Optional[string] `json:"email" url:"email,omitempty"`
+	Honeypot       Optional[string] `json:"honeypot" url:"honeypot,omitempty"`
+	Password       string           `json:"password" url:"password,omitempty"`
+	PasswordVerify string           `json:"password_verify" url:"password_verify,omitempty"`
+	ShowNSFW       bool             `json:"show_nsfw" url:"show_nsfw,omitempty"`
+	Username       string           `json:"username" url:"username,omitempty"`
+}
+type CreateCustomEmoji struct {
+	AltText   string   `json:"alt_text" url:"alt_text,omitempty"`
+	Category  string   `json:"category" url:"category,omitempty"`
+	ImageURL  string   `json:"image_url" url:"image_url,omitempty"`
+	Keywords  []string `json:"keywords" url:"keywords,omitempty"`
+	Shortcode string   `json:"shortcode" url:"shortcode,omitempty"`
+}
+type EditPrivateMessage struct {
+	Content          string `json:"content" url:"content,omitempty"`
+	PrivateMessageID int64  `json:"private_message_id" url:"private_message_id,omitempty"`
+}
+type ModBanFromCommunity struct {
+	Banned        bool             `json:"banned" url:"banned,omitempty"`
+	CommunityID   int64            `json:"community_id" url:"community_id,omitempty"`
+	Expires       Optional[string] `json:"expires" url:"expires,omitempty"`
+	ID            int64            `json:"id" url:"id,omitempty"`
+	ModPersonID   int64            `json:"mod_person_id" url:"mod_person_id,omitempty"`
+	OtherPersonID int64            `json:"other_person_id" url:"other_person_id,omitempty"`
+	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
+	When          time.Time        `json:"when_" url:"when_,omitempty"`
+}
+type PasswordReset struct {
+	Email string `json:"email" url:"email,omitempty"`
+}
+type Site struct {
+	ActorID         string           `json:"actor_id" url:"actor_id,omitempty"`
+	Banner          Optional[string] `json:"banner" url:"banner,omitempty"`
+	Description     Optional[string] `json:"description" url:"description,omitempty"`
+	Icon            Optional[string] `json:"icon" url:"icon,omitempty"`
+	ID              int64            `json:"id" url:"id,omitempty"`
+	InboxURL        string           `json:"inbox_url" url:"inbox_url,omitempty"`
+	InstanceID      int64            `json:"instance_id" url:"instance_id,omitempty"`
+	LastRefreshedAt string           `json:"last_refreshed_at" url:"last_refreshed_at,omitempty"`
+	Name            string           `json:"name" url:"name,omitempty"`
+	PrivateKey      Optional[string] `json:"private_key" url:"private_key,omitempty"`
+	PublicKey       string           `json:"public_key" url:"public_key,omitempty"`
+	Published       time.Time        `json:"published" url:"published,omitempty"`
+	Sidebar         Optional[string] `json:"sidebar" url:"sidebar,omitempty"`
+	Updated         time.Time        `json:"updated" url:"updated,omitempty"`
+}
+type ModAdd struct {
+	ID            int64     `json:"id" url:"id,omitempty"`
+	ModPersonID   int64     `json:"mod_person_id" url:"mod_person_id,omitempty"`
+	OtherPersonID int64     `json:"other_person_id" url:"other_person_id,omitempty"`
+	Removed       bool      `json:"removed" url:"removed,omitempty"`
+	When          time.Time `json:"when_" url:"when_,omitempty"`
+}
+type ResolvePrivateMessageReport struct {
+	ReportID int64 `json:"report_id" url:"report_id,omitempty"`
+	Resolved bool  `json:"resolved" url:"resolved,omitempty"`
+}
 type RegistrationMode string
 
 const (
@@ -408,25 +646,337 @@ const (
 	RegistrationModeOpen               RegistrationMode = "Open"
 )
 
+type GetComment struct {
+	ID int64 `json:"id" url:"id,omitempty"`
+}
+type CommentResponse struct {
+	CommentView  CommentView `json:"comment_view" url:"comment_view,omitempty"`
+	RecipientIDs []int64     `json:"recipient_ids" url:"recipient_ids,omitempty"`
+	LemmyResponse
+}
+type GetModlog struct {
+	CommunityID   Optional[int64]            `json:"community_id" url:"community_id,omitempty"`
+	Limit         Optional[int64]            `json:"limit" url:"limit,omitempty"`
+	ModPersonID   Optional[int64]            `json:"mod_person_id" url:"mod_person_id,omitempty"`
+	OtherPersonID Optional[int64]            `json:"other_person_id" url:"other_person_id,omitempty"`
+	Page          Optional[int64]            `json:"page" url:"page,omitempty"`
+	Type          Optional[ModlogActionType] `json:"type_" url:"type_,omitempty"`
+}
+type GetPostsResponse struct {
+	NextPage Optional[string] `json:"next_page" url:"next_page,omitempty"`
+	Posts    []PostView       `json:"posts" url:"posts,omitempty"`
+	LemmyResponse
+}
+type CommentReplyView struct {
+	Comment                    Comment           `json:"comment" url:"comment,omitempty"`
+	CommentReply               CommentReply      `json:"comment_reply" url:"comment_reply,omitempty"`
+	Community                  Community         `json:"community" url:"community,omitempty"`
+	Counts                     CommentAggregates `json:"counts" url:"counts,omitempty"`
+	Creator                    Person            `json:"creator" url:"creator,omitempty"`
+	CreatorBannedFromCommunity bool              `json:"creator_banned_from_community" url:"creator_banned_from_community,omitempty"`
+	CreatorBlocked             bool              `json:"creator_blocked" url:"creator_blocked,omitempty"`
+	MyVote                     Optional[int64]   `json:"my_vote" url:"my_vote,omitempty"`
+	Post                       Post              `json:"post" url:"post,omitempty"`
+	Recipient                  Person            `json:"recipient" url:"recipient,omitempty"`
+	Saved                      bool              `json:"saved" url:"saved,omitempty"`
+	Subscribed                 SubscribedType    `json:"subscribed" url:"subscribed,omitempty"`
+}
+type LockPost struct {
+	Locked bool  `json:"locked" url:"locked,omitempty"`
+	PostID int64 `json:"post_id" url:"post_id,omitempty"`
+}
+type SavePost struct {
+	PostID int64 `json:"post_id" url:"post_id,omitempty"`
+	Save   bool  `json:"save" url:"save,omitempty"`
+}
+type AddModToCommunityResponse struct {
+	Moderators []CommunityModeratorView `json:"moderators" url:"moderators,omitempty"`
+	LemmyResponse
+}
+type PrivateMessageReport struct {
+	CreatorID        int64           `json:"creator_id" url:"creator_id,omitempty"`
+	ID               int64           `json:"id" url:"id,omitempty"`
+	OriginalPMText   string          `json:"original_pm_text" url:"original_pm_text,omitempty"`
+	PrivateMessageID int64           `json:"private_message_id" url:"private_message_id,omitempty"`
+	Published        time.Time       `json:"published" url:"published,omitempty"`
+	Reason           string          `json:"reason" url:"reason,omitempty"`
+	Resolved         bool            `json:"resolved" url:"resolved,omitempty"`
+	ResolverID       Optional[int64] `json:"resolver_id" url:"resolver_id,omitempty"`
+	Updated          time.Time       `json:"updated" url:"updated,omitempty"`
+}
+type AdminPurgeCommunityView struct {
+	Admin               Optional[Person]    `json:"admin" url:"admin,omitempty"`
+	AdminPurgeCommunity AdminPurgeCommunity `json:"admin_purge_community" url:"admin_purge_community,omitempty"`
+}
+type PersonMentionView struct {
+	Comment                    Comment           `json:"comment" url:"comment,omitempty"`
+	Community                  Community         `json:"community" url:"community,omitempty"`
+	Counts                     CommentAggregates `json:"counts" url:"counts,omitempty"`
+	Creator                    Person            `json:"creator" url:"creator,omitempty"`
+	CreatorBannedFromCommunity bool              `json:"creator_banned_from_community" url:"creator_banned_from_community,omitempty"`
+	CreatorBlocked             bool              `json:"creator_blocked" url:"creator_blocked,omitempty"`
+	MyVote                     Optional[int64]   `json:"my_vote" url:"my_vote,omitempty"`
+	PersonMention              PersonMention     `json:"person_mention" url:"person_mention,omitempty"`
+	Post                       Post              `json:"post" url:"post,omitempty"`
+	Recipient                  Person            `json:"recipient" url:"recipient,omitempty"`
+	Saved                      bool              `json:"saved" url:"saved,omitempty"`
+	Subscribed                 SubscribedType    `json:"subscribed" url:"subscribed,omitempty"`
+}
+type BanFromCommunity struct {
+	Ban         bool             `json:"ban" url:"ban,omitempty"`
+	CommunityID int64            `json:"community_id" url:"community_id,omitempty"`
+	Expires     Optional[int64]  `json:"expires" url:"expires,omitempty"`
+	PersonID    int64            `json:"person_id" url:"person_id,omitempty"`
+	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
+	RemoveData  Optional[bool]   `json:"remove_data" url:"remove_data,omitempty"`
+}
+type ModBanView struct {
+	BannedPerson Person           `json:"banned_person" url:"banned_person,omitempty"`
+	ModBan       ModBan           `json:"mod_ban" url:"mod_ban,omitempty"`
+	Moderator    Optional[Person] `json:"moderator" url:"moderator,omitempty"`
+}
+type CommentReply struct {
+	CommentID   int64     `json:"comment_id" url:"comment_id,omitempty"`
+	ID          int64     `json:"id" url:"id,omitempty"`
+	Published   time.Time `json:"published" url:"published,omitempty"`
+	Read        bool      `json:"read" url:"read,omitempty"`
+	RecipientID int64     `json:"recipient_id" url:"recipient_id,omitempty"`
+}
 type Comment struct {
-	ApID          string              `json:"ap_id" url:"ap_id,omitempty"`
-	Content       string              `json:"content" url:"content,omitempty"`
-	CreatorID     int64               `json:"creator_id" url:"creator_id,omitempty"`
-	Deleted       bool                `json:"deleted" url:"deleted,omitempty"`
-	Distinguished bool                `json:"distinguished" url:"distinguished,omitempty"`
-	ID            int64               `json:"id" url:"id,omitempty"`
-	LanguageID    int64               `json:"language_id" url:"language_id,omitempty"`
-	Local         bool                `json:"local" url:"local,omitempty"`
-	Path          string              `json:"path" url:"path,omitempty"`
-	PostID        int64               `json:"post_id" url:"post_id,omitempty"`
-	Published     LemmyTime           `json:"published" url:"published,omitempty"`
-	Removed       bool                `json:"removed" url:"removed,omitempty"`
-	Updated       Optional[LemmyTime] `json:"updated" url:"updated,omitempty"`
+	ApID          string    `json:"ap_id" url:"ap_id,omitempty"`
+	Content       string    `json:"content" url:"content,omitempty"`
+	CreatorID     int64     `json:"creator_id" url:"creator_id,omitempty"`
+	Deleted       bool      `json:"deleted" url:"deleted,omitempty"`
+	Distinguished bool      `json:"distinguished" url:"distinguished,omitempty"`
+	ID            int64     `json:"id" url:"id,omitempty"`
+	LanguageID    int64     `json:"language_id" url:"language_id,omitempty"`
+	Local         bool      `json:"local" url:"local,omitempty"`
+	Path          string    `json:"path" url:"path,omitempty"`
+	PostID        int64     `json:"post_id" url:"post_id,omitempty"`
+	Published     time.Time `json:"published" url:"published,omitempty"`
+	Removed       bool      `json:"removed" url:"removed,omitempty"`
+	Updated       time.Time `json:"updated" url:"updated,omitempty"`
+}
+type EditCustomEmoji struct {
+	AltText  string   `json:"alt_text" url:"alt_text,omitempty"`
+	Category string   `json:"category" url:"category,omitempty"`
+	ID       int64    `json:"id" url:"id,omitempty"`
+	ImageURL string   `json:"image_url" url:"image_url,omitempty"`
+	Keywords []string `json:"keywords" url:"keywords,omitempty"`
+}
+type CommentReport struct {
+	CommentID           int64           `json:"comment_id" url:"comment_id,omitempty"`
+	CreatorID           int64           `json:"creator_id" url:"creator_id,omitempty"`
+	ID                  int64           `json:"id" url:"id,omitempty"`
+	OriginalCommentText string          `json:"original_comment_text" url:"original_comment_text,omitempty"`
+	Published           time.Time       `json:"published" url:"published,omitempty"`
+	Reason              string          `json:"reason" url:"reason,omitempty"`
+	Resolved            bool            `json:"resolved" url:"resolved,omitempty"`
+	ResolverID          Optional[int64] `json:"resolver_id" url:"resolver_id,omitempty"`
+	Updated             time.Time       `json:"updated" url:"updated,omitempty"`
+}
+type ListPrivateMessageReportsResponse struct {
+	PrivateMessageReports []PrivateMessageReportView `json:"private_message_reports" url:"private_message_reports,omitempty"`
+	LemmyResponse
+}
+type Community struct {
+	ActorID                 string           `json:"actor_id" url:"actor_id,omitempty"`
+	Banner                  Optional[string] `json:"banner" url:"banner,omitempty"`
+	Deleted                 bool             `json:"deleted" url:"deleted,omitempty"`
+	Description             Optional[string] `json:"description" url:"description,omitempty"`
+	Hidden                  bool             `json:"hidden" url:"hidden,omitempty"`
+	Icon                    Optional[string] `json:"icon" url:"icon,omitempty"`
+	ID                      int64            `json:"id" url:"id,omitempty"`
+	InstanceID              int64            `json:"instance_id" url:"instance_id,omitempty"`
+	Local                   bool             `json:"local" url:"local,omitempty"`
+	Name                    string           `json:"name" url:"name,omitempty"`
+	NSFW                    bool             `json:"nsfw" url:"nsfw,omitempty"`
+	PostingRestrictedToMods bool             `json:"posting_restricted_to_mods" url:"posting_restricted_to_mods,omitempty"`
+	Published               time.Time        `json:"published" url:"published,omitempty"`
+	Removed                 bool             `json:"removed" url:"removed,omitempty"`
+	Title                   string           `json:"title" url:"title,omitempty"`
+	Updated                 time.Time        `json:"updated" url:"updated,omitempty"`
+}
+type CreatePost struct {
+	Body        Optional[string] `json:"body" url:"body,omitempty"`
+	CommunityID int64            `json:"community_id" url:"community_id,omitempty"`
+	Honeypot    Optional[string] `json:"honeypot" url:"honeypot,omitempty"`
+	LanguageID  Optional[int64]  `json:"language_id" url:"language_id,omitempty"`
+	Name        string           `json:"name" url:"name,omitempty"`
+	NSFW        Optional[bool]   `json:"nsfw" url:"nsfw,omitempty"`
+	URL         Optional[string] `json:"url" url:"url,omitempty"`
+}
+type GetModlogResponse struct {
+	Added                  []ModAddView               `json:"added" url:"added,omitempty"`
+	AddedToCommunity       []ModAddCommunityView      `json:"added_to_community" url:"added_to_community,omitempty"`
+	AdminPurgedComments    []AdminPurgeCommentView    `json:"admin_purged_comments" url:"admin_purged_comments,omitempty"`
+	AdminPurgedCommunities []AdminPurgeCommunityView  `json:"admin_purged_communities" url:"admin_purged_communities,omitempty"`
+	AdminPurgedPersons     []AdminPurgePersonView     `json:"admin_purged_persons" url:"admin_purged_persons,omitempty"`
+	AdminPurgedPosts       []AdminPurgePostView       `json:"admin_purged_posts" url:"admin_purged_posts,omitempty"`
+	Banned                 []ModBanView               `json:"banned" url:"banned,omitempty"`
+	BannedFromCommunity    []ModBanFromCommunityView  `json:"banned_from_community" url:"banned_from_community,omitempty"`
+	FeaturedPosts          []ModFeaturePostView       `json:"featured_posts" url:"featured_posts,omitempty"`
+	HiddenCommunities      []ModHideCommunityView     `json:"hidden_communities" url:"hidden_communities,omitempty"`
+	LockedPosts            []ModLockPostView          `json:"locked_posts" url:"locked_posts,omitempty"`
+	RemovedComments        []ModRemoveCommentView     `json:"removed_comments" url:"removed_comments,omitempty"`
+	RemovedCommunities     []ModRemoveCommunityView   `json:"removed_communities" url:"removed_communities,omitempty"`
+	RemovedPosts           []ModRemovePostView        `json:"removed_posts" url:"removed_posts,omitempty"`
+	TransferredToCommunity []ModTransferCommunityView `json:"transferred_to_community" url:"transferred_to_community,omitempty"`
+	LemmyResponse
+}
+type CommunityModeratorView struct {
+	Community Community `json:"community" url:"community,omitempty"`
+	Moderator Person    `json:"moderator" url:"moderator,omitempty"`
+}
+type PurgeComment struct {
+	CommentID int64            `json:"comment_id" url:"comment_id,omitempty"`
+	Reason    Optional[string] `json:"reason" url:"reason,omitempty"`
+}
+type GetUnreadCountResponse struct {
+	Mentions        int64 `json:"mentions" url:"mentions,omitempty"`
+	PrivateMessages int64 `json:"private_messages" url:"private_messages,omitempty"`
+	Replies         int64 `json:"replies" url:"replies,omitempty"`
+	LemmyResponse
+}
+type MarkPrivateMessageAsRead struct {
+	PrivateMessageID int64 `json:"private_message_id" url:"private_message_id,omitempty"`
+	Read             bool  `json:"read" url:"read,omitempty"`
+}
+type SearchResponse struct {
+	Comments    []CommentView   `json:"comments" url:"comments,omitempty"`
+	Communities []CommunityView `json:"communities" url:"communities,omitempty"`
+	Posts       []PostView      `json:"posts" url:"posts,omitempty"`
+	Type        SearchType      `json:"type_" url:"type_,omitempty"`
+	Users       []PersonView    `json:"users" url:"users,omitempty"`
+	LemmyResponse
+}
+type BanPersonResponse struct {
+	Banned     bool       `json:"banned" url:"banned,omitempty"`
+	PersonView PersonView `json:"person_view" url:"person_view,omitempty"`
+	LemmyResponse
+}
+type DeleteCommunity struct {
+	CommunityID int64 `json:"community_id" url:"community_id,omitempty"`
+	Deleted     bool  `json:"deleted" url:"deleted,omitempty"`
+}
+type AdminPurgePerson struct {
+	AdminPersonID int64            `json:"admin_person_id" url:"admin_person_id,omitempty"`
+	ID            int64            `json:"id" url:"id,omitempty"`
+	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
+	When          time.Time        `json:"when_" url:"when_,omitempty"`
+}
+type GetSiteMetadataResponse struct {
+	Metadata SiteMetadata `json:"metadata" url:"metadata,omitempty"`
+	LemmyResponse
+}
+type PostReportResponse struct {
+	PostReportView PostReportView `json:"post_report_view" url:"post_report_view,omitempty"`
+	LemmyResponse
+}
+type LocalSite struct {
+	ActorNameMaxLength         int64            `json:"actor_name_max_length" url:"actor_name_max_length,omitempty"`
+	ApplicationEmailAdmins     bool             `json:"application_email_admins" url:"application_email_admins,omitempty"`
+	ApplicationQuestion        Optional[string] `json:"application_question" url:"application_question,omitempty"`
+	CaptchaDifficulty          string           `json:"captcha_difficulty" url:"captcha_difficulty,omitempty"`
+	CaptchaEnabled             bool             `json:"captcha_enabled" url:"captcha_enabled,omitempty"`
+	CommunityCreationAdminOnly bool             `json:"community_creation_admin_only" url:"community_creation_admin_only,omitempty"`
+	DefaultPostListingType     ListingType      `json:"default_post_listing_type" url:"default_post_listing_type,omitempty"`
+	DefaultTheme               string           `json:"default_theme" url:"default_theme,omitempty"`
+	EnableDownvotes            bool             `json:"enable_downvotes" url:"enable_downvotes,omitempty"`
+	EnableNSFW                 bool             `json:"enable_nsfw" url:"enable_nsfw,omitempty"`
+	FederationEnabled          bool             `json:"federation_enabled" url:"federation_enabled,omitempty"`
+	HideModlogModNames         bool             `json:"hide_modlog_mod_names" url:"hide_modlog_mod_names,omitempty"`
+	ID                         int64            `json:"id" url:"id,omitempty"`
+	LegalInformation           Optional[string] `json:"legal_information" url:"legal_information,omitempty"`
+	PrivateInstance            bool             `json:"private_instance" url:"private_instance,omitempty"`
+	Published                  time.Time        `json:"published" url:"published,omitempty"`
+	RegistrationMode           RegistrationMode `json:"registration_mode" url:"registration_mode,omitempty"`
+	ReportsEmailAdmins         bool             `json:"reports_email_admins" url:"reports_email_admins,omitempty"`
+	RequireEmailVerification   bool             `json:"require_email_verification" url:"require_email_verification,omitempty"`
+	SiteID                     int64            `json:"site_id" url:"site_id,omitempty"`
+	SiteSetup                  bool             `json:"site_setup" url:"site_setup,omitempty"`
+	SlurFilterRegex            Optional[string] `json:"slur_filter_regex" url:"slur_filter_regex,omitempty"`
+	Updated                    time.Time        `json:"updated" url:"updated,omitempty"`
+}
+type DeleteCustomEmojiResponse struct {
+	ID      int64 `json:"id" url:"id,omitempty"`
+	Success bool  `json:"success" url:"success,omitempty"`
+	LemmyResponse
+}
+type PurgePost struct {
+	PostID int64            `json:"post_id" url:"post_id,omitempty"`
+	Reason Optional[string] `json:"reason" url:"reason,omitempty"`
+}
+type RegistrationApplicationView struct {
+	Admin                   Optional[Person]        `json:"admin" url:"admin,omitempty"`
+	Creator                 Person                  `json:"creator" url:"creator,omitempty"`
+	CreatorLocalUser        LocalUser               `json:"creator_local_user" url:"creator_local_user,omitempty"`
+	RegistrationApplication RegistrationApplication `json:"registration_application" url:"registration_application,omitempty"`
+}
+type CommentView struct {
+	Comment                    Comment           `json:"comment" url:"comment,omitempty"`
+	Community                  Community         `json:"community" url:"community,omitempty"`
+	Counts                     CommentAggregates `json:"counts" url:"counts,omitempty"`
+	Creator                    Person            `json:"creator" url:"creator,omitempty"`
+	CreatorBannedFromCommunity bool              `json:"creator_banned_from_community" url:"creator_banned_from_community,omitempty"`
+	CreatorBlocked             bool              `json:"creator_blocked" url:"creator_blocked,omitempty"`
+	MyVote                     Optional[int64]   `json:"my_vote" url:"my_vote,omitempty"`
+	Post                       Post              `json:"post" url:"post,omitempty"`
+	Saved                      bool              `json:"saved" url:"saved,omitempty"`
+	Subscribed                 SubscribedType    `json:"subscribed" url:"subscribed,omitempty"`
+}
+type CreateCommentReport struct {
+	CommentID int64  `json:"comment_id" url:"comment_id,omitempty"`
+	Reason    string `json:"reason" url:"reason,omitempty"`
+}
+type AdminPurgeCommunity struct {
+	AdminPersonID int64            `json:"admin_person_id" url:"admin_person_id,omitempty"`
+	ID            int64            `json:"id" url:"id,omitempty"`
+	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
+	When          time.Time        `json:"when_" url:"when_,omitempty"`
+}
+type EditComment struct {
+	CommentID  int64            `json:"comment_id" url:"comment_id,omitempty"`
+	Content    Optional[string] `json:"content" url:"content,omitempty"`
+	LanguageID Optional[int64]  `json:"language_id" url:"language_id,omitempty"`
+}
+type Language struct {
+	Code string `json:"code" url:"code,omitempty"`
+	ID   int64  `json:"id" url:"id,omitempty"`
+	Name string `json:"name" url:"name,omitempty"`
+}
+type ListPostReports struct {
+	CommunityID    Optional[int64] `json:"community_id" url:"community_id,omitempty"`
+	Limit          Optional[int64] `json:"limit" url:"limit,omitempty"`
+	Page           Optional[int64] `json:"page" url:"page,omitempty"`
+	UnresolvedOnly Optional[bool]  `json:"unresolved_only" url:"unresolved_only,omitempty"`
+}
+type PasswordChangeAfterReset struct {
+	Password       string `json:"password" url:"password,omitempty"`
+	PasswordVerify string `json:"password_verify" url:"password_verify,omitempty"`
+	Token          string `json:"token" url:"token,omitempty"`
+}
+type CommentReportResponse struct {
+	CommentReportView CommentReportView `json:"comment_report_view" url:"comment_report_view,omitempty"`
+	LemmyResponse
+}
+type GetCaptchaResponse struct {
+	Ok Optional[CaptchaResponse] `json:"ok" url:"ok,omitempty"`
+	LemmyResponse
+}
+type CommunityBlockView struct {
+	Community Community `json:"community" url:"community,omitempty"`
+	Person    Person    `json:"person" url:"person,omitempty"`
+}
+type PurgeItemResponse struct {
+	Success bool `json:"success" url:"success,omitempty"`
+	LemmyResponse
 }
 type GetComments struct {
-	Auth          Optional[string]          `json:"auth" url:"auth,omitempty"`
 	CommunityID   Optional[int64]           `json:"community_id" url:"community_id,omitempty"`
 	CommunityName Optional[string]          `json:"community_name" url:"community_name,omitempty"`
+	DislikedOnly  Optional[bool]            `json:"disliked_only" url:"disliked_only,omitempty"`
+	LikedOnly     Optional[bool]            `json:"liked_only" url:"liked_only,omitempty"`
 	Limit         Optional[int64]           `json:"limit" url:"limit,omitempty"`
 	MaxDepth      Optional[int64]           `json:"max_depth" url:"max_depth,omitempty"`
 	Page          Optional[int64]           `json:"page" url:"page,omitempty"`
@@ -436,43 +986,239 @@ type GetComments struct {
 	Sort          Optional[CommentSortType] `json:"sort" url:"sort,omitempty"`
 	Type          Optional[ListingType]     `json:"type_" url:"type_,omitempty"`
 }
-type PurgeItemResponse struct {
-	Success bool `json:"success" url:"success,omitempty"`
+type ListCommentReports struct {
+	CommunityID    Optional[int64] `json:"community_id" url:"community_id,omitempty"`
+	Limit          Optional[int64] `json:"limit" url:"limit,omitempty"`
+	Page           Optional[int64] `json:"page" url:"page,omitempty"`
+	UnresolvedOnly Optional[bool]  `json:"unresolved_only" url:"unresolved_only,omitempty"`
+}
+type ListPrivateMessageReports struct {
+	Limit          Optional[int64] `json:"limit" url:"limit,omitempty"`
+	Page           Optional[int64] `json:"page" url:"page,omitempty"`
+	UnresolvedOnly Optional[bool]  `json:"unresolved_only" url:"unresolved_only,omitempty"`
+}
+type SearchType string
+
+const (
+	SearchTypeAll         SearchType = "All"
+	SearchTypeComments    SearchType = "Comments"
+	SearchTypePosts       SearchType = "Posts"
+	SearchTypeCommunities SearchType = "Communities"
+	SearchTypeUsers       SearchType = "Users"
+	SearchTypeUrl         SearchType = "Url"
+)
+
+type BlockInstanceResponse struct {
+	Blocked bool `json:"blocked" url:"blocked,omitempty"`
 	LemmyResponse
 }
-type CreatePost struct {
-	Auth        string           `json:"auth" url:"auth,omitempty"`
-	Body        Optional[string] `json:"body" url:"body,omitempty"`
+type CreatePostReport struct {
+	PostID int64  `json:"post_id" url:"post_id,omitempty"`
+	Reason string `json:"reason" url:"reason,omitempty"`
+}
+type CreatePrivateMessage struct {
+	Content     string `json:"content" url:"content,omitempty"`
+	RecipientID int64  `json:"recipient_id" url:"recipient_id,omitempty"`
+}
+type PostFeatureType string
+
+const (
+	PostFeatureTypeLocal     PostFeatureType = "Local"
+	PostFeatureTypeCommunity PostFeatureType = "Community"
+)
+
+type PostResponse struct {
+	PostView PostView `json:"post_view" url:"post_view,omitempty"`
+	LemmyResponse
+}
+type FeaturePost struct {
+	FeatureType PostFeatureType `json:"feature_type" url:"feature_type,omitempty"`
+	Featured    bool            `json:"featured" url:"featured,omitempty"`
+	PostID      int64           `json:"post_id" url:"post_id,omitempty"`
+}
+type InstanceBlockView struct {
+	Instance Instance       `json:"instance" url:"instance,omitempty"`
+	Person   Person         `json:"person" url:"person,omitempty"`
+	Site     Optional[Site] `json:"site" url:"site,omitempty"`
+}
+type CustomEmoji struct {
+	AltText     string    `json:"alt_text" url:"alt_text,omitempty"`
+	Category    string    `json:"category" url:"category,omitempty"`
+	ID          int64     `json:"id" url:"id,omitempty"`
+	ImageURL    string    `json:"image_url" url:"image_url,omitempty"`
+	LocalSiteID int64     `json:"local_site_id" url:"local_site_id,omitempty"`
+	Published   time.Time `json:"published" url:"published,omitempty"`
+	Shortcode   string    `json:"shortcode" url:"shortcode,omitempty"`
+	Updated     time.Time `json:"updated" url:"updated,omitempty"`
+}
+type EditPost struct {
+	Body       Optional[string] `json:"body" url:"body,omitempty"`
+	LanguageID Optional[int64]  `json:"language_id" url:"language_id,omitempty"`
+	Name       Optional[string] `json:"name" url:"name,omitempty"`
+	NSFW       Optional[bool]   `json:"nsfw" url:"nsfw,omitempty"`
+	PostID     int64            `json:"post_id" url:"post_id,omitempty"`
+	URL        Optional[string] `json:"url" url:"url,omitempty"`
+}
+type ModFeaturePostView struct {
+	Community      Community        `json:"community" url:"community,omitempty"`
+	ModFeaturePost ModFeaturePost   `json:"mod_feature_post" url:"mod_feature_post,omitempty"`
+	Moderator      Optional[Person] `json:"moderator" url:"moderator,omitempty"`
+	Post           Post             `json:"post" url:"post,omitempty"`
+}
+type ModTransferCommunity struct {
+	CommunityID   int64     `json:"community_id" url:"community_id,omitempty"`
+	ID            int64     `json:"id" url:"id,omitempty"`
+	ModPersonID   int64     `json:"mod_person_id" url:"mod_person_id,omitempty"`
+	OtherPersonID int64     `json:"other_person_id" url:"other_person_id,omitempty"`
+	When          time.Time `json:"when_" url:"when_,omitempty"`
+}
+type ModLockPostView struct {
+	Community   Community        `json:"community" url:"community,omitempty"`
+	ModLockPost ModLockPost      `json:"mod_lock_post" url:"mod_lock_post,omitempty"`
+	Moderator   Optional[Person] `json:"moderator" url:"moderator,omitempty"`
+	Post        Post             `json:"post" url:"post,omitempty"`
+}
+type LocalUserView struct {
+	Counts    PersonAggregates `json:"counts" url:"counts,omitempty"`
+	LocalUser LocalUser        `json:"local_user" url:"local_user,omitempty"`
+	Person    Person           `json:"person" url:"person,omitempty"`
+}
+type ListRegistrationApplications struct {
+	Limit      Optional[int64] `json:"limit" url:"limit,omitempty"`
+	Page       Optional[int64] `json:"page" url:"page,omitempty"`
+	UnreadOnly Optional[bool]  `json:"unread_only" url:"unread_only,omitempty"`
+}
+type ModBanFromCommunityView struct {
+	BannedPerson        Person              `json:"banned_person" url:"banned_person,omitempty"`
+	Community           Community           `json:"community" url:"community,omitempty"`
+	ModBanFromCommunity ModBanFromCommunity `json:"mod_ban_from_community" url:"mod_ban_from_community,omitempty"`
+	Moderator           Optional[Person]    `json:"moderator" url:"moderator,omitempty"`
+}
+type CreatePostLike struct {
+	PostID int64 `json:"post_id" url:"post_id,omitempty"`
+	Score  int64 `json:"score" url:"score,omitempty"`
+}
+type CommunityAggregates struct {
+	Comments            int64     `json:"comments" url:"comments,omitempty"`
+	CommunityID         int64     `json:"community_id" url:"community_id,omitempty"`
+	HotRank             float64   `json:"hot_rank" url:"hot_rank,omitempty"`
+	ID                  int64     `json:"id" url:"id,omitempty"`
+	Posts               int64     `json:"posts" url:"posts,omitempty"`
+	Published           time.Time `json:"published" url:"published,omitempty"`
+	Subscribers         int64     `json:"subscribers" url:"subscribers,omitempty"`
+	UsersActiveDay      int64     `json:"users_active_day" url:"users_active_day,omitempty"`
+	UsersActiveHalfYear int64     `json:"users_active_half_year" url:"users_active_half_year,omitempty"`
+	UsersActiveMonth    int64     `json:"users_active_month" url:"users_active_month,omitempty"`
+	UsersActiveWeek     int64     `json:"users_active_week" url:"users_active_week,omitempty"`
+}
+type PostReportView struct {
+	Community                  Community        `json:"community" url:"community,omitempty"`
+	Counts                     PostAggregates   `json:"counts" url:"counts,omitempty"`
+	Creator                    Person           `json:"creator" url:"creator,omitempty"`
+	CreatorBannedFromCommunity bool             `json:"creator_banned_from_community" url:"creator_banned_from_community,omitempty"`
+	MyVote                     Optional[int64]  `json:"my_vote" url:"my_vote,omitempty"`
+	Post                       Post             `json:"post" url:"post,omitempty"`
+	PostCreator                Person           `json:"post_creator" url:"post_creator,omitempty"`
+	PostReport                 PostReport       `json:"post_report" url:"post_report,omitempty"`
+	Resolver                   Optional[Person] `json:"resolver" url:"resolver,omitempty"`
+}
+type LocalSiteRateLimit struct {
+	Comment           int64     `json:"comment" url:"comment,omitempty"`
+	CommentPerSecond  int64     `json:"comment_per_second" url:"comment_per_second,omitempty"`
+	ID                int64     `json:"id" url:"id,omitempty"`
+	Image             int64     `json:"image" url:"image,omitempty"`
+	ImagePerSecond    int64     `json:"image_per_second" url:"image_per_second,omitempty"`
+	LocalSiteID       int64     `json:"local_site_id" url:"local_site_id,omitempty"`
+	Message           int64     `json:"message" url:"message,omitempty"`
+	MessagePerSecond  int64     `json:"message_per_second" url:"message_per_second,omitempty"`
+	Post              int64     `json:"post" url:"post,omitempty"`
+	PostPerSecond     int64     `json:"post_per_second" url:"post_per_second,omitempty"`
+	Published         time.Time `json:"published" url:"published,omitempty"`
+	Register          int64     `json:"register" url:"register,omitempty"`
+	RegisterPerSecond int64     `json:"register_per_second" url:"register_per_second,omitempty"`
+	Search            int64     `json:"search" url:"search,omitempty"`
+	SearchPerSecond   int64     `json:"search_per_second" url:"search_per_second,omitempty"`
+	Updated           time.Time `json:"updated" url:"updated,omitempty"`
+}
+type PostReport struct {
+	CreatorID        int64            `json:"creator_id" url:"creator_id,omitempty"`
+	ID               int64            `json:"id" url:"id,omitempty"`
+	OriginalPostBody Optional[string] `json:"original_post_body" url:"original_post_body,omitempty"`
+	OriginalPostName string           `json:"original_post_name" url:"original_post_name,omitempty"`
+	OriginalPostURL  Optional[string] `json:"original_post_url" url:"original_post_url,omitempty"`
+	PostID           int64            `json:"post_id" url:"post_id,omitempty"`
+	Published        time.Time        `json:"published" url:"published,omitempty"`
+	Reason           string           `json:"reason" url:"reason,omitempty"`
+	Resolved         bool             `json:"resolved" url:"resolved,omitempty"`
+	ResolverID       Optional[int64]  `json:"resolver_id" url:"resolver_id,omitempty"`
+	Updated          time.Time        `json:"updated" url:"updated,omitempty"`
+}
+type SiteResponse struct {
+	SiteView SiteView  `json:"site_view" url:"site_view,omitempty"`
+	Taglines []Tagline `json:"taglines" url:"taglines,omitempty"`
+	LemmyResponse
+}
+type GetPersonDetailsResponse struct {
+	Comments   []CommentView            `json:"comments" url:"comments,omitempty"`
+	Moderates  []CommunityModeratorView `json:"moderates" url:"moderates,omitempty"`
+	PersonView PersonView               `json:"person_view" url:"person_view,omitempty"`
+	Posts      []PostView               `json:"posts" url:"posts,omitempty"`
+	LemmyResponse
+}
+type ApproveRegistrationApplication struct {
+	Approve    bool             `json:"approve" url:"approve,omitempty"`
+	DenyReason Optional[string] `json:"deny_reason" url:"deny_reason,omitempty"`
+	ID         int64            `json:"id" url:"id,omitempty"`
+}
+type DistinguishComment struct {
+	CommentID     int64 `json:"comment_id" url:"comment_id,omitempty"`
+	Distinguished bool  `json:"distinguished" url:"distinguished,omitempty"`
+}
+type FollowCommunity struct {
+	CommunityID int64 `json:"community_id" url:"community_id,omitempty"`
+	Follow      bool  `json:"follow" url:"follow,omitempty"`
+}
+type CaptchaResponse struct {
+	PNG  string `json:"png" url:"png,omitempty"`
+	UUID string `json:"uuid" url:"uuid,omitempty"`
+	WAV  string `json:"wav" url:"wav,omitempty"`
+	LemmyResponse
+}
+type SiteMetadata struct {
+	Description   Optional[string] `json:"description" url:"description,omitempty"`
+	EmbedVideoURL Optional[string] `json:"embed_video_url" url:"embed_video_url,omitempty"`
+	Image         Optional[string] `json:"image" url:"image,omitempty"`
+	Title         Optional[string] `json:"title" url:"title,omitempty"`
+}
+type ModAddView struct {
+	ModAdd       ModAdd           `json:"mod_add" url:"mod_add,omitempty"`
+	ModdedPerson Person           `json:"modded_person" url:"modded_person,omitempty"`
+	Moderator    Optional[Person] `json:"moderator" url:"moderator,omitempty"`
+}
+type ModRemoveCommunity struct {
 	CommunityID int64            `json:"community_id" url:"community_id,omitempty"`
-	Honeypot    Optional[string] `json:"honeypot" url:"honeypot,omitempty"`
-	LanguageID  Optional[int64]  `json:"language_id" url:"language_id,omitempty"`
-	Name        string           `json:"name" url:"name,omitempty"`
-	NSFW        Optional[bool]   `json:"nsfw" url:"nsfw,omitempty"`
-	URL         Optional[string] `json:"url" url:"url,omitempty"`
+	Expires     Optional[string] `json:"expires" url:"expires,omitempty"`
+	ID          int64            `json:"id" url:"id,omitempty"`
+	ModPersonID int64            `json:"mod_person_id" url:"mod_person_id,omitempty"`
+	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
+	Removed     bool             `json:"removed" url:"removed,omitempty"`
+	When        time.Time        `json:"when_" url:"when_,omitempty"`
 }
-type Register struct {
-	Answer         Optional[string] `json:"answer" url:"answer,omitempty"`
-	CaptchaAnswer  Optional[string] `json:"captcha_answer" url:"captcha_answer,omitempty"`
-	CaptchaUuid    Optional[string] `json:"captcha_uuid" url:"captcha_uuid,omitempty"`
-	Email          Optional[string] `json:"email" url:"email,omitempty"`
-	Honeypot       Optional[string] `json:"honeypot" url:"honeypot,omitempty"`
-	Password       string           `json:"password" url:"password,omitempty"`
-	PasswordVerify string           `json:"password_verify" url:"password_verify,omitempty"`
-	ShowNSFW       bool             `json:"show_nsfw" url:"show_nsfw,omitempty"`
-	Username       string           `json:"username" url:"username,omitempty"`
+type GetReplies struct {
+	Limit      Optional[int64]           `json:"limit" url:"limit,omitempty"`
+	Page       Optional[int64]           `json:"page" url:"page,omitempty"`
+	Sort       Optional[CommentSortType] `json:"sort" url:"sort,omitempty"`
+	UnreadOnly Optional[bool]            `json:"unread_only" url:"unread_only,omitempty"`
 }
-type RemoveComment struct {
-	Auth      string           `json:"auth" url:"auth,omitempty"`
-	CommentID int64            `json:"comment_id" url:"comment_id,omitempty"`
-	Reason    Optional[string] `json:"reason" url:"reason,omitempty"`
-	Removed   bool             `json:"removed" url:"removed,omitempty"`
+type ListCommunitiesResponse struct {
+	Communities []CommunityView `json:"communities" url:"communities,omitempty"`
+	LemmyResponse
 }
 type EditSite struct {
 	ActorNameMaxLength         Optional[int64]            `json:"actor_name_max_length" url:"actor_name_max_length,omitempty"`
 	AllowedInstances           Optional[[]string]         `json:"allowed_instances" url:"allowed_instances,omitempty"`
 	ApplicationEmailAdmins     Optional[bool]             `json:"application_email_admins" url:"application_email_admins,omitempty"`
 	ApplicationQuestion        Optional[string]           `json:"application_question" url:"application_question,omitempty"`
-	Auth                       string                     `json:"auth" url:"auth,omitempty"`
 	Banner                     Optional[string]           `json:"banner" url:"banner,omitempty"`
 	BlockedInstances           Optional[[]string]         `json:"blocked_instances" url:"blocked_instances,omitempty"`
 	CaptchaDifficulty          Optional[string]           `json:"captcha_difficulty" url:"captcha_difficulty,omitempty"`
@@ -510,73 +1256,38 @@ type EditSite struct {
 	SlurFilterRegex            Optional[string]           `json:"slur_filter_regex" url:"slur_filter_regex,omitempty"`
 	Taglines                   Optional[[]string]         `json:"taglines" url:"taglines,omitempty"`
 }
-type GetModlogResponse struct {
-	Added                  []ModAddView               `json:"added" url:"added,omitempty"`
-	AddedToCommunity       []ModAddCommunityView      `json:"added_to_community" url:"added_to_community,omitempty"`
-	AdminPurgedComments    []AdminPurgeCommentView    `json:"admin_purged_comments" url:"admin_purged_comments,omitempty"`
-	AdminPurgedCommunities []AdminPurgeCommunityView  `json:"admin_purged_communities" url:"admin_purged_communities,omitempty"`
-	AdminPurgedPersons     []AdminPurgePersonView     `json:"admin_purged_persons" url:"admin_purged_persons,omitempty"`
-	AdminPurgedPosts       []AdminPurgePostView       `json:"admin_purged_posts" url:"admin_purged_posts,omitempty"`
-	Banned                 []ModBanView               `json:"banned" url:"banned,omitempty"`
-	BannedFromCommunity    []ModBanFromCommunityView  `json:"banned_from_community" url:"banned_from_community,omitempty"`
-	FeaturedPosts          []ModFeaturePostView       `json:"featured_posts" url:"featured_posts,omitempty"`
-	HiddenCommunities      []ModHideCommunityView     `json:"hidden_communities" url:"hidden_communities,omitempty"`
-	LockedPosts            []ModLockPostView          `json:"locked_posts" url:"locked_posts,omitempty"`
-	RemovedComments        []ModRemoveCommentView     `json:"removed_comments" url:"removed_comments,omitempty"`
-	RemovedCommunities     []ModRemoveCommunityView   `json:"removed_communities" url:"removed_communities,omitempty"`
-	RemovedPosts           []ModRemovePostView        `json:"removed_posts" url:"removed_posts,omitempty"`
-	TransferredToCommunity []ModTransferCommunityView `json:"transferred_to_community" url:"transferred_to_community,omitempty"`
+type AdminPurgePostView struct {
+	Admin          Optional[Person] `json:"admin" url:"admin,omitempty"`
+	AdminPurgePost AdminPurgePost   `json:"admin_purge_post" url:"admin_purge_post,omitempty"`
+	Community      Community        `json:"community" url:"community,omitempty"`
+}
+type CustomEmojiResponse struct {
+	CustomEmoji CustomEmojiView `json:"custom_emoji" url:"custom_emoji,omitempty"`
 	LemmyResponse
 }
-type GetUnreadRegistrationApplicationCountResponse struct {
-	RegistrationApplications int64 `json:"registration_applications" url:"registration_applications,omitempty"`
+type GetPrivateMessages struct {
+	CreatorID  Optional[int64] `json:"creator_id" url:"creator_id,omitempty"`
+	Limit      Optional[int64] `json:"limit" url:"limit,omitempty"`
+	Page       Optional[int64] `json:"page" url:"page,omitempty"`
+	UnreadOnly Optional[bool]  `json:"unread_only" url:"unread_only,omitempty"`
+}
+type GetRepliesResponse struct {
+	Replies []CommentReplyView `json:"replies" url:"replies,omitempty"`
 	LemmyResponse
 }
-type CreateCustomEmoji struct {
-	AltText   string   `json:"alt_text" url:"alt_text,omitempty"`
-	Auth      string   `json:"auth" url:"auth,omitempty"`
-	Category  string   `json:"category" url:"category,omitempty"`
-	ImageURL  string   `json:"image_url" url:"image_url,omitempty"`
-	Keywords  []string `json:"keywords" url:"keywords,omitempty"`
-	Shortcode string   `json:"shortcode" url:"shortcode,omitempty"`
+type ModFeaturePost struct {
+	Featured            bool      `json:"featured" url:"featured,omitempty"`
+	ID                  int64     `json:"id" url:"id,omitempty"`
+	IsFeaturedCommunity bool      `json:"is_featured_community" url:"is_featured_community,omitempty"`
+	ModPersonID         int64     `json:"mod_person_id" url:"mod_person_id,omitempty"`
+	PostID              int64     `json:"post_id" url:"post_id,omitempty"`
+	When                time.Time `json:"when_" url:"when_,omitempty"`
 }
-type LeaveAdmin struct {
-	Auth string `json:"auth" url:"auth,omitempty"`
+type ChangePassword struct {
+	NewPassword       string `json:"new_password" url:"new_password,omitempty"`
+	NewPasswordVerify string `json:"new_password_verify" url:"new_password_verify,omitempty"`
+	OldPassword       string `json:"old_password" url:"old_password,omitempty"`
 }
-type DeleteAccount struct {
-	Auth     string `json:"auth" url:"auth,omitempty"`
-	Password string `json:"password" url:"password,omitempty"`
-}
-type CreateCommentLike struct {
-	Auth      string `json:"auth" url:"auth,omitempty"`
-	CommentID int64  `json:"comment_id" url:"comment_id,omitempty"`
-	Score     int64  `json:"score" url:"score,omitempty"`
-}
-type PurgePost struct {
-	Auth   string           `json:"auth" url:"auth,omitempty"`
-	PostID int64            `json:"post_id" url:"post_id,omitempty"`
-	Reason Optional[string] `json:"reason" url:"reason,omitempty"`
-}
-type Search struct {
-	Auth          Optional[string]      `json:"auth" url:"auth,omitempty"`
-	CommunityID   Optional[int64]       `json:"community_id" url:"community_id,omitempty"`
-	CommunityName Optional[string]      `json:"community_name" url:"community_name,omitempty"`
-	CreatorID     Optional[int64]       `json:"creator_id" url:"creator_id,omitempty"`
-	Limit         Optional[int64]       `json:"limit" url:"limit,omitempty"`
-	ListingType   Optional[ListingType] `json:"listing_type" url:"listing_type,omitempty"`
-	Page          Optional[int64]       `json:"page" url:"page,omitempty"`
-	Q             string                `json:"q" url:"q,omitempty"`
-	Sort          Optional[SortType]    `json:"sort" url:"sort,omitempty"`
-	Type          Optional[SearchType]  `json:"type_" url:"type_,omitempty"`
-}
-type SubscribedType string
-
-const (
-	SubscribedTypeSubscribed    SubscribedType = "Subscribed"
-	SubscribedTypeNotSubscribed SubscribedType = "NotSubscribed"
-	SubscribedTypePending       SubscribedType = "Pending"
-)
-
 type CommentReportView struct {
 	Comment                    Comment           `json:"comment" url:"comment,omitempty"`
 	CommentCreator             Person            `json:"comment_creator" url:"comment_creator,omitempty"`
@@ -589,70 +1300,36 @@ type CommentReportView struct {
 	Post                       Post              `json:"post" url:"post,omitempty"`
 	Resolver                   Optional[Person]  `json:"resolver" url:"resolver,omitempty"`
 }
-type FeaturePost struct {
-	Auth        string          `json:"auth" url:"auth,omitempty"`
-	FeatureType PostFeatureType `json:"feature_type" url:"feature_type,omitempty"`
-	Featured    bool            `json:"featured" url:"featured,omitempty"`
-	PostID      int64           `json:"post_id" url:"post_id,omitempty"`
+type SiteView struct {
+	Counts             SiteAggregates     `json:"counts" url:"counts,omitempty"`
+	LocalSite          LocalSite          `json:"local_site" url:"local_site,omitempty"`
+	LocalSiteRateLimit LocalSiteRateLimit `json:"local_site_rate_limit" url:"local_site_rate_limit,omitempty"`
+	Site               Site               `json:"site" url:"site,omitempty"`
 }
-type PrivateMessagesResponse struct {
-	PrivateMessages []PrivateMessageView `json:"private_messages" url:"private_messages,omitempty"`
+type AdminPurgePersonView struct {
+	Admin            Optional[Person] `json:"admin" url:"admin,omitempty"`
+	AdminPurgePerson AdminPurgePerson `json:"admin_purge_person" url:"admin_purge_person,omitempty"`
+}
+type AddModToCommunity struct {
+	Added       bool  `json:"added" url:"added,omitempty"`
+	CommunityID int64 `json:"community_id" url:"community_id,omitempty"`
+	PersonID    int64 `json:"person_id" url:"person_id,omitempty"`
+}
+type PrivateMessageResponse struct {
+	PrivateMessageView PrivateMessageView `json:"private_message_view" url:"private_message_view,omitempty"`
 	LemmyResponse
 }
-type MarkCommentReplyAsRead struct {
-	Auth           string `json:"auth" url:"auth,omitempty"`
-	CommentReplyID int64  `json:"comment_reply_id" url:"comment_reply_id,omitempty"`
-	Read           bool   `json:"read" url:"read,omitempty"`
-}
-type SearchType string
-
-const (
-	SearchTypeAll         SearchType = "All"
-	SearchTypeComments    SearchType = "Comments"
-	SearchTypePosts       SearchType = "Posts"
-	SearchTypeCommunities SearchType = "Communities"
-	SearchTypeUsers       SearchType = "Users"
-	SearchTypeUrl         SearchType = "Url"
-)
-
-type ApproveRegistrationApplication struct {
-	Approve    bool             `json:"approve" url:"approve,omitempty"`
-	Auth       string           `json:"auth" url:"auth,omitempty"`
-	DenyReason Optional[string] `json:"deny_reason" url:"deny_reason,omitempty"`
-	ID         int64            `json:"id" url:"id,omitempty"`
-}
-type GetPostResponse struct {
-	CommunityView CommunityView            `json:"community_view" url:"community_view,omitempty"`
-	CrossPosts    []PostView               `json:"cross_posts" url:"cross_posts,omitempty"`
-	Moderators    []CommunityModeratorView `json:"moderators" url:"moderators,omitempty"`
-	PostView      PostView                 `json:"post_view" url:"post_view,omitempty"`
+type ListPostReportsResponse struct {
+	PostReports []PostReportView `json:"post_reports" url:"post_reports,omitempty"`
 	LemmyResponse
 }
-type ResolvePrivateMessageReport struct {
-	Auth     string `json:"auth" url:"auth,omitempty"`
-	ReportID int64  `json:"report_id" url:"report_id,omitempty"`
-	Resolved bool   `json:"resolved" url:"resolved,omitempty"`
-}
-type LocalUser struct {
-	AcceptedApplication      bool             `json:"accepted_application" url:"accepted_application,omitempty"`
-	DefaultListingType       ListingType      `json:"default_listing_type" url:"default_listing_type,omitempty"`
-	DefaultSortType          SortType         `json:"default_sort_type" url:"default_sort_type,omitempty"`
-	Email                    Optional[string] `json:"email" url:"email,omitempty"`
-	EmailVerified            bool             `json:"email_verified" url:"email_verified,omitempty"`
-	ID                       int64            `json:"id" url:"id,omitempty"`
-	InterfaceLanguage        string           `json:"interface_language" url:"interface_language,omitempty"`
-	OpenLinksInNewTab        bool             `json:"open_links_in_new_tab" url:"open_links_in_new_tab,omitempty"`
-	PersonID                 int64            `json:"person_id" url:"person_id,omitempty"`
-	SendNotificationsToEmail bool             `json:"send_notifications_to_email" url:"send_notifications_to_email,omitempty"`
-	ShowAvatars              bool             `json:"show_avatars" url:"show_avatars,omitempty"`
-	ShowBotAccounts          bool             `json:"show_bot_accounts" url:"show_bot_accounts,omitempty"`
-	ShowNewPostNotifs        bool             `json:"show_new_post_notifs" url:"show_new_post_notifs,omitempty"`
-	ShowNSFW                 bool             `json:"show_nsfw" url:"show_nsfw,omitempty"`
-	ShowReadPosts            bool             `json:"show_read_posts" url:"show_read_posts,omitempty"`
-	ShowScores               bool             `json:"show_scores" url:"show_scores,omitempty"`
-	Theme                    string           `json:"theme" url:"theme,omitempty"`
-	TOTP2FAURL               Optional[string] `json:"totp_2fa_url" url:"totp_2fa_url,omitempty"`
-	ValidatorTime            string           `json:"validator_time" url:"validator_time,omitempty"`
+type RegistrationApplication struct {
+	AdminID     Optional[int64]  `json:"admin_id" url:"admin_id,omitempty"`
+	Answer      string           `json:"answer" url:"answer,omitempty"`
+	DenyReason  Optional[string] `json:"deny_reason" url:"deny_reason,omitempty"`
+	ID          int64            `json:"id" url:"id,omitempty"`
+	LocalUserID int64            `json:"local_user_id" url:"local_user_id,omitempty"`
+	Published   time.Time        `json:"published" url:"published,omitempty"`
 }
 type ModRemoveCommentView struct {
 	Comment          Comment          `json:"comment" url:"comment,omitempty"`
@@ -662,111 +1339,11 @@ type ModRemoveCommentView struct {
 	Moderator        Optional[Person] `json:"moderator" url:"moderator,omitempty"`
 	Post             Post             `json:"post" url:"post,omitempty"`
 }
-type RemovePost struct {
-	Auth    string           `json:"auth" url:"auth,omitempty"`
-	PostID  int64            `json:"post_id" url:"post_id,omitempty"`
-	Reason  Optional[string] `json:"reason" url:"reason,omitempty"`
-	Removed bool             `json:"removed" url:"removed,omitempty"`
-}
-type DeleteCustomEmojiResponse struct {
-	ID      int64 `json:"id" url:"id,omitempty"`
-	Success bool  `json:"success" url:"success,omitempty"`
+type GetPersonMentionsResponse struct {
+	Mentions []PersonMentionView `json:"mentions" url:"mentions,omitempty"`
 	LemmyResponse
-}
-type DeletePost struct {
-	Auth    string `json:"auth" url:"auth,omitempty"`
-	Deleted bool   `json:"deleted" url:"deleted,omitempty"`
-	PostID  int64  `json:"post_id" url:"post_id,omitempty"`
-}
-type PasswordReset struct {
-	Email string `json:"email" url:"email,omitempty"`
-}
-type GetFederatedInstances struct {
-	Auth Optional[string] `json:"auth" url:"auth,omitempty"`
-}
-type Language struct {
-	Code string `json:"code" url:"code,omitempty"`
-	ID   int64  `json:"id" url:"id,omitempty"`
-	Name string `json:"name" url:"name,omitempty"`
-}
-type CommunityModeratorView struct {
-	Community Community `json:"community" url:"community,omitempty"`
-	Moderator Person    `json:"moderator" url:"moderator,omitempty"`
-}
-type CommentAggregates struct {
-	ChildCount int64     `json:"child_count" url:"child_count,omitempty"`
-	CommentID  int64     `json:"comment_id" url:"comment_id,omitempty"`
-	Downvotes  int64     `json:"downvotes" url:"downvotes,omitempty"`
-	HotRank    int64     `json:"hot_rank" url:"hot_rank,omitempty"`
-	ID         int64     `json:"id" url:"id,omitempty"`
-	Published  LemmyTime `json:"published" url:"published,omitempty"`
-	Score      int64     `json:"score" url:"score,omitempty"`
-	Upvotes    int64     `json:"upvotes" url:"upvotes,omitempty"`
-}
-type CustomEmoji struct {
-	AltText     string              `json:"alt_text" url:"alt_text,omitempty"`
-	Category    string              `json:"category" url:"category,omitempty"`
-	ID          int64               `json:"id" url:"id,omitempty"`
-	ImageURL    string              `json:"image_url" url:"image_url,omitempty"`
-	LocalSiteID int64               `json:"local_site_id" url:"local_site_id,omitempty"`
-	Published   LemmyTime           `json:"published" url:"published,omitempty"`
-	Shortcode   string              `json:"shortcode" url:"shortcode,omitempty"`
-	Updated     Optional[LemmyTime] `json:"updated" url:"updated,omitempty"`
-}
-type DeleteComment struct {
-	Auth      string `json:"auth" url:"auth,omitempty"`
-	CommentID int64  `json:"comment_id" url:"comment_id,omitempty"`
-	Deleted   bool   `json:"deleted" url:"deleted,omitempty"`
-}
-type ModBanView struct {
-	BannedPerson Person           `json:"banned_person" url:"banned_person,omitempty"`
-	ModBan       ModBan           `json:"mod_ban" url:"mod_ban,omitempty"`
-	Moderator    Optional[Person] `json:"moderator" url:"moderator,omitempty"`
-}
-type GetSiteMetadataResponse struct {
-	Metadata SiteMetadata `json:"metadata" url:"metadata,omitempty"`
-	LemmyResponse
-}
-type GetUnreadCountResponse struct {
-	Mentions        int64 `json:"mentions" url:"mentions,omitempty"`
-	PrivateMessages int64 `json:"private_messages" url:"private_messages,omitempty"`
-	Replies         int64 `json:"replies" url:"replies,omitempty"`
-	LemmyResponse
-}
-type Login struct {
-	Password        string           `json:"password" url:"password,omitempty"`
-	TOTP2FAToken    Optional[string] `json:"totp_2fa_token" url:"totp_2fa_token,omitempty"`
-	UsernameOrEmail string           `json:"username_or_email" url:"username_or_email,omitempty"`
-}
-type SiteResponse struct {
-	SiteView SiteView  `json:"site_view" url:"site_view,omitempty"`
-	Taglines []Tagline `json:"taglines" url:"taglines,omitempty"`
-	LemmyResponse
-}
-type CommentSortType string
-
-const (
-	CommentSortTypeHot CommentSortType = "Hot"
-	CommentSortTypeTop CommentSortType = "Top"
-	CommentSortTypeNew CommentSortType = "New"
-	CommentSortTypeOld CommentSortType = "Old"
-)
-
-type ModLockPostView struct {
-	Community   Community        `json:"community" url:"community,omitempty"`
-	ModLockPost ModLockPost      `json:"mod_lock_post" url:"mod_lock_post,omitempty"`
-	Moderator   Optional[Person] `json:"moderator" url:"moderator,omitempty"`
-	Post        Post             `json:"post" url:"post,omitempty"`
-}
-type PrivateMessageReportView struct {
-	Creator               Person               `json:"creator" url:"creator,omitempty"`
-	PrivateMessage        PrivateMessage       `json:"private_message" url:"private_message,omitempty"`
-	PrivateMessageCreator Person               `json:"private_message_creator" url:"private_message_creator,omitempty"`
-	PrivateMessageReport  PrivateMessageReport `json:"private_message_report" url:"private_message_report,omitempty"`
-	Resolver              Optional[Person]     `json:"resolver" url:"resolver,omitempty"`
 }
 type GetPersonDetails struct {
-	Auth        Optional[string]   `json:"auth" url:"auth,omitempty"`
 	CommunityID Optional[int64]    `json:"community_id" url:"community_id,omitempty"`
 	Limit       Optional[int64]    `json:"limit" url:"limit,omitempty"`
 	Page        Optional[int64]    `json:"page" url:"page,omitempty"`
@@ -775,727 +1352,81 @@ type GetPersonDetails struct {
 	Sort        Optional[SortType] `json:"sort" url:"sort,omitempty"`
 	Username    Optional[string]   `json:"username" url:"username,omitempty"`
 }
-type MarkPersonMentionAsRead struct {
-	Auth            string `json:"auth" url:"auth,omitempty"`
-	PersonMentionID int64  `json:"person_mention_id" url:"person_mention_id,omitempty"`
-	Read            bool   `json:"read" url:"read,omitempty"`
-}
-type LoginResponse struct {
-	JWT                 Optional[string] `json:"jwt" url:"jwt,omitempty"`
-	RegistrationCreated bool             `json:"registration_created" url:"registration_created,omitempty"`
-	VerifyEmailSent     bool             `json:"verify_email_sent" url:"verify_email_sent,omitempty"`
-	LemmyResponse
-}
-type CommunityBlockView struct {
-	Community Community `json:"community" url:"community,omitempty"`
-	Person    Person    `json:"person" url:"person,omitempty"`
-}
-type SiteMetadata struct {
-	Description   Optional[string] `json:"description" url:"description,omitempty"`
-	EmbedVideoURL Optional[string] `json:"embed_video_url" url:"embed_video_url,omitempty"`
-	Image         Optional[string] `json:"image" url:"image,omitempty"`
-	Title         Optional[string] `json:"title" url:"title,omitempty"`
-}
-type BanFromCommunityResponse struct {
-	Banned     bool       `json:"banned" url:"banned,omitempty"`
-	PersonView PersonView `json:"person_view" url:"person_view,omitempty"`
-	LemmyResponse
-}
-type EditComment struct {
-	Auth       string           `json:"auth" url:"auth,omitempty"`
-	CommentID  int64            `json:"comment_id" url:"comment_id,omitempty"`
-	Content    Optional[string] `json:"content" url:"content,omitempty"`
-	FormID     Optional[string] `json:"form_id" url:"form_id,omitempty"`
-	LanguageID Optional[int64]  `json:"language_id" url:"language_id,omitempty"`
-}
-type ModRemoveCommunity struct {
-	CommunityID int64            `json:"community_id" url:"community_id,omitempty"`
-	Expires     Optional[string] `json:"expires" url:"expires,omitempty"`
-	ID          int64            `json:"id" url:"id,omitempty"`
-	ModPersonID int64            `json:"mod_person_id" url:"mod_person_id,omitempty"`
-	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
-	Removed     bool             `json:"removed" url:"removed,omitempty"`
-	When        string           `json:"when_" url:"when_,omitempty"`
-}
-type PersonView struct {
-	Counts PersonAggregates `json:"counts" url:"counts,omitempty"`
-	Person Person           `json:"person" url:"person,omitempty"`
-}
-type RegistrationApplicationView struct {
-	Admin                   Optional[Person]        `json:"admin" url:"admin,omitempty"`
-	Creator                 Person                  `json:"creator" url:"creator,omitempty"`
-	CreatorLocalUser        LocalUser               `json:"creator_local_user" url:"creator_local_user,omitempty"`
-	RegistrationApplication RegistrationApplication `json:"registration_application" url:"registration_application,omitempty"`
-}
-type CreatePrivateMessage struct {
-	Auth        string `json:"auth" url:"auth,omitempty"`
-	Content     string `json:"content" url:"content,omitempty"`
-	RecipientID int64  `json:"recipient_id" url:"recipient_id,omitempty"`
-}
-type AdminPurgeCommentView struct {
-	Admin             Optional[Person]  `json:"admin" url:"admin,omitempty"`
-	AdminPurgeComment AdminPurgeComment `json:"admin_purge_comment" url:"admin_purge_comment,omitempty"`
-	Post              Post              `json:"post" url:"post,omitempty"`
-}
-type ModRemoveCommunityView struct {
-	Community          Community          `json:"community" url:"community,omitempty"`
-	ModRemoveCommunity ModRemoveCommunity `json:"mod_remove_community" url:"mod_remove_community,omitempty"`
-	Moderator          Optional[Person]   `json:"moderator" url:"moderator,omitempty"`
-}
-type CommentReplyResponse struct {
-	CommentReplyView CommentReplyView `json:"comment_reply_view" url:"comment_reply_view,omitempty"`
-	LemmyResponse
-}
-type ModAddCommunityView struct {
-	Community       Community        `json:"community" url:"community,omitempty"`
-	ModAddCommunity ModAddCommunity  `json:"mod_add_community" url:"mod_add_community,omitempty"`
-	ModdedPerson    Person           `json:"modded_person" url:"modded_person,omitempty"`
-	Moderator       Optional[Person] `json:"moderator" url:"moderator,omitempty"`
-}
-type GetSiteResponse struct {
-	Admins              []PersonView         `json:"admins" url:"admins,omitempty"`
-	AllLanguages        []Language           `json:"all_languages" url:"all_languages,omitempty"`
-	CustomEmojis        []CustomEmojiView    `json:"custom_emojis" url:"custom_emojis,omitempty"`
-	DiscussionLanguages []int64              `json:"discussion_languages" url:"discussion_languages,omitempty"`
-	MyUser              Optional[MyUserInfo] `json:"my_user" url:"my_user,omitempty"`
-	SiteView            SiteView             `json:"site_view" url:"site_view,omitempty"`
-	Taglines            []Tagline            `json:"taglines" url:"taglines,omitempty"`
-	Version             string               `json:"version" url:"version,omitempty"`
-	LemmyResponse
-}
-type GetUnreadRegistrationApplicationCount struct {
-	Auth string `json:"auth" url:"auth,omitempty"`
-}
-type ListCommunitiesResponse struct {
-	Communities []CommunityView `json:"communities" url:"communities,omitempty"`
-	LemmyResponse
-}
-type BanFromCommunity struct {
-	Auth        string           `json:"auth" url:"auth,omitempty"`
-	Ban         bool             `json:"ban" url:"ban,omitempty"`
-	CommunityID int64            `json:"community_id" url:"community_id,omitempty"`
-	Expires     Optional[int64]  `json:"expires" url:"expires,omitempty"`
-	PersonID    int64            `json:"person_id" url:"person_id,omitempty"`
-	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
-	RemoveData  Optional[bool]   `json:"remove_data" url:"remove_data,omitempty"`
-}
-type PostReportResponse struct {
-	PostReportView PostReportView `json:"post_report_view" url:"post_report_view,omitempty"`
-	LemmyResponse
-}
-type Instance struct {
-	Domain    string              `json:"domain" url:"domain,omitempty"`
-	ID        int64               `json:"id" url:"id,omitempty"`
-	Published LemmyTime           `json:"published" url:"published,omitempty"`
-	Software  Optional[string]    `json:"software" url:"software,omitempty"`
-	Updated   Optional[LemmyTime] `json:"updated" url:"updated,omitempty"`
-	Version   Optional[string]    `json:"version" url:"version,omitempty"`
-}
-type AdminPurgePostView struct {
-	Admin          Optional[Person] `json:"admin" url:"admin,omitempty"`
-	AdminPurgePost AdminPurgePost   `json:"admin_purge_post" url:"admin_purge_post,omitempty"`
-	Community      Community        `json:"community" url:"community,omitempty"`
-}
-type GetPostsResponse struct {
-	Posts []PostView `json:"posts" url:"posts,omitempty"`
-	LemmyResponse
-}
-type AddAdmin struct {
-	Added    bool   `json:"added" url:"added,omitempty"`
-	Auth     string `json:"auth" url:"auth,omitempty"`
-	PersonID int64  `json:"person_id" url:"person_id,omitempty"`
-}
-type PostAggregates struct {
-	Comments               int64     `json:"comments" url:"comments,omitempty"`
-	Downvotes              int64     `json:"downvotes" url:"downvotes,omitempty"`
-	FeaturedCommunity      bool      `json:"featured_community" url:"featured_community,omitempty"`
-	FeaturedLocal          bool      `json:"featured_local" url:"featured_local,omitempty"`
-	HotRank                int64     `json:"hot_rank" url:"hot_rank,omitempty"`
-	HotRankActive          int64     `json:"hot_rank_active" url:"hot_rank_active,omitempty"`
-	ID                     int64     `json:"id" url:"id,omitempty"`
-	NewestCommentTime      string    `json:"newest_comment_time" url:"newest_comment_time,omitempty"`
-	NewestCommentTimeNecro string    `json:"newest_comment_time_necro" url:"newest_comment_time_necro,omitempty"`
-	PostID                 int64     `json:"post_id" url:"post_id,omitempty"`
-	Published              LemmyTime `json:"published" url:"published,omitempty"`
-	Score                  int64     `json:"score" url:"score,omitempty"`
-	Upvotes                int64     `json:"upvotes" url:"upvotes,omitempty"`
-}
-type BannedPersonsResponse struct {
-	Banned []PersonView `json:"banned" url:"banned,omitempty"`
-	LemmyResponse
-}
-type ListingType string
-
-const (
-	ListingTypeAll        ListingType = "All"
-	ListingTypeLocal      ListingType = "Local"
-	ListingTypeSubscribed ListingType = "Subscribed"
-)
-
-type PrivateMessageResponse struct {
-	PrivateMessageView PrivateMessageView `json:"private_message_view" url:"private_message_view,omitempty"`
-	LemmyResponse
-}
-type CreateCommentReport struct {
-	Auth      string `json:"auth" url:"auth,omitempty"`
-	CommentID int64  `json:"comment_id" url:"comment_id,omitempty"`
-	Reason    string `json:"reason" url:"reason,omitempty"`
-}
-type GetCaptchaResponse struct {
-	Ok Optional[CaptchaResponse] `json:"ok" url:"ok,omitempty"`
-	LemmyResponse
-}
-type ModlogActionType string
-
-const (
-	ModlogActionTypeAll                  ModlogActionType = "All"
-	ModlogActionTypeModRemovePost        ModlogActionType = "ModRemovePost"
-	ModlogActionTypeModLockPost          ModlogActionType = "ModLockPost"
-	ModlogActionTypeModFeaturePost       ModlogActionType = "ModFeaturePost"
-	ModlogActionTypeModRemoveComment     ModlogActionType = "ModRemoveComment"
-	ModlogActionTypeModRemoveCommunity   ModlogActionType = "ModRemoveCommunity"
-	ModlogActionTypeModBanFromCommunity  ModlogActionType = "ModBanFromCommunity"
-	ModlogActionTypeModAddCommunity      ModlogActionType = "ModAddCommunity"
-	ModlogActionTypeModTransferCommunity ModlogActionType = "ModTransferCommunity"
-	ModlogActionTypeModAdd               ModlogActionType = "ModAdd"
-	ModlogActionTypeModBan               ModlogActionType = "ModBan"
-	ModlogActionTypeModHideCommunity     ModlogActionType = "ModHideCommunity"
-	ModlogActionTypeAdminPurgePerson     ModlogActionType = "AdminPurgePerson"
-	ModlogActionTypeAdminPurgeCommunity  ModlogActionType = "AdminPurgeCommunity"
-	ModlogActionTypeAdminPurgePost       ModlogActionType = "AdminPurgePost"
-	ModlogActionTypeAdminPurgeComment    ModlogActionType = "AdminPurgeComment"
-)
-
-type ModAdd struct {
-	ID            int64  `json:"id" url:"id,omitempty"`
-	ModPersonID   int64  `json:"mod_person_id" url:"mod_person_id,omitempty"`
-	OtherPersonID int64  `json:"other_person_id" url:"other_person_id,omitempty"`
-	Removed       bool   `json:"removed" url:"removed,omitempty"`
-	When          string `json:"when_" url:"when_,omitempty"`
-}
-type PersonBlockView struct {
-	Person Person `json:"person" url:"person,omitempty"`
-	Target Person `json:"target" url:"target,omitempty"`
-}
-type CommentReport struct {
-	CommentID           int64               `json:"comment_id" url:"comment_id,omitempty"`
-	CreatorID           int64               `json:"creator_id" url:"creator_id,omitempty"`
-	ID                  int64               `json:"id" url:"id,omitempty"`
-	OriginalCommentText string              `json:"original_comment_text" url:"original_comment_text,omitempty"`
-	Published           LemmyTime           `json:"published" url:"published,omitempty"`
-	Reason              string              `json:"reason" url:"reason,omitempty"`
-	Resolved            bool                `json:"resolved" url:"resolved,omitempty"`
-	ResolverID          Optional[int64]     `json:"resolver_id" url:"resolver_id,omitempty"`
-	Updated             Optional[LemmyTime] `json:"updated" url:"updated,omitempty"`
-}
-type EditPrivateMessage struct {
-	Auth             string `json:"auth" url:"auth,omitempty"`
-	Content          string `json:"content" url:"content,omitempty"`
-	PrivateMessageID int64  `json:"private_message_id" url:"private_message_id,omitempty"`
-}
-type GetFederatedInstancesResponse struct {
-	FederatedInstances Optional[FederatedInstances] `json:"federated_instances" url:"federated_instances,omitempty"`
-	LemmyResponse
-}
-type GetPersonDetailsResponse struct {
-	Comments   []CommentView            `json:"comments" url:"comments,omitempty"`
-	Moderates  []CommunityModeratorView `json:"moderates" url:"moderates,omitempty"`
-	PersonView PersonView               `json:"person_view" url:"person_view,omitempty"`
-	Posts      []PostView               `json:"posts" url:"posts,omitempty"`
-	LemmyResponse
-}
-type GetReportCount struct {
-	Auth        string          `json:"auth" url:"auth,omitempty"`
-	CommunityID Optional[int64] `json:"community_id" url:"community_id,omitempty"`
-}
-type MarkPostAsRead struct {
-	Auth   string `json:"auth" url:"auth,omitempty"`
-	PostID int64  `json:"post_id" url:"post_id,omitempty"`
-	Read   bool   `json:"read" url:"read,omitempty"`
-}
-type SaveComment struct {
-	Auth      string `json:"auth" url:"auth,omitempty"`
-	CommentID int64  `json:"comment_id" url:"comment_id,omitempty"`
-	Save      bool   `json:"save" url:"save,omitempty"`
-}
-type BlockCommunity struct {
-	Auth        string `json:"auth" url:"auth,omitempty"`
-	Block       bool   `json:"block" url:"block,omitempty"`
-	CommunityID int64  `json:"community_id" url:"community_id,omitempty"`
-}
-type DeleteCustomEmoji struct {
-	Auth string `json:"auth" url:"auth,omitempty"`
-	ID   int64  `json:"id" url:"id,omitempty"`
-}
-type GetCommunityResponse struct {
-	CommunityView       CommunityView            `json:"community_view" url:"community_view,omitempty"`
-	DiscussionLanguages []int64                  `json:"discussion_languages" url:"discussion_languages,omitempty"`
-	Moderators          []CommunityModeratorView `json:"moderators" url:"moderators,omitempty"`
-	Site                Optional[Site]           `json:"site" url:"site,omitempty"`
-	LemmyResponse
-}
-type GetPosts struct {
-	Auth          Optional[string]      `json:"auth" url:"auth,omitempty"`
-	CommunityID   Optional[int64]       `json:"community_id" url:"community_id,omitempty"`
-	CommunityName Optional[string]      `json:"community_name" url:"community_name,omitempty"`
-	Limit         Optional[int64]       `json:"limit" url:"limit,omitempty"`
-	Page          Optional[int64]       `json:"page" url:"page,omitempty"`
-	SavedOnly     Optional[bool]        `json:"saved_only" url:"saved_only,omitempty"`
-	Sort          Optional[SortType]    `json:"sort" url:"sort,omitempty"`
-	Type          Optional[ListingType] `json:"type_" url:"type_,omitempty"`
-}
-type GetRepliesResponse struct {
-	Replies []CommentReplyView `json:"replies" url:"replies,omitempty"`
-	LemmyResponse
-}
-type VerifyEmail struct {
-	Token string `json:"token" url:"token,omitempty"`
-}
-type GetBannedPersons struct {
-	Auth string `json:"auth" url:"auth,omitempty"`
-}
-type GetCommunity struct {
-	Auth Optional[string] `json:"auth" url:"auth,omitempty"`
-	ID   Optional[int64]  `json:"id" url:"id,omitempty"`
-	Name Optional[string] `json:"name" url:"name,omitempty"`
-}
-type ModFeaturePostView struct {
-	Community      Community        `json:"community" url:"community,omitempty"`
-	ModFeaturePost ModFeaturePost   `json:"mod_feature_post" url:"mod_feature_post,omitempty"`
-	Moderator      Optional[Person] `json:"moderator" url:"moderator,omitempty"`
-	Post           Post             `json:"post" url:"post,omitempty"`
-}
-type SiteView struct {
-	Counts             SiteAggregates     `json:"counts" url:"counts,omitempty"`
-	LocalSite          LocalSite          `json:"local_site" url:"local_site,omitempty"`
-	LocalSiteRateLimit LocalSiteRateLimit `json:"local_site_rate_limit" url:"local_site_rate_limit,omitempty"`
-	Site               Site               `json:"site" url:"site,omitempty"`
-}
-type PersonMentionView struct {
-	Comment                    Comment           `json:"comment" url:"comment,omitempty"`
-	Community                  Community         `json:"community" url:"community,omitempty"`
-	Counts                     CommentAggregates `json:"counts" url:"counts,omitempty"`
-	Creator                    Person            `json:"creator" url:"creator,omitempty"`
-	CreatorBannedFromCommunity bool              `json:"creator_banned_from_community" url:"creator_banned_from_community,omitempty"`
-	CreatorBlocked             bool              `json:"creator_blocked" url:"creator_blocked,omitempty"`
-	MyVote                     Optional[int64]   `json:"my_vote" url:"my_vote,omitempty"`
-	PersonMention              PersonMention     `json:"person_mention" url:"person_mention,omitempty"`
-	Post                       Post              `json:"post" url:"post,omitempty"`
-	Recipient                  Person            `json:"recipient" url:"recipient,omitempty"`
-	Saved                      bool              `json:"saved" url:"saved,omitempty"`
-	Subscribed                 SubscribedType    `json:"subscribed" url:"subscribed,omitempty"`
-}
-type GetReportCountResponse struct {
-	CommentReports        int64           `json:"comment_reports" url:"comment_reports,omitempty"`
-	CommunityID           Optional[int64] `json:"community_id" url:"community_id,omitempty"`
-	PostReports           int64           `json:"post_reports" url:"post_reports,omitempty"`
-	PrivateMessageReports Optional[int64] `json:"private_message_reports" url:"private_message_reports,omitempty"`
-	LemmyResponse
-}
-type BlockPerson struct {
-	Auth     string `json:"auth" url:"auth,omitempty"`
-	Block    bool   `json:"block" url:"block,omitempty"`
-	PersonID int64  `json:"person_id" url:"person_id,omitempty"`
-}
-type ModAddCommunity struct {
-	CommunityID   int64  `json:"community_id" url:"community_id,omitempty"`
-	ID            int64  `json:"id" url:"id,omitempty"`
-	ModPersonID   int64  `json:"mod_person_id" url:"mod_person_id,omitempty"`
-	OtherPersonID int64  `json:"other_person_id" url:"other_person_id,omitempty"`
-	Removed       bool   `json:"removed" url:"removed,omitempty"`
-	When          string `json:"when_" url:"when_,omitempty"`
-}
-type AdminPurgeCommunity struct {
-	AdminPersonID int64            `json:"admin_person_id" url:"admin_person_id,omitempty"`
-	ID            int64            `json:"id" url:"id,omitempty"`
-	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
-	When          string           `json:"when_" url:"when_,omitempty"`
-}
-type CustomEmojiView struct {
-	CustomEmoji CustomEmoji          `json:"custom_emoji" url:"custom_emoji,omitempty"`
-	Keywords    []CustomEmojiKeyword `json:"keywords" url:"keywords,omitempty"`
-}
-type DeletePrivateMessage struct {
-	Auth             string `json:"auth" url:"auth,omitempty"`
-	Deleted          bool   `json:"deleted" url:"deleted,omitempty"`
-	PrivateMessageID int64  `json:"private_message_id" url:"private_message_id,omitempty"`
-}
-type ModRemoveComment struct {
-	CommentID   int64            `json:"comment_id" url:"comment_id,omitempty"`
-	ID          int64            `json:"id" url:"id,omitempty"`
-	ModPersonID int64            `json:"mod_person_id" url:"mod_person_id,omitempty"`
-	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
-	Removed     bool             `json:"removed" url:"removed,omitempty"`
-	When        string           `json:"when_" url:"when_,omitempty"`
-}
-type MyUserInfo struct {
-	CommunityBlocks     []CommunityBlockView     `json:"community_blocks" url:"community_blocks,omitempty"`
-	DiscussionLanguages []int64                  `json:"discussion_languages" url:"discussion_languages,omitempty"`
-	Follows             []CommunityFollowerView  `json:"follows" url:"follows,omitempty"`
-	LocalUserView       LocalUserView            `json:"local_user_view" url:"local_user_view,omitempty"`
-	Moderates           []CommunityModeratorView `json:"moderates" url:"moderates,omitempty"`
-	PersonBlocks        []PersonBlockView        `json:"person_blocks" url:"person_blocks,omitempty"`
-}
-type ListCommunities struct {
-	Auth     Optional[string]      `json:"auth" url:"auth,omitempty"`
-	Limit    Optional[int64]       `json:"limit" url:"limit,omitempty"`
-	Page     Optional[int64]       `json:"page" url:"page,omitempty"`
-	ShowNSFW Optional[bool]        `json:"show_nsfw" url:"show_nsfw,omitempty"`
-	Sort     Optional[SortType]    `json:"sort" url:"sort,omitempty"`
-	Type     Optional[ListingType] `json:"type_" url:"type_,omitempty"`
-}
-type ListPrivateMessageReports struct {
-	Auth           string          `json:"auth" url:"auth,omitempty"`
-	Limit          Optional[int64] `json:"limit" url:"limit,omitempty"`
-	Page           Optional[int64] `json:"page" url:"page,omitempty"`
-	UnresolvedOnly Optional[bool]  `json:"unresolved_only" url:"unresolved_only,omitempty"`
-}
-type PostView struct {
-	Community                  Community       `json:"community" url:"community,omitempty"`
-	Counts                     PostAggregates  `json:"counts" url:"counts,omitempty"`
-	Creator                    Person          `json:"creator" url:"creator,omitempty"`
-	CreatorBannedFromCommunity bool            `json:"creator_banned_from_community" url:"creator_banned_from_community,omitempty"`
-	CreatorBlocked             bool            `json:"creator_blocked" url:"creator_blocked,omitempty"`
-	MyVote                     Optional[int64] `json:"my_vote" url:"my_vote,omitempty"`
-	Post                       Post            `json:"post" url:"post,omitempty"`
-	Read                       bool            `json:"read" url:"read,omitempty"`
-	Saved                      bool            `json:"saved" url:"saved,omitempty"`
-	Subscribed                 SubscribedType  `json:"subscribed" url:"subscribed,omitempty"`
-	UnreadComments             int64           `json:"unread_comments" url:"unread_comments,omitempty"`
-}
-type LocalSiteRateLimit struct {
-	Comment           int64               `json:"comment" url:"comment,omitempty"`
-	CommentPerSecond  int64               `json:"comment_per_second" url:"comment_per_second,omitempty"`
-	ID                int64               `json:"id" url:"id,omitempty"`
-	Image             int64               `json:"image" url:"image,omitempty"`
-	ImagePerSecond    int64               `json:"image_per_second" url:"image_per_second,omitempty"`
-	LocalSiteID       int64               `json:"local_site_id" url:"local_site_id,omitempty"`
-	Message           int64               `json:"message" url:"message,omitempty"`
-	MessagePerSecond  int64               `json:"message_per_second" url:"message_per_second,omitempty"`
-	Post              int64               `json:"post" url:"post,omitempty"`
-	PostPerSecond     int64               `json:"post_per_second" url:"post_per_second,omitempty"`
-	Published         LemmyTime           `json:"published" url:"published,omitempty"`
-	Register          int64               `json:"register" url:"register,omitempty"`
-	RegisterPerSecond int64               `json:"register_per_second" url:"register_per_second,omitempty"`
-	Search            int64               `json:"search" url:"search,omitempty"`
-	SearchPerSecond   int64               `json:"search_per_second" url:"search_per_second,omitempty"`
-	Updated           Optional[LemmyTime] `json:"updated" url:"updated,omitempty"`
-}
-type CaptchaResponse struct {
-	Png  string `json:"png" url:"png,omitempty"`
-	Uuid string `json:"uuid" url:"uuid,omitempty"`
-	Wav  string `json:"wav" url:"wav,omitempty"`
-	LemmyResponse
-}
-type BlockPersonResponse struct {
-	Blocked    bool       `json:"blocked" url:"blocked,omitempty"`
-	PersonView PersonView `json:"person_view" url:"person_view,omitempty"`
-	LemmyResponse
-}
-type TransferCommunity struct {
-	Auth        string `json:"auth" url:"auth,omitempty"`
-	CommunityID int64  `json:"community_id" url:"community_id,omitempty"`
-	PersonID    int64  `json:"person_id" url:"person_id,omitempty"`
-}
-type ModBan struct {
-	Banned        bool             `json:"banned" url:"banned,omitempty"`
-	Expires       Optional[string] `json:"expires" url:"expires,omitempty"`
-	ID            int64            `json:"id" url:"id,omitempty"`
-	ModPersonID   int64            `json:"mod_person_id" url:"mod_person_id,omitempty"`
-	OtherPersonID int64            `json:"other_person_id" url:"other_person_id,omitempty"`
-	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
-	When          string           `json:"when_" url:"when_,omitempty"`
-}
-type PurgeComment struct {
-	Auth      string           `json:"auth" url:"auth,omitempty"`
-	CommentID int64            `json:"comment_id" url:"comment_id,omitempty"`
-	Reason    Optional[string] `json:"reason" url:"reason,omitempty"`
-}
-type SavePost struct {
-	Auth   string `json:"auth" url:"auth,omitempty"`
-	PostID int64  `json:"post_id" url:"post_id,omitempty"`
-	Save   bool   `json:"save" url:"save,omitempty"`
-}
-type SearchResponse struct {
-	Comments    []CommentView   `json:"comments" url:"comments,omitempty"`
-	Communities []CommunityView `json:"communities" url:"communities,omitempty"`
-	Posts       []PostView      `json:"posts" url:"posts,omitempty"`
-	Type        SearchType      `json:"type_" url:"type_,omitempty"`
-	Users       []PersonView    `json:"users" url:"users,omitempty"`
-	LemmyResponse
-}
-type AdminPurgePerson struct {
-	AdminPersonID int64            `json:"admin_person_id" url:"admin_person_id,omitempty"`
-	ID            int64            `json:"id" url:"id,omitempty"`
-	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
-	When          string           `json:"when_" url:"when_,omitempty"`
-}
-type ListPrivateMessageReportsResponse struct {
-	PrivateMessageReports []PrivateMessageReportView `json:"private_message_reports" url:"private_message_reports,omitempty"`
-	LemmyResponse
-}
-type PurgeCommunity struct {
-	Auth        string           `json:"auth" url:"auth,omitempty"`
-	CommunityID int64            `json:"community_id" url:"community_id,omitempty"`
-	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
-}
-type LocalSite struct {
-	ActorNameMaxLength         int64               `json:"actor_name_max_length" url:"actor_name_max_length,omitempty"`
-	ApplicationEmailAdmins     bool                `json:"application_email_admins" url:"application_email_admins,omitempty"`
-	ApplicationQuestion        Optional[string]    `json:"application_question" url:"application_question,omitempty"`
-	CaptchaDifficulty          string              `json:"captcha_difficulty" url:"captcha_difficulty,omitempty"`
-	CaptchaEnabled             bool                `json:"captcha_enabled" url:"captcha_enabled,omitempty"`
-	CommunityCreationAdminOnly bool                `json:"community_creation_admin_only" url:"community_creation_admin_only,omitempty"`
-	DefaultPostListingType     ListingType         `json:"default_post_listing_type" url:"default_post_listing_type,omitempty"`
-	DefaultTheme               string              `json:"default_theme" url:"default_theme,omitempty"`
-	EnableDownvotes            bool                `json:"enable_downvotes" url:"enable_downvotes,omitempty"`
-	EnableNSFW                 bool                `json:"enable_nsfw" url:"enable_nsfw,omitempty"`
-	FederationEnabled          bool                `json:"federation_enabled" url:"federation_enabled,omitempty"`
-	HideModlogModNames         bool                `json:"hide_modlog_mod_names" url:"hide_modlog_mod_names,omitempty"`
-	ID                         int64               `json:"id" url:"id,omitempty"`
-	LegalInformation           Optional[string]    `json:"legal_information" url:"legal_information,omitempty"`
-	PrivateInstance            bool                `json:"private_instance" url:"private_instance,omitempty"`
-	Published                  LemmyTime           `json:"published" url:"published,omitempty"`
-	RegistrationMode           RegistrationMode    `json:"registration_mode" url:"registration_mode,omitempty"`
-	ReportsEmailAdmins         bool                `json:"reports_email_admins" url:"reports_email_admins,omitempty"`
-	RequireEmailVerification   bool                `json:"require_email_verification" url:"require_email_verification,omitempty"`
-	SiteID                     int64               `json:"site_id" url:"site_id,omitempty"`
-	SiteSetup                  bool                `json:"site_setup" url:"site_setup,omitempty"`
-	SlurFilterRegex            Optional[string]    `json:"slur_filter_regex" url:"slur_filter_regex,omitempty"`
-	Updated                    Optional[LemmyTime] `json:"updated" url:"updated,omitempty"`
-}
-type FederatedInstances struct {
-	Allowed []Instance `json:"allowed" url:"allowed,omitempty"`
-	Blocked []Instance `json:"blocked" url:"blocked,omitempty"`
-	Linked  []Instance `json:"linked" url:"linked,omitempty"`
-}
-type ModAddView struct {
-	ModAdd       ModAdd           `json:"mod_add" url:"mod_add,omitempty"`
-	ModdedPerson Person           `json:"modded_person" url:"modded_person,omitempty"`
-	Moderator    Optional[Person] `json:"moderator" url:"moderator,omitempty"`
-}
-type ListPostReportsResponse struct {
-	PostReports []PostReportView `json:"post_reports" url:"post_reports,omitempty"`
-	LemmyResponse
-}
-type GetModlog struct {
-	Auth          Optional[string]           `json:"auth" url:"auth,omitempty"`
-	CommunityID   Optional[int64]            `json:"community_id" url:"community_id,omitempty"`
-	Limit         Optional[int64]            `json:"limit" url:"limit,omitempty"`
-	ModPersonID   Optional[int64]            `json:"mod_person_id" url:"mod_person_id,omitempty"`
-	OtherPersonID Optional[int64]            `json:"other_person_id" url:"other_person_id,omitempty"`
-	Page          Optional[int64]            `json:"page" url:"page,omitempty"`
-	Type          Optional[ModlogActionType] `json:"type_" url:"type_,omitempty"`
-}
-type AdminPurgePersonView struct {
-	Admin            Optional[Person] `json:"admin" url:"admin,omitempty"`
-	AdminPurgePerson AdminPurgePerson `json:"admin_purge_person" url:"admin_purge_person,omitempty"`
-}
 type PersonMention struct {
 	CommentID   int64     `json:"comment_id" url:"comment_id,omitempty"`
 	ID          int64     `json:"id" url:"id,omitempty"`
-	Published   LemmyTime `json:"published" url:"published,omitempty"`
+	Published   time.Time `json:"published" url:"published,omitempty"`
 	Read        bool      `json:"read" url:"read,omitempty"`
 	RecipientID int64     `json:"recipient_id" url:"recipient_id,omitempty"`
 }
-type ModRemovePost struct {
-	ID          int64            `json:"id" url:"id,omitempty"`
-	ModPersonID int64            `json:"mod_person_id" url:"mod_person_id,omitempty"`
-	PostID      int64            `json:"post_id" url:"post_id,omitempty"`
-	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
-	Removed     bool             `json:"removed" url:"removed,omitempty"`
-	When        string           `json:"when_" url:"when_,omitempty"`
-}
-type Person struct {
-	ActorID      string              `json:"actor_id" url:"actor_id,omitempty"`
-	Admin        bool                `json:"admin" url:"admin,omitempty"`
-	Avatar       Optional[string]    `json:"avatar" url:"avatar,omitempty"`
-	BanExpires   Optional[string]    `json:"ban_expires" url:"ban_expires,omitempty"`
-	Banned       bool                `json:"banned" url:"banned,omitempty"`
-	Banner       Optional[string]    `json:"banner" url:"banner,omitempty"`
-	Bio          Optional[string]    `json:"bio" url:"bio,omitempty"`
-	BotAccount   bool                `json:"bot_account" url:"bot_account,omitempty"`
-	Deleted      bool                `json:"deleted" url:"deleted,omitempty"`
-	DisplayName  Optional[string]    `json:"display_name" url:"display_name,omitempty"`
-	ID           int64               `json:"id" url:"id,omitempty"`
-	InboxURL     string              `json:"inbox_url" url:"inbox_url,omitempty"`
-	InstanceID   int64               `json:"instance_id" url:"instance_id,omitempty"`
-	Local        bool                `json:"local" url:"local,omitempty"`
-	MatrixUserID Optional[string]    `json:"matrix_user_id" url:"matrix_user_id,omitempty"`
-	Name         string              `json:"name" url:"name,omitempty"`
-	Published    LemmyTime           `json:"published" url:"published,omitempty"`
-	Updated      Optional[LemmyTime] `json:"updated" url:"updated,omitempty"`
-}
-type PostFeatureType string
-
-const (
-	PostFeatureTypeLocal     PostFeatureType = "Local"
-	PostFeatureTypeCommunity PostFeatureType = "Community"
-)
-
-type ModBanFromCommunity struct {
-	Banned        bool             `json:"banned" url:"banned,omitempty"`
-	CommunityID   int64            `json:"community_id" url:"community_id,omitempty"`
-	Expires       Optional[string] `json:"expires" url:"expires,omitempty"`
-	ID            int64            `json:"id" url:"id,omitempty"`
-	ModPersonID   int64            `json:"mod_person_id" url:"mod_person_id,omitempty"`
-	OtherPersonID int64            `json:"other_person_id" url:"other_person_id,omitempty"`
-	Reason        Optional[string] `json:"reason" url:"reason,omitempty"`
-	When          string           `json:"when_" url:"when_,omitempty"`
-}
-type GetReplies struct {
-	Auth       string                    `json:"auth" url:"auth,omitempty"`
-	Limit      Optional[int64]           `json:"limit" url:"limit,omitempty"`
-	Page       Optional[int64]           `json:"page" url:"page,omitempty"`
-	Sort       Optional[CommentSortType] `json:"sort" url:"sort,omitempty"`
-	UnreadOnly Optional[bool]            `json:"unread_only" url:"unread_only,omitempty"`
-}
-type CommentReply struct {
-	CommentID   int64     `json:"comment_id" url:"comment_id,omitempty"`
-	ID          int64     `json:"id" url:"id,omitempty"`
-	Published   LemmyTime `json:"published" url:"published,omitempty"`
-	Read        bool      `json:"read" url:"read,omitempty"`
-	RecipientID int64     `json:"recipient_id" url:"recipient_id,omitempty"`
-}
-type CommunityFollowerView struct {
-	Community Community `json:"community" url:"community,omitempty"`
-	Follower  Person    `json:"follower" url:"follower,omitempty"`
-}
-type AddModToCommunityResponse struct {
-	Moderators []CommunityModeratorView `json:"moderators" url:"moderators,omitempty"`
-	LemmyResponse
-}
-type ChangePassword struct {
-	Auth              string `json:"auth" url:"auth,omitempty"`
-	NewPassword       string `json:"new_password" url:"new_password,omitempty"`
-	NewPasswordVerify string `json:"new_password_verify" url:"new_password_verify,omitempty"`
-	OldPassword       string `json:"old_password" url:"old_password,omitempty"`
-}
-type Tagline struct {
-	Content     string              `json:"content" url:"content,omitempty"`
-	ID          int64               `json:"id" url:"id,omitempty"`
-	LocalSiteID int64               `json:"local_site_id" url:"local_site_id,omitempty"`
-	Published   LemmyTime           `json:"published" url:"published,omitempty"`
-	Updated     Optional[LemmyTime] `json:"updated" url:"updated,omitempty"`
-}
-type ResolvePostReport struct {
-	Auth     string `json:"auth" url:"auth,omitempty"`
-	ReportID int64  `json:"report_id" url:"report_id,omitempty"`
-	Resolved bool   `json:"resolved" url:"resolved,omitempty"`
-}
-type AddAdminResponse struct {
-	Admins []PersonView `json:"admins" url:"admins,omitempty"`
-	LemmyResponse
-}
-type RegistrationApplication struct {
-	AdminID     Optional[int64]  `json:"admin_id" url:"admin_id,omitempty"`
-	Answer      string           `json:"answer" url:"answer,omitempty"`
-	DenyReason  Optional[string] `json:"deny_reason" url:"deny_reason,omitempty"`
-	ID          int64            `json:"id" url:"id,omitempty"`
-	LocalUserID int64            `json:"local_user_id" url:"local_user_id,omitempty"`
-	Published   LemmyTime        `json:"published" url:"published,omitempty"`
-}
-type ModRemovePostView struct {
-	Community     Community        `json:"community" url:"community,omitempty"`
-	ModRemovePost ModRemovePost    `json:"mod_remove_post" url:"mod_remove_post,omitempty"`
-	Moderator     Optional[Person] `json:"moderator" url:"moderator,omitempty"`
-	Post          Post             `json:"post" url:"post,omitempty"`
-}
-type ListRegistrationApplicationsResponse struct {
-	RegistrationApplications []RegistrationApplicationView `json:"registration_applications" url:"registration_applications,omitempty"`
-	LemmyResponse
-}
-type PurgePerson struct {
-	Auth     string           `json:"auth" url:"auth,omitempty"`
-	PersonID int64            `json:"person_id" url:"person_id,omitempty"`
-	Reason   Optional[string] `json:"reason" url:"reason,omitempty"`
-}
-type RemoveCommunity struct {
-	Auth        string           `json:"auth" url:"auth,omitempty"`
-	CommunityID int64            `json:"community_id" url:"community_id,omitempty"`
-	Expires     Optional[int64]  `json:"expires" url:"expires,omitempty"`
-	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
-	Removed     bool             `json:"removed" url:"removed,omitempty"`
-}
-type ResolveCommentReport struct {
-	Auth     string `json:"auth" url:"auth,omitempty"`
-	ReportID int64  `json:"report_id" url:"report_id,omitempty"`
-	Resolved bool   `json:"resolved" url:"resolved,omitempty"`
+type AddAdmin struct {
+	Added    bool  `json:"added" url:"added,omitempty"`
+	PersonID int64 `json:"person_id" url:"person_id,omitempty"`
 }
 type BlockCommunityResponse struct {
 	Blocked       bool          `json:"blocked" url:"blocked,omitempty"`
 	CommunityView CommunityView `json:"community_view" url:"community_view,omitempty"`
 	LemmyResponse
 }
-type PostReportView struct {
-	Community                  Community        `json:"community" url:"community,omitempty"`
-	Counts                     PostAggregates   `json:"counts" url:"counts,omitempty"`
-	Creator                    Person           `json:"creator" url:"creator,omitempty"`
-	CreatorBannedFromCommunity bool             `json:"creator_banned_from_community" url:"creator_banned_from_community,omitempty"`
-	MyVote                     Optional[int64]  `json:"my_vote" url:"my_vote,omitempty"`
-	Post                       Post             `json:"post" url:"post,omitempty"`
-	PostCreator                Person           `json:"post_creator" url:"post_creator,omitempty"`
-	PostReport                 PostReport       `json:"post_report" url:"post_report,omitempty"`
-	Resolver                   Optional[Person] `json:"resolver" url:"resolver,omitempty"`
+type SubscribedType string
+
+const (
+	SubscribedTypeSubscribed    SubscribedType = "Subscribed"
+	SubscribedTypeNotSubscribed SubscribedType = "NotSubscribed"
+	SubscribedTypePending       SubscribedType = "Pending"
+)
+
+type DeleteAccount struct {
+	DeleteContent bool   `json:"delete_content" url:"delete_content,omitempty"`
+	Password      string `json:"password" url:"password,omitempty"`
 }
-type EditPost struct {
-	Auth       string           `json:"auth" url:"auth,omitempty"`
-	Body       Optional[string] `json:"body" url:"body,omitempty"`
-	LanguageID Optional[int64]  `json:"language_id" url:"language_id,omitempty"`
-	Name       Optional[string] `json:"name" url:"name,omitempty"`
-	NSFW       Optional[bool]   `json:"nsfw" url:"nsfw,omitempty"`
-	PostID     int64            `json:"post_id" url:"post_id,omitempty"`
-	URL        Optional[string] `json:"url" url:"url,omitempty"`
+type SortType string
+
+const (
+	SortTypeActive         SortType = "Active"
+	SortTypeHot            SortType = "Hot"
+	SortTypeNew            SortType = "New"
+	SortTypeOld            SortType = "Old"
+	SortTypeTopDay         SortType = "TopDay"
+	SortTypeTopWeek        SortType = "TopWeek"
+	SortTypeTopMonth       SortType = "TopMonth"
+	SortTypeTopYear        SortType = "TopYear"
+	SortTypeTopAll         SortType = "TopAll"
+	SortTypeMostComments   SortType = "MostComments"
+	SortTypeNewComments    SortType = "NewComments"
+	SortTypeTopHour        SortType = "TopHour"
+	SortTypeTopSixHour     SortType = "TopSixHour"
+	SortTypeTopTwelveHour  SortType = "TopTwelveHour"
+	SortTypeTopThreeMonths SortType = "TopThreeMonths"
+	SortTypeTopSixMonths   SortType = "TopSixMonths"
+	SortTypeTopNineMonths  SortType = "TopNineMonths"
+	SortTypeControversial  SortType = "Controversial"
+	SortTypeScaled         SortType = "Scaled"
+)
+
+type ModHideCommunity struct {
+	CommunityID int64            `json:"community_id" url:"community_id,omitempty"`
+	Hidden      bool             `json:"hidden" url:"hidden,omitempty"`
+	ID          int64            `json:"id" url:"id,omitempty"`
+	ModPersonID int64            `json:"mod_person_id" url:"mod_person_id,omitempty"`
+	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
+	When        time.Time        `json:"when_" url:"when_,omitempty"`
 }
-type GetPrivateMessages struct {
-	Auth       string          `json:"auth" url:"auth,omitempty"`
-	Limit      Optional[int64] `json:"limit" url:"limit,omitempty"`
-	Page       Optional[int64] `json:"page" url:"page,omitempty"`
-	UnreadOnly Optional[bool]  `json:"unread_only" url:"unread_only,omitempty"`
+type ModLockPost struct {
+	ID          int64     `json:"id" url:"id,omitempty"`
+	Locked      bool      `json:"locked" url:"locked,omitempty"`
+	ModPersonID int64     `json:"mod_person_id" url:"mod_person_id,omitempty"`
+	PostID      int64     `json:"post_id" url:"post_id,omitempty"`
+	When        time.Time `json:"when_" url:"when_,omitempty"`
 }
-type BanPersonResponse struct {
-	Banned     bool       `json:"banned" url:"banned,omitempty"`
-	PersonView PersonView `json:"person_view" url:"person_view,omitempty"`
-	LemmyResponse
+type CreateCommentLike struct {
+	CommentID int64 `json:"comment_id" url:"comment_id,omitempty"`
+	Score     int64 `json:"score" url:"score,omitempty"`
 }
-type SiteAggregates struct {
-	Comments            int64 `json:"comments" url:"comments,omitempty"`
-	Communities         int64 `json:"communities" url:"communities,omitempty"`
-	ID                  int64 `json:"id" url:"id,omitempty"`
-	Posts               int64 `json:"posts" url:"posts,omitempty"`
-	SiteID              int64 `json:"site_id" url:"site_id,omitempty"`
-	Users               int64 `json:"users" url:"users,omitempty"`
-	UsersActiveDay      int64 `json:"users_active_day" url:"users_active_day,omitempty"`
-	UsersActiveHalfYear int64 `json:"users_active_half_year" url:"users_active_half_year,omitempty"`
-	UsersActiveMonth    int64 `json:"users_active_month" url:"users_active_month,omitempty"`
-	UsersActiveWeek     int64 `json:"users_active_week" url:"users_active_week,omitempty"`
-}
-type AdminPurgeCommunityView struct {
-	Admin               Optional[Person]    `json:"admin" url:"admin,omitempty"`
-	AdminPurgeCommunity AdminPurgeCommunity `json:"admin_purge_community" url:"admin_purge_community,omitempty"`
-}
-type PrivateMessage struct {
-	ApID        string              `json:"ap_id" url:"ap_id,omitempty"`
-	Content     string              `json:"content" url:"content,omitempty"`
-	CreatorID   int64               `json:"creator_id" url:"creator_id,omitempty"`
-	Deleted     bool                `json:"deleted" url:"deleted,omitempty"`
-	ID          int64               `json:"id" url:"id,omitempty"`
-	Local       bool                `json:"local" url:"local,omitempty"`
-	Published   LemmyTime           `json:"published" url:"published,omitempty"`
-	Read        bool                `json:"read" url:"read,omitempty"`
-	RecipientID int64               `json:"recipient_id" url:"recipient_id,omitempty"`
-	Updated     Optional[LemmyTime] `json:"updated" url:"updated,omitempty"`
-}
-type PrivateMessageReport struct {
-	CreatorID        int64               `json:"creator_id" url:"creator_id,omitempty"`
-	ID               int64               `json:"id" url:"id,omitempty"`
-	OriginalPMText   string              `json:"original_pm_text" url:"original_pm_text,omitempty"`
-	PrivateMessageID int64               `json:"private_message_id" url:"private_message_id,omitempty"`
-	Published        LemmyTime           `json:"published" url:"published,omitempty"`
-	Reason           string              `json:"reason" url:"reason,omitempty"`
-	Resolved         bool                `json:"resolved" url:"resolved,omitempty"`
-	ResolverID       Optional[int64]     `json:"resolver_id" url:"resolver_id,omitempty"`
-	Updated          Optional[LemmyTime] `json:"updated" url:"updated,omitempty"`
+type AdminPurgeCommentView struct {
+	Admin             Optional[Person]  `json:"admin" url:"admin,omitempty"`
+	AdminPurgeComment AdminPurgeComment `json:"admin_purge_comment" url:"admin_purge_comment,omitempty"`
+	Post              Post              `json:"post" url:"post,omitempty"`
 }
 type ModTransferCommunityView struct {
 	Community            Community            `json:"community" url:"community,omitempty"`
@@ -1503,30 +1434,27 @@ type ModTransferCommunityView struct {
 	ModdedPerson         Person               `json:"modded_person" url:"modded_person,omitempty"`
 	Moderator            Optional[Person]     `json:"moderator" url:"moderator,omitempty"`
 }
-type GetUnreadCount struct {
-	Auth string `json:"auth" url:"auth,omitempty"`
-}
 type BanPerson struct {
-	Auth       string           `json:"auth" url:"auth,omitempty"`
 	Ban        bool             `json:"ban" url:"ban,omitempty"`
 	Expires    Optional[int64]  `json:"expires" url:"expires,omitempty"`
 	PersonID   int64            `json:"person_id" url:"person_id,omitempty"`
 	Reason     Optional[string] `json:"reason" url:"reason,omitempty"`
 	RemoveData Optional[bool]   `json:"remove_data" url:"remove_data,omitempty"`
 }
-type PrivateMessageReportResponse struct {
-	PrivateMessageReportView PrivateMessageReportView `json:"private_message_report_view" url:"private_message_report_view,omitempty"`
-	LemmyResponse
+type CreateComment struct {
+	Content    string          `json:"content" url:"content,omitempty"`
+	LanguageID Optional[int64] `json:"language_id" url:"language_id,omitempty"`
+	ParentID   Optional[int64] `json:"parent_id" url:"parent_id,omitempty"`
+	PostID     int64           `json:"post_id" url:"post_id,omitempty"`
 }
-type ModTransferCommunity struct {
-	CommunityID   int64  `json:"community_id" url:"community_id,omitempty"`
-	ID            int64  `json:"id" url:"id,omitempty"`
-	ModPersonID   int64  `json:"mod_person_id" url:"mod_person_id,omitempty"`
-	OtherPersonID int64  `json:"other_person_id" url:"other_person_id,omitempty"`
-	When          string `json:"when_" url:"when_,omitempty"`
+type DeleteCustomEmoji struct {
+	ID int64 `json:"id" url:"id,omitempty"`
 }
-type PersonMentionResponse struct {
-	PersonMentionView PersonMentionView `json:"person_mention_view" url:"person_mention_view,omitempty"`
+type GetCommunityResponse struct {
+	CommunityView       CommunityView            `json:"community_view" url:"community_view,omitempty"`
+	DiscussionLanguages []int64                  `json:"discussion_languages" url:"discussion_languages,omitempty"`
+	Moderators          []CommunityModeratorView `json:"moderators" url:"moderators,omitempty"`
+	Site                Optional[Site]           `json:"site" url:"site,omitempty"`
 	LemmyResponse
 }
 type PersonAggregates struct {
@@ -1537,60 +1465,84 @@ type PersonAggregates struct {
 	PostCount    int64 `json:"post_count" url:"post_count,omitempty"`
 	PostScore    int64 `json:"post_score" url:"post_score,omitempty"`
 }
-type CommunityResponse struct {
-	CommunityView       CommunityView `json:"community_view" url:"community_view,omitempty"`
-	DiscussionLanguages []int64       `json:"discussion_languages" url:"discussion_languages,omitempty"`
+type CommentAggregates struct {
+	ChildCount      int64     `json:"child_count" url:"child_count,omitempty"`
+	CommentID       int64     `json:"comment_id" url:"comment_id,omitempty"`
+	ControversyRank float64   `json:"controversy_rank" url:"controversy_rank,omitempty"`
+	Downvotes       int64     `json:"downvotes" url:"downvotes,omitempty"`
+	HotRank         float64   `json:"hot_rank" url:"hot_rank,omitempty"`
+	ID              int64     `json:"id" url:"id,omitempty"`
+	Published       time.Time `json:"published" url:"published,omitempty"`
+	Score           int64     `json:"score" url:"score,omitempty"`
+	Upvotes         int64     `json:"upvotes" url:"upvotes,omitempty"`
+}
+type PrivateMessage struct {
+	ApID        string    `json:"ap_id" url:"ap_id,omitempty"`
+	Content     string    `json:"content" url:"content,omitempty"`
+	CreatorID   int64     `json:"creator_id" url:"creator_id,omitempty"`
+	Deleted     bool      `json:"deleted" url:"deleted,omitempty"`
+	ID          int64     `json:"id" url:"id,omitempty"`
+	Local       bool      `json:"local" url:"local,omitempty"`
+	Published   time.Time `json:"published" url:"published,omitempty"`
+	Read        bool      `json:"read" url:"read,omitempty"`
+	RecipientID int64     `json:"recipient_id" url:"recipient_id,omitempty"`
+	Updated     time.Time `json:"updated" url:"updated,omitempty"`
+}
+type PrivateMessagesResponse struct {
+	PrivateMessages []PrivateMessageView `json:"private_messages" url:"private_messages,omitempty"`
 	LemmyResponse
 }
-type ModLockPost struct {
-	ID          int64  `json:"id" url:"id,omitempty"`
-	Locked      bool   `json:"locked" url:"locked,omitempty"`
-	ModPersonID int64  `json:"mod_person_id" url:"mod_person_id,omitempty"`
-	PostID      int64  `json:"post_id" url:"post_id,omitempty"`
-	When        string `json:"when_" url:"when_,omitempty"`
+type Search struct {
+	CommunityID   Optional[int64]       `json:"community_id" url:"community_id,omitempty"`
+	CommunityName Optional[string]      `json:"community_name" url:"community_name,omitempty"`
+	CreatorID     Optional[int64]       `json:"creator_id" url:"creator_id,omitempty"`
+	Limit         Optional[int64]       `json:"limit" url:"limit,omitempty"`
+	ListingType   Optional[ListingType] `json:"listing_type" url:"listing_type,omitempty"`
+	Page          Optional[int64]       `json:"page" url:"page,omitempty"`
+	Q             string                `json:"q" url:"q,omitempty"`
+	Sort          Optional[SortType]    `json:"sort" url:"sort,omitempty"`
+	Type          Optional[SearchType]  `json:"type_" url:"type_,omitempty"`
 }
-type EditCustomEmoji struct {
-	AltText  string   `json:"alt_text" url:"alt_text,omitempty"`
-	Auth     string   `json:"auth" url:"auth,omitempty"`
-	Category string   `json:"category" url:"category,omitempty"`
-	ID       int64    `json:"id" url:"id,omitempty"`
-	ImageURL string   `json:"image_url" url:"image_url,omitempty"`
-	Keywords []string `json:"keywords" url:"keywords,omitempty"`
-}
-type FollowCommunity struct {
-	Auth        string `json:"auth" url:"auth,omitempty"`
-	CommunityID int64  `json:"community_id" url:"community_id,omitempty"`
-	Follow      bool   `json:"follow" url:"follow,omitempty"`
-}
-type ListCommentReports struct {
-	Auth           string          `json:"auth" url:"auth,omitempty"`
-	CommunityID    Optional[int64] `json:"community_id" url:"community_id,omitempty"`
-	Limit          Optional[int64] `json:"limit" url:"limit,omitempty"`
-	Page           Optional[int64] `json:"page" url:"page,omitempty"`
-	UnresolvedOnly Optional[bool]  `json:"unresolved_only" url:"unresolved_only,omitempty"`
-}
-type RegistrationApplicationResponse struct {
-	RegistrationApplication RegistrationApplicationView `json:"registration_application" url:"registration_application,omitempty"`
+type AddAdminResponse struct {
+	Admins []PersonView `json:"admins" url:"admins,omitempty"`
 	LemmyResponse
 }
-type CreatePostReport struct {
-	Auth   string `json:"auth" url:"auth,omitempty"`
-	PostID int64  `json:"post_id" url:"post_id,omitempty"`
-	Reason string `json:"reason" url:"reason,omitempty"`
+type CommentSortType string
+
+const (
+	CommentSortTypeHot           CommentSortType = "Hot"
+	CommentSortTypeTop           CommentSortType = "Top"
+	CommentSortTypeNew           CommentSortType = "New"
+	CommentSortTypeOld           CommentSortType = "Old"
+	CommentSortTypeControversial CommentSortType = "Controversial"
+)
+
+type ModAddCommunity struct {
+	CommunityID   int64     `json:"community_id" url:"community_id,omitempty"`
+	ID            int64     `json:"id" url:"id,omitempty"`
+	ModPersonID   int64     `json:"mod_person_id" url:"mod_person_id,omitempty"`
+	OtherPersonID int64     `json:"other_person_id" url:"other_person_id,omitempty"`
+	Removed       bool      `json:"removed" url:"removed,omitempty"`
+	When          time.Time `json:"when_" url:"when_,omitempty"`
 }
-type MarkPrivateMessageAsRead struct {
-	Auth             string `json:"auth" url:"auth,omitempty"`
-	PrivateMessageID int64  `json:"private_message_id" url:"private_message_id,omitempty"`
-	Read             bool   `json:"read" url:"read,omitempty"`
+type RemoveCommunity struct {
+	CommunityID int64            `json:"community_id" url:"community_id,omitempty"`
+	Expires     Optional[int64]  `json:"expires" url:"expires,omitempty"`
+	Reason      Optional[string] `json:"reason" url:"reason,omitempty"`
+	Removed     bool             `json:"removed" url:"removed,omitempty"`
 }
-type GetCaptcha struct {
-	Auth Optional[string] `json:"auth" url:"auth,omitempty"`
+type Tagline struct {
+	Content     string    `json:"content" url:"content,omitempty"`
+	ID          int64     `json:"id" url:"id,omitempty"`
+	LocalSiteID int64     `json:"local_site_id" url:"local_site_id,omitempty"`
+	Published   time.Time `json:"published" url:"published,omitempty"`
+	Updated     time.Time `json:"updated" url:"updated,omitempty"`
 }
-type GetCommentsResponse struct {
-	Comments []CommentView `json:"comments" url:"comments,omitempty"`
-	LemmyResponse
+type GetPost struct {
+	CommentID Optional[int64] `json:"comment_id" url:"comment_id,omitempty"`
+	ID        Optional[int64] `json:"id" url:"id,omitempty"`
 }
-type GetPersonMentionsResponse struct {
-	Mentions []PersonMentionView `json:"mentions" url:"mentions,omitempty"`
+type ListCommentReportsResponse struct {
+	CommentReports []CommentReportView `json:"comment_reports" url:"comment_reports,omitempty"`
 	LemmyResponse
 }
