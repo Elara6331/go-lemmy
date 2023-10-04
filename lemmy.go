@@ -9,7 +9,6 @@ import (
 	"net/url"
 
 	"github.com/google/go-querystring/query"
-	"go.elara.ws/go-lemmy/types"
 )
 
 // Client is a client for Lemmy's HTTP API
@@ -36,7 +35,7 @@ func NewWithClient(baseURL string, client *http.Client) (*Client, error) {
 
 // ClientLogin logs in to Lemmy by calling the Lemmy endpoint,
 // and stores the returned token for use in future requests.
-func (c *Client) ClientLogin(ctx context.Context, l types.Login) error {
+func (c *Client) ClientLogin(ctx context.Context, l Login) error {
 	lr, err := c.Login(ctx, l)
 	if err != nil {
 		return err
@@ -132,14 +131,14 @@ func (c *Client) getReq(ctx context.Context, method string, path string, data, r
 }
 
 // resError returns an error if the the response contains an error
-func resError(res *http.Response, lr types.LemmyResponse) error {
+func resError(res *http.Response, lr LemmyResponse) error {
 	if lr.Error.IsValid() {
-		return types.LemmyError{
+		return LemmyError{
 			Code:   res.StatusCode,
 			ErrStr: lr.Error.MustValue(),
 		}
 	} else if res.StatusCode != http.StatusOK {
-		return types.HTTPError{
+		return HTTPError{
 			Code: res.StatusCode,
 		}
 	} else {

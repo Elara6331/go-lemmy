@@ -4,7 +4,6 @@ import (
 	"context"
 
 	"go.elara.ws/go-lemmy"
-	"go.elara.ws/go-lemmy/types"
 )
 
 func main() {
@@ -15,7 +14,7 @@ func main() {
 		panic(err)
 	}
 
-	err = c.ClientLogin(ctx, types.Login{
+	err = c.ClientLogin(ctx, lemmy.Login{
 		UsernameOrEmail: "user@example.com",
 		Password:        `TestPwd`,
 	})
@@ -23,8 +22,8 @@ func main() {
 		panic(err)
 	}
 
-	_, err = c.SaveUserSettings(ctx, types.SaveUserSettings{
-		BotAccount: types.NewOptional(true),
+	_, err = c.SaveUserSettings(ctx, lemmy.SaveUserSettings{
+		BotAccount: lemmy.NewOptional(true),
 	})
 	if err != nil {
 		panic(err)

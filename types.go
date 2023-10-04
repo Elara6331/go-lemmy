@@ -1,4 +1,4 @@
-package types
+package lemmy
 
 // EmptyResponse is a response without any fields.
 // It embeds LemmyResponse to capture any errors.

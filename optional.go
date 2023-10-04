@@ -1,4 +1,4 @@
-package types
+package lemmy
 
 import (
 	"bytes"
@@ -20,11 +20,6 @@ func NewOptional[T any](v T) Optional[T] {
 	return Optional[T]{value: &v}
 }
 
-// NewOptionalPtr creates an optional with the value pointed to by v
-func NewOptionalPtr[T any](v *T) Optional[T] {
-	return Optional[T]{value: v}
-}
-
 // NewOptionalNil creates a new nil optional value
 func NewOptionalNil[T any]() Optional[T] {
 	return Optional[T]{}
@@ -33,12 +28,6 @@ func NewOptionalNil[T any]() Optional[T] {
 // Set sets the value of the optional
 func (o Optional[T]) Set(v T) Optional[T] {
 	o.value = &v
-	return o
-}
-
-// SetPtr sets the value of the optional to the value bointed to by v
-func (o Optional[T]) SetPtr(v *T) Optional[T] {
-	o.value = v
 	return o
 }
 
@@ -77,8 +66,8 @@ func (o Optional[T]) ValueOr(fallback T) T {
 	return fallback
 }
 
-// ValueOrEmpty returns the value inside the optional if it exists, or else it returns the zero value of T
-func (o Optional[T]) ValueOrEmpty() T {
+// ValueOrZero returns the value inside the optional if it exists, or else it returns the zero value of T
+func (o Optional[T]) ValueOrZero() T {
 	if o.value != nil {
 		return *o.value
 	}

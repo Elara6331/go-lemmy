@@ -27,18 +27,13 @@ func main() {
 
 	routes, structs := e.Extract()
 
-	err = os.MkdirAll(filepath.Join(*outDir, "types"), 0o755)
-	if err != nil {
-		log.Fatal("Error creating types directory").Err(err).Send()
-	}
-
-	otf, err := os.Create(filepath.Join(*outDir, "types/types.gen.go"))
+	otf, err := os.Create(filepath.Join(*outDir, "types.gen.go"))
 	if err != nil {
 		log.Fatal("Error creating types output file").Err(err).Send()
 	}
 	defer otf.Close()
 
-	err = generator.NewStruct(otf, "types").Generate(structs)
+	err = generator.NewStruct(otf, "lemmy").Generate(structs)
 	if err != nil {
 		log.Fatal("Error generating output routes file").Err(err).Send()
 	}

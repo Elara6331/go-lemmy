@@ -2,14 +2,11 @@
 
 package lemmy
 
-import (
-	"context"
-	types "go.elara.ws/go-lemmy/types"
-)
+import "context"
 
 // Add an admin to your site.
-func (c *Client) AddAdmin(ctx context.Context, data types.AddAdmin) (*types.AddAdminResponse, error) {
-	resData := &types.AddAdminResponse{}
+func (c *Client) AddAdmin(ctx context.Context, data AddAdmin) (*AddAdminResponse, error) {
+	resData := &AddAdminResponse{}
 	res, err := c.req(ctx, "POST", "/admin/add", data, &resData)
 	if err != nil {
 		return nil, err
@@ -22,8 +19,8 @@ func (c *Client) AddAdmin(ctx context.Context, data types.AddAdmin) (*types.AddA
 }
 
 // Add a moderator to your community.
-func (c *Client) AddModToCommunity(ctx context.Context, data types.AddModToCommunity) (*types.AddModToCommunityResponse, error) {
-	resData := &types.AddModToCommunityResponse{}
+func (c *Client) AddModToCommunity(ctx context.Context, data AddModToCommunity) (*AddModToCommunityResponse, error) {
+	resData := &AddModToCommunityResponse{}
 	res, err := c.req(ctx, "POST", "/community/mod", data, &resData)
 	if err != nil {
 		return nil, err
@@ -36,8 +33,8 @@ func (c *Client) AddModToCommunity(ctx context.Context, data types.AddModToCommu
 }
 
 // Approve a registration application
-func (c *Client) ApproveRegistrationApplication(ctx context.Context, data types.ApproveRegistrationApplication) (*types.RegistrationApplicationResponse, error) {
-	resData := &types.RegistrationApplicationResponse{}
+func (c *Client) ApproveRegistrationApplication(ctx context.Context, data ApproveRegistrationApplication) (*RegistrationApplicationResponse, error) {
+	resData := &RegistrationApplicationResponse{}
 	res, err := c.req(ctx, "PUT", "/admin/registration_application/approve", data, &resData)
 	if err != nil {
 		return nil, err
@@ -50,8 +47,8 @@ func (c *Client) ApproveRegistrationApplication(ctx context.Context, data types.
 }
 
 // Ban a user from a community.
-func (c *Client) BanFromCommunity(ctx context.Context, data types.BanFromCommunity) (*types.BanFromCommunityResponse, error) {
-	resData := &types.BanFromCommunityResponse{}
+func (c *Client) BanFromCommunity(ctx context.Context, data BanFromCommunity) (*BanFromCommunityResponse, error) {
+	resData := &BanFromCommunityResponse{}
 	res, err := c.req(ctx, "POST", "/community/ban_user", data, &resData)
 	if err != nil {
 		return nil, err
@@ -64,8 +61,8 @@ func (c *Client) BanFromCommunity(ctx context.Context, data types.BanFromCommuni
 }
 
 // Ban a person from your site.
-func (c *Client) BanPerson(ctx context.Context, data types.BanPerson) (*types.BanPersonResponse, error) {
-	resData := &types.BanPersonResponse{}
+func (c *Client) BanPerson(ctx context.Context, data BanPerson) (*BanPersonResponse, error) {
+	resData := &BanPersonResponse{}
 	res, err := c.req(ctx, "POST", "/user/ban", data, &resData)
 	if err != nil {
 		return nil, err
@@ -78,8 +75,8 @@ func (c *Client) BanPerson(ctx context.Context, data types.BanPerson) (*types.Ba
 }
 
 // Block a community.
-func (c *Client) BlockCommunity(ctx context.Context, data types.BlockCommunity) (*types.BlockCommunityResponse, error) {
-	resData := &types.BlockCommunityResponse{}
+func (c *Client) BlockCommunity(ctx context.Context, data BlockCommunity) (*BlockCommunityResponse, error) {
+	resData := &BlockCommunityResponse{}
 	res, err := c.req(ctx, "POST", "/community/block", data, &resData)
 	if err != nil {
 		return nil, err
@@ -92,8 +89,8 @@ func (c *Client) BlockCommunity(ctx context.Context, data types.BlockCommunity) 
 }
 
 // Block an instance.
-func (c *Client) BlockInstance(ctx context.Context, data types.BlockInstance) (*types.BlockInstanceResponse, error) {
-	resData := &types.BlockInstanceResponse{}
+func (c *Client) BlockInstance(ctx context.Context, data BlockInstance) (*BlockInstanceResponse, error) {
+	resData := &BlockInstanceResponse{}
 	res, err := c.req(ctx, "POST", "/site/block", data, &resData)
 	if err != nil {
 		return nil, err
@@ -106,8 +103,8 @@ func (c *Client) BlockInstance(ctx context.Context, data types.BlockInstance) (*
 }
 
 // Block a person.
-func (c *Client) BlockPerson(ctx context.Context, data types.BlockPerson) (*types.BlockPersonResponse, error) {
-	resData := &types.BlockPersonResponse{}
+func (c *Client) BlockPerson(ctx context.Context, data BlockPerson) (*BlockPersonResponse, error) {
+	resData := &BlockPersonResponse{}
 	res, err := c.req(ctx, "POST", "/user/block", data, &resData)
 	if err != nil {
 		return nil, err
@@ -120,8 +117,8 @@ func (c *Client) BlockPerson(ctx context.Context, data types.BlockPerson) (*type
 }
 
 // Change your user password.
-func (c *Client) ChangePassword(ctx context.Context, data types.ChangePassword) (*types.LoginResponse, error) {
-	resData := &types.LoginResponse{}
+func (c *Client) ChangePassword(ctx context.Context, data ChangePassword) (*LoginResponse, error) {
+	resData := &LoginResponse{}
 	res, err := c.req(ctx, "PUT", "/user/change_password", data, &resData)
 	if err != nil {
 		return nil, err
@@ -134,8 +131,8 @@ func (c *Client) ChangePassword(ctx context.Context, data types.ChangePassword) 
 }
 
 // Create a comment.
-func (c *Client) CreateComment(ctx context.Context, data types.CreateComment) (*types.CommentResponse, error) {
-	resData := &types.CommentResponse{}
+func (c *Client) CreateComment(ctx context.Context, data CreateComment) (*CommentResponse, error) {
+	resData := &CommentResponse{}
 	res, err := c.req(ctx, "POST", "/comment", data, &resData)
 	if err != nil {
 		return nil, err
@@ -148,8 +145,8 @@ func (c *Client) CreateComment(ctx context.Context, data types.CreateComment) (*
 }
 
 // Report a comment.
-func (c *Client) CreateCommentReport(ctx context.Context, data types.CreateCommentReport) (*types.CommentReportResponse, error) {
-	resData := &types.CommentReportResponse{}
+func (c *Client) CreateCommentReport(ctx context.Context, data CreateCommentReport) (*CommentReportResponse, error) {
+	resData := &CommentReportResponse{}
 	res, err := c.req(ctx, "POST", "/comment/report", data, &resData)
 	if err != nil {
 		return nil, err
@@ -162,8 +159,8 @@ func (c *Client) CreateCommentReport(ctx context.Context, data types.CreateComme
 }
 
 // Create a new community.
-func (c *Client) CreateCommunity(ctx context.Context, data types.CreateCommunity) (*types.CommunityResponse, error) {
-	resData := &types.CommunityResponse{}
+func (c *Client) CreateCommunity(ctx context.Context, data CreateCommunity) (*CommunityResponse, error) {
+	resData := &CommunityResponse{}
 	res, err := c.req(ctx, "POST", "/community", data, &resData)
 	if err != nil {
 		return nil, err
@@ -176,8 +173,8 @@ func (c *Client) CreateCommunity(ctx context.Context, data types.CreateCommunity
 }
 
 // Create a new custom emoji
-func (c *Client) CreateCustomEmoji(ctx context.Context, data types.CreateCustomEmoji) (*types.CustomEmojiResponse, error) {
-	resData := &types.CustomEmojiResponse{}
+func (c *Client) CreateCustomEmoji(ctx context.Context, data CreateCustomEmoji) (*CustomEmojiResponse, error) {
+	resData := &CustomEmojiResponse{}
 	res, err := c.req(ctx, "POST", "/custom_emoji", data, &resData)
 	if err != nil {
 		return nil, err
@@ -190,8 +187,8 @@ func (c *Client) CreateCustomEmoji(ctx context.Context, data types.CreateCustomE
 }
 
 // Create a post.
-func (c *Client) CreatePost(ctx context.Context, data types.CreatePost) (*types.PostResponse, error) {
-	resData := &types.PostResponse{}
+func (c *Client) CreatePost(ctx context.Context, data CreatePost) (*PostResponse, error) {
+	resData := &PostResponse{}
 	res, err := c.req(ctx, "POST", "/post", data, &resData)
 	if err != nil {
 		return nil, err
@@ -204,8 +201,8 @@ func (c *Client) CreatePost(ctx context.Context, data types.CreatePost) (*types.
 }
 
 // Report a post.
-func (c *Client) CreatePostReport(ctx context.Context, data types.CreatePostReport) (*types.PostReportResponse, error) {
-	resData := &types.PostReportResponse{}
+func (c *Client) CreatePostReport(ctx context.Context, data CreatePostReport) (*PostReportResponse, error) {
+	resData := &PostReportResponse{}
 	res, err := c.req(ctx, "POST", "/post/report", data, &resData)
 	if err != nil {
 		return nil, err
@@ -218,8 +215,8 @@ func (c *Client) CreatePostReport(ctx context.Context, data types.CreatePostRepo
 }
 
 // Create a private message.
-func (c *Client) CreatePrivateMessage(ctx context.Context, data types.CreatePrivateMessage) (*types.PrivateMessageResponse, error) {
-	resData := &types.PrivateMessageResponse{}
+func (c *Client) CreatePrivateMessage(ctx context.Context, data CreatePrivateMessage) (*PrivateMessageResponse, error) {
+	resData := &PrivateMessageResponse{}
 	res, err := c.req(ctx, "POST", "/private_message", data, &resData)
 	if err != nil {
 		return nil, err
@@ -232,8 +229,8 @@ func (c *Client) CreatePrivateMessage(ctx context.Context, data types.CreatePriv
 }
 
 // Create a report for a private message.
-func (c *Client) CreatePrivateMessageReport(ctx context.Context, data types.CreatePrivateMessageReport) (*types.PrivateMessageReportResponse, error) {
-	resData := &types.PrivateMessageReportResponse{}
+func (c *Client) CreatePrivateMessageReport(ctx context.Context, data CreatePrivateMessageReport) (*PrivateMessageReportResponse, error) {
+	resData := &PrivateMessageReportResponse{}
 	res, err := c.req(ctx, "POST", "/private_message/report", data, &resData)
 	if err != nil {
 		return nil, err
@@ -246,8 +243,8 @@ func (c *Client) CreatePrivateMessageReport(ctx context.Context, data types.Crea
 }
 
 // Create your site.
-func (c *Client) CreateSite(ctx context.Context, data types.CreateSite) (*types.SiteResponse, error) {
-	resData := &types.SiteResponse{}
+func (c *Client) CreateSite(ctx context.Context, data CreateSite) (*SiteResponse, error) {
+	resData := &SiteResponse{}
 	res, err := c.req(ctx, "POST", "/site", data, &resData)
 	if err != nil {
 		return nil, err
@@ -260,8 +257,8 @@ func (c *Client) CreateSite(ctx context.Context, data types.CreateSite) (*types.
 }
 
 // Delete your account.
-func (c *Client) DeleteAccount(ctx context.Context, data types.DeleteAccount) error {
-	resData := &types.EmptyResponse{}
+func (c *Client) DeleteAccount(ctx context.Context, data DeleteAccount) error {
+	resData := &EmptyResponse{}
 	res, err := c.req(ctx, "POST", "/user/delete_account", data, &resData)
 	if err != nil {
 		return err
@@ -274,8 +271,8 @@ func (c *Client) DeleteAccount(ctx context.Context, data types.DeleteAccount) er
 }
 
 // Delete a comment.
-func (c *Client) DeleteComment(ctx context.Context, data types.DeleteComment) (*types.CommentResponse, error) {
-	resData := &types.CommentResponse{}
+func (c *Client) DeleteComment(ctx context.Context, data DeleteComment) (*CommentResponse, error) {
+	resData := &CommentResponse{}
 	res, err := c.req(ctx, "POST", "/comment/delete", data, &resData)
 	if err != nil {
 		return nil, err
@@ -288,8 +285,8 @@ func (c *Client) DeleteComment(ctx context.Context, data types.DeleteComment) (*
 }
 
 // Delete a community.
-func (c *Client) DeleteCommunity(ctx context.Context, data types.DeleteCommunity) (*types.CommunityResponse, error) {
-	resData := &types.CommunityResponse{}
+func (c *Client) DeleteCommunity(ctx context.Context, data DeleteCommunity) (*CommunityResponse, error) {
+	resData := &CommunityResponse{}
 	res, err := c.req(ctx, "POST", "/community/delete", data, &resData)
 	if err != nil {
 		return nil, err
@@ -302,8 +299,8 @@ func (c *Client) DeleteCommunity(ctx context.Context, data types.DeleteCommunity
 }
 
 // Delete a custom emoji
-func (c *Client) DeleteCustomEmoji(ctx context.Context, data types.DeleteCustomEmoji) (*types.DeleteCustomEmojiResponse, error) {
-	resData := &types.DeleteCustomEmojiResponse{}
+func (c *Client) DeleteCustomEmoji(ctx context.Context, data DeleteCustomEmoji) (*DeleteCustomEmojiResponse, error) {
+	resData := &DeleteCustomEmojiResponse{}
 	res, err := c.req(ctx, "POST", "/custom_emoji/delete", data, &resData)
 	if err != nil {
 		return nil, err
@@ -316,8 +313,8 @@ func (c *Client) DeleteCustomEmoji(ctx context.Context, data types.DeleteCustomE
 }
 
 // Delete a post.
-func (c *Client) DeletePost(ctx context.Context, data types.DeletePost) (*types.PostResponse, error) {
-	resData := &types.PostResponse{}
+func (c *Client) DeletePost(ctx context.Context, data DeletePost) (*PostResponse, error) {
+	resData := &PostResponse{}
 	res, err := c.req(ctx, "POST", "/post/delete", data, &resData)
 	if err != nil {
 		return nil, err
@@ -330,8 +327,8 @@ func (c *Client) DeletePost(ctx context.Context, data types.DeletePost) (*types.
 }
 
 // Delete a private message.
-func (c *Client) DeletePrivateMessage(ctx context.Context, data types.DeletePrivateMessage) (*types.PrivateMessageResponse, error) {
-	resData := &types.PrivateMessageResponse{}
+func (c *Client) DeletePrivateMessage(ctx context.Context, data DeletePrivateMessage) (*PrivateMessageResponse, error) {
+	resData := &PrivateMessageResponse{}
 	res, err := c.req(ctx, "POST", "/private_message/delete", data, &resData)
 	if err != nil {
 		return nil, err
@@ -344,8 +341,8 @@ func (c *Client) DeletePrivateMessage(ctx context.Context, data types.DeletePriv
 }
 
 // Distinguishes a comment (speak as moderator)
-func (c *Client) DistinguishComment(ctx context.Context, data types.DistinguishComment) (*types.CommentResponse, error) {
-	resData := &types.CommentResponse{}
+func (c *Client) DistinguishComment(ctx context.Context, data DistinguishComment) (*CommentResponse, error) {
+	resData := &CommentResponse{}
 	res, err := c.req(ctx, "POST", "/comment/distinguish", data, &resData)
 	if err != nil {
 		return nil, err
@@ -358,8 +355,8 @@ func (c *Client) DistinguishComment(ctx context.Context, data types.DistinguishC
 }
 
 // Edit a comment.
-func (c *Client) EditComment(ctx context.Context, data types.EditComment) (*types.CommentResponse, error) {
-	resData := &types.CommentResponse{}
+func (c *Client) EditComment(ctx context.Context, data EditComment) (*CommentResponse, error) {
+	resData := &CommentResponse{}
 	res, err := c.req(ctx, "PUT", "/comment", data, &resData)
 	if err != nil {
 		return nil, err
@@ -372,8 +369,8 @@ func (c *Client) EditComment(ctx context.Context, data types.EditComment) (*type
 }
 
 // Edit a community.
-func (c *Client) EditCommunity(ctx context.Context, data types.EditCommunity) (*types.CommunityResponse, error) {
-	resData := &types.CommunityResponse{}
+func (c *Client) EditCommunity(ctx context.Context, data EditCommunity) (*CommunityResponse, error) {
+	resData := &CommunityResponse{}
 	res, err := c.req(ctx, "PUT", "/community", data, &resData)
 	if err != nil {
 		return nil, err
@@ -386,8 +383,8 @@ func (c *Client) EditCommunity(ctx context.Context, data types.EditCommunity) (*
 }
 
 // Edit an existing custom emoji
-func (c *Client) EditCustomEmoji(ctx context.Context, data types.EditCustomEmoji) (*types.CustomEmojiResponse, error) {
-	resData := &types.CustomEmojiResponse{}
+func (c *Client) EditCustomEmoji(ctx context.Context, data EditCustomEmoji) (*CustomEmojiResponse, error) {
+	resData := &CustomEmojiResponse{}
 	res, err := c.req(ctx, "PUT", "/custom_emoji", data, &resData)
 	if err != nil {
 		return nil, err
@@ -400,8 +397,8 @@ func (c *Client) EditCustomEmoji(ctx context.Context, data types.EditCustomEmoji
 }
 
 // Edit a post.
-func (c *Client) EditPost(ctx context.Context, data types.EditPost) (*types.PostResponse, error) {
-	resData := &types.PostResponse{}
+func (c *Client) EditPost(ctx context.Context, data EditPost) (*PostResponse, error) {
+	resData := &PostResponse{}
 	res, err := c.req(ctx, "PUT", "/post", data, &resData)
 	if err != nil {
 		return nil, err
@@ -414,8 +411,8 @@ func (c *Client) EditPost(ctx context.Context, data types.EditPost) (*types.Post
 }
 
 // Edit a private message.
-func (c *Client) EditPrivateMessage(ctx context.Context, data types.EditPrivateMessage) (*types.PrivateMessageResponse, error) {
-	resData := &types.PrivateMessageResponse{}
+func (c *Client) EditPrivateMessage(ctx context.Context, data EditPrivateMessage) (*PrivateMessageResponse, error) {
+	resData := &PrivateMessageResponse{}
 	res, err := c.req(ctx, "PUT", "/private_message", data, &resData)
 	if err != nil {
 		return nil, err
@@ -428,8 +425,8 @@ func (c *Client) EditPrivateMessage(ctx context.Context, data types.EditPrivateM
 }
 
 // Edit your site.
-func (c *Client) EditSite(ctx context.Context, data types.EditSite) (*types.SiteResponse, error) {
-	resData := &types.SiteResponse{}
+func (c *Client) EditSite(ctx context.Context, data EditSite) (*SiteResponse, error) {
+	resData := &SiteResponse{}
 	res, err := c.req(ctx, "PUT", "/site", data, &resData)
 	if err != nil {
 		return nil, err
@@ -442,8 +439,8 @@ func (c *Client) EditSite(ctx context.Context, data types.EditSite) (*types.Site
 }
 
 // A moderator can feature a community post ( IE stick it to the top of a community ).
-func (c *Client) FeaturePost(ctx context.Context, data types.FeaturePost) (*types.PostResponse, error) {
-	resData := &types.PostResponse{}
+func (c *Client) FeaturePost(ctx context.Context, data FeaturePost) (*PostResponse, error) {
+	resData := &PostResponse{}
 	res, err := c.req(ctx, "POST", "/post/feature", data, &resData)
 	if err != nil {
 		return nil, err
@@ -456,8 +453,8 @@ func (c *Client) FeaturePost(ctx context.Context, data types.FeaturePost) (*type
 }
 
 // Follow / subscribe to a community.
-func (c *Client) FollowCommunity(ctx context.Context, data types.FollowCommunity) (*types.CommunityResponse, error) {
-	resData := &types.CommunityResponse{}
+func (c *Client) FollowCommunity(ctx context.Context, data FollowCommunity) (*CommunityResponse, error) {
+	resData := &CommunityResponse{}
 	res, err := c.req(ctx, "POST", "/community/follow", data, &resData)
 	if err != nil {
 		return nil, err
@@ -470,8 +467,8 @@ func (c *Client) FollowCommunity(ctx context.Context, data types.FollowCommunity
 }
 
 // Get a list of banned users
-func (c *Client) BannedPersons(ctx context.Context) (*types.BannedPersonsResponse, error) {
-	resData := &types.BannedPersonsResponse{}
+func (c *Client) BannedPersons(ctx context.Context) (*BannedPersonsResponse, error) {
+	resData := &BannedPersonsResponse{}
 	res, err := c.getReq(ctx, "GET", "/user/banned", nil, &resData)
 	if err != nil {
 		return nil, err
@@ -484,8 +481,8 @@ func (c *Client) BannedPersons(ctx context.Context) (*types.BannedPersonsRespons
 }
 
 // Fetch a Captcha.
-func (c *Client) Captcha(ctx context.Context) (*types.GetCaptchaResponse, error) {
-	resData := &types.GetCaptchaResponse{}
+func (c *Client) Captcha(ctx context.Context) (*GetCaptchaResponse, error) {
+	resData := &GetCaptchaResponse{}
 	res, err := c.getReq(ctx, "GET", "/user/get_captcha", nil, &resData)
 	if err != nil {
 		return nil, err
@@ -498,8 +495,8 @@ func (c *Client) Captcha(ctx context.Context) (*types.GetCaptchaResponse, error)
 }
 
 // Get / fetch comment.
-func (c *Client) Comment(ctx context.Context, data types.GetComment) (*types.CommentResponse, error) {
-	resData := &types.CommentResponse{}
+func (c *Client) Comment(ctx context.Context, data GetComment) (*CommentResponse, error) {
+	resData := &CommentResponse{}
 	res, err := c.getReq(ctx, "GET", "/comment", data, &resData)
 	if err != nil {
 		return nil, err
@@ -512,8 +509,8 @@ func (c *Client) Comment(ctx context.Context, data types.GetComment) (*types.Com
 }
 
 // Get / fetch comments.
-func (c *Client) Comments(ctx context.Context, data types.GetComments) (*types.GetCommentsResponse, error) {
-	resData := &types.GetCommentsResponse{}
+func (c *Client) Comments(ctx context.Context, data GetComments) (*GetCommentsResponse, error) {
+	resData := &GetCommentsResponse{}
 	res, err := c.getReq(ctx, "GET", "/comment/list", data, &resData)
 	if err != nil {
 		return nil, err
@@ -526,8 +523,8 @@ func (c *Client) Comments(ctx context.Context, data types.GetComments) (*types.G
 }
 
 // Get / fetch a community.
-func (c *Client) Community(ctx context.Context, data types.GetCommunity) (*types.GetCommunityResponse, error) {
-	resData := &types.GetCommunityResponse{}
+func (c *Client) Community(ctx context.Context, data GetCommunity) (*GetCommunityResponse, error) {
+	resData := &GetCommunityResponse{}
 	res, err := c.getReq(ctx, "GET", "/community", data, &resData)
 	if err != nil {
 		return nil, err
@@ -540,8 +537,8 @@ func (c *Client) Community(ctx context.Context, data types.GetCommunity) (*types
 }
 
 // Fetch federated instances.
-func (c *Client) FederatedInstances(ctx context.Context) (*types.GetFederatedInstancesResponse, error) {
-	resData := &types.GetFederatedInstancesResponse{}
+func (c *Client) FederatedInstances(ctx context.Context) (*GetFederatedInstancesResponse, error) {
+	resData := &GetFederatedInstancesResponse{}
 	res, err := c.getReq(ctx, "GET", "/federated_instances", nil, &resData)
 	if err != nil {
 		return nil, err
@@ -554,8 +551,8 @@ func (c *Client) FederatedInstances(ctx context.Context) (*types.GetFederatedIns
 }
 
 // Get the modlog.
-func (c *Client) Modlog(ctx context.Context, data types.GetModlog) (*types.GetModlogResponse, error) {
-	resData := &types.GetModlogResponse{}
+func (c *Client) Modlog(ctx context.Context, data GetModlog) (*GetModlogResponse, error) {
+	resData := &GetModlogResponse{}
 	res, err := c.getReq(ctx, "GET", "/modlog", data, &resData)
 	if err != nil {
 		return nil, err
@@ -568,8 +565,8 @@ func (c *Client) Modlog(ctx context.Context, data types.GetModlog) (*types.GetMo
 }
 
 // Get the details for a person.
-func (c *Client) PersonDetails(ctx context.Context, data types.GetPersonDetails) (*types.GetPersonDetailsResponse, error) {
-	resData := &types.GetPersonDetailsResponse{}
+func (c *Client) PersonDetails(ctx context.Context, data GetPersonDetails) (*GetPersonDetailsResponse, error) {
+	resData := &GetPersonDetailsResponse{}
 	res, err := c.getReq(ctx, "GET", "/user", data, &resData)
 	if err != nil {
 		return nil, err
@@ -582,8 +579,8 @@ func (c *Client) PersonDetails(ctx context.Context, data types.GetPersonDetails)
 }
 
 // Get mentions for your user.
-func (c *Client) PersonMentions(ctx context.Context, data types.GetPersonMentions) (*types.GetPersonMentionsResponse, error) {
-	resData := &types.GetPersonMentionsResponse{}
+func (c *Client) PersonMentions(ctx context.Context, data GetPersonMentions) (*GetPersonMentionsResponse, error) {
+	resData := &GetPersonMentionsResponse{}
 	res, err := c.getReq(ctx, "GET", "/user/mention", data, &resData)
 	if err != nil {
 		return nil, err
@@ -596,8 +593,8 @@ func (c *Client) PersonMentions(ctx context.Context, data types.GetPersonMention
 }
 
 // Get / fetch a post.
-func (c *Client) Post(ctx context.Context, data types.GetPost) (*types.GetPostResponse, error) {
-	resData := &types.GetPostResponse{}
+func (c *Client) Post(ctx context.Context, data GetPost) (*GetPostResponse, error) {
+	resData := &GetPostResponse{}
 	res, err := c.getReq(ctx, "GET", "/post", data, &resData)
 	if err != nil {
 		return nil, err
@@ -610,8 +607,8 @@ func (c *Client) Post(ctx context.Context, data types.GetPost) (*types.GetPostRe
 }
 
 // Get / fetch posts, with various filters.
-func (c *Client) Posts(ctx context.Context, data types.GetPosts) (*types.GetPostsResponse, error) {
-	resData := &types.GetPostsResponse{}
+func (c *Client) Posts(ctx context.Context, data GetPosts) (*GetPostsResponse, error) {
+	resData := &GetPostsResponse{}
 	res, err := c.getReq(ctx, "GET", "/post/list", data, &resData)
 	if err != nil {
 		return nil, err
@@ -624,8 +621,8 @@ func (c *Client) Posts(ctx context.Context, data types.GetPosts) (*types.GetPost
 }
 
 // Get / fetch private messages.
-func (c *Client) PrivateMessages(ctx context.Context, data types.GetPrivateMessages) (*types.PrivateMessagesResponse, error) {
-	resData := &types.PrivateMessagesResponse{}
+func (c *Client) PrivateMessages(ctx context.Context, data GetPrivateMessages) (*PrivateMessagesResponse, error) {
+	resData := &PrivateMessagesResponse{}
 	res, err := c.getReq(ctx, "GET", "/private_message/list", data, &resData)
 	if err != nil {
 		return nil, err
@@ -638,8 +635,8 @@ func (c *Client) PrivateMessages(ctx context.Context, data types.GetPrivateMessa
 }
 
 // Get comment replies.
-func (c *Client) Replies(ctx context.Context, data types.GetReplies) (*types.GetRepliesResponse, error) {
-	resData := &types.GetRepliesResponse{}
+func (c *Client) Replies(ctx context.Context, data GetReplies) (*GetRepliesResponse, error) {
+	resData := &GetRepliesResponse{}
 	res, err := c.getReq(ctx, "GET", "/user/replies", data, &resData)
 	if err != nil {
 		return nil, err
@@ -652,8 +649,8 @@ func (c *Client) Replies(ctx context.Context, data types.GetReplies) (*types.Get
 }
 
 // Get counts for your reports
-func (c *Client) ReportCount(ctx context.Context, data types.GetReportCount) (*types.GetReportCountResponse, error) {
-	resData := &types.GetReportCountResponse{}
+func (c *Client) ReportCount(ctx context.Context, data GetReportCount) (*GetReportCountResponse, error) {
+	resData := &GetReportCountResponse{}
 	res, err := c.getReq(ctx, "GET", "/user/report_count", data, &resData)
 	if err != nil {
 		return nil, err
@@ -666,8 +663,8 @@ func (c *Client) ReportCount(ctx context.Context, data types.GetReportCount) (*t
 }
 
 // Gets the site, and your user data.
-func (c *Client) Site(ctx context.Context) (*types.GetSiteResponse, error) {
-	resData := &types.GetSiteResponse{}
+func (c *Client) Site(ctx context.Context) (*GetSiteResponse, error) {
+	resData := &GetSiteResponse{}
 	res, err := c.getReq(ctx, "GET", "/site", nil, &resData)
 	if err != nil {
 		return nil, err
@@ -680,8 +677,8 @@ func (c *Client) Site(ctx context.Context) (*types.GetSiteResponse, error) {
 }
 
 // Fetch metadata for any given site.
-func (c *Client) SiteMetadata(ctx context.Context, data types.GetSiteMetadata) (*types.GetSiteMetadataResponse, error) {
-	resData := &types.GetSiteMetadataResponse{}
+func (c *Client) SiteMetadata(ctx context.Context, data GetSiteMetadata) (*GetSiteMetadataResponse, error) {
+	resData := &GetSiteMetadataResponse{}
 	res, err := c.getReq(ctx, "GET", "/post/site_metadata", data, &resData)
 	if err != nil {
 		return nil, err
@@ -694,8 +691,8 @@ func (c *Client) SiteMetadata(ctx context.Context, data types.GetSiteMetadata) (
 }
 
 // Get your unread counts
-func (c *Client) UnreadCount(ctx context.Context) (*types.GetUnreadCountResponse, error) {
-	resData := &types.GetUnreadCountResponse{}
+func (c *Client) UnreadCount(ctx context.Context) (*GetUnreadCountResponse, error) {
+	resData := &GetUnreadCountResponse{}
 	res, err := c.getReq(ctx, "GET", "/user/unread_count", nil, &resData)
 	if err != nil {
 		return nil, err
@@ -708,8 +705,8 @@ func (c *Client) UnreadCount(ctx context.Context) (*types.GetUnreadCountResponse
 }
 
 // Get the unread registration applications count.
-func (c *Client) UnreadRegistrationApplicationCount(ctx context.Context) (*types.GetUnreadRegistrationApplicationCountResponse, error) {
-	resData := &types.GetUnreadRegistrationApplicationCountResponse{}
+func (c *Client) UnreadRegistrationApplicationCount(ctx context.Context) (*GetUnreadRegistrationApplicationCountResponse, error) {
+	resData := &GetUnreadRegistrationApplicationCountResponse{}
 	res, err := c.getReq(ctx, "GET", "/admin/registration_application/count", nil, &resData)
 	if err != nil {
 		return nil, err
@@ -722,8 +719,8 @@ func (c *Client) UnreadRegistrationApplicationCount(ctx context.Context) (*types
 }
 
 // Hide a community from public view.
-func (c *Client) HideCommunity(ctx context.Context, data types.HideCommunity) (*types.CommunityResponse, error) {
-	resData := &types.CommunityResponse{}
+func (c *Client) HideCommunity(ctx context.Context, data HideCommunity) (*CommunityResponse, error) {
+	resData := &CommunityResponse{}
 	res, err := c.req(ctx, "PUT", "/community/hide", data, &resData)
 	if err != nil {
 		return nil, err
@@ -736,8 +733,8 @@ func (c *Client) HideCommunity(ctx context.Context, data types.HideCommunity) (*
 }
 
 // Leave the Site admins.
-func (c *Client) LeaveAdmin(ctx context.Context) (*types.GetSiteResponse, error) {
-	resData := &types.GetSiteResponse{}
+func (c *Client) LeaveAdmin(ctx context.Context) (*GetSiteResponse, error) {
+	resData := &GetSiteResponse{}
 	res, err := c.req(ctx, "POST", "/user/leave_admin", nil, &resData)
 	if err != nil {
 		return nil, err
@@ -750,8 +747,8 @@ func (c *Client) LeaveAdmin(ctx context.Context) (*types.GetSiteResponse, error)
 }
 
 // Like / vote on a comment.
-func (c *Client) LikeComment(ctx context.Context, data types.CreateCommentLike) (*types.CommentResponse, error) {
-	resData := &types.CommentResponse{}
+func (c *Client) LikeComment(ctx context.Context, data CreateCommentLike) (*CommentResponse, error) {
+	resData := &CommentResponse{}
 	res, err := c.req(ctx, "POST", "/comment/like", data, &resData)
 	if err != nil {
 		return nil, err
@@ -764,8 +761,8 @@ func (c *Client) LikeComment(ctx context.Context, data types.CreateCommentLike) 
 }
 
 // Like / vote on a post.
-func (c *Client) LikePost(ctx context.Context, data types.CreatePostLike) (*types.PostResponse, error) {
-	resData := &types.PostResponse{}
+func (c *Client) LikePost(ctx context.Context, data CreatePostLike) (*PostResponse, error) {
+	resData := &PostResponse{}
 	res, err := c.req(ctx, "POST", "/post/like", data, &resData)
 	if err != nil {
 		return nil, err
@@ -778,8 +775,8 @@ func (c *Client) LikePost(ctx context.Context, data types.CreatePostLike) (*type
 }
 
 // List comment reports.
-func (c *Client) CommentReports(ctx context.Context, data types.ListCommentReports) (*types.ListCommentReportsResponse, error) {
-	resData := &types.ListCommentReportsResponse{}
+func (c *Client) CommentReports(ctx context.Context, data ListCommentReports) (*ListCommentReportsResponse, error) {
+	resData := &ListCommentReportsResponse{}
 	res, err := c.getReq(ctx, "GET", "/comment/report/list", data, &resData)
 	if err != nil {
 		return nil, err
@@ -792,8 +789,8 @@ func (c *Client) CommentReports(ctx context.Context, data types.ListCommentRepor
 }
 
 // List communities, with various filters.
-func (c *Client) Communities(ctx context.Context, data types.ListCommunities) (*types.ListCommunitiesResponse, error) {
-	resData := &types.ListCommunitiesResponse{}
+func (c *Client) Communities(ctx context.Context, data ListCommunities) (*ListCommunitiesResponse, error) {
+	resData := &ListCommunitiesResponse{}
 	res, err := c.getReq(ctx, "GET", "/community/list", data, &resData)
 	if err != nil {
 		return nil, err
@@ -806,8 +803,8 @@ func (c *Client) Communities(ctx context.Context, data types.ListCommunities) (*
 }
 
 // List post reports.
-func (c *Client) PostReports(ctx context.Context, data types.ListPostReports) (*types.ListPostReportsResponse, error) {
-	resData := &types.ListPostReportsResponse{}
+func (c *Client) PostReports(ctx context.Context, data ListPostReports) (*ListPostReportsResponse, error) {
+	resData := &ListPostReportsResponse{}
 	res, err := c.getReq(ctx, "GET", "/post/report/list", data, &resData)
 	if err != nil {
 		return nil, err
@@ -820,8 +817,8 @@ func (c *Client) PostReports(ctx context.Context, data types.ListPostReports) (*
 }
 
 // List private message reports.
-func (c *Client) PrivateMessageReports(ctx context.Context, data types.ListPrivateMessageReports) (*types.ListPrivateMessageReportsResponse, error) {
-	resData := &types.ListPrivateMessageReportsResponse{}
+func (c *Client) PrivateMessageReports(ctx context.Context, data ListPrivateMessageReports) (*ListPrivateMessageReportsResponse, error) {
+	resData := &ListPrivateMessageReportsResponse{}
 	res, err := c.getReq(ctx, "GET", "/private_message/report/list", data, &resData)
 	if err != nil {
 		return nil, err
@@ -834,8 +831,8 @@ func (c *Client) PrivateMessageReports(ctx context.Context, data types.ListPriva
 }
 
 // List the registration applications.
-func (c *Client) RegistrationApplications(ctx context.Context, data types.ListRegistrationApplications) (*types.ListRegistrationApplicationsResponse, error) {
-	resData := &types.ListRegistrationApplicationsResponse{}
+func (c *Client) RegistrationApplications(ctx context.Context, data ListRegistrationApplications) (*ListRegistrationApplicationsResponse, error) {
+	resData := &ListRegistrationApplicationsResponse{}
 	res, err := c.getReq(ctx, "GET", "/admin/registration_application/list", data, &resData)
 	if err != nil {
 		return nil, err
@@ -848,8 +845,8 @@ func (c *Client) RegistrationApplications(ctx context.Context, data types.ListRe
 }
 
 // A moderator can lock a post ( IE disable new comments ).
-func (c *Client) LockPost(ctx context.Context, data types.LockPost) (*types.PostResponse, error) {
-	resData := &types.PostResponse{}
+func (c *Client) LockPost(ctx context.Context, data LockPost) (*PostResponse, error) {
+	resData := &PostResponse{}
 	res, err := c.req(ctx, "POST", "/post/lock", data, &resData)
 	if err != nil {
 		return nil, err
@@ -862,8 +859,8 @@ func (c *Client) LockPost(ctx context.Context, data types.LockPost) (*types.Post
 }
 
 // Log into lemmy.
-func (c *Client) Login(ctx context.Context, data types.Login) (*types.LoginResponse, error) {
-	resData := &types.LoginResponse{}
+func (c *Client) Login(ctx context.Context, data Login) (*LoginResponse, error) {
+	resData := &LoginResponse{}
 	res, err := c.req(ctx, "POST", "/user/login", data, &resData)
 	if err != nil {
 		return nil, err
@@ -876,8 +873,8 @@ func (c *Client) Login(ctx context.Context, data types.Login) (*types.LoginRespo
 }
 
 // Mark all replies as read.
-func (c *Client) MarkAllAsRead(ctx context.Context) (*types.GetRepliesResponse, error) {
-	resData := &types.GetRepliesResponse{}
+func (c *Client) MarkAllAsRead(ctx context.Context) (*GetRepliesResponse, error) {
+	resData := &GetRepliesResponse{}
 	res, err := c.req(ctx, "POST", "/user/mark_all_as_read", nil, &resData)
 	if err != nil {
 		return nil, err
@@ -890,8 +887,8 @@ func (c *Client) MarkAllAsRead(ctx context.Context) (*types.GetRepliesResponse, 
 }
 
 // Mark a comment as read.
-func (c *Client) MarkCommentReplyAsRead(ctx context.Context, data types.MarkCommentReplyAsRead) (*types.CommentReplyResponse, error) {
-	resData := &types.CommentReplyResponse{}
+func (c *Client) MarkCommentReplyAsRead(ctx context.Context, data MarkCommentReplyAsRead) (*CommentReplyResponse, error) {
+	resData := &CommentReplyResponse{}
 	res, err := c.req(ctx, "POST", "/comment/mark_as_read", data, &resData)
 	if err != nil {
 		return nil, err
@@ -904,8 +901,8 @@ func (c *Client) MarkCommentReplyAsRead(ctx context.Context, data types.MarkComm
 }
 
 // Mark a person mention as read.
-func (c *Client) MarkPersonMentionAsRead(ctx context.Context, data types.MarkPersonMentionAsRead) (*types.PersonMentionResponse, error) {
-	resData := &types.PersonMentionResponse{}
+func (c *Client) MarkPersonMentionAsRead(ctx context.Context, data MarkPersonMentionAsRead) (*PersonMentionResponse, error) {
+	resData := &PersonMentionResponse{}
 	res, err := c.req(ctx, "POST", "/user/mention/mark_as_read", data, &resData)
 	if err != nil {
 		return nil, err
@@ -918,8 +915,8 @@ func (c *Client) MarkPersonMentionAsRead(ctx context.Context, data types.MarkPer
 }
 
 // Mark a post as read.
-func (c *Client) MarkPostAsRead(ctx context.Context, data types.MarkPostAsRead) (*types.PostResponse, error) {
-	resData := &types.PostResponse{}
+func (c *Client) MarkPostAsRead(ctx context.Context, data MarkPostAsRead) (*PostResponse, error) {
+	resData := &PostResponse{}
 	res, err := c.req(ctx, "POST", "/post/mark_as_read", data, &resData)
 	if err != nil {
 		return nil, err
@@ -932,8 +929,8 @@ func (c *Client) MarkPostAsRead(ctx context.Context, data types.MarkPostAsRead) 
 }
 
 // Mark a private message as read.
-func (c *Client) MarkPrivateMessageAsRead(ctx context.Context, data types.MarkPrivateMessageAsRead) (*types.PrivateMessageResponse, error) {
-	resData := &types.PrivateMessageResponse{}
+func (c *Client) MarkPrivateMessageAsRead(ctx context.Context, data MarkPrivateMessageAsRead) (*PrivateMessageResponse, error) {
+	resData := &PrivateMessageResponse{}
 	res, err := c.req(ctx, "POST", "/private_message/mark_as_read", data, &resData)
 	if err != nil {
 		return nil, err
@@ -946,8 +943,8 @@ func (c *Client) MarkPrivateMessageAsRead(ctx context.Context, data types.MarkPr
 }
 
 // Change your password from an email / token based reset.
-func (c *Client) PasswordChangeAfterReset(ctx context.Context, data types.PasswordChangeAfterReset) (*types.LoginResponse, error) {
-	resData := &types.LoginResponse{}
+func (c *Client) PasswordChangeAfterReset(ctx context.Context, data PasswordChangeAfterReset) (*LoginResponse, error) {
+	resData := &LoginResponse{}
 	res, err := c.req(ctx, "POST", "/user/password_change", data, &resData)
 	if err != nil {
 		return nil, err
@@ -960,8 +957,8 @@ func (c *Client) PasswordChangeAfterReset(ctx context.Context, data types.Passwo
 }
 
 // Reset your password.
-func (c *Client) PasswordReset(ctx context.Context, data types.PasswordReset) error {
-	resData := &types.EmptyResponse{}
+func (c *Client) PasswordReset(ctx context.Context, data PasswordReset) error {
+	resData := &EmptyResponse{}
 	res, err := c.req(ctx, "POST", "/user/password_reset", data, &resData)
 	if err != nil {
 		return err
@@ -974,8 +971,8 @@ func (c *Client) PasswordReset(ctx context.Context, data types.PasswordReset) er
 }
 
 // Purge / Delete a comment from the database.
-func (c *Client) PurgeComment(ctx context.Context, data types.PurgeComment) (*types.PurgeItemResponse, error) {
-	resData := &types.PurgeItemResponse{}
+func (c *Client) PurgeComment(ctx context.Context, data PurgeComment) (*PurgeItemResponse, error) {
+	resData := &PurgeItemResponse{}
 	res, err := c.req(ctx, "POST", "/admin/purge/comment", data, &resData)
 	if err != nil {
 		return nil, err
@@ -988,8 +985,8 @@ func (c *Client) PurgeComment(ctx context.Context, data types.PurgeComment) (*ty
 }
 
 // Purge / Delete a community from the database.
-func (c *Client) PurgeCommunity(ctx context.Context, data types.PurgeCommunity) (*types.PurgeItemResponse, error) {
-	resData := &types.PurgeItemResponse{}
+func (c *Client) PurgeCommunity(ctx context.Context, data PurgeCommunity) (*PurgeItemResponse, error) {
+	resData := &PurgeItemResponse{}
 	res, err := c.req(ctx, "POST", "/admin/purge/community", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1002,8 +999,8 @@ func (c *Client) PurgeCommunity(ctx context.Context, data types.PurgeCommunity) 
 }
 
 // Purge / Delete a person from the database.
-func (c *Client) PurgePerson(ctx context.Context, data types.PurgePerson) (*types.PurgeItemResponse, error) {
-	resData := &types.PurgeItemResponse{}
+func (c *Client) PurgePerson(ctx context.Context, data PurgePerson) (*PurgeItemResponse, error) {
+	resData := &PurgeItemResponse{}
 	res, err := c.req(ctx, "POST", "/admin/purge/person", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1016,8 +1013,8 @@ func (c *Client) PurgePerson(ctx context.Context, data types.PurgePerson) (*type
 }
 
 // Purge / Delete a post from the database.
-func (c *Client) PurgePost(ctx context.Context, data types.PurgePost) (*types.PurgeItemResponse, error) {
-	resData := &types.PurgeItemResponse{}
+func (c *Client) PurgePost(ctx context.Context, data PurgePost) (*PurgeItemResponse, error) {
+	resData := &PurgeItemResponse{}
 	res, err := c.req(ctx, "POST", "/admin/purge/post", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1030,8 +1027,8 @@ func (c *Client) PurgePost(ctx context.Context, data types.PurgePost) (*types.Pu
 }
 
 // Register a new user.
-func (c *Client) Register(ctx context.Context, data types.Register) (*types.LoginResponse, error) {
-	resData := &types.LoginResponse{}
+func (c *Client) Register(ctx context.Context, data Register) (*LoginResponse, error) {
+	resData := &LoginResponse{}
 	res, err := c.req(ctx, "POST", "/user/register", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1044,8 +1041,8 @@ func (c *Client) Register(ctx context.Context, data types.Register) (*types.Logi
 }
 
 // A moderator remove for a comment.
-func (c *Client) RemoveComment(ctx context.Context, data types.RemoveComment) (*types.CommentResponse, error) {
-	resData := &types.CommentResponse{}
+func (c *Client) RemoveComment(ctx context.Context, data RemoveComment) (*CommentResponse, error) {
+	resData := &CommentResponse{}
 	res, err := c.req(ctx, "POST", "/comment/remove", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1058,8 +1055,8 @@ func (c *Client) RemoveComment(ctx context.Context, data types.RemoveComment) (*
 }
 
 // A moderator remove for a community.
-func (c *Client) RemoveCommunity(ctx context.Context, data types.RemoveCommunity) (*types.CommunityResponse, error) {
-	resData := &types.CommunityResponse{}
+func (c *Client) RemoveCommunity(ctx context.Context, data RemoveCommunity) (*CommunityResponse, error) {
+	resData := &CommunityResponse{}
 	res, err := c.req(ctx, "POST", "/community/remove", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1072,8 +1069,8 @@ func (c *Client) RemoveCommunity(ctx context.Context, data types.RemoveCommunity
 }
 
 // A moderator remove for a post.
-func (c *Client) RemovePost(ctx context.Context, data types.RemovePost) (*types.PostResponse, error) {
-	resData := &types.PostResponse{}
+func (c *Client) RemovePost(ctx context.Context, data RemovePost) (*PostResponse, error) {
+	resData := &PostResponse{}
 	res, err := c.req(ctx, "POST", "/post/remove", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1086,8 +1083,8 @@ func (c *Client) RemovePost(ctx context.Context, data types.RemovePost) (*types.
 }
 
 // Resolve a comment report. Only a mod can do this.
-func (c *Client) ResolveCommentReport(ctx context.Context, data types.ResolveCommentReport) (*types.CommentReportResponse, error) {
-	resData := &types.CommentReportResponse{}
+func (c *Client) ResolveCommentReport(ctx context.Context, data ResolveCommentReport) (*CommentReportResponse, error) {
+	resData := &CommentReportResponse{}
 	res, err := c.req(ctx, "PUT", "/comment/report/resolve", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1100,8 +1097,8 @@ func (c *Client) ResolveCommentReport(ctx context.Context, data types.ResolveCom
 }
 
 // Fetch a non-local / federated object.
-func (c *Client) ResolveObject(ctx context.Context, data types.ResolveObject) (*types.ResolveObjectResponse, error) {
-	resData := &types.ResolveObjectResponse{}
+func (c *Client) ResolveObject(ctx context.Context, data ResolveObject) (*ResolveObjectResponse, error) {
+	resData := &ResolveObjectResponse{}
 	res, err := c.getReq(ctx, "GET", "/resolve_object", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1114,8 +1111,8 @@ func (c *Client) ResolveObject(ctx context.Context, data types.ResolveObject) (*
 }
 
 // Resolve a post report. Only a mod can do this.
-func (c *Client) ResolvePostReport(ctx context.Context, data types.ResolvePostReport) (*types.PostReportResponse, error) {
-	resData := &types.PostReportResponse{}
+func (c *Client) ResolvePostReport(ctx context.Context, data ResolvePostReport) (*PostReportResponse, error) {
+	resData := &PostReportResponse{}
 	res, err := c.req(ctx, "PUT", "/post/report/resolve", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1128,8 +1125,8 @@ func (c *Client) ResolvePostReport(ctx context.Context, data types.ResolvePostRe
 }
 
 // Resolve a report for a private message.
-func (c *Client) ResolvePrivateMessageReport(ctx context.Context, data types.ResolvePrivateMessageReport) (*types.PrivateMessageReportResponse, error) {
-	resData := &types.PrivateMessageReportResponse{}
+func (c *Client) ResolvePrivateMessageReport(ctx context.Context, data ResolvePrivateMessageReport) (*PrivateMessageReportResponse, error) {
+	resData := &PrivateMessageReportResponse{}
 	res, err := c.req(ctx, "PUT", "/private_message/report/resolve", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1142,8 +1139,8 @@ func (c *Client) ResolvePrivateMessageReport(ctx context.Context, data types.Res
 }
 
 // Save a comment.
-func (c *Client) SaveComment(ctx context.Context, data types.SaveComment) (*types.CommentResponse, error) {
-	resData := &types.CommentResponse{}
+func (c *Client) SaveComment(ctx context.Context, data SaveComment) (*CommentResponse, error) {
+	resData := &CommentResponse{}
 	res, err := c.req(ctx, "PUT", "/comment/save", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1156,8 +1153,8 @@ func (c *Client) SaveComment(ctx context.Context, data types.SaveComment) (*type
 }
 
 // Save a post.
-func (c *Client) SavePost(ctx context.Context, data types.SavePost) (*types.PostResponse, error) {
-	resData := &types.PostResponse{}
+func (c *Client) SavePost(ctx context.Context, data SavePost) (*PostResponse, error) {
+	resData := &PostResponse{}
 	res, err := c.req(ctx, "PUT", "/post/save", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1170,8 +1167,8 @@ func (c *Client) SavePost(ctx context.Context, data types.SavePost) (*types.Post
 }
 
 // Save your user settings.
-func (c *Client) SaveUserSettings(ctx context.Context, data types.SaveUserSettings) (*types.LoginResponse, error) {
-	resData := &types.LoginResponse{}
+func (c *Client) SaveUserSettings(ctx context.Context, data SaveUserSettings) (*LoginResponse, error) {
+	resData := &LoginResponse{}
 	res, err := c.req(ctx, "PUT", "/user/save_user_settings", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1184,8 +1181,8 @@ func (c *Client) SaveUserSettings(ctx context.Context, data types.SaveUserSettin
 }
 
 // Search lemmy.
-func (c *Client) Search(ctx context.Context, data types.Search) (*types.SearchResponse, error) {
-	resData := &types.SearchResponse{}
+func (c *Client) Search(ctx context.Context, data Search) (*SearchResponse, error) {
+	resData := &SearchResponse{}
 	res, err := c.getReq(ctx, "GET", "/search", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1198,8 +1195,8 @@ func (c *Client) Search(ctx context.Context, data types.Search) (*types.SearchRe
 }
 
 // Transfer your community to an existing moderator.
-func (c *Client) TransferCommunity(ctx context.Context, data types.TransferCommunity) (*types.GetCommunityResponse, error) {
-	resData := &types.GetCommunityResponse{}
+func (c *Client) TransferCommunity(ctx context.Context, data TransferCommunity) (*GetCommunityResponse, error) {
+	resData := &GetCommunityResponse{}
 	res, err := c.req(ctx, "POST", "/community/transfer", data, &resData)
 	if err != nil {
 		return nil, err
@@ -1212,8 +1209,8 @@ func (c *Client) TransferCommunity(ctx context.Context, data types.TransferCommu
 }
 
 // Verify your email
-func (c *Client) VerifyEmail(ctx context.Context, data types.VerifyEmail) error {
-	resData := &types.EmptyResponse{}
+func (c *Client) VerifyEmail(ctx context.Context, data VerifyEmail) error {
+	resData := &EmptyResponse{}
 	res, err := c.req(ctx, "POST", "/user/verify_email", data, &resData)
 	if err != nil {
 		return err
