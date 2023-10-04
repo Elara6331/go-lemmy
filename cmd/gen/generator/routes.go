@@ -44,7 +44,7 @@ func (r *RoutesGenerator) Generate(routes []extractor.Route) error {
 
 			returnName := r.ReturnName
 			if returnName == "" {
-				returnName = "EmptyResponse"
+				returnName = "emptyResponse"
 			}
 
 			g.Id("resData").Op(":=").Op("&").Id(returnName).Block()
@@ -58,23 +58,23 @@ func (r *RoutesGenerator) Generate(routes []extractor.Route) error {
 				jen.Id("ctx"), jen.Lit(r.Method), jen.Lit(r.Path), data, jen.Op("&").Id("resData"),
 			)
 			g.If(jen.Err().Op("!=").Nil()).BlockFunc(func(g *jen.Group) {
-				if returnName == "EmptyResponse" {
+				if returnName == "emptyResponse" {
 					g.Return(jen.Err())
 				} else {
 					g.Return(jen.Nil(), jen.Err())
 				}
 			})
 
-			g.Err().Op("=").Id("resError").Params(jen.Id("res"), jen.Id("resData").Dot("LemmyResponse"))
+			g.Err().Op("=").Id("resError").Params(jen.Id("res"), jen.Id("resData").Dot("lemmyResponse"))
 			g.If(jen.Err().Op("!=").Nil()).BlockFunc(func(g *jen.Group) {
-				if returnName == "EmptyResponse" {
+				if returnName == "emptyResponse" {
 					g.Return(jen.Err())
 				} else {
 					g.Return(jen.Nil(), jen.Err())
 				}
 			})
 
-			if returnName == "EmptyResponse" {
+			if returnName == "emptyResponse" {
 				g.Return(jen.Nil())
 			} else {
 				g.Return(jen.Id("resData"), jen.Nil())

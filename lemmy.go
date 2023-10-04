@@ -40,7 +40,7 @@ func (c *Client) ClientLogin(ctx context.Context, l Login) error {
 	if err != nil {
 		return err
 	}
-	c.Token = lr.JWT.ValueOrEmpty()
+	c.Token = lr.JWT.ValueOrZero()
 	return nil
 }
 
@@ -131,7 +131,7 @@ func (c *Client) getReq(ctx context.Context, method string, path string, data, r
 }
 
 // resError returns an error if the the response contains an error
-func resError(res *http.Response, lr LemmyResponse) error {
+func resError(res *http.Response, lr lemmyResponse) error {
 	if lr.Error.IsValid() {
 		return LemmyError{
 			Code:   res.StatusCode,

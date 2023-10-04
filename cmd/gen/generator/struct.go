@@ -42,7 +42,7 @@ func (s *StructGenerator) Generate(items []extractor.Struct) error {
 				}
 
 				if strings.HasSuffix(item.Name, "Response") {
-					g.Id("LemmyResponse")
+					g.Id("lemmyResponse")
 				}
 			})
 		}
