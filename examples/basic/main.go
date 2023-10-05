@@ -9,7 +9,7 @@ import (
 func main() {
 	ctx := context.Background()
 
-	c, err := lemmy.New("https://lemmygrad.ml")
+	c, err := lemmy.New("https://lemmy.ml")
 	if err != nil {
 		panic(err)
 	}
