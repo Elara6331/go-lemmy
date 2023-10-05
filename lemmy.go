@@ -38,10 +38,13 @@ func NewWithClient(baseURL string, client *http.Client) (*Client, error) {
 	return &Client{baseURL: u, client: client}, nil
 }
 
-// ClientLogin logs in to Lemmy by calling the Lemmy endpoint,
-// and stores the returned token for use in future requests.
-func (c *Client) ClientLogin(ctx context.Context, l Login) error {
-	lr, err := c.Login(ctx, l)
+// ClientLogin logs in to Lemmy by calling the login endpoint, and
+// stores the returned token in the Token field for use in future requests.
+//
+// The Token field can be set manually if you'd like to persist the
+// token somewhere.
+func (c *Client) ClientLogin(ctx context.Context, data Login) error {
+	lr, err := c.Login(ctx, data)
 	if err != nil {
 		return err
 	}
@@ -160,7 +163,8 @@ type emptyResponse struct {
 	Error Optional[string] `json:"error"`
 }
 
-// resError returns an error if the the response contains an error
+// resError checks if the response contains an error, and if so, returns
+// a Go error representing it.
 func resError(res *http.Response, err Optional[string]) error {
 	if errstr, ok := err.Value(); ok {
 		return Error{
