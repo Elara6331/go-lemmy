@@ -12,6 +12,7 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
+// ErrNoToken is an error returned by ClientLogin if the server sends a null or empty token
 var ErrNoToken = errors.New("the server didn't provide a token value in its response")
 
 // Client is a client for Lemmy's HTTP API
