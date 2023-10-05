@@ -148,7 +148,7 @@ type emptyResponse struct {
 // resError returns an error if the the response contains an error
 func resError(res *http.Response, err Optional[string]) error {
 	if errstr, ok := err.Value(); ok {
-		return LemmyError{
+		return Error{
 			Code:   res.StatusCode,
 			ErrStr: errstr,
 		}

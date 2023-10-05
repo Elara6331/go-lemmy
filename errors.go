@@ -14,12 +14,12 @@ func (he HTTPError) Error() string {
 	return fmt.Sprintf("%d %s", he.Code, http.StatusText(he.Code))
 }
 
-// LemmyError represents an error returned by the Lemmy API
-type LemmyError struct {
+// Error represents an error returned by the Lemmy API
+type Error struct {
 	ErrStr string
 	Code   int
 }
 
-func (le LemmyError) Error() string {
+func (le Error) Error() string {
 	return fmt.Sprintf("%d %s: %s", le.Code, http.StatusText(le.Code), le.ErrStr)
 }
