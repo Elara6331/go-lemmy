@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -139,6 +140,20 @@ func (c *Client) getReq(ctx context.Context, method string, path string, data, r
 	return res, nil
 }
 
+// Error represents an error returned by the Lemmy API
+type Error struct {
+	ErrStr string
+	Code   int
+}
+
+func (le Error) Error() string {
+	if le.ErrStr != "" {
+		return fmt.Sprintf("%d %s: %s", le.Code, http.StatusText(le.Code), le.ErrStr)
+	} else {
+		return fmt.Sprintf("%d %s", le.Code, http.StatusText(le.Code))
+	}
+}
+
 // emptyResponse is a response without any fields.
 // It has an Error field to capture any errors.
 type emptyResponse struct {
@@ -153,7 +168,7 @@ func resError(res *http.Response, err Optional[string]) error {
 			ErrStr: errstr,
 		}
 	} else if res.StatusCode != http.StatusOK {
-		return HTTPError{
+		return Error{
 			Code: res.StatusCode,
 		}
 	} else {
