@@ -4,12 +4,15 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"io"
 	"net/http"
 	"net/url"
 
 	"github.com/google/go-querystring/query"
 )
+
+var ErrNoToken = errors.New("the server didn't provide a token value in its response")
 
 // Client is a client for Lemmy's HTTP API
 type Client struct {
@@ -40,7 +43,12 @@ func (c *Client) ClientLogin(ctx context.Context, l Login) error {
 	if err != nil {
 		return err
 	}
-	c.Token = lr.JWT.ValueOrZero()
+
+	token, ok := lr.JWT.Value()
+	if !ok || token == "" {
+		return ErrNoToken
+	}
+	c.Token = token
 	return nil
 }
 
