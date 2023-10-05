@@ -139,12 +139,18 @@ func (c *Client) getReq(ctx context.Context, method string, path string, data, r
 	return res, nil
 }
 
+// emptyResponse is a response without any fields.
+// It has an Error field to capture any errors.
+type emptyResponse struct {
+	Error Optional[string] `json:"error"`
+}
+
 // resError returns an error if the the response contains an error
-func resError(res *http.Response, lr lemmyResponse) error {
-	if lr.Error.IsValid() {
+func resError(res *http.Response, err Optional[string]) error {
+	if errstr, ok := err.Value(); ok {
 		return LemmyError{
 			Code:   res.StatusCode,
-			ErrStr: lr.Error.MustValue(),
+			ErrStr: errstr,
 		}
 	} else if res.StatusCode != http.StatusOK {
 		return HTTPError{

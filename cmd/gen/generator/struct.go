@@ -42,7 +42,7 @@ func (s *StructGenerator) Generate(items []extractor.Struct) error {
 				}
 
 				if strings.HasSuffix(item.Name, "Response") {
-					g.Id("lemmyResponse")
+					g.Id("Error").Id("Optional").Types(jen.String()).Tag(map[string]string{"json": "error"})
 				}
 			})
 		}

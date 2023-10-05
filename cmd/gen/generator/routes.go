@@ -65,7 +65,7 @@ func (r *RoutesGenerator) Generate(routes []extractor.Route) error {
 				}
 			})
 
-			g.Err().Op("=").Id("resError").Params(jen.Id("res"), jen.Id("resData").Dot("lemmyResponse"))
+			g.Err().Op("=").Id("resError").Params(jen.Id("res"), jen.Id("resData").Dot("Error"))
 			g.If(jen.Err().Op("!=").Nil()).BlockFunc(func(g *jen.Group) {
 				if returnName == "emptyResponse" {
 					g.Return(jen.Err())

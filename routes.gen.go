@@ -11,7 +11,7 @@ func (c *Client) AddAdmin(ctx context.Context, data AddAdmin) (*AddAdminResponse
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -25,7 +25,7 @@ func (c *Client) AddModToCommunity(ctx context.Context, data AddModToCommunity) 
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -39,7 +39,7 @@ func (c *Client) ApproveRegistrationApplication(ctx context.Context, data Approv
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +53,7 @@ func (c *Client) BanFromCommunity(ctx context.Context, data BanFromCommunity) (*
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -67,7 +67,7 @@ func (c *Client) BanPerson(ctx context.Context, data BanPerson) (*BanPersonRespo
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (c *Client) BlockCommunity(ctx context.Context, data BlockCommunity) (*Bloc
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -95,7 +95,7 @@ func (c *Client) BlockInstance(ctx context.Context, data BlockInstance) (*BlockI
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -109,7 +109,7 @@ func (c *Client) BlockPerson(ctx context.Context, data BlockPerson) (*BlockPerso
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -123,7 +123,7 @@ func (c *Client) ChangePassword(ctx context.Context, data ChangePassword) (*Logi
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -137,7 +137,7 @@ func (c *Client) CreateComment(ctx context.Context, data CreateComment) (*Commen
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -151,7 +151,7 @@ func (c *Client) CreateCommentReport(ctx context.Context, data CreateCommentRepo
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -165,7 +165,7 @@ func (c *Client) CreateCommunity(ctx context.Context, data CreateCommunity) (*Co
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -179,7 +179,7 @@ func (c *Client) CreateCustomEmoji(ctx context.Context, data CreateCustomEmoji) 
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -193,7 +193,7 @@ func (c *Client) CreatePost(ctx context.Context, data CreatePost) (*PostResponse
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -207,7 +207,7 @@ func (c *Client) CreatePostReport(ctx context.Context, data CreatePostReport) (*
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -221,7 +221,7 @@ func (c *Client) CreatePrivateMessage(ctx context.Context, data CreatePrivateMes
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -235,7 +235,7 @@ func (c *Client) CreatePrivateMessageReport(ctx context.Context, data CreatePriv
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -249,7 +249,7 @@ func (c *Client) CreateSite(ctx context.Context, data CreateSite) (*SiteResponse
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -263,7 +263,7 @@ func (c *Client) DeleteAccount(ctx context.Context, data DeleteAccount) error {
 	if err != nil {
 		return err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return err
 	}
@@ -277,7 +277,7 @@ func (c *Client) DeleteComment(ctx context.Context, data DeleteComment) (*Commen
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -291,7 +291,7 @@ func (c *Client) DeleteCommunity(ctx context.Context, data DeleteCommunity) (*Co
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -305,7 +305,7 @@ func (c *Client) DeleteCustomEmoji(ctx context.Context, data DeleteCustomEmoji) 
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -319,7 +319,7 @@ func (c *Client) DeletePost(ctx context.Context, data DeletePost) (*PostResponse
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -333,7 +333,7 @@ func (c *Client) DeletePrivateMessage(ctx context.Context, data DeletePrivateMes
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -347,7 +347,7 @@ func (c *Client) DistinguishComment(ctx context.Context, data DistinguishComment
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -361,7 +361,7 @@ func (c *Client) EditComment(ctx context.Context, data EditComment) (*CommentRes
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -375,7 +375,7 @@ func (c *Client) EditCommunity(ctx context.Context, data EditCommunity) (*Commun
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -389,7 +389,7 @@ func (c *Client) EditCustomEmoji(ctx context.Context, data EditCustomEmoji) (*Cu
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -403,7 +403,7 @@ func (c *Client) EditPost(ctx context.Context, data EditPost) (*PostResponse, er
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -417,7 +417,7 @@ func (c *Client) EditPrivateMessage(ctx context.Context, data EditPrivateMessage
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -431,7 +431,7 @@ func (c *Client) EditSite(ctx context.Context, data EditSite) (*SiteResponse, er
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -445,7 +445,7 @@ func (c *Client) FeaturePost(ctx context.Context, data FeaturePost) (*PostRespon
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -459,7 +459,7 @@ func (c *Client) FollowCommunity(ctx context.Context, data FollowCommunity) (*Co
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -473,7 +473,7 @@ func (c *Client) BannedPersons(ctx context.Context) (*BannedPersonsResponse, err
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -487,7 +487,7 @@ func (c *Client) Captcha(ctx context.Context) (*GetCaptchaResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -501,7 +501,7 @@ func (c *Client) Comment(ctx context.Context, data GetComment) (*CommentResponse
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -515,7 +515,7 @@ func (c *Client) Comments(ctx context.Context, data GetComments) (*GetCommentsRe
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -529,7 +529,7 @@ func (c *Client) Community(ctx context.Context, data GetCommunity) (*GetCommunit
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -543,7 +543,7 @@ func (c *Client) FederatedInstances(ctx context.Context) (*GetFederatedInstances
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -557,7 +557,7 @@ func (c *Client) Modlog(ctx context.Context, data GetModlog) (*GetModlogResponse
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -571,7 +571,7 @@ func (c *Client) PersonDetails(ctx context.Context, data GetPersonDetails) (*Get
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -585,7 +585,7 @@ func (c *Client) PersonMentions(ctx context.Context, data GetPersonMentions) (*G
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -599,7 +599,7 @@ func (c *Client) Post(ctx context.Context, data GetPost) (*GetPostResponse, erro
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -613,7 +613,7 @@ func (c *Client) Posts(ctx context.Context, data GetPosts) (*GetPostsResponse, e
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -627,7 +627,7 @@ func (c *Client) PrivateMessages(ctx context.Context, data GetPrivateMessages) (
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -641,7 +641,7 @@ func (c *Client) Replies(ctx context.Context, data GetReplies) (*GetRepliesRespo
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -655,7 +655,7 @@ func (c *Client) ReportCount(ctx context.Context, data GetReportCount) (*GetRepo
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -669,7 +669,7 @@ func (c *Client) Site(ctx context.Context) (*GetSiteResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -683,7 +683,7 @@ func (c *Client) SiteMetadata(ctx context.Context, data GetSiteMetadata) (*GetSi
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -697,7 +697,7 @@ func (c *Client) UnreadCount(ctx context.Context) (*GetUnreadCountResponse, erro
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -711,7 +711,7 @@ func (c *Client) UnreadRegistrationApplicationCount(ctx context.Context) (*GetUn
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -725,7 +725,7 @@ func (c *Client) HideCommunity(ctx context.Context, data HideCommunity) (*Commun
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -739,7 +739,7 @@ func (c *Client) LeaveAdmin(ctx context.Context) (*GetSiteResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -753,7 +753,7 @@ func (c *Client) LikeComment(ctx context.Context, data CreateCommentLike) (*Comm
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -767,7 +767,7 @@ func (c *Client) LikePost(ctx context.Context, data CreatePostLike) (*PostRespon
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -781,7 +781,7 @@ func (c *Client) CommentReports(ctx context.Context, data ListCommentReports) (*
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -795,7 +795,7 @@ func (c *Client) Communities(ctx context.Context, data ListCommunities) (*ListCo
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -809,7 +809,7 @@ func (c *Client) PostReports(ctx context.Context, data ListPostReports) (*ListPo
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -823,7 +823,7 @@ func (c *Client) PrivateMessageReports(ctx context.Context, data ListPrivateMess
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -837,7 +837,7 @@ func (c *Client) RegistrationApplications(ctx context.Context, data ListRegistra
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -851,7 +851,7 @@ func (c *Client) LockPost(ctx context.Context, data LockPost) (*PostResponse, er
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -865,7 +865,7 @@ func (c *Client) Login(ctx context.Context, data Login) (*LoginResponse, error) 
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -879,7 +879,7 @@ func (c *Client) MarkAllAsRead(ctx context.Context) (*GetRepliesResponse, error)
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -893,7 +893,7 @@ func (c *Client) MarkCommentReplyAsRead(ctx context.Context, data MarkCommentRep
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -907,7 +907,7 @@ func (c *Client) MarkPersonMentionAsRead(ctx context.Context, data MarkPersonMen
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -921,7 +921,7 @@ func (c *Client) MarkPostAsRead(ctx context.Context, data MarkPostAsRead) (*Post
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -935,7 +935,7 @@ func (c *Client) MarkPrivateMessageAsRead(ctx context.Context, data MarkPrivateM
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -949,7 +949,7 @@ func (c *Client) PasswordChangeAfterReset(ctx context.Context, data PasswordChan
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -963,7 +963,7 @@ func (c *Client) PasswordReset(ctx context.Context, data PasswordReset) error {
 	if err != nil {
 		return err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return err
 	}
@@ -977,7 +977,7 @@ func (c *Client) PurgeComment(ctx context.Context, data PurgeComment) (*PurgeIte
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -991,7 +991,7 @@ func (c *Client) PurgeCommunity(ctx context.Context, data PurgeCommunity) (*Purg
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1005,7 +1005,7 @@ func (c *Client) PurgePerson(ctx context.Context, data PurgePerson) (*PurgeItemR
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1019,7 +1019,7 @@ func (c *Client) PurgePost(ctx context.Context, data PurgePost) (*PurgeItemRespo
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1033,7 +1033,7 @@ func (c *Client) Register(ctx context.Context, data Register) (*LoginResponse, e
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1047,7 +1047,7 @@ func (c *Client) RemoveComment(ctx context.Context, data RemoveComment) (*Commen
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1061,7 +1061,7 @@ func (c *Client) RemoveCommunity(ctx context.Context, data RemoveCommunity) (*Co
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1075,7 +1075,7 @@ func (c *Client) RemovePost(ctx context.Context, data RemovePost) (*PostResponse
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1089,7 +1089,7 @@ func (c *Client) ResolveCommentReport(ctx context.Context, data ResolveCommentRe
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1103,7 +1103,7 @@ func (c *Client) ResolveObject(ctx context.Context, data ResolveObject) (*Resolv
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1117,7 +1117,7 @@ func (c *Client) ResolvePostReport(ctx context.Context, data ResolvePostReport) 
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1131,7 +1131,7 @@ func (c *Client) ResolvePrivateMessageReport(ctx context.Context, data ResolvePr
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1145,7 +1145,7 @@ func (c *Client) SaveComment(ctx context.Context, data SaveComment) (*CommentRes
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1159,7 +1159,7 @@ func (c *Client) SavePost(ctx context.Context, data SavePost) (*PostResponse, er
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1173,7 +1173,7 @@ func (c *Client) SaveUserSettings(ctx context.Context, data SaveUserSettings) (*
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1187,7 +1187,7 @@ func (c *Client) Search(ctx context.Context, data Search) (*SearchResponse, erro
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1201,7 +1201,7 @@ func (c *Client) TransferCommunity(ctx context.Context, data TransferCommunity) 
 	if err != nil {
 		return nil, err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return nil, err
 	}
@@ -1215,7 +1215,7 @@ func (c *Client) VerifyEmail(ctx context.Context, data VerifyEmail) error {
 	if err != nil {
 		return err
 	}
-	err = resError(res, resData.lemmyResponse)
+	err = resError(res, resData.Error)
 	if err != nil {
 		return err
 	}
