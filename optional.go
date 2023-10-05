@@ -39,14 +39,6 @@ func (o Optional[T]) IsValid() bool {
 	return o.value != nil
 }
 
-// MustValue returns the value in the optional. It panics if the value is nil.
-func (o Optional[T]) MustValue() T {
-	if o.value == nil {
-		panic("optional value is nil")
-	}
-	return *o.value
-}
-
 // Value returns the value in the optional.
 func (o Optional[T]) Value() (T, bool) {
 	if o.value != nil {
