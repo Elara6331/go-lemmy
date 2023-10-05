@@ -55,7 +55,7 @@ func (r *RoutesGenerator) Generate(routes []extractor.Route) error {
 			}
 
 			g.List(jen.Id("res"), jen.Err()).Op(":=").Id("c").Dot(funcName).Params(
-				jen.Id("ctx"), jen.Lit(r.Method), jen.Lit(r.Path), data, jen.Op("&").Id("resData"),
+				jen.Id("ctx"), jen.Lit(r.Method), jen.Lit(r.Path), data, jen.Id("resData"),
 			)
 			g.If(jen.Err().Op("!=").Nil()).BlockFunc(func(g *jen.Group) {
 				if returnName == "emptyResponse" {
