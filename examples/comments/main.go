@@ -41,7 +41,7 @@ func main() {
 	}
 
 	log.Printf(
-		"Created comment %d and replied to it with comment %d",
+		"Created comment %d and replied to it with comment %d!\n",
 		cr.CommentView.Comment.ID,
 		cr2.CommentView.Comment.ID,
 	)
