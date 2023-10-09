@@ -4,9 +4,9 @@
 
 Go bindings to the [Lemmy](https://join-lemmy.org) API, automatically generated from Lemmy's source code using the generator in [cmd/gen](cmd/gen).
 
-Examples:
+### Examples
 
-- HTTP: [examples/http](examples/http)
+Examples can be found in the [examples](examples) directory.
 
 ### How to generate
 
