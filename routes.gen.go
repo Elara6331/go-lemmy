@@ -257,17 +257,17 @@ func (c *Client) CreateSite(ctx context.Context, data CreateSite) (*SiteResponse
 }
 
 // Delete your account.
-func (c *Client) DeleteAccount(ctx context.Context, data DeleteAccount) error {
-	resData := &emptyResponse{}
+func (c *Client) DeleteAccount(ctx context.Context, data DeleteAccount) (*SuccessResponse, error) {
+	resData := &SuccessResponse{}
 	res, err := c.req(ctx, "POST", "/user/delete_account", data, resData)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	err = resError(res, resData.Error)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return resData, nil
 }
 
 // Delete a comment.
@@ -299,8 +299,8 @@ func (c *Client) DeleteCommunity(ctx context.Context, data DeleteCommunity) (*Co
 }
 
 // Delete a custom emoji
-func (c *Client) DeleteCustomEmoji(ctx context.Context, data DeleteCustomEmoji) (*DeleteCustomEmojiResponse, error) {
-	resData := &DeleteCustomEmojiResponse{}
+func (c *Client) DeleteCustomEmoji(ctx context.Context, data DeleteCustomEmoji) (*SuccessResponse, error) {
+	resData := &SuccessResponse{}
 	res, err := c.req(ctx, "POST", "/custom_emoji/delete", data, resData)
 	if err != nil {
 		return nil, err
@@ -436,6 +436,23 @@ func (c *Client) EditSite(ctx context.Context, data EditSite) (*SiteResponse, er
 		return nil, err
 	}
 	return resData, nil
+}
+
+/*
+Export a backup of your user settings, including your saved content,
+followed communities, and blocks.
+*/
+func (c *Client) ExportSettings(ctx context.Context) error {
+	resData := &emptyResponse{}
+	res, err := c.getReq(ctx, "GET", "/user/export_settings", nil, resData)
+	if err != nil {
+		return err
+	}
+	err = resError(res, resData.Error)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 // A moderator can feature a community post ( IE stick it to the top of a community ).
@@ -718,10 +735,24 @@ func (c *Client) UnreadRegistrationApplicationCount(ctx context.Context) (*GetUn
 	return resData, nil
 }
 
-// Hide a community from public view.
-func (c *Client) HideCommunity(ctx context.Context, data HideCommunity) (*CommunityResponse, error) {
-	resData := &CommunityResponse{}
+// Hide a community from public / "All" view. Admins only.
+func (c *Client) HideCommunity(ctx context.Context, data HideCommunity) (*SuccessResponse, error) {
+	resData := &SuccessResponse{}
 	res, err := c.req(ctx, "PUT", "/community/hide", data, resData)
+	if err != nil {
+		return nil, err
+	}
+	err = resError(res, resData.Error)
+	if err != nil {
+		return nil, err
+	}
+	return resData, nil
+}
+
+// Import a backup of your user settings.
+func (c *Client) ImportSettings(ctx context.Context) (*SuccessResponse, error) {
+	resData := &SuccessResponse{}
+	res, err := c.req(ctx, "POST", "/user/import_settings", nil, resData)
 	if err != nil {
 		return nil, err
 	}
@@ -800,6 +831,20 @@ func (c *Client) Communities(ctx context.Context, data ListCommunities) (*ListCo
 		return nil, err
 	}
 	return resData, nil
+}
+
+// List login tokens for your user
+func (c *Client) Logins(ctx context.Context) error {
+	resData := &emptyResponse{}
+	res, err := c.getReq(ctx, "GET", "/user/list_logins", nil, resData)
+	if err != nil {
+		return err
+	}
+	err = resError(res, resData.Error)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 // List post reports.
@@ -915,8 +960,8 @@ func (c *Client) MarkPersonMentionAsRead(ctx context.Context, data MarkPersonMen
 }
 
 // Mark a post as read.
-func (c *Client) MarkPostAsRead(ctx context.Context, data MarkPostAsRead) (*PostResponse, error) {
-	resData := &PostResponse{}
+func (c *Client) MarkPostAsRead(ctx context.Context, data MarkPostAsRead) (*SuccessResponse, error) {
+	resData := &SuccessResponse{}
 	res, err := c.req(ctx, "POST", "/post/mark_as_read", data, resData)
 	if err != nil {
 		return nil, err
@@ -943,8 +988,8 @@ func (c *Client) MarkPrivateMessageAsRead(ctx context.Context, data MarkPrivateM
 }
 
 // Change your password from an email / token based reset.
-func (c *Client) PasswordChangeAfterReset(ctx context.Context, data PasswordChangeAfterReset) (*LoginResponse, error) {
-	resData := &LoginResponse{}
+func (c *Client) PasswordChangeAfterReset(ctx context.Context, data PasswordChangeAfterReset) (*SuccessResponse, error) {
+	resData := &SuccessResponse{}
 	res, err := c.req(ctx, "POST", "/user/password_change", data, resData)
 	if err != nil {
 		return nil, err
@@ -957,22 +1002,22 @@ func (c *Client) PasswordChangeAfterReset(ctx context.Context, data PasswordChan
 }
 
 // Reset your password.
-func (c *Client) PasswordReset(ctx context.Context, data PasswordReset) error {
-	resData := &emptyResponse{}
+func (c *Client) PasswordReset(ctx context.Context, data PasswordReset) (*SuccessResponse, error) {
+	resData := &SuccessResponse{}
 	res, err := c.req(ctx, "POST", "/user/password_reset", data, resData)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	err = resError(res, resData.Error)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return resData, nil
 }
 
 // Purge / Delete a comment from the database.
-func (c *Client) PurgeComment(ctx context.Context, data PurgeComment) (*PurgeItemResponse, error) {
-	resData := &PurgeItemResponse{}
+func (c *Client) PurgeComment(ctx context.Context, data PurgeComment) (*SuccessResponse, error) {
+	resData := &SuccessResponse{}
 	res, err := c.req(ctx, "POST", "/admin/purge/comment", data, resData)
 	if err != nil {
 		return nil, err
@@ -985,8 +1030,8 @@ func (c *Client) PurgeComment(ctx context.Context, data PurgeComment) (*PurgeIte
 }
 
 // Purge / Delete a community from the database.
-func (c *Client) PurgeCommunity(ctx context.Context, data PurgeCommunity) (*PurgeItemResponse, error) {
-	resData := &PurgeItemResponse{}
+func (c *Client) PurgeCommunity(ctx context.Context, data PurgeCommunity) (*SuccessResponse, error) {
+	resData := &SuccessResponse{}
 	res, err := c.req(ctx, "POST", "/admin/purge/community", data, resData)
 	if err != nil {
 		return nil, err
@@ -999,8 +1044,8 @@ func (c *Client) PurgeCommunity(ctx context.Context, data PurgeCommunity) (*Purg
 }
 
 // Purge / Delete a person from the database.
-func (c *Client) PurgePerson(ctx context.Context, data PurgePerson) (*PurgeItemResponse, error) {
-	resData := &PurgeItemResponse{}
+func (c *Client) PurgePerson(ctx context.Context, data PurgePerson) (*SuccessResponse, error) {
+	resData := &SuccessResponse{}
 	res, err := c.req(ctx, "POST", "/admin/purge/person", data, resData)
 	if err != nil {
 		return nil, err
@@ -1013,8 +1058,8 @@ func (c *Client) PurgePerson(ctx context.Context, data PurgePerson) (*PurgeItemR
 }
 
 // Purge / Delete a post from the database.
-func (c *Client) PurgePost(ctx context.Context, data PurgePost) (*PurgeItemResponse, error) {
-	resData := &PurgeItemResponse{}
+func (c *Client) PurgePost(ctx context.Context, data PurgePost) (*SuccessResponse, error) {
+	resData := &SuccessResponse{}
 	res, err := c.req(ctx, "POST", "/admin/purge/post", data, resData)
 	if err != nil {
 		return nil, err
@@ -1167,8 +1212,8 @@ func (c *Client) SavePost(ctx context.Context, data SavePost) (*PostResponse, er
 }
 
 // Save your user settings.
-func (c *Client) SaveUserSettings(ctx context.Context, data SaveUserSettings) (*LoginResponse, error) {
-	resData := &LoginResponse{}
+func (c *Client) SaveUserSettings(ctx context.Context, data SaveUserSettings) (*SuccessResponse, error) {
+	resData := &SuccessResponse{}
 	res, err := c.req(ctx, "PUT", "/user/save_user_settings", data, resData)
 	if err != nil {
 		return nil, err
@@ -1208,16 +1253,30 @@ func (c *Client) TransferCommunity(ctx context.Context, data TransferCommunity) 
 	return resData, nil
 }
 
-// Verify your email
-func (c *Client) VerifyEmail(ctx context.Context, data VerifyEmail) error {
-	resData := &emptyResponse{}
-	res, err := c.req(ctx, "POST", "/user/verify_email", data, resData)
+// Returns an error message if your auth token is invalid
+func (c *Client) ValidateAuth(ctx context.Context) (*SuccessResponse, error) {
+	resData := &SuccessResponse{}
+	res, err := c.getReq(ctx, "GET", "/user/validate_auth", nil, resData)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	err = resError(res, resData.Error)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return resData, nil
+}
+
+// Verify your email
+func (c *Client) VerifyEmail(ctx context.Context, data VerifyEmail) (*SuccessResponse, error) {
+	resData := &SuccessResponse{}
+	res, err := c.req(ctx, "POST", "/user/verify_email", data, resData)
+	if err != nil {
+		return nil, err
+	}
+	err = resError(res, resData.Error)
+	if err != nil {
+		return nil, err
+	}
+	return resData, nil
 }
