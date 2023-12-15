@@ -442,17 +442,17 @@ func (c *Client) EditSite(ctx context.Context, data EditSite) (*SiteResponse, er
 Export a backup of your user settings, including your saved content,
 followed communities, and blocks.
 */
-func (c *Client) ExportSettings(ctx context.Context) error {
-	resData := &emptyResponse{}
-	res, err := c.getReq(ctx, "GET", "/user/export_settings", nil, resData)
+func (c *Client) ExportSettings(ctx context.Context) (map[string]any, error) {
+	resData := map[string]any{}
+	res, err := c.getReq(ctx, "GET", "/user/export_settings", nil, &resData)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	err = resError(res, resData.Error)
+	err = resError(res, NewOptionalNil[string]())
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return resData, nil
 }
 
 // A moderator can feature a community post ( IE stick it to the top of a community ).

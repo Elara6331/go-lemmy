@@ -31,9 +31,12 @@ func (r *RoutesGenerator) Generate(routes []extractor.Route) error {
 				g.Id("data").Id(r.ParamsName)
 			}
 		}).ParamsFunc(func(g *jen.Group) {
-			if r.ReturnName != "" {
+			if r.ReturnName == "map[string]any" {
+				g.Map(jen.String()).Any()
+			} else if r.ReturnName != "" {
 				g.Op("*").Id(r.ReturnName)
 			}
+
 			g.Error()
 		}).BlockFunc(func(g *jen.Group) {
 			data := jen.Id("data")
@@ -47,16 +50,29 @@ func (r *RoutesGenerator) Generate(routes []extractor.Route) error {
 				returnName = "emptyResponse"
 			}
 
-			g.Id("resData").Op(":=").Op("&").Id(returnName).Block()
+			if returnName == "map[string]any" {
+				g.Id("resData").Op(":=").Map(jen.String()).Any().Block()
+			} else {
+				g.Id("resData").Op(":=").Op("&").Id(returnName).Block()
+			}
 
 			funcName := "req"
 			if r.Method == "GET" {
 				funcName = "getReq"
 			}
 
-			g.List(jen.Id("res"), jen.Err()).Op(":=").Id("c").Dot(funcName).Params(
-				jen.Id("ctx"), jen.Lit(r.Method), jen.Lit(r.Path), data, jen.Id("resData"),
-			)
+			g.List(jen.Id("res"), jen.Err()).Op(":=").Id("c").Dot(funcName).ParamsFunc(func(g *jen.Group) {
+				g.Id("ctx")
+				g.Lit(r.Method)
+				g.Lit(r.Path)
+				g.Add(data)
+				
+				if returnName == "map[string]any" {
+					g.Op("&").Id("resData")
+				} else {
+					g.Id("resData")
+				}
+			})
 			g.If(jen.Err().Op("!=").Nil()).BlockFunc(func(g *jen.Group) {
 				if returnName == "emptyResponse" {
 					g.Return(jen.Err())
@@ -65,7 +81,12 @@ func (r *RoutesGenerator) Generate(routes []extractor.Route) error {
 				}
 			})
 
-			g.Err().Op("=").Id("resError").Params(jen.Id("res"), jen.Id("resData").Dot("Error"))
+			if r.ReturnName == "map[string]any" {
+				g.Err().Op("=").Id("resError").Params(jen.Id("res"), jen.Id("NewOptionalNil[string]").Params())
+			} else {
+				g.Err().Op("=").Id("resError").Params(jen.Id("res"), jen.Id("resData").Dot("Error"))
+			}
+			
 			g.If(jen.Err().Op("!=").Nil()).BlockFunc(func(g *jen.Group) {
 				if returnName == "emptyResponse" {
 					g.Return(jen.Err())

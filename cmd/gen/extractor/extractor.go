@@ -77,6 +77,11 @@ func (e *Extractor) Extract() ([]Route, []Struct) {
 		returnID := signature.Get("type.typeArguments.0.target").Int()
 		returnName := signature.Get("type.typeArguments.0.name").String()
 
+		anyType := false
+		if returnName == "any" {
+			anyType = true
+		}
+
 		// Get the referenced structs from the JSON document
 		e.getStructs([]int64{paramsID, returnID}, structs)
 
@@ -100,6 +105,10 @@ func (e *Extractor) Extract() ([]Route, []Struct) {
 			// Set paramsName to an empty string to signify that this route
 			// has no return value.
 			returnName = ""
+		}
+
+		if anyType {
+			returnName = "map[string]any"
 		}
 
 		out = append(out, Route{
