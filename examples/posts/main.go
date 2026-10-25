@@ -1,3 +1,4 @@
+// This example shows how to create posts
 package main
 
 import (

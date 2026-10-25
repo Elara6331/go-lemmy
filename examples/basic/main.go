@@ -1,3 +1,4 @@
+// This example is just a basic demonstration for the library
 package main
 
 import (
