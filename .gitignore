@@ -1,3 +1,5 @@
-/test
-/gen
-/lemmy/
+/lemmy-js-client/
+/posts
+/comments
+/basic
+/openapi.json

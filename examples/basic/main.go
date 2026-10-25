@@ -2,19 +2,14 @@ package main
 
 import (
 	"context"
-
-	"go.elara.ws/go-lemmy/v3"
+	
+	"go.elara.ws/go-lemmy/v4"
 )
 
 func main() {
 	ctx := context.Background()
 
-	c, err := lemmy.New("https://lemmy.ml")
-	if err != nil {
-		panic(err)
-	}
-
-	err = c.ClientLogin(ctx, lemmy.Login{
+	c, err := lemmy.NewWithLogin("https://lemmy.ml", &lemmy.Login{
 		UsernameOrEmail: "user@example.com",
 		Password:        `TestPwd`,
 	})
@@ -22,8 +17,8 @@ func main() {
 		panic(err)
 	}
 
-	_, err = c.SaveUserSettings(ctx, lemmy.SaveUserSettings{
-		BotAccount: lemmy.NewOptional(true),
+	_, err = c.SaveUserSettings(ctx, &lemmy.SaveUserSettings{
+		BotAccount: lemmy.NewOptBool(false),
 	})
 	if err != nil {
 		panic(err)

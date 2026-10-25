@@ -1,0 +1,7 @@
+generator:
+  ignore_not_implemented: ["discriminator inference"]
+  features:
+    disable:
+      - ogen/otel
+      - webhooks/server
+      - paths/server
