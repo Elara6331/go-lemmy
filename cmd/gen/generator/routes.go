@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/dave/jennifer/jen"
-	"go.elara.ws/go-lemmy/cmd/gen/extractor"
+	"go.elara.ws/go-lemmy/v3/cmd/gen/extractor"
 )
 
 type RoutesGenerator struct {

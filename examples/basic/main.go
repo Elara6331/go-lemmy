@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	"go.elara.ws/go-lemmy"
+	"go.elara.ws/go-lemmy/v3"
 )
 
 func main() {
