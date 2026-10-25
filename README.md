@@ -2,6 +2,10 @@
 
 Go bindings to the [Lemmy](https://join-lemmy.org) API, automatically generated from Lemmy's openapi spec using the generator in [cmd/gen](cmd/gen).
 
+### v4 Note
+
+The latest version of this library uses the Lemmy v4 API. That API version hasn't been fully released yet so most Lemmy instances are still using the v3 API. If you want to continue using the v3 API for compatibility with older Lemmy instances, import `go.elara.ws/go-lemmy/v3`. Otherwise, import `go.elara.ws/go-lemmy/v4`. Note that these versions purely track the current Lemmy API version, so breaking changes can occur if the OpenAPI spec changes in such a way to cause them.
+
 ### Examples
 
 Examples can be found in the [examples](examples) directory.
