@@ -4,13 +4,13 @@ package lemmy
 
 // AdminListMediaParams is parameters of AdminListMedia operation.
 type AdminListMediaParams struct {
-	Limit      OptFloat64          `json:",omitempty,omitzero"`
+	Limit      OptInt              `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor `json:",omitempty,omitzero"`
 }
 
 // AdminListUsersParams is parameters of AdminListUsers operation.
 type AdminListUsersParams struct {
-	Limit      OptFloat64           `json:",omitempty,omitzero"`
+	Limit      OptInt               `json:",omitempty,omitzero"`
 	Sort       OptLocalUserSortType `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor  `json:",omitempty,omitzero"`
 	BannedOnly OptBool              `json:",omitempty,omitzero"`
@@ -30,11 +30,11 @@ type GetCommentsParams struct {
 	CreatorID       OptPersonId         `json:",omitempty,omitzero"`
 	CommunityName   OptString           `json:",omitempty,omitzero"`
 	CommunityID     OptCommunityId      `json:",omitempty,omitzero"`
-	Limit           OptFloat64          `json:",omitempty,omitzero"`
+	Limit           OptInt              `json:",omitempty,omitzero"`
 	PageCursor      OptPaginationCursor `json:",omitempty,omitzero"`
-	MaxDepth        OptFloat64          `json:",omitempty,omitzero"`
+	MaxDepth        OptInt              `json:",omitempty,omitzero"`
 	// Filter to within a given time range, in seconds. IE 60 would give results for the past minute.
-	TimeRangeSeconds OptFloat64         `json:",omitempty,omitzero"`
+	TimeRangeSeconds OptInt             `json:",omitempty,omitzero"`
 	Sort             OptCommentSortType `json:",omitempty,omitzero"`
 	Type             OptListingType     `json:",omitempty,omitzero"`
 }
@@ -48,11 +48,11 @@ type GetCommentsSlimParams struct {
 	CreatorID       OptPersonId         `json:",omitempty,omitzero"`
 	CommunityName   OptString           `json:",omitempty,omitzero"`
 	CommunityID     OptCommunityId      `json:",omitempty,omitzero"`
-	Limit           OptFloat64          `json:",omitempty,omitzero"`
+	Limit           OptInt              `json:",omitempty,omitzero"`
 	PageCursor      OptPaginationCursor `json:",omitempty,omitzero"`
-	MaxDepth        OptFloat64          `json:",omitempty,omitzero"`
+	MaxDepth        OptInt              `json:",omitempty,omitzero"`
 	// Filter to within a given time range, in seconds. IE 60 would give results for the past minute.
-	TimeRangeSeconds OptFloat64         `json:",omitempty,omitzero"`
+	TimeRangeSeconds OptInt             `json:",omitempty,omitzero"`
 	Sort             OptCommentSortType `json:",omitempty,omitzero"`
 	Type             OptListingType     `json:",omitempty,omitzero"`
 }
@@ -66,7 +66,7 @@ type GetCommunityParams struct {
 
 // GetFederatedInstancesParams is parameters of GetFederatedInstances operation.
 type GetFederatedInstancesParams struct {
-	Limit        OptFloat64          `json:",omitempty,omitzero"`
+	Limit        OptInt              `json:",omitempty,omitzero"`
 	PageCursor   OptPaginationCursor `json:",omitempty,omitzero"`
 	Kind         GetFederatedInstancesKind
 	DomainFilter OptString `json:",omitempty,omitzero"`
@@ -74,7 +74,7 @@ type GetFederatedInstancesParams struct {
 
 // GetModlogParams is parameters of GetModlog operation.
 type GetModlogParams struct {
-	Limit      OptFloat64          `json:",omitempty,omitzero"`
+	Limit      OptInt              `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor `json:",omitempty,omitzero"`
 	// Return only child entries triggered by this parent modlog action.
 	BulkActionParentID OptModlogId `json:",omitempty,omitzero"`
@@ -116,7 +116,7 @@ type GetPostParams struct {
 
 // GetPostsParams is parameters of GetPosts operation.
 type GetPostsParams struct {
-	Limit      OptFloat64          `json:",omitempty,omitzero"`
+	Limit      OptInt              `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor `json:",omitempty,omitzero"`
 	// Only show posts which have this tag.
 	TagID           OptCommunityTagId `json:",omitempty,omitzero"`
@@ -142,7 +142,7 @@ type GetPostsParams struct {
 	CommunityID        OptCommunityId      `json:",omitempty,omitzero"`
 	// Filter to within a given time range, in seconds. IE 60 would give results for the past minute. Use
 	// Zero to override the local_site and local_user time_range.
-	TimeRangeSeconds OptFloat64      `json:",omitempty,omitzero"`
+	TimeRangeSeconds OptInt          `json:",omitempty,omitzero"`
 	Sort             OptPostSortType `json:",omitempty,omitzero"`
 	Type             OptListingType  `json:",omitempty,omitzero"`
 }
@@ -165,28 +165,28 @@ type GetSiteMetadataParams struct {
 
 // ListCommentLikesParams is parameters of ListCommentLikes operation.
 type ListCommentLikesParams struct {
-	Limit      OptFloat64          `json:",omitempty,omitzero"`
+	Limit      OptInt              `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor `json:",omitempty,omitzero"`
 	CommentID  CommentId
 }
 
 // ListCommunitiesParams is parameters of ListCommunities operation.
 type ListCommunitiesParams struct {
-	Limit            OptFloat64          `json:",omitempty,omitzero"`
+	Limit            OptInt              `json:",omitempty,omitzero"`
 	PageCursor       OptPaginationCursor `json:",omitempty,omitzero"`
 	SearchTitleOnly  OptBool             `json:",omitempty,omitzero"`
 	SearchTerm       OptString           `json:",omitempty,omitzero"`
 	MultiCommunityID OptMultiCommunityId `json:",omitempty,omitzero"`
 	ShowNsfw         OptBool             `json:",omitempty,omitzero"`
 	// Filter to within a given time range, in seconds. IE 60 would give results for the past minute.
-	TimeRangeSeconds OptFloat64           `json:",omitempty,omitzero"`
+	TimeRangeSeconds OptInt               `json:",omitempty,omitzero"`
 	Sort             OptCommunitySortType `json:",omitempty,omitzero"`
 	Type             OptListingType       `json:",omitempty,omitzero"`
 }
 
 // ListCommunityPendingFollowsParams is parameters of ListCommunityPendingFollows operation.
 type ListCommunityPendingFollowsParams struct {
-	Limit          OptFloat64          `json:",omitempty,omitzero"`
+	Limit          OptInt              `json:",omitempty,omitzero"`
 	PageCursor     OptPaginationCursor `json:",omitempty,omitzero"`
 	AllCommunities OptBool             `json:",omitempty,omitzero"`
 	// Only shows the unapproved applications.
@@ -200,18 +200,18 @@ type ListCustomEmojisParams struct {
 
 // ListMediaParams is parameters of ListMedia operation.
 type ListMediaParams struct {
-	Limit      OptFloat64          `json:",omitempty,omitzero"`
+	Limit      OptInt              `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor `json:",omitempty,omitzero"`
 }
 
 // ListMultiCommunitiesParams is parameters of ListMultiCommunities operation.
 type ListMultiCommunitiesParams struct {
-	Limit           OptFloat64          `json:",omitempty,omitzero"`
+	Limit           OptInt              `json:",omitempty,omitzero"`
 	PageCursor      OptPaginationCursor `json:",omitempty,omitzero"`
 	SearchTitleOnly OptBool             `json:",omitempty,omitzero"`
 	SearchTerm      OptString           `json:",omitempty,omitzero"`
 	// Filter to within a given time range, in seconds. IE 60 would give results for the past minute.
-	TimeRangeSeconds OptFloat64                   `json:",omitempty,omitzero"`
+	TimeRangeSeconds OptInt                       `json:",omitempty,omitzero"`
 	CreatorID        OptPersonId                  `json:",omitempty,omitzero"`
 	Sort             OptMultiCommunitySortType    `json:",omitempty,omitzero"`
 	Type             OptMultiCommunityListingType `json:",omitempty,omitzero"`
@@ -219,7 +219,7 @@ type ListMultiCommunitiesParams struct {
 
 // ListNotificationsParams is parameters of ListNotifications operation.
 type ListNotificationsParams struct {
-	Limit      OptFloat64          `json:",omitempty,omitzero"`
+	Limit      OptInt              `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor `json:",omitempty,omitzero"`
 	CreatorID  OptPersonId         `json:",omitempty,omitzero"`
 	UnreadOnly OptBool             `json:",omitempty,omitzero"`
@@ -227,7 +227,7 @@ type ListNotificationsParams struct {
 
 // ListPersonContentParams is parameters of ListPersonContent operation.
 type ListPersonContentParams struct {
-	Limit         OptFloat64          `json:",omitempty,omitzero"`
+	Limit         OptInt              `json:",omitempty,omitzero"`
 	PageCursor    OptPaginationCursor `json:",omitempty,omitzero"`
 	CommunityName OptString           `json:",omitempty,omitzero"`
 	CommunityID   OptCommunityId      `json:",omitempty,omitzero"`
@@ -239,13 +239,13 @@ type ListPersonContentParams struct {
 
 // ListPersonHiddenParams is parameters of ListPersonHidden operation.
 type ListPersonHiddenParams struct {
-	Limit      OptFloat64          `json:",omitempty,omitzero"`
+	Limit      OptInt              `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor `json:",omitempty,omitzero"`
 }
 
 // ListPersonLikedParams is parameters of ListPersonLiked operation.
 type ListPersonLikedParams struct {
-	Limit      OptFloat64           `json:",omitempty,omitzero"`
+	Limit      OptInt               `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor  `json:",omitempty,omitzero"`
 	LikeType   OptLikeType          `json:",omitempty,omitzero"`
 	Type       OptPersonContentType `json:",omitempty,omitzero"`
@@ -253,13 +253,13 @@ type ListPersonLikedParams struct {
 
 // ListPersonReadParams is parameters of ListPersonRead operation.
 type ListPersonReadParams struct {
-	Limit      OptFloat64          `json:",omitempty,omitzero"`
+	Limit      OptInt              `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor `json:",omitempty,omitzero"`
 }
 
 // ListPersonSavedParams is parameters of ListPersonSaved operation.
 type ListPersonSavedParams struct {
-	Limit      OptFloat64           `json:",omitempty,omitzero"`
+	Limit      OptInt               `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor  `json:",omitempty,omitzero"`
 	SearchTerm OptString            `json:",omitempty,omitzero"`
 	Type       OptPersonContentType `json:",omitempty,omitzero"`
@@ -267,7 +267,7 @@ type ListPersonSavedParams struct {
 
 // ListPersonsParams is parameters of ListPersons operation.
 type ListPersonsParams struct {
-	Limit           OptFloat64           `json:",omitempty,omitzero"`
+	Limit           OptInt               `json:",omitempty,omitzero"`
 	PageCursor      OptPaginationCursor  `json:",omitempty,omitzero"`
 	CommunityID     OptCommunityId       `json:",omitempty,omitzero"`
 	SearchTitleOnly OptBool              `json:",omitempty,omitzero"`
@@ -278,14 +278,14 @@ type ListPersonsParams struct {
 
 // ListPostLikesParams is parameters of ListPostLikes operation.
 type ListPostLikesParams struct {
-	Limit      OptFloat64          `json:",omitempty,omitzero"`
+	Limit      OptInt              `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor `json:",omitempty,omitzero"`
 	PostID     PostId
 }
 
 // ListRegistrationApplicationsParams is parameters of ListRegistrationApplications operation.
 type ListRegistrationApplicationsParams struct {
-	Limit      OptFloat64          `json:",omitempty,omitzero"`
+	Limit      OptInt              `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor `json:",omitempty,omitzero"`
 	// Only shows the unread applications (IE those without an admin actor).
 	UnreadOnly OptBool `json:",omitempty,omitzero"`
@@ -293,7 +293,7 @@ type ListRegistrationApplicationsParams struct {
 
 // ListRegistrationInvitationsParams is parameters of ListRegistrationInvitations operation.
 type ListRegistrationInvitationsParams struct {
-	Limit      OptFloat64          `json:",omitempty,omitzero"`
+	Limit      OptInt              `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor `json:",omitempty,omitzero"`
 }
 
@@ -303,7 +303,7 @@ type ListReportsParams struct {
 	MyReportsOnly OptBool `json:",omitempty,omitzero"`
 	// Only for admins: also show reports with `violates_instance_rules=false`.
 	ShowCommunityRuleViolations OptBool             `json:",omitempty,omitzero"`
-	Limit                       OptFloat64          `json:",omitempty,omitzero"`
+	Limit                       OptInt              `json:",omitempty,omitzero"`
 	PageCursor                  OptPaginationCursor `json:",omitempty,omitzero"`
 	// If this is None, then the default sort is Old / First In First Out if viewing unresolved reports,
 	// but new if viewing all reports. Setting this overrides the default.
@@ -320,7 +320,7 @@ type ListReportsParams struct {
 
 // ListTaglinesParams is parameters of ListTaglines operation.
 type ListTaglinesParams struct {
-	Limit      OptFloat64          `json:",omitempty,omitzero"`
+	Limit      OptInt              `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor `json:",omitempty,omitzero"`
 }
 
@@ -332,7 +332,7 @@ type ResolveObjectParams struct {
 
 // SearchParams is parameters of Search operation.
 type SearchParams struct {
-	Limit      OptFloat64          `json:",omitempty,omitzero"`
+	Limit      OptInt              `json:",omitempty,omitzero"`
 	PageCursor OptPaginationCursor `json:",omitempty,omitzero"`
 	// If true, then show the nsfw posts (even if your user setting is to hide them).
 	ShowNsfw    OptBool        `json:",omitempty,omitzero"`
@@ -340,7 +340,7 @@ type SearchParams struct {
 	TitleOnly   OptBool        `json:",omitempty,omitzero"`
 	ListingType OptListingType `json:",omitempty,omitzero"`
 	// Filter to within a given time range, in seconds. IE 60 would give results for the past minute.
-	TimeRangeSeconds OptFloat64     `json:",omitempty,omitzero"`
+	TimeRangeSeconds OptInt         `json:",omitempty,omitzero"`
 	Type             OptSearchType  `json:",omitempty,omitzero"`
 	CreatorUsername  OptString      `json:",omitempty,omitzero"`
 	CreatorID        OptPersonId    `json:",omitempty,omitzero"`

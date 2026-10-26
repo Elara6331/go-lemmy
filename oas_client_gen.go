@@ -1427,7 +1427,7 @@ func (c *Client) sendAdminListMedia(ctx context.Context, params AdminListMediaPa
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -1543,7 +1543,7 @@ func (c *Client) sendAdminListUsers(ctx context.Context, params AdminListUsersPa
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -6504,8 +6504,8 @@ func (c *Client) sendGetComment(ctx context.Context, params GetCommentParams) (r
 		}
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if unwrapped := float64(params.ID); true {
-				return e.EncodeValue(conv.Float64ToString(unwrapped))
+			if unwrapped := int(params.ID); true {
+				return e.EncodeValue(conv.IntToString(unwrapped))
 			}
 			return nil
 		}); err != nil {
@@ -6619,8 +6619,8 @@ func (c *Client) sendGetComments(ctx context.Context, params GetCommentsParams) 
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.ParentID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -6639,8 +6639,8 @@ func (c *Client) sendGetComments(ctx context.Context, params GetCommentsParams) 
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.PostID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -6676,8 +6676,8 @@ func (c *Client) sendGetComments(ctx context.Context, params GetCommentsParams) 
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CreatorID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -6713,8 +6713,8 @@ func (c *Client) sendGetComments(ctx context.Context, params GetCommentsParams) 
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CommunityID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -6733,7 +6733,7 @@ func (c *Client) sendGetComments(ctx context.Context, params GetCommentsParams) 
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -6770,7 +6770,7 @@ func (c *Client) sendGetComments(ctx context.Context, params GetCommentsParams) 
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.MaxDepth.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -6787,7 +6787,7 @@ func (c *Client) sendGetComments(ctx context.Context, params GetCommentsParams) 
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.TimeRangeSeconds.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -6935,8 +6935,8 @@ func (c *Client) sendGetCommentsSlim(ctx context.Context, params GetCommentsSlim
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.ParentID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -6955,8 +6955,8 @@ func (c *Client) sendGetCommentsSlim(ctx context.Context, params GetCommentsSlim
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.PostID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -6992,8 +6992,8 @@ func (c *Client) sendGetCommentsSlim(ctx context.Context, params GetCommentsSlim
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CreatorID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -7029,8 +7029,8 @@ func (c *Client) sendGetCommentsSlim(ctx context.Context, params GetCommentsSlim
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CommunityID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -7049,7 +7049,7 @@ func (c *Client) sendGetCommentsSlim(ctx context.Context, params GetCommentsSlim
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -7086,7 +7086,7 @@ func (c *Client) sendGetCommentsSlim(ctx context.Context, params GetCommentsSlim
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.MaxDepth.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -7103,7 +7103,7 @@ func (c *Client) sendGetCommentsSlim(ctx context.Context, params GetCommentsSlim
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.TimeRangeSeconds.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -7251,8 +7251,8 @@ func (c *Client) sendGetCommunity(ctx context.Context, params GetCommunityParams
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.ID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -7351,7 +7351,7 @@ func (c *Client) sendGetFederatedInstances(ctx context.Context, params GetFedera
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -7465,7 +7465,7 @@ func (c *Client) sendGetModlog(ctx context.Context, params GetModlogParams) (res
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -7502,8 +7502,8 @@ func (c *Client) sendGetModlog(ctx context.Context, params GetModlogParams) (res
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.BulkActionParentID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -7539,8 +7539,8 @@ func (c *Client) sendGetModlog(ctx context.Context, params GetModlogParams) (res
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CommentID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -7559,8 +7559,8 @@ func (c *Client) sendGetModlog(ctx context.Context, params GetModlogParams) (res
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.PostID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -7579,8 +7579,8 @@ func (c *Client) sendGetModlog(ctx context.Context, params GetModlogParams) (res
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.OtherPersonID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -7616,8 +7616,8 @@ func (c *Client) sendGetModlog(ctx context.Context, params GetModlogParams) (res
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CommunityID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -7636,8 +7636,8 @@ func (c *Client) sendGetModlog(ctx context.Context, params GetModlogParams) (res
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.ModPersonID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -7751,8 +7751,8 @@ func (c *Client) sendGetMultiCommunity(ctx context.Context, params GetMultiCommu
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.ID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -7910,8 +7910,8 @@ func (c *Client) sendGetPersonDetails(ctx context.Context, params GetPersonDetai
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.PersonID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -8010,8 +8010,8 @@ func (c *Client) sendGetPost(ctx context.Context, params GetPostParams) (res *Ge
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CommentID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -8030,8 +8030,8 @@ func (c *Client) sendGetPost(ctx context.Context, params GetPostParams) (res *Ge
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.ID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -8130,7 +8130,7 @@ func (c *Client) sendGetPosts(ctx context.Context, params GetPostsParams) (res *
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -8167,8 +8167,8 @@ func (c *Client) sendGetPosts(ctx context.Context, params GetPostsParams) (res *
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.TagID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -8357,8 +8357,8 @@ func (c *Client) sendGetPosts(ctx context.Context, params GetPostsParams) (res *
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.MultiCommunityID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -8394,8 +8394,8 @@ func (c *Client) sendGetPosts(ctx context.Context, params GetPostsParams) (res *
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CreatorID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -8431,8 +8431,8 @@ func (c *Client) sendGetPosts(ctx context.Context, params GetPostsParams) (res *
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CommunityID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -8451,7 +8451,7 @@ func (c *Client) sendGetPosts(ctx context.Context, params GetPostsParams) (res *
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.TimeRangeSeconds.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -8695,8 +8695,8 @@ func (c *Client) sendGetRegistrationApplication(ctx context.Context, params GetR
 		}
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if unwrapped := float64(params.PersonID); true {
-				return e.EncodeValue(conv.Float64ToString(unwrapped))
+			if unwrapped := int(params.PersonID); true {
+				return e.EncodeValue(conv.IntToString(unwrapped))
 			}
 			return nil
 		}); err != nil {
@@ -9552,7 +9552,7 @@ func (c *Client) sendListCommentLikes(ctx context.Context, params ListCommentLik
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -9588,8 +9588,8 @@ func (c *Client) sendListCommentLikes(ctx context.Context, params ListCommentLik
 		}
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if unwrapped := float64(params.CommentID); true {
-				return e.EncodeValue(conv.Float64ToString(unwrapped))
+			if unwrapped := int(params.CommentID); true {
+				return e.EncodeValue(conv.IntToString(unwrapped))
 			}
 			return nil
 		}); err != nil {
@@ -9685,7 +9685,7 @@ func (c *Client) sendListCommunities(ctx context.Context, params ListCommunities
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -9756,8 +9756,8 @@ func (c *Client) sendListCommunities(ctx context.Context, params ListCommunities
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.MultiCommunityID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -9793,7 +9793,7 @@ func (c *Client) sendListCommunities(ctx context.Context, params ListCommunities
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.TimeRangeSeconds.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -9924,7 +9924,7 @@ func (c *Client) sendListCommunityPendingFollows(ctx context.Context, params Lis
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -10247,7 +10247,7 @@ func (c *Client) sendListMedia(ctx context.Context, params ListMediaParams) (res
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -10361,7 +10361,7 @@ func (c *Client) sendListMultiCommunities(ctx context.Context, params ListMultiC
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -10432,7 +10432,7 @@ func (c *Client) sendListMultiCommunities(ctx context.Context, params ListMultiC
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.TimeRangeSeconds.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -10449,8 +10449,8 @@ func (c *Client) sendListMultiCommunities(ctx context.Context, params ListMultiC
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CreatorID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -10549,7 +10549,7 @@ func (c *Client) sendListNotifications(ctx context.Context, params ListNotificat
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -10586,8 +10586,8 @@ func (c *Client) sendListNotifications(ctx context.Context, params ListNotificat
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CreatorID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -10702,7 +10702,7 @@ func (c *Client) sendListPersonContent(ctx context.Context, params ListPersonCon
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -10756,8 +10756,8 @@ func (c *Client) sendListPersonContent(ctx context.Context, params ListPersonCon
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CommunityID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -10793,8 +10793,8 @@ func (c *Client) sendListPersonContent(ctx context.Context, params ListPersonCon
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.PersonID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -10910,7 +10910,7 @@ func (c *Client) sendListPersonHidden(ctx context.Context, params ListPersonHidd
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -11026,7 +11026,7 @@ func (c *Client) sendListPersonLiked(ctx context.Context, params ListPersonLiked
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -11176,7 +11176,7 @@ func (c *Client) sendListPersonRead(ctx context.Context, params ListPersonReadPa
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -11292,7 +11292,7 @@ func (c *Client) sendListPersonSaved(ctx context.Context, params ListPersonSaved
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -11442,7 +11442,7 @@ func (c *Client) sendListPersons(ctx context.Context, params ListPersonsParams) 
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -11479,8 +11479,8 @@ func (c *Client) sendListPersons(ctx context.Context, params ListPersonsParams) 
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CommunityID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -11647,7 +11647,7 @@ func (c *Client) sendListPostLikes(ctx context.Context, params ListPostLikesPara
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -11683,8 +11683,8 @@ func (c *Client) sendListPostLikes(ctx context.Context, params ListPostLikesPara
 		}
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if unwrapped := float64(params.PostID); true {
-				return e.EncodeValue(conv.Float64ToString(unwrapped))
+			if unwrapped := int(params.PostID); true {
+				return e.EncodeValue(conv.IntToString(unwrapped))
 			}
 			return nil
 		}); err != nil {
@@ -11780,7 +11780,7 @@ func (c *Client) sendListRegistrationApplications(ctx context.Context, params Li
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -11913,7 +11913,7 @@ func (c *Client) sendListRegistrationInvitations(ctx context.Context, params Lis
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -12063,7 +12063,7 @@ func (c *Client) sendListReports(ctx context.Context, params ListReportsParams) 
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -12117,8 +12117,8 @@ func (c *Client) sendListReports(ctx context.Context, params ListReportsParams) 
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CommunityID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -12137,8 +12137,8 @@ func (c *Client) sendListReports(ctx context.Context, params ListReportsParams) 
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.PostID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -12270,7 +12270,7 @@ func (c *Client) sendListTaglines(ctx context.Context, params ListTaglinesParams
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -14707,7 +14707,7 @@ func (c *Client) sendSearch(ctx context.Context, params SearchParams) (res *Sear
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.Limit.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -14812,7 +14812,7 @@ func (c *Client) sendSearch(ctx context.Context, params SearchParams) (res *Sear
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.TimeRangeSeconds.Get(); ok {
-				return e.EncodeValue(conv.Float64ToString(val))
+				return e.EncodeValue(conv.IntToString(val))
 			}
 			return nil
 		}); err != nil {
@@ -14863,8 +14863,8 @@ func (c *Client) sendSearch(ctx context.Context, params SearchParams) (res *Sear
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CreatorID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -14900,8 +14900,8 @@ func (c *Client) sendSearch(ctx context.Context, params SearchParams) (res *Sear
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
 			if val, ok := params.CommunityID.Get(); ok {
-				if unwrapped := float64(val); true {
-					return e.EncodeValue(conv.Float64ToString(unwrapped))
+				if unwrapped := int(val); true {
+					return e.EncodeValue(conv.IntToString(unwrapped))
 				}
 				return nil
 			}
@@ -15092,8 +15092,8 @@ func (c *Client) sendUploadCommunityBanner(ctx context.Context, request *UploadC
 		}
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if unwrapped := float64(params.ID); true {
-				return e.EncodeValue(conv.Float64ToString(unwrapped))
+			if unwrapped := int(params.ID); true {
+				return e.EncodeValue(conv.IntToString(unwrapped))
 			}
 			return nil
 		}); err != nil {
@@ -15191,8 +15191,8 @@ func (c *Client) sendUploadCommunityIcon(ctx context.Context, request *UploadCom
 		}
 
 		if err := q.EncodeParam(cfg, func(e uri.Encoder) error {
-			if unwrapped := float64(params.ID); true {
-				return e.EncodeValue(conv.Float64ToString(unwrapped))
+			if unwrapped := int(params.ID); true {
+				return e.EncodeValue(conv.IntToString(unwrapped))
 			}
 			return nil
 		}); err != nil {

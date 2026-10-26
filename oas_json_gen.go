@@ -13,9 +13,9 @@ import (
 
 // Encode encodes ActivityId as json.
 func (s ActivityId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes ActivityId from json.
@@ -23,10 +23,10 @@ func (s *ActivityId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode ActivityId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -2552,27 +2552,27 @@ func (s *Comment) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("unresolved_report_count")
-		e.Float64(s.UnresolvedReportCount)
+		e.Int(s.UnresolvedReportCount)
 	}
 	{
 		e.FieldStart("report_count")
-		e.Float64(s.ReportCount)
+		e.Int(s.ReportCount)
 	}
 	{
 		e.FieldStart("child_count")
-		e.Float64(s.ChildCount)
+		e.Int(s.ChildCount)
 	}
 	{
 		e.FieldStart("downvotes")
-		e.Float64(s.Downvotes)
+		e.Int(s.Downvotes)
 	}
 	{
 		e.FieldStart("upvotes")
-		e.Float64(s.Upvotes)
+		e.Int(s.Upvotes)
 	}
 	{
 		e.FieldStart("score")
-		e.Float64(s.Score)
+		e.Int(s.Score)
 	}
 	{
 		e.FieldStart("language_id")
@@ -2690,8 +2690,8 @@ func (s *Comment) Decode(d *jx.Decoder) error {
 		case "unresolved_report_count":
 			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
-				v, err := d.Float64()
-				s.UnresolvedReportCount = float64(v)
+				v, err := d.Int()
+				s.UnresolvedReportCount = int(v)
 				if err != nil {
 					return err
 				}
@@ -2702,8 +2702,8 @@ func (s *Comment) Decode(d *jx.Decoder) error {
 		case "report_count":
 			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
-				v, err := d.Float64()
-				s.ReportCount = float64(v)
+				v, err := d.Int()
+				s.ReportCount = int(v)
 				if err != nil {
 					return err
 				}
@@ -2714,8 +2714,8 @@ func (s *Comment) Decode(d *jx.Decoder) error {
 		case "child_count":
 			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
-				v, err := d.Float64()
-				s.ChildCount = float64(v)
+				v, err := d.Int()
+				s.ChildCount = int(v)
 				if err != nil {
 					return err
 				}
@@ -2726,8 +2726,8 @@ func (s *Comment) Decode(d *jx.Decoder) error {
 		case "downvotes":
 			requiredBitSet[0] |= 1 << 5
 			if err := func() error {
-				v, err := d.Float64()
-				s.Downvotes = float64(v)
+				v, err := d.Int()
+				s.Downvotes = int(v)
 				if err != nil {
 					return err
 				}
@@ -2738,8 +2738,8 @@ func (s *Comment) Decode(d *jx.Decoder) error {
 		case "upvotes":
 			requiredBitSet[0] |= 1 << 6
 			if err := func() error {
-				v, err := d.Float64()
-				s.Upvotes = float64(v)
+				v, err := d.Int()
+				s.Upvotes = int(v)
 				if err != nil {
 					return err
 				}
@@ -2750,8 +2750,8 @@ func (s *Comment) Decode(d *jx.Decoder) error {
 		case "score":
 			requiredBitSet[0] |= 1 << 7
 			if err := func() error {
-				v, err := d.Float64()
-				s.Score = float64(v)
+				v, err := d.Int()
+				s.Score = int(v)
 				if err != nil {
 					return err
 				}
@@ -3060,9 +3060,9 @@ func (s *CommentActions) UnmarshalJSON(data []byte) error {
 
 // Encode encodes CommentId as json.
 func (s CommentId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes CommentId from json.
@@ -3070,10 +3070,10 @@ func (s *CommentId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode CommentId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -3361,9 +3361,9 @@ func (s *CommentReport) UnmarshalJSON(data []byte) error {
 
 // Encode encodes CommentReportId as json.
 func (s CommentReportId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes CommentReportId from json.
@@ -3371,10 +3371,10 @@ func (s *CommentReportId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode CommentReportId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -4558,43 +4558,43 @@ func (s *Community) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("unresolved_report_count")
-		e.Float64(s.UnresolvedReportCount)
+		e.Int(s.UnresolvedReportCount)
 	}
 	{
 		e.FieldStart("report_count")
-		e.Float64(s.ReportCount)
+		e.Int(s.ReportCount)
 	}
 	{
 		e.FieldStart("subscribers_local")
-		e.Float64(s.SubscribersLocal)
+		e.Int(s.SubscribersLocal)
 	}
 	{
 		e.FieldStart("users_active_half_year")
-		e.Float64(s.UsersActiveHalfYear)
+		e.Int(s.UsersActiveHalfYear)
 	}
 	{
 		e.FieldStart("users_active_month")
-		e.Float64(s.UsersActiveMonth)
+		e.Int(s.UsersActiveMonth)
 	}
 	{
 		e.FieldStart("users_active_week")
-		e.Float64(s.UsersActiveWeek)
+		e.Int(s.UsersActiveWeek)
 	}
 	{
 		e.FieldStart("users_active_day")
-		e.Float64(s.UsersActiveDay)
+		e.Int(s.UsersActiveDay)
 	}
 	{
 		e.FieldStart("comments")
-		e.Float64(s.Comments)
+		e.Int(s.Comments)
 	}
 	{
 		e.FieldStart("posts")
-		e.Float64(s.Posts)
+		e.Int(s.Posts)
 	}
 	{
 		e.FieldStart("subscribers")
-		e.Float64(s.Subscribers)
+		e.Int(s.Subscribers)
 	}
 	{
 		if s.Summary.Set {
@@ -4738,8 +4738,8 @@ func (s *Community) Decode(d *jx.Decoder) error {
 		case "unresolved_report_count":
 			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
-				v, err := d.Float64()
-				s.UnresolvedReportCount = float64(v)
+				v, err := d.Int()
+				s.UnresolvedReportCount = int(v)
 				if err != nil {
 					return err
 				}
@@ -4750,8 +4750,8 @@ func (s *Community) Decode(d *jx.Decoder) error {
 		case "report_count":
 			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
-				v, err := d.Float64()
-				s.ReportCount = float64(v)
+				v, err := d.Int()
+				s.ReportCount = int(v)
 				if err != nil {
 					return err
 				}
@@ -4762,8 +4762,8 @@ func (s *Community) Decode(d *jx.Decoder) error {
 		case "subscribers_local":
 			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
-				v, err := d.Float64()
-				s.SubscribersLocal = float64(v)
+				v, err := d.Int()
+				s.SubscribersLocal = int(v)
 				if err != nil {
 					return err
 				}
@@ -4774,8 +4774,8 @@ func (s *Community) Decode(d *jx.Decoder) error {
 		case "users_active_half_year":
 			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
-				v, err := d.Float64()
-				s.UsersActiveHalfYear = float64(v)
+				v, err := d.Int()
+				s.UsersActiveHalfYear = int(v)
 				if err != nil {
 					return err
 				}
@@ -4786,8 +4786,8 @@ func (s *Community) Decode(d *jx.Decoder) error {
 		case "users_active_month":
 			requiredBitSet[0] |= 1 << 5
 			if err := func() error {
-				v, err := d.Float64()
-				s.UsersActiveMonth = float64(v)
+				v, err := d.Int()
+				s.UsersActiveMonth = int(v)
 				if err != nil {
 					return err
 				}
@@ -4798,8 +4798,8 @@ func (s *Community) Decode(d *jx.Decoder) error {
 		case "users_active_week":
 			requiredBitSet[0] |= 1 << 6
 			if err := func() error {
-				v, err := d.Float64()
-				s.UsersActiveWeek = float64(v)
+				v, err := d.Int()
+				s.UsersActiveWeek = int(v)
 				if err != nil {
 					return err
 				}
@@ -4810,8 +4810,8 @@ func (s *Community) Decode(d *jx.Decoder) error {
 		case "users_active_day":
 			requiredBitSet[0] |= 1 << 7
 			if err := func() error {
-				v, err := d.Float64()
-				s.UsersActiveDay = float64(v)
+				v, err := d.Int()
+				s.UsersActiveDay = int(v)
 				if err != nil {
 					return err
 				}
@@ -4822,8 +4822,8 @@ func (s *Community) Decode(d *jx.Decoder) error {
 		case "comments":
 			requiredBitSet[1] |= 1 << 0
 			if err := func() error {
-				v, err := d.Float64()
-				s.Comments = float64(v)
+				v, err := d.Int()
+				s.Comments = int(v)
 				if err != nil {
 					return err
 				}
@@ -4834,8 +4834,8 @@ func (s *Community) Decode(d *jx.Decoder) error {
 		case "posts":
 			requiredBitSet[1] |= 1 << 1
 			if err := func() error {
-				v, err := d.Float64()
-				s.Posts = float64(v)
+				v, err := d.Int()
+				s.Posts = int(v)
 				if err != nil {
 					return err
 				}
@@ -4846,8 +4846,8 @@ func (s *Community) Decode(d *jx.Decoder) error {
 		case "subscribers":
 			requiredBitSet[1] |= 1 << 2
 			if err := func() error {
-				v, err := d.Float64()
-				s.Subscribers = float64(v)
+				v, err := d.Int()
+				s.Subscribers = int(v)
 				if err != nil {
 					return err
 				}
@@ -5430,9 +5430,9 @@ func (s *CommunityFollowerView) UnmarshalJSON(data []byte) error {
 
 // Encode encodes CommunityId as json.
 func (s CommunityId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes CommunityId from json.
@@ -5440,10 +5440,10 @@ func (s *CommunityId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode CommunityId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -6046,9 +6046,9 @@ func (s *CommunityReport) UnmarshalJSON(data []byte) error {
 
 // Encode encodes CommunityReportId as json.
 func (s CommunityReportId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes CommunityReportId from json.
@@ -6056,10 +6056,10 @@ func (s *CommunityReportId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode CommunityReportId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -6787,9 +6787,9 @@ func (s *CommunityTag) UnmarshalJSON(data []byte) error {
 
 // Encode encodes CommunityTagId as json.
 func (s CommunityTagId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes CommunityTagId from json.
@@ -6797,10 +6797,10 @@ func (s *CommunityTagId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode CommunityTagId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -11134,9 +11134,9 @@ func (s *CustomEmoji) UnmarshalJSON(data []byte) error {
 
 // Encode encodes CustomEmojiId as json.
 func (s CustomEmojiId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes CustomEmojiId from json.
@@ -11144,10 +11144,10 @@ func (s *CustomEmojiId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode CustomEmojiId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -16346,7 +16346,7 @@ func (s *FederationQueueState) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("fail_count")
-		e.Float64(s.FailCount)
+		e.Int(s.FailCount)
 	}
 	{
 		if s.LastSuccessfulPublishedTimeAt.Set {
@@ -16396,8 +16396,8 @@ func (s *FederationQueueState) Decode(d *jx.Decoder) error {
 		case "fail_count":
 			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
-				v, err := d.Float64()
-				s.FailCount = float64(v)
+				v, err := d.Int()
+				s.FailCount = int(v)
 				if err != nil {
 					return err
 				}
@@ -18190,11 +18190,11 @@ func (s *ImageDetails) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("height")
-		e.Float64(s.Height)
+		e.Int(s.Height)
 	}
 	{
 		e.FieldStart("width")
-		e.Float64(s.Width)
+		e.Int(s.Width)
 	}
 	{
 		e.FieldStart("link")
@@ -18244,8 +18244,8 @@ func (s *ImageDetails) Decode(d *jx.Decoder) error {
 		case "height":
 			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
-				v, err := d.Float64()
-				s.Height = float64(v)
+				v, err := d.Int()
+				s.Height = int(v)
 				if err != nil {
 					return err
 				}
@@ -18256,8 +18256,8 @@ func (s *ImageDetails) Decode(d *jx.Decoder) error {
 		case "width":
 			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
-				v, err := d.Float64()
-				s.Width = float64(v)
+				v, err := d.Int()
+				s.Width = int(v)
 				if err != nil {
 					return err
 				}
@@ -18554,9 +18554,9 @@ func (s *Instance) UnmarshalJSON(data []byte) error {
 
 // Encode encodes InstanceId as json.
 func (s InstanceId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes InstanceId from json.
@@ -18564,10 +18564,10 @@ func (s *InstanceId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode InstanceId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -18594,9 +18594,9 @@ func (s *InstanceId) UnmarshalJSON(data []byte) error {
 
 // Encode encodes InvitationId as json.
 func (s InvitationId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes InvitationId from json.
@@ -18604,10 +18604,10 @@ func (s *InvitationId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode InvitationId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -18762,9 +18762,9 @@ func (s *Language) UnmarshalJSON(data []byte) error {
 
 // Encode encodes LanguageId as json.
 func (s LanguageId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes LanguageId from json.
@@ -18772,10 +18772,10 @@ func (s *LanguageId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode LanguageId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -19541,7 +19541,7 @@ func (s *LocalSite) Encode(e *jx.Encoder) {
 func (s *LocalSite) encodeFields(e *jx.Encoder) {
 	{
 		e.FieldStart("max_invites_per_user_allowed")
-		e.Float64(s.MaxInvitesPerUserAllowed)
+		e.Int(s.MaxInvitesPerUserAllowed)
 	}
 	{
 		e.FieldStart("image_upload_disabled")
@@ -19553,23 +19553,23 @@ func (s *LocalSite) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("image_max_upload_size")
-		e.Float64(s.ImageMaxUploadSize)
+		e.Int(s.ImageMaxUploadSize)
 	}
 	{
 		e.FieldStart("image_max_banner_size")
-		e.Float64(s.ImageMaxBannerSize)
+		e.Int(s.ImageMaxBannerSize)
 	}
 	{
 		e.FieldStart("image_max_avatar_size")
-		e.Float64(s.ImageMaxAvatarSize)
+		e.Int(s.ImageMaxAvatarSize)
 	}
 	{
 		e.FieldStart("image_max_thumbnail_size")
-		e.Float64(s.ImageMaxThumbnailSize)
+		e.Int(s.ImageMaxThumbnailSize)
 	}
 	{
 		e.FieldStart("image_upload_timeout_seconds")
-		e.Float64(s.ImageUploadTimeoutSeconds)
+		e.Int(s.ImageUploadTimeoutSeconds)
 	}
 	{
 		if s.ImageProxyBypassDomains.Set {
@@ -19583,7 +19583,7 @@ func (s *LocalSite) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("default_items_per_page")
-		e.Float64(s.DefaultItemsPerPage)
+		e.Int(s.DefaultItemsPerPage)
 	}
 	{
 		if s.SuggestedMultiCommunityID.Set {
@@ -19597,35 +19597,35 @@ func (s *LocalSite) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("users_active_half_year")
-		e.Float64(s.UsersActiveHalfYear)
+		e.Int(s.UsersActiveHalfYear)
 	}
 	{
 		e.FieldStart("users_active_month")
-		e.Float64(s.UsersActiveMonth)
+		e.Int(s.UsersActiveMonth)
 	}
 	{
 		e.FieldStart("users_active_week")
-		e.Float64(s.UsersActiveWeek)
+		e.Int(s.UsersActiveWeek)
 	}
 	{
 		e.FieldStart("users_active_day")
-		e.Float64(s.UsersActiveDay)
+		e.Int(s.UsersActiveDay)
 	}
 	{
 		e.FieldStart("communities")
-		e.Float64(s.Communities)
+		e.Int(s.Communities)
 	}
 	{
 		e.FieldStart("comments")
-		e.Float64(s.Comments)
+		e.Int(s.Comments)
 	}
 	{
 		e.FieldStart("posts")
-		e.Float64(s.Posts)
+		e.Int(s.Posts)
 	}
 	{
 		e.FieldStart("users")
-		e.Float64(s.Users)
+		e.Int(s.Users)
 	}
 	{
 		e.FieldStart("nsfw_content_disallowed")
@@ -19815,8 +19815,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "max_invites_per_user_allowed":
 			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
-				v, err := d.Float64()
-				s.MaxInvitesPerUserAllowed = float64(v)
+				v, err := d.Int()
+				s.MaxInvitesPerUserAllowed = int(v)
 				if err != nil {
 					return err
 				}
@@ -19851,8 +19851,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "image_max_upload_size":
 			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
-				v, err := d.Float64()
-				s.ImageMaxUploadSize = float64(v)
+				v, err := d.Int()
+				s.ImageMaxUploadSize = int(v)
 				if err != nil {
 					return err
 				}
@@ -19863,8 +19863,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "image_max_banner_size":
 			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
-				v, err := d.Float64()
-				s.ImageMaxBannerSize = float64(v)
+				v, err := d.Int()
+				s.ImageMaxBannerSize = int(v)
 				if err != nil {
 					return err
 				}
@@ -19875,8 +19875,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "image_max_avatar_size":
 			requiredBitSet[0] |= 1 << 5
 			if err := func() error {
-				v, err := d.Float64()
-				s.ImageMaxAvatarSize = float64(v)
+				v, err := d.Int()
+				s.ImageMaxAvatarSize = int(v)
 				if err != nil {
 					return err
 				}
@@ -19887,8 +19887,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "image_max_thumbnail_size":
 			requiredBitSet[0] |= 1 << 6
 			if err := func() error {
-				v, err := d.Float64()
-				s.ImageMaxThumbnailSize = float64(v)
+				v, err := d.Int()
+				s.ImageMaxThumbnailSize = int(v)
 				if err != nil {
 					return err
 				}
@@ -19899,8 +19899,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "image_upload_timeout_seconds":
 			requiredBitSet[0] |= 1 << 7
 			if err := func() error {
-				v, err := d.Float64()
-				s.ImageUploadTimeoutSeconds = float64(v)
+				v, err := d.Int()
+				s.ImageUploadTimeoutSeconds = int(v)
 				if err != nil {
 					return err
 				}
@@ -19931,8 +19931,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "default_items_per_page":
 			requiredBitSet[1] |= 1 << 2
 			if err := func() error {
-				v, err := d.Float64()
-				s.DefaultItemsPerPage = float64(v)
+				v, err := d.Int()
+				s.DefaultItemsPerPage = int(v)
 				if err != nil {
 					return err
 				}
@@ -19965,8 +19965,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "users_active_half_year":
 			requiredBitSet[1] |= 1 << 5
 			if err := func() error {
-				v, err := d.Float64()
-				s.UsersActiveHalfYear = float64(v)
+				v, err := d.Int()
+				s.UsersActiveHalfYear = int(v)
 				if err != nil {
 					return err
 				}
@@ -19977,8 +19977,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "users_active_month":
 			requiredBitSet[1] |= 1 << 6
 			if err := func() error {
-				v, err := d.Float64()
-				s.UsersActiveMonth = float64(v)
+				v, err := d.Int()
+				s.UsersActiveMonth = int(v)
 				if err != nil {
 					return err
 				}
@@ -19989,8 +19989,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "users_active_week":
 			requiredBitSet[1] |= 1 << 7
 			if err := func() error {
-				v, err := d.Float64()
-				s.UsersActiveWeek = float64(v)
+				v, err := d.Int()
+				s.UsersActiveWeek = int(v)
 				if err != nil {
 					return err
 				}
@@ -20001,8 +20001,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "users_active_day":
 			requiredBitSet[2] |= 1 << 0
 			if err := func() error {
-				v, err := d.Float64()
-				s.UsersActiveDay = float64(v)
+				v, err := d.Int()
+				s.UsersActiveDay = int(v)
 				if err != nil {
 					return err
 				}
@@ -20013,8 +20013,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "communities":
 			requiredBitSet[2] |= 1 << 1
 			if err := func() error {
-				v, err := d.Float64()
-				s.Communities = float64(v)
+				v, err := d.Int()
+				s.Communities = int(v)
 				if err != nil {
 					return err
 				}
@@ -20025,8 +20025,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "comments":
 			requiredBitSet[2] |= 1 << 2
 			if err := func() error {
-				v, err := d.Float64()
-				s.Comments = float64(v)
+				v, err := d.Int()
+				s.Comments = int(v)
 				if err != nil {
 					return err
 				}
@@ -20037,8 +20037,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "posts":
 			requiredBitSet[2] |= 1 << 3
 			if err := func() error {
-				v, err := d.Float64()
-				s.Posts = float64(v)
+				v, err := d.Int()
+				s.Posts = int(v)
 				if err != nil {
 					return err
 				}
@@ -20049,8 +20049,8 @@ func (s *LocalSite) Decode(d *jx.Decoder) error {
 		case "users":
 			requiredBitSet[2] |= 1 << 4
 			if err := func() error {
-				v, err := d.Float64()
-				s.Users = float64(v)
+				v, err := d.Int()
+				s.Users = int(v)
 				if err != nil {
 					return err
 				}
@@ -20426,9 +20426,9 @@ func (s *LocalSite) UnmarshalJSON(data []byte) error {
 
 // Encode encodes LocalSiteId as json.
 func (s LocalSiteId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes LocalSiteId from json.
@@ -20436,10 +20436,10 @@ func (s *LocalSiteId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode LocalSiteId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -20475,11 +20475,11 @@ func (s *LocalSiteRateLimit) Encode(e *jx.Encoder) {
 func (s *LocalSiteRateLimit) encodeFields(e *jx.Encoder) {
 	{
 		e.FieldStart("import_user_settings_interval_seconds")
-		e.Float64(s.ImportUserSettingsIntervalSeconds)
+		e.Int(s.ImportUserSettingsIntervalSeconds)
 	}
 	{
 		e.FieldStart("import_user_settings_max_requests")
-		e.Float64(s.ImportUserSettingsMaxRequests)
+		e.Int(s.ImportUserSettingsMaxRequests)
 	}
 	{
 		if s.UpdatedAt.Set {
@@ -20493,51 +20493,51 @@ func (s *LocalSiteRateLimit) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("search_interval_seconds")
-		e.Float64(s.SearchIntervalSeconds)
+		e.Int(s.SearchIntervalSeconds)
 	}
 	{
 		e.FieldStart("search_max_requests")
-		e.Float64(s.SearchMaxRequests)
+		e.Int(s.SearchMaxRequests)
 	}
 	{
 		e.FieldStart("comment_interval_seconds")
-		e.Float64(s.CommentIntervalSeconds)
+		e.Int(s.CommentIntervalSeconds)
 	}
 	{
 		e.FieldStart("comment_max_requests")
-		e.Float64(s.CommentMaxRequests)
+		e.Int(s.CommentMaxRequests)
 	}
 	{
 		e.FieldStart("image_interval_seconds")
-		e.Float64(s.ImageIntervalSeconds)
+		e.Int(s.ImageIntervalSeconds)
 	}
 	{
 		e.FieldStart("image_max_requests")
-		e.Float64(s.ImageMaxRequests)
+		e.Int(s.ImageMaxRequests)
 	}
 	{
 		e.FieldStart("register_interval_seconds")
-		e.Float64(s.RegisterIntervalSeconds)
+		e.Int(s.RegisterIntervalSeconds)
 	}
 	{
 		e.FieldStart("register_max_requests")
-		e.Float64(s.RegisterMaxRequests)
+		e.Int(s.RegisterMaxRequests)
 	}
 	{
 		e.FieldStart("post_interval_seconds")
-		e.Float64(s.PostIntervalSeconds)
+		e.Int(s.PostIntervalSeconds)
 	}
 	{
 		e.FieldStart("post_max_requests")
-		e.Float64(s.PostMaxRequests)
+		e.Int(s.PostMaxRequests)
 	}
 	{
 		e.FieldStart("message_interval_seconds")
-		e.Float64(s.MessageIntervalSeconds)
+		e.Int(s.MessageIntervalSeconds)
 	}
 	{
 		e.FieldStart("message_max_requests")
-		e.Float64(s.MessageMaxRequests)
+		e.Int(s.MessageMaxRequests)
 	}
 	{
 		e.FieldStart("local_site_id")
@@ -20577,8 +20577,8 @@ func (s *LocalSiteRateLimit) Decode(d *jx.Decoder) error {
 		case "import_user_settings_interval_seconds":
 			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
-				v, err := d.Float64()
-				s.ImportUserSettingsIntervalSeconds = float64(v)
+				v, err := d.Int()
+				s.ImportUserSettingsIntervalSeconds = int(v)
 				if err != nil {
 					return err
 				}
@@ -20589,8 +20589,8 @@ func (s *LocalSiteRateLimit) Decode(d *jx.Decoder) error {
 		case "import_user_settings_max_requests":
 			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
-				v, err := d.Float64()
-				s.ImportUserSettingsMaxRequests = float64(v)
+				v, err := d.Int()
+				s.ImportUserSettingsMaxRequests = int(v)
 				if err != nil {
 					return err
 				}
@@ -20623,8 +20623,8 @@ func (s *LocalSiteRateLimit) Decode(d *jx.Decoder) error {
 		case "search_interval_seconds":
 			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
-				v, err := d.Float64()
-				s.SearchIntervalSeconds = float64(v)
+				v, err := d.Int()
+				s.SearchIntervalSeconds = int(v)
 				if err != nil {
 					return err
 				}
@@ -20635,8 +20635,8 @@ func (s *LocalSiteRateLimit) Decode(d *jx.Decoder) error {
 		case "search_max_requests":
 			requiredBitSet[0] |= 1 << 5
 			if err := func() error {
-				v, err := d.Float64()
-				s.SearchMaxRequests = float64(v)
+				v, err := d.Int()
+				s.SearchMaxRequests = int(v)
 				if err != nil {
 					return err
 				}
@@ -20647,8 +20647,8 @@ func (s *LocalSiteRateLimit) Decode(d *jx.Decoder) error {
 		case "comment_interval_seconds":
 			requiredBitSet[0] |= 1 << 6
 			if err := func() error {
-				v, err := d.Float64()
-				s.CommentIntervalSeconds = float64(v)
+				v, err := d.Int()
+				s.CommentIntervalSeconds = int(v)
 				if err != nil {
 					return err
 				}
@@ -20659,8 +20659,8 @@ func (s *LocalSiteRateLimit) Decode(d *jx.Decoder) error {
 		case "comment_max_requests":
 			requiredBitSet[0] |= 1 << 7
 			if err := func() error {
-				v, err := d.Float64()
-				s.CommentMaxRequests = float64(v)
+				v, err := d.Int()
+				s.CommentMaxRequests = int(v)
 				if err != nil {
 					return err
 				}
@@ -20671,8 +20671,8 @@ func (s *LocalSiteRateLimit) Decode(d *jx.Decoder) error {
 		case "image_interval_seconds":
 			requiredBitSet[1] |= 1 << 0
 			if err := func() error {
-				v, err := d.Float64()
-				s.ImageIntervalSeconds = float64(v)
+				v, err := d.Int()
+				s.ImageIntervalSeconds = int(v)
 				if err != nil {
 					return err
 				}
@@ -20683,8 +20683,8 @@ func (s *LocalSiteRateLimit) Decode(d *jx.Decoder) error {
 		case "image_max_requests":
 			requiredBitSet[1] |= 1 << 1
 			if err := func() error {
-				v, err := d.Float64()
-				s.ImageMaxRequests = float64(v)
+				v, err := d.Int()
+				s.ImageMaxRequests = int(v)
 				if err != nil {
 					return err
 				}
@@ -20695,8 +20695,8 @@ func (s *LocalSiteRateLimit) Decode(d *jx.Decoder) error {
 		case "register_interval_seconds":
 			requiredBitSet[1] |= 1 << 2
 			if err := func() error {
-				v, err := d.Float64()
-				s.RegisterIntervalSeconds = float64(v)
+				v, err := d.Int()
+				s.RegisterIntervalSeconds = int(v)
 				if err != nil {
 					return err
 				}
@@ -20707,8 +20707,8 @@ func (s *LocalSiteRateLimit) Decode(d *jx.Decoder) error {
 		case "register_max_requests":
 			requiredBitSet[1] |= 1 << 3
 			if err := func() error {
-				v, err := d.Float64()
-				s.RegisterMaxRequests = float64(v)
+				v, err := d.Int()
+				s.RegisterMaxRequests = int(v)
 				if err != nil {
 					return err
 				}
@@ -20719,8 +20719,8 @@ func (s *LocalSiteRateLimit) Decode(d *jx.Decoder) error {
 		case "post_interval_seconds":
 			requiredBitSet[1] |= 1 << 4
 			if err := func() error {
-				v, err := d.Float64()
-				s.PostIntervalSeconds = float64(v)
+				v, err := d.Int()
+				s.PostIntervalSeconds = int(v)
 				if err != nil {
 					return err
 				}
@@ -20731,8 +20731,8 @@ func (s *LocalSiteRateLimit) Decode(d *jx.Decoder) error {
 		case "post_max_requests":
 			requiredBitSet[1] |= 1 << 5
 			if err := func() error {
-				v, err := d.Float64()
-				s.PostMaxRequests = float64(v)
+				v, err := d.Int()
+				s.PostMaxRequests = int(v)
 				if err != nil {
 					return err
 				}
@@ -20743,8 +20743,8 @@ func (s *LocalSiteRateLimit) Decode(d *jx.Decoder) error {
 		case "message_interval_seconds":
 			requiredBitSet[1] |= 1 << 6
 			if err := func() error {
-				v, err := d.Float64()
-				s.MessageIntervalSeconds = float64(v)
+				v, err := d.Int()
+				s.MessageIntervalSeconds = int(v)
 				if err != nil {
 					return err
 				}
@@ -20755,8 +20755,8 @@ func (s *LocalSiteRateLimit) Decode(d *jx.Decoder) error {
 		case "message_max_requests":
 			requiredBitSet[1] |= 1 << 7
 			if err := func() error {
-				v, err := d.Float64()
-				s.MessageMaxRequests = float64(v)
+				v, err := d.Int()
+				s.MessageMaxRequests = int(v)
 				if err != nil {
 					return err
 				}
@@ -20857,7 +20857,7 @@ func (s *LocalSiteUrlBlocklist) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("id")
-		e.Float64(s.ID)
+		e.Int(s.ID)
 	}
 }
 
@@ -20914,8 +20914,8 @@ func (s *LocalSiteUrlBlocklist) Decode(d *jx.Decoder) error {
 		case "id":
 			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
-				v, err := d.Float64()
-				s.ID = float64(v)
+				v, err := d.Int()
+				s.ID = int(v)
 				if err != nil {
 					return err
 				}
@@ -21000,7 +21000,7 @@ func (s *LocalUser) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("default_items_per_page")
-		e.Float64(s.DefaultItemsPerPage)
+		e.Int(s.DefaultItemsPerPage)
 	}
 	{
 		e.FieldStart("show_person_votes")
@@ -21213,8 +21213,8 @@ func (s *LocalUser) Decode(d *jx.Decoder) error {
 		case "default_items_per_page":
 			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
-				v, err := d.Float64()
-				s.DefaultItemsPerPage = float64(v)
+				v, err := d.Int()
+				s.DefaultItemsPerPage = int(v)
 				if err != nil {
 					return err
 				}
@@ -21662,9 +21662,9 @@ func (s *LocalUser) UnmarshalJSON(data []byte) error {
 
 // Encode encodes LocalUserId as json.
 func (s LocalUserId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes LocalUserId from json.
@@ -21672,10 +21672,10 @@ func (s *LocalUserId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode LocalUserId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -21721,7 +21721,7 @@ func (s *LocalUserInvite) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("uses_count")
-		e.Float64(s.UsesCount)
+		e.Int(s.UsesCount)
 	}
 	{
 		if s.MaxUses.Set {
@@ -21787,8 +21787,8 @@ func (s *LocalUserInvite) Decode(d *jx.Decoder) error {
 		case "uses_count":
 			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
-				v, err := d.Float64()
-				s.UsesCount = float64(v)
+				v, err := d.Int()
+				s.UsesCount = int(v)
 				if err != nil {
 					return err
 				}
@@ -23206,7 +23206,7 @@ func (s *Modlog) Encode(e *jx.Encoder) {
 func (s *Modlog) encodeFields(e *jx.Encoder) {
 	{
 		e.FieldStart("child_count")
-		e.Float64(s.ChildCount)
+		e.Int(s.ChildCount)
 	}
 	{
 		if s.BulkActionParentID.Set {
@@ -23267,8 +23267,8 @@ func (s *Modlog) Decode(d *jx.Decoder) error {
 		case "child_count":
 			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
-				v, err := d.Float64()
-				s.ChildCount = float64(v)
+				v, err := d.Int()
+				s.ChildCount = int(v)
 				if err != nil {
 					return err
 				}
@@ -23408,9 +23408,9 @@ func (s *Modlog) UnmarshalJSON(data []byte) error {
 
 // Encode encodes ModlogId as json.
 func (s ModlogId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes ModlogId from json.
@@ -23418,10 +23418,10 @@ func (s *ModlogId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode ModlogId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -23737,15 +23737,15 @@ func (s *MultiCommunity) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("communities")
-		e.Float64(s.Communities)
+		e.Int(s.Communities)
 	}
 	{
 		e.FieldStart("subscribers_local")
-		e.Float64(s.SubscribersLocal)
+		e.Int(s.SubscribersLocal)
 	}
 	{
 		e.FieldStart("subscribers")
-		e.Float64(s.Subscribers)
+		e.Int(s.Subscribers)
 	}
 	{
 		if s.UpdatedAt.Set {
@@ -23844,8 +23844,8 @@ func (s *MultiCommunity) Decode(d *jx.Decoder) error {
 		case "communities":
 			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
-				v, err := d.Float64()
-				s.Communities = float64(v)
+				v, err := d.Int()
+				s.Communities = int(v)
 				if err != nil {
 					return err
 				}
@@ -23856,8 +23856,8 @@ func (s *MultiCommunity) Decode(d *jx.Decoder) error {
 		case "subscribers_local":
 			requiredBitSet[0] |= 1 << 2
 			if err := func() error {
-				v, err := d.Float64()
-				s.SubscribersLocal = float64(v)
+				v, err := d.Int()
+				s.SubscribersLocal = int(v)
 				if err != nil {
 					return err
 				}
@@ -23868,8 +23868,8 @@ func (s *MultiCommunity) Decode(d *jx.Decoder) error {
 		case "subscribers":
 			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
-				v, err := d.Float64()
-				s.Subscribers = float64(v)
+				v, err := d.Int()
+				s.Subscribers = int(v)
 				if err != nil {
 					return err
 				}
@@ -24066,9 +24066,9 @@ func (s *MultiCommunity) UnmarshalJSON(data []byte) error {
 
 // Encode encodes MultiCommunityId as json.
 func (s MultiCommunityId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes MultiCommunityId from json.
@@ -24076,10 +24076,10 @@ func (s *MultiCommunityId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode MultiCommunityId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -27152,9 +27152,9 @@ func (s *NotificationData3Type) UnmarshalJSON(data []byte) error {
 
 // Encode encodes NotificationId as json.
 func (s NotificationId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes NotificationId from json.
@@ -27162,10 +27162,10 @@ func (s *NotificationId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode NotificationId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -27347,9 +27347,9 @@ func (s *NotificationView) UnmarshalJSON(data []byte) error {
 
 // Encode encodes OAuthProviderId as json.
 func (s OAuthProviderId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes OAuthProviderId from json.
@@ -27357,10 +27357,10 @@ func (s *OAuthProviderId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode OAuthProviderId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -28014,41 +28014,6 @@ func (s *OptFederationQueueState) UnmarshalJSON(data []byte) error {
 	return s.Decode(d)
 }
 
-// Encode encodes float64 as json.
-func (o OptFloat64) Encode(e *jx.Encoder) {
-	if !o.Set {
-		return
-	}
-	e.Float64(float64(o.Value))
-}
-
-// Decode decodes float64 from json.
-func (o *OptFloat64) Decode(d *jx.Decoder) error {
-	if o == nil {
-		return errors.New("invalid: unable to decode OptFloat64 to nil")
-	}
-	o.Set = true
-	v, err := d.Float64()
-	if err != nil {
-		return err
-	}
-	o.Value = float64(v)
-	return nil
-}
-
-// MarshalJSON implements stdjson.Marshaler.
-func (s OptFloat64) MarshalJSON() ([]byte, error) {
-	e := jx.Encoder{}
-	s.Encode(&e)
-	return e.Bytes(), nil
-}
-
-// UnmarshalJSON implements stdjson.Unmarshaler.
-func (s *OptFloat64) UnmarshalJSON(data []byte) error {
-	d := jx.DecodeBytes(data)
-	return s.Decode(d)
-}
-
 // Encode encodes ImageDetails as json.
 func (o OptImageDetails) Encode(e *jx.Encoder) {
 	if !o.Set {
@@ -28144,6 +28109,41 @@ func (s OptInstance) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON implements stdjson.Unmarshaler.
 func (s *OptInstance) UnmarshalJSON(data []byte) error {
+	d := jx.DecodeBytes(data)
+	return s.Decode(d)
+}
+
+// Encode encodes int as json.
+func (o OptInt) Encode(e *jx.Encoder) {
+	if !o.Set {
+		return
+	}
+	e.Int(int(o.Value))
+}
+
+// Decode decodes int from json.
+func (o *OptInt) Decode(d *jx.Decoder) error {
+	if o == nil {
+		return errors.New("invalid: unable to decode OptInt to nil")
+	}
+	o.Set = true
+	v, err := d.Int()
+	if err != nil {
+		return err
+	}
+	o.Value = int(v)
+	return nil
+}
+
+// MarshalJSON implements stdjson.Marshaler.
+func (s OptInt) MarshalJSON() ([]byte, error) {
+	e := jx.Encoder{}
+	s.Encode(&e)
+	return e.Bytes(), nil
+}
+
+// UnmarshalJSON implements stdjson.Unmarshaler.
+func (s *OptInt) UnmarshalJSON(data []byte) error {
 	d := jx.DecodeBytes(data)
 	return s.Decode(d)
 }
@@ -31855,11 +31855,11 @@ func (s *Person) Encode(e *jx.Encoder) {
 func (s *Person) encodeFields(e *jx.Encoder) {
 	{
 		e.FieldStart("comment_count")
-		e.Float64(s.CommentCount)
+		e.Int(s.CommentCount)
 	}
 	{
 		e.FieldStart("post_count")
-		e.Float64(s.PostCount)
+		e.Int(s.PostCount)
 	}
 	{
 		e.FieldStart("instance_id")
@@ -31967,8 +31967,8 @@ func (s *Person) Decode(d *jx.Decoder) error {
 		case "comment_count":
 			requiredBitSet[0] |= 1 << 0
 			if err := func() error {
-				v, err := d.Float64()
-				s.CommentCount = float64(v)
+				v, err := d.Int()
+				s.CommentCount = int(v)
 				if err != nil {
 					return err
 				}
@@ -31979,8 +31979,8 @@ func (s *Person) Decode(d *jx.Decoder) error {
 		case "post_count":
 			requiredBitSet[0] |= 1 << 1
 			if err := func() error {
-				v, err := d.Float64()
-				s.PostCount = float64(v)
+				v, err := d.Int()
+				s.PostCount = int(v)
 				if err != nil {
 					return err
 				}
@@ -32358,9 +32358,9 @@ func (s *PersonActions) UnmarshalJSON(data []byte) error {
 
 // Encode encodes PersonId as json.
 func (s PersonId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes PersonId from json.
@@ -32368,10 +32368,10 @@ func (s *PersonId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode PersonId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -32826,27 +32826,27 @@ func (s *Post) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("unresolved_report_count")
-		e.Float64(s.UnresolvedReportCount)
+		e.Int(s.UnresolvedReportCount)
 	}
 	{
 		e.FieldStart("report_count")
-		e.Float64(s.ReportCount)
+		e.Int(s.ReportCount)
 	}
 	{
 		e.FieldStart("downvotes")
-		e.Float64(s.Downvotes)
+		e.Int(s.Downvotes)
 	}
 	{
 		e.FieldStart("upvotes")
-		e.Float64(s.Upvotes)
+		e.Int(s.Upvotes)
 	}
 	{
 		e.FieldStart("score")
-		e.Float64(s.Score)
+		e.Int(s.Score)
 	}
 	{
 		e.FieldStart("comments")
-		e.Float64(s.Comments)
+		e.Int(s.Comments)
 	}
 	{
 		if s.NewestCommentTimeAt.Set {
@@ -33053,8 +33053,8 @@ func (s *Post) Decode(d *jx.Decoder) error {
 		case "unresolved_report_count":
 			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
-				v, err := d.Float64()
-				s.UnresolvedReportCount = float64(v)
+				v, err := d.Int()
+				s.UnresolvedReportCount = int(v)
 				if err != nil {
 					return err
 				}
@@ -33065,8 +33065,8 @@ func (s *Post) Decode(d *jx.Decoder) error {
 		case "report_count":
 			requiredBitSet[0] |= 1 << 4
 			if err := func() error {
-				v, err := d.Float64()
-				s.ReportCount = float64(v)
+				v, err := d.Int()
+				s.ReportCount = int(v)
 				if err != nil {
 					return err
 				}
@@ -33077,8 +33077,8 @@ func (s *Post) Decode(d *jx.Decoder) error {
 		case "downvotes":
 			requiredBitSet[0] |= 1 << 5
 			if err := func() error {
-				v, err := d.Float64()
-				s.Downvotes = float64(v)
+				v, err := d.Int()
+				s.Downvotes = int(v)
 				if err != nil {
 					return err
 				}
@@ -33089,8 +33089,8 @@ func (s *Post) Decode(d *jx.Decoder) error {
 		case "upvotes":
 			requiredBitSet[0] |= 1 << 6
 			if err := func() error {
-				v, err := d.Float64()
-				s.Upvotes = float64(v)
+				v, err := d.Int()
+				s.Upvotes = int(v)
 				if err != nil {
 					return err
 				}
@@ -33101,8 +33101,8 @@ func (s *Post) Decode(d *jx.Decoder) error {
 		case "score":
 			requiredBitSet[0] |= 1 << 7
 			if err := func() error {
-				v, err := d.Float64()
-				s.Score = float64(v)
+				v, err := d.Int()
+				s.Score = int(v)
 				if err != nil {
 					return err
 				}
@@ -33113,8 +33113,8 @@ func (s *Post) Decode(d *jx.Decoder) error {
 		case "comments":
 			requiredBitSet[1] |= 1 << 0
 			if err := func() error {
-				v, err := d.Float64()
-				s.Comments = float64(v)
+				v, err := d.Int()
+				s.Comments = int(v)
 				if err != nil {
 					return err
 				}
@@ -34584,9 +34584,9 @@ func (s *PostFeatureType) UnmarshalJSON(data []byte) error {
 
 // Encode encodes PostId as json.
 func (s PostId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes PostId from json.
@@ -34594,10 +34594,10 @@ func (s *PostId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode PostId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -35003,9 +35003,9 @@ func (s *PostReport) UnmarshalJSON(data []byte) error {
 
 // Encode encodes PostReportId as json.
 func (s PostReportId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes PostReportId from json.
@@ -35013,10 +35013,10 @@ func (s *PostReportId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode PostReportId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -36211,9 +36211,9 @@ func (s *PrivateMessage) UnmarshalJSON(data []byte) error {
 
 // Encode encodes PrivateMessageId as json.
 func (s PrivateMessageId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes PrivateMessageId from json.
@@ -36221,10 +36221,10 @@ func (s *PrivateMessageId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode PrivateMessageId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -36495,9 +36495,9 @@ func (s *PrivateMessageReport) UnmarshalJSON(data []byte) error {
 
 // Encode encodes PrivateMessageReportId as json.
 func (s PrivateMessageReportId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes PrivateMessageReportId from json.
@@ -36505,10 +36505,10 @@ func (s *PrivateMessageReportId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode PrivateMessageReportId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -38134,9 +38134,9 @@ func (s *RegistrationApplication) UnmarshalJSON(data []byte) error {
 
 // Encode encodes RegistrationApplicationId as json.
 func (s RegistrationApplicationId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes RegistrationApplicationId from json.
@@ -38144,10 +38144,10 @@ func (s *RegistrationApplicationId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode RegistrationApplicationId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -44427,9 +44427,9 @@ func (s *Site) UnmarshalJSON(data []byte) error {
 
 // Encode encodes SiteId as json.
 func (s SiteId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes SiteId from json.
@@ -44437,10 +44437,10 @@ func (s *SiteId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode SiteId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -44997,9 +44997,9 @@ func (s *Tagline) UnmarshalJSON(data []byte) error {
 
 // Encode encodes TaglineId as json.
 func (s TaglineId) Encode(e *jx.Encoder) {
-	unwrapped := float64(s)
+	unwrapped := int(s)
 
-	e.Float64(unwrapped)
+	e.Int(unwrapped)
 }
 
 // Decode decodes TaglineId from json.
@@ -45007,10 +45007,10 @@ func (s *TaglineId) Decode(d *jx.Decoder) error {
 	if s == nil {
 		return errors.New("invalid: unable to decode TaglineId to nil")
 	}
-	var unwrapped float64
+	var unwrapped int
 	if err := func() error {
-		v, err := d.Float64()
-		unwrapped = float64(v)
+		v, err := d.Int()
+		unwrapped = int(v)
 		if err != nil {
 			return err
 		}
@@ -45267,7 +45267,7 @@ func (s *UnreadCountsResponse) encodeFields(e *jx.Encoder) {
 	}
 	{
 		e.FieldStart("notification_count")
-		e.Float64(s.NotificationCount)
+		e.Int(s.NotificationCount)
 	}
 }
 
@@ -45320,8 +45320,8 @@ func (s *UnreadCountsResponse) Decode(d *jx.Decoder) error {
 		case "notification_count":
 			requiredBitSet[0] |= 1 << 3
 			if err := func() error {
-				v, err := d.Float64()
-				s.NotificationCount = float64(v)
+				v, err := d.Int()
+				s.NotificationCount = int(v)
 				if err != nil {
 					return err
 				}

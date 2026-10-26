@@ -7,7 +7,7 @@ import (
 	ht "github.com/ogen-go/ogen/http"
 )
 
-type ActivityId float64
+type ActivityId int
 
 // Adds an admin to a site.
 // Ref: #/components/schemas/AddAdmin
@@ -148,14 +148,14 @@ type AdminBlockInstanceParams struct {
 	// A time that the block will expire, in unix epoch seconds.
 	//
 	// An i64 unix timestamp is used for a simpler API client implementation.
-	ExpiresAt OptFloat64 `json:"expires_at"`
-	Reason    string     `json:"reason"`
-	Block     bool       `json:"block"`
-	Instance  string     `json:"instance"`
+	ExpiresAt OptInt `json:"expires_at"`
+	Reason    string `json:"reason"`
+	Block     bool   `json:"block"`
+	Instance  string `json:"instance"`
 }
 
 // GetExpiresAt returns the value of ExpiresAt.
-func (s *AdminBlockInstanceParams) GetExpiresAt() OptFloat64 {
+func (s *AdminBlockInstanceParams) GetExpiresAt() OptInt {
 	return s.ExpiresAt
 }
 
@@ -175,7 +175,7 @@ func (s *AdminBlockInstanceParams) GetInstance() string {
 }
 
 // SetExpiresAt sets the value of ExpiresAt.
-func (s *AdminBlockInstanceParams) SetExpiresAt(val OptFloat64) {
+func (s *AdminBlockInstanceParams) SetExpiresAt(val OptInt) {
 	s.ExpiresAt = val
 }
 
@@ -558,8 +558,8 @@ type BanFromCommunity struct {
 	// A time that the ban will expire, in unix epoch seconds.
 	//
 	// An i64 unix timestamp is used for a simpler API client implementation.
-	ExpiresAt OptFloat64 `json:"expires_at"`
-	Reason    string     `json:"reason"`
+	ExpiresAt OptInt `json:"expires_at"`
+	Reason    string `json:"reason"`
 	// Optionally remove or restore all their data. Useful for new troll accounts. If ban is true, then
 	// this means remove. If ban is false, it means restore.
 	RemoveOrRestoreData OptBool     `json:"remove_or_restore_data"`
@@ -569,7 +569,7 @@ type BanFromCommunity struct {
 }
 
 // GetExpiresAt returns the value of ExpiresAt.
-func (s *BanFromCommunity) GetExpiresAt() OptFloat64 {
+func (s *BanFromCommunity) GetExpiresAt() OptInt {
 	return s.ExpiresAt
 }
 
@@ -599,7 +599,7 @@ func (s *BanFromCommunity) GetCommunityID() CommunityId {
 }
 
 // SetExpiresAt sets the value of ExpiresAt.
-func (s *BanFromCommunity) SetExpiresAt(val OptFloat64) {
+func (s *BanFromCommunity) SetExpiresAt(val OptInt) {
 	s.ExpiresAt = val
 }
 
@@ -634,8 +634,8 @@ type BanPerson struct {
 	// A time that the ban will expire, in unix epoch seconds.
 	//
 	// An i64 unix timestamp is used for a simpler API client implementation.
-	ExpiresAt OptFloat64 `json:"expires_at"`
-	Reason    string     `json:"reason"`
+	ExpiresAt OptInt `json:"expires_at"`
+	Reason    string `json:"reason"`
 	// Optionally remove or restore all their data. Useful for new troll accounts. If ban is true, then
 	// this means remove. If ban is false, it means restore.
 	RemoveOrRestoreData OptBool  `json:"remove_or_restore_data"`
@@ -644,7 +644,7 @@ type BanPerson struct {
 }
 
 // GetExpiresAt returns the value of ExpiresAt.
-func (s *BanPerson) GetExpiresAt() OptFloat64 {
+func (s *BanPerson) GetExpiresAt() OptInt {
 	return s.ExpiresAt
 }
 
@@ -669,7 +669,7 @@ func (s *BanPerson) GetPersonID() PersonId {
 }
 
 // SetExpiresAt sets the value of ExpiresAt.
-func (s *BanPerson) SetExpiresAt(val OptFloat64) {
+func (s *BanPerson) SetExpiresAt(val OptInt) {
 	s.ExpiresAt = val
 }
 
@@ -908,14 +908,14 @@ type Comment struct {
 	Locked bool `json:"locked"`
 	// If a local user comments in a remote community, the comment is hidden until it is confirmed accepted
 	// by the community (by receiving it back via federation).
-	FederationPending     bool    `json:"federation_pending"`
-	UnresolvedReportCount float64 `json:"unresolved_report_count"`
-	ReportCount           float64 `json:"report_count"`
+	FederationPending     bool `json:"federation_pending"`
+	UnresolvedReportCount int  `json:"unresolved_report_count"`
+	ReportCount           int  `json:"report_count"`
 	// The total number of children in this comment branch.
-	ChildCount float64    `json:"child_count"`
-	Downvotes  float64    `json:"downvotes"`
-	Upvotes    float64    `json:"upvotes"`
-	Score      float64    `json:"score"`
+	ChildCount int        `json:"child_count"`
+	Downvotes  int        `json:"downvotes"`
+	Upvotes    int        `json:"upvotes"`
+	Score      int        `json:"score"`
 	LanguageID LanguageId `json:"language_id"`
 	// Whether the comment has been distinguished(speaking officially) by a mod.
 	Distinguished bool `json:"distinguished"`
@@ -948,32 +948,32 @@ func (s *Comment) GetFederationPending() bool {
 }
 
 // GetUnresolvedReportCount returns the value of UnresolvedReportCount.
-func (s *Comment) GetUnresolvedReportCount() float64 {
+func (s *Comment) GetUnresolvedReportCount() int {
 	return s.UnresolvedReportCount
 }
 
 // GetReportCount returns the value of ReportCount.
-func (s *Comment) GetReportCount() float64 {
+func (s *Comment) GetReportCount() int {
 	return s.ReportCount
 }
 
 // GetChildCount returns the value of ChildCount.
-func (s *Comment) GetChildCount() float64 {
+func (s *Comment) GetChildCount() int {
 	return s.ChildCount
 }
 
 // GetDownvotes returns the value of Downvotes.
-func (s *Comment) GetDownvotes() float64 {
+func (s *Comment) GetDownvotes() int {
 	return s.Downvotes
 }
 
 // GetUpvotes returns the value of Upvotes.
-func (s *Comment) GetUpvotes() float64 {
+func (s *Comment) GetUpvotes() int {
 	return s.Upvotes
 }
 
 // GetScore returns the value of Score.
-func (s *Comment) GetScore() float64 {
+func (s *Comment) GetScore() int {
 	return s.Score
 }
 
@@ -1053,32 +1053,32 @@ func (s *Comment) SetFederationPending(val bool) {
 }
 
 // SetUnresolvedReportCount sets the value of UnresolvedReportCount.
-func (s *Comment) SetUnresolvedReportCount(val float64) {
+func (s *Comment) SetUnresolvedReportCount(val int) {
 	s.UnresolvedReportCount = val
 }
 
 // SetReportCount sets the value of ReportCount.
-func (s *Comment) SetReportCount(val float64) {
+func (s *Comment) SetReportCount(val int) {
 	s.ReportCount = val
 }
 
 // SetChildCount sets the value of ChildCount.
-func (s *Comment) SetChildCount(val float64) {
+func (s *Comment) SetChildCount(val int) {
 	s.ChildCount = val
 }
 
 // SetDownvotes sets the value of Downvotes.
-func (s *Comment) SetDownvotes(val float64) {
+func (s *Comment) SetDownvotes(val int) {
 	s.Downvotes = val
 }
 
 // SetUpvotes sets the value of Upvotes.
-func (s *Comment) SetUpvotes(val float64) {
+func (s *Comment) SetUpvotes(val int) {
 	s.Upvotes = val
 }
 
 // SetScore sets the value of Score.
-func (s *Comment) SetScore(val float64) {
+func (s *Comment) SetScore(val int) {
 	s.Score = val
 }
 
@@ -1187,7 +1187,7 @@ func (s *CommentActions) SetVotedAt(val OptString) {
 	s.VotedAt = val
 }
 
-type CommentId float64
+type CommentId int
 
 // A comment report.
 // Ref: #/components/schemas/CommentReport
@@ -1315,7 +1315,7 @@ func (s *CommentReport) SetID(val CommentReportId) {
 	s.ID = val
 }
 
-type CommentReportId float64
+type CommentReportId int
 
 // The comment report response.
 // Ref: #/components/schemas/CommentReportResponse
@@ -1883,21 +1883,21 @@ func (s *CommentView) SetComment(val Comment) {
 // A community.
 // Ref: #/components/schemas/Community
 type Community struct {
-	LocalRemoved          bool    `json:"local_removed"`
-	UnresolvedReportCount float64 `json:"unresolved_report_count"`
-	ReportCount           float64 `json:"report_count"`
-	SubscribersLocal      float64 `json:"subscribers_local"`
+	LocalRemoved          bool `json:"local_removed"`
+	UnresolvedReportCount int  `json:"unresolved_report_count"`
+	ReportCount           int  `json:"report_count"`
+	SubscribersLocal      int  `json:"subscribers_local"`
 	// The number of users with any activity in the last year.
-	UsersActiveHalfYear float64 `json:"users_active_half_year"`
+	UsersActiveHalfYear int `json:"users_active_half_year"`
 	// The number of users with any activity in the last month.
-	UsersActiveMonth float64 `json:"users_active_month"`
+	UsersActiveMonth int `json:"users_active_month"`
 	// The number of users with any activity in the last week.
-	UsersActiveWeek float64 `json:"users_active_week"`
+	UsersActiveWeek int `json:"users_active_week"`
 	// The number of users with any activity in the last day.
-	UsersActiveDay float64 `json:"users_active_day"`
-	Comments       float64 `json:"comments"`
-	Posts          float64 `json:"posts"`
-	Subscribers    float64 `json:"subscribers"`
+	UsersActiveDay int `json:"users_active_day"`
+	Comments       int `json:"comments"`
+	Posts          int `json:"posts"`
+	Subscribers    int `json:"subscribers"`
 	// A shorter, one-line summary.
 	Summary    OptString           `json:"summary"`
 	Visibility CommunityVisibility `json:"visibility"`
@@ -1935,52 +1935,52 @@ func (s *Community) GetLocalRemoved() bool {
 }
 
 // GetUnresolvedReportCount returns the value of UnresolvedReportCount.
-func (s *Community) GetUnresolvedReportCount() float64 {
+func (s *Community) GetUnresolvedReportCount() int {
 	return s.UnresolvedReportCount
 }
 
 // GetReportCount returns the value of ReportCount.
-func (s *Community) GetReportCount() float64 {
+func (s *Community) GetReportCount() int {
 	return s.ReportCount
 }
 
 // GetSubscribersLocal returns the value of SubscribersLocal.
-func (s *Community) GetSubscribersLocal() float64 {
+func (s *Community) GetSubscribersLocal() int {
 	return s.SubscribersLocal
 }
 
 // GetUsersActiveHalfYear returns the value of UsersActiveHalfYear.
-func (s *Community) GetUsersActiveHalfYear() float64 {
+func (s *Community) GetUsersActiveHalfYear() int {
 	return s.UsersActiveHalfYear
 }
 
 // GetUsersActiveMonth returns the value of UsersActiveMonth.
-func (s *Community) GetUsersActiveMonth() float64 {
+func (s *Community) GetUsersActiveMonth() int {
 	return s.UsersActiveMonth
 }
 
 // GetUsersActiveWeek returns the value of UsersActiveWeek.
-func (s *Community) GetUsersActiveWeek() float64 {
+func (s *Community) GetUsersActiveWeek() int {
 	return s.UsersActiveWeek
 }
 
 // GetUsersActiveDay returns the value of UsersActiveDay.
-func (s *Community) GetUsersActiveDay() float64 {
+func (s *Community) GetUsersActiveDay() int {
 	return s.UsersActiveDay
 }
 
 // GetComments returns the value of Comments.
-func (s *Community) GetComments() float64 {
+func (s *Community) GetComments() int {
 	return s.Comments
 }
 
 // GetPosts returns the value of Posts.
-func (s *Community) GetPosts() float64 {
+func (s *Community) GetPosts() int {
 	return s.Posts
 }
 
 // GetSubscribers returns the value of Subscribers.
-func (s *Community) GetSubscribers() float64 {
+func (s *Community) GetSubscribers() int {
 	return s.Subscribers
 }
 
@@ -2080,52 +2080,52 @@ func (s *Community) SetLocalRemoved(val bool) {
 }
 
 // SetUnresolvedReportCount sets the value of UnresolvedReportCount.
-func (s *Community) SetUnresolvedReportCount(val float64) {
+func (s *Community) SetUnresolvedReportCount(val int) {
 	s.UnresolvedReportCount = val
 }
 
 // SetReportCount sets the value of ReportCount.
-func (s *Community) SetReportCount(val float64) {
+func (s *Community) SetReportCount(val int) {
 	s.ReportCount = val
 }
 
 // SetSubscribersLocal sets the value of SubscribersLocal.
-func (s *Community) SetSubscribersLocal(val float64) {
+func (s *Community) SetSubscribersLocal(val int) {
 	s.SubscribersLocal = val
 }
 
 // SetUsersActiveHalfYear sets the value of UsersActiveHalfYear.
-func (s *Community) SetUsersActiveHalfYear(val float64) {
+func (s *Community) SetUsersActiveHalfYear(val int) {
 	s.UsersActiveHalfYear = val
 }
 
 // SetUsersActiveMonth sets the value of UsersActiveMonth.
-func (s *Community) SetUsersActiveMonth(val float64) {
+func (s *Community) SetUsersActiveMonth(val int) {
 	s.UsersActiveMonth = val
 }
 
 // SetUsersActiveWeek sets the value of UsersActiveWeek.
-func (s *Community) SetUsersActiveWeek(val float64) {
+func (s *Community) SetUsersActiveWeek(val int) {
 	s.UsersActiveWeek = val
 }
 
 // SetUsersActiveDay sets the value of UsersActiveDay.
-func (s *Community) SetUsersActiveDay(val float64) {
+func (s *Community) SetUsersActiveDay(val int) {
 	s.UsersActiveDay = val
 }
 
 // SetComments sets the value of Comments.
-func (s *Community) SetComments(val float64) {
+func (s *Community) SetComments(val int) {
 	s.Comments = val
 }
 
 // SetPosts sets the value of Posts.
-func (s *Community) SetPosts(val float64) {
+func (s *Community) SetPosts(val int) {
 	s.Posts = val
 }
 
 // SetSubscribers sets the value of Subscribers.
-func (s *Community) SetSubscribers(val float64) {
+func (s *Community) SetSubscribers(val int) {
 	s.Subscribers = val
 }
 
@@ -2389,7 +2389,7 @@ func (s *CommunityFollowerView) SetCommunity(val Community) {
 	s.Community = val
 }
 
-type CommunityId float64
+type CommunityId int
 
 // Parameter for setting community icon or banner. Can't use POST data here as it already contains the
 // image data.
@@ -2662,7 +2662,7 @@ func (s *CommunityReport) SetID(val CommunityReportId) {
 	s.ID = val
 }
 
-type CommunityReportId float64
+type CommunityReportId int
 
 // A community report response.
 // Ref: #/components/schemas/CommunityReportResponse
@@ -3059,7 +3059,7 @@ func (s *CommunityTag) SetID(val CommunityTagId) {
 	s.ID = val
 }
 
-type CommunityTagId float64
+type CommunityTagId int
 
 type CommunityTagsView []CommunityTag
 
@@ -3568,8 +3568,8 @@ func (s *CreateCustomEmoji) SetCategory(val string) {
 
 // Ref: #/components/schemas/CreateInvitation
 type CreateInvitation struct {
-	ExpiresAt OptString  `json:"expires_at"`
-	MaxUses   OptFloat64 `json:"max_uses"`
+	ExpiresAt OptString `json:"expires_at"`
+	MaxUses   OptInt    `json:"max_uses"`
 }
 
 // GetExpiresAt returns the value of ExpiresAt.
@@ -3578,7 +3578,7 @@ func (s *CreateInvitation) GetExpiresAt() OptString {
 }
 
 // GetMaxUses returns the value of MaxUses.
-func (s *CreateInvitation) GetMaxUses() OptFloat64 {
+func (s *CreateInvitation) GetMaxUses() OptInt {
 	return s.MaxUses
 }
 
@@ -3588,7 +3588,7 @@ func (s *CreateInvitation) SetExpiresAt(val OptString) {
 }
 
 // SetMaxUses sets the value of MaxUses.
-func (s *CreateInvitation) SetMaxUses(val OptFloat64) {
+func (s *CreateInvitation) SetMaxUses(val OptInt) {
 	s.MaxUses = val
 }
 
@@ -3833,7 +3833,7 @@ func (s *CreateOrDeleteMultiCommunityEntry) SetID(val MultiCommunityId) {
 // Ref: #/components/schemas/CreatePost
 type CreatePost struct {
 	// Time when this post should be scheduled. Null means publish immediately.
-	ScheduledPublishTimeAt OptFloat64       `json:"scheduled_publish_time_at"`
+	ScheduledPublishTimeAt OptInt           `json:"scheduled_publish_time_at"`
 	Tags                   []CommunityTagId `json:"tags"`
 	// Instead of fetching a thumbnail, use a custom one.
 	CustomThumbnail OptString     `json:"custom_thumbnail"`
@@ -3851,7 +3851,7 @@ type CreatePost struct {
 }
 
 // GetScheduledPublishTimeAt returns the value of ScheduledPublishTimeAt.
-func (s *CreatePost) GetScheduledPublishTimeAt() OptFloat64 {
+func (s *CreatePost) GetScheduledPublishTimeAt() OptInt {
 	return s.ScheduledPublishTimeAt
 }
 
@@ -3906,7 +3906,7 @@ func (s *CreatePost) GetName() string {
 }
 
 // SetScheduledPublishTimeAt sets the value of ScheduledPublishTimeAt.
-func (s *CreatePost) SetScheduledPublishTimeAt(val OptFloat64) {
+func (s *CreatePost) SetScheduledPublishTimeAt(val OptInt) {
 	s.ScheduledPublishTimeAt = val
 }
 
@@ -4112,14 +4112,14 @@ func (s *CreatePrivateMessageReport) SetPrivateMessageID(val PrivateMessageId) {
 // Creates a site. Should be done after first running lemmy.
 // Ref: #/components/schemas/CreateSite
 type CreateSite struct {
-	MaxInvitesPerUserAllowed                   OptFloat64          `json:"max_invites_per_user_allowed"`
+	MaxInvitesPerUserAllowed                   OptInt              `json:"max_invites_per_user_allowed"`
 	ImageUploadDisabled                        OptBool             `json:"image_upload_disabled"`
 	ImageAllowVideoUploads                     OptBool             `json:"image_allow_video_uploads"`
-	ImageMaxUploadSize                         OptFloat64          `json:"image_max_upload_size"`
-	ImageMaxBannerSize                         OptFloat64          `json:"image_max_banner_size"`
-	ImageMaxAvatarSize                         OptFloat64          `json:"image_max_avatar_size"`
-	ImageMaxThumbnailSize                      OptFloat64          `json:"image_max_thumbnail_size"`
-	ImageUploadTimeoutSeconds                  OptFloat64          `json:"image_upload_timeout_seconds"`
+	ImageMaxUploadSize                         OptInt              `json:"image_max_upload_size"`
+	ImageMaxBannerSize                         OptInt              `json:"image_max_banner_size"`
+	ImageMaxAvatarSize                         OptInt              `json:"image_max_avatar_size"`
+	ImageMaxThumbnailSize                      OptInt              `json:"image_max_thumbnail_size"`
+	ImageUploadTimeoutSeconds                  OptInt              `json:"image_upload_timeout_seconds"`
 	ImageProxyBypassDomains                    OptString           `json:"image_proxy_bypass_domains"`
 	ImageMode                                  OptImageMode        `json:"image_mode"`
 	SuggestedMultiCommunityID                  OptMultiCommunityId `json:"suggested_multi_community_id"`
@@ -4135,27 +4135,27 @@ type CreateSite struct {
 	OAuthRegistration                          OptBool             `json:"oauth_registration"`
 	RegistrationMode                           OptRegistrationMode `json:"registration_mode"`
 	FederationEnabled                          OptBool             `json:"federation_enabled"`
-	RateLimitImportUserSettingsIntervalSeconds OptFloat64          `json:"rate_limit_import_user_settings_interval_seconds"`
-	RateLimitImportUserSettingsMaxRequests     OptFloat64          `json:"rate_limit_import_user_settings_max_requests"`
-	RateLimitSearchIntervalSeconds             OptFloat64          `json:"rate_limit_search_interval_seconds"`
-	RateLimitSearchMaxRequests                 OptFloat64          `json:"rate_limit_search_max_requests"`
-	RateLimitCommentIntervalSeconds            OptFloat64          `json:"rate_limit_comment_interval_seconds"`
-	RateLimitCommentMaxRequests                OptFloat64          `json:"rate_limit_comment_max_requests"`
-	RateLimitImageIntervalSeconds              OptFloat64          `json:"rate_limit_image_interval_seconds"`
-	RateLimitImageMaxRequests                  OptFloat64          `json:"rate_limit_image_max_requests"`
-	RateLimitRegisterIntervalSeconds           OptFloat64          `json:"rate_limit_register_interval_seconds"`
-	RateLimitRegisterMaxRequests               OptFloat64          `json:"rate_limit_register_max_requests"`
-	RateLimitPostIntervalSeconds               OptFloat64          `json:"rate_limit_post_interval_seconds"`
-	RateLimitPostMaxRequests                   OptFloat64          `json:"rate_limit_post_max_requests"`
-	RateLimitMessageIntervalSeconds            OptFloat64          `json:"rate_limit_message_interval_seconds"`
-	RateLimitMessageMaxRequests                OptFloat64          `json:"rate_limit_message_max_requests"`
+	RateLimitImportUserSettingsIntervalSeconds OptInt              `json:"rate_limit_import_user_settings_interval_seconds"`
+	RateLimitImportUserSettingsMaxRequests     OptInt              `json:"rate_limit_import_user_settings_max_requests"`
+	RateLimitSearchIntervalSeconds             OptInt              `json:"rate_limit_search_interval_seconds"`
+	RateLimitSearchMaxRequests                 OptInt              `json:"rate_limit_search_max_requests"`
+	RateLimitCommentIntervalSeconds            OptInt              `json:"rate_limit_comment_interval_seconds"`
+	RateLimitCommentMaxRequests                OptInt              `json:"rate_limit_comment_max_requests"`
+	RateLimitImageIntervalSeconds              OptInt              `json:"rate_limit_image_interval_seconds"`
+	RateLimitImageMaxRequests                  OptInt              `json:"rate_limit_image_max_requests"`
+	RateLimitRegisterIntervalSeconds           OptInt              `json:"rate_limit_register_interval_seconds"`
+	RateLimitRegisterMaxRequests               OptInt              `json:"rate_limit_register_max_requests"`
+	RateLimitPostIntervalSeconds               OptInt              `json:"rate_limit_post_interval_seconds"`
+	RateLimitPostMaxRequests                   OptInt              `json:"rate_limit_post_max_requests"`
+	RateLimitMessageIntervalSeconds            OptInt              `json:"rate_limit_message_interval_seconds"`
+	RateLimitMessageMaxRequests                OptInt              `json:"rate_limit_message_max_requests"`
 	SlurFilterRegex                            OptString           `json:"slur_filter_regex"`
 	DiscussionLanguages                        []LanguageId        `json:"discussion_languages"`
 	ApplicationEmailAdmins                     OptBool             `json:"application_email_admins"`
 	LegalInformation                           OptString           `json:"legal_information"`
 	DefaultCommentSortType                     OptCommentSortType  `json:"default_comment_sort_type"`
-	DefaultItemsPerPage                        OptFloat64          `json:"default_items_per_page"`
-	DefaultPostTimeRangeSeconds                OptFloat64          `json:"default_post_time_range_seconds"`
+	DefaultItemsPerPage                        OptInt              `json:"default_items_per_page"`
+	DefaultPostTimeRangeSeconds                OptInt              `json:"default_post_time_range_seconds"`
 	DefaultPostSortType                        OptPostSortType     `json:"default_post_sort_type"`
 	DefaultPostListingMode                     OptPostListingMode  `json:"default_post_listing_mode"`
 	DefaultPostListingType                     OptListingType      `json:"default_post_listing_type"`
@@ -4170,7 +4170,7 @@ type CreateSite struct {
 }
 
 // GetMaxInvitesPerUserAllowed returns the value of MaxInvitesPerUserAllowed.
-func (s *CreateSite) GetMaxInvitesPerUserAllowed() OptFloat64 {
+func (s *CreateSite) GetMaxInvitesPerUserAllowed() OptInt {
 	return s.MaxInvitesPerUserAllowed
 }
 
@@ -4185,27 +4185,27 @@ func (s *CreateSite) GetImageAllowVideoUploads() OptBool {
 }
 
 // GetImageMaxUploadSize returns the value of ImageMaxUploadSize.
-func (s *CreateSite) GetImageMaxUploadSize() OptFloat64 {
+func (s *CreateSite) GetImageMaxUploadSize() OptInt {
 	return s.ImageMaxUploadSize
 }
 
 // GetImageMaxBannerSize returns the value of ImageMaxBannerSize.
-func (s *CreateSite) GetImageMaxBannerSize() OptFloat64 {
+func (s *CreateSite) GetImageMaxBannerSize() OptInt {
 	return s.ImageMaxBannerSize
 }
 
 // GetImageMaxAvatarSize returns the value of ImageMaxAvatarSize.
-func (s *CreateSite) GetImageMaxAvatarSize() OptFloat64 {
+func (s *CreateSite) GetImageMaxAvatarSize() OptInt {
 	return s.ImageMaxAvatarSize
 }
 
 // GetImageMaxThumbnailSize returns the value of ImageMaxThumbnailSize.
-func (s *CreateSite) GetImageMaxThumbnailSize() OptFloat64 {
+func (s *CreateSite) GetImageMaxThumbnailSize() OptInt {
 	return s.ImageMaxThumbnailSize
 }
 
 // GetImageUploadTimeoutSeconds returns the value of ImageUploadTimeoutSeconds.
-func (s *CreateSite) GetImageUploadTimeoutSeconds() OptFloat64 {
+func (s *CreateSite) GetImageUploadTimeoutSeconds() OptInt {
 	return s.ImageUploadTimeoutSeconds
 }
 
@@ -4285,72 +4285,72 @@ func (s *CreateSite) GetFederationEnabled() OptBool {
 }
 
 // GetRateLimitImportUserSettingsIntervalSeconds returns the value of RateLimitImportUserSettingsIntervalSeconds.
-func (s *CreateSite) GetRateLimitImportUserSettingsIntervalSeconds() OptFloat64 {
+func (s *CreateSite) GetRateLimitImportUserSettingsIntervalSeconds() OptInt {
 	return s.RateLimitImportUserSettingsIntervalSeconds
 }
 
 // GetRateLimitImportUserSettingsMaxRequests returns the value of RateLimitImportUserSettingsMaxRequests.
-func (s *CreateSite) GetRateLimitImportUserSettingsMaxRequests() OptFloat64 {
+func (s *CreateSite) GetRateLimitImportUserSettingsMaxRequests() OptInt {
 	return s.RateLimitImportUserSettingsMaxRequests
 }
 
 // GetRateLimitSearchIntervalSeconds returns the value of RateLimitSearchIntervalSeconds.
-func (s *CreateSite) GetRateLimitSearchIntervalSeconds() OptFloat64 {
+func (s *CreateSite) GetRateLimitSearchIntervalSeconds() OptInt {
 	return s.RateLimitSearchIntervalSeconds
 }
 
 // GetRateLimitSearchMaxRequests returns the value of RateLimitSearchMaxRequests.
-func (s *CreateSite) GetRateLimitSearchMaxRequests() OptFloat64 {
+func (s *CreateSite) GetRateLimitSearchMaxRequests() OptInt {
 	return s.RateLimitSearchMaxRequests
 }
 
 // GetRateLimitCommentIntervalSeconds returns the value of RateLimitCommentIntervalSeconds.
-func (s *CreateSite) GetRateLimitCommentIntervalSeconds() OptFloat64 {
+func (s *CreateSite) GetRateLimitCommentIntervalSeconds() OptInt {
 	return s.RateLimitCommentIntervalSeconds
 }
 
 // GetRateLimitCommentMaxRequests returns the value of RateLimitCommentMaxRequests.
-func (s *CreateSite) GetRateLimitCommentMaxRequests() OptFloat64 {
+func (s *CreateSite) GetRateLimitCommentMaxRequests() OptInt {
 	return s.RateLimitCommentMaxRequests
 }
 
 // GetRateLimitImageIntervalSeconds returns the value of RateLimitImageIntervalSeconds.
-func (s *CreateSite) GetRateLimitImageIntervalSeconds() OptFloat64 {
+func (s *CreateSite) GetRateLimitImageIntervalSeconds() OptInt {
 	return s.RateLimitImageIntervalSeconds
 }
 
 // GetRateLimitImageMaxRequests returns the value of RateLimitImageMaxRequests.
-func (s *CreateSite) GetRateLimitImageMaxRequests() OptFloat64 {
+func (s *CreateSite) GetRateLimitImageMaxRequests() OptInt {
 	return s.RateLimitImageMaxRequests
 }
 
 // GetRateLimitRegisterIntervalSeconds returns the value of RateLimitRegisterIntervalSeconds.
-func (s *CreateSite) GetRateLimitRegisterIntervalSeconds() OptFloat64 {
+func (s *CreateSite) GetRateLimitRegisterIntervalSeconds() OptInt {
 	return s.RateLimitRegisterIntervalSeconds
 }
 
 // GetRateLimitRegisterMaxRequests returns the value of RateLimitRegisterMaxRequests.
-func (s *CreateSite) GetRateLimitRegisterMaxRequests() OptFloat64 {
+func (s *CreateSite) GetRateLimitRegisterMaxRequests() OptInt {
 	return s.RateLimitRegisterMaxRequests
 }
 
 // GetRateLimitPostIntervalSeconds returns the value of RateLimitPostIntervalSeconds.
-func (s *CreateSite) GetRateLimitPostIntervalSeconds() OptFloat64 {
+func (s *CreateSite) GetRateLimitPostIntervalSeconds() OptInt {
 	return s.RateLimitPostIntervalSeconds
 }
 
 // GetRateLimitPostMaxRequests returns the value of RateLimitPostMaxRequests.
-func (s *CreateSite) GetRateLimitPostMaxRequests() OptFloat64 {
+func (s *CreateSite) GetRateLimitPostMaxRequests() OptInt {
 	return s.RateLimitPostMaxRequests
 }
 
 // GetRateLimitMessageIntervalSeconds returns the value of RateLimitMessageIntervalSeconds.
-func (s *CreateSite) GetRateLimitMessageIntervalSeconds() OptFloat64 {
+func (s *CreateSite) GetRateLimitMessageIntervalSeconds() OptInt {
 	return s.RateLimitMessageIntervalSeconds
 }
 
 // GetRateLimitMessageMaxRequests returns the value of RateLimitMessageMaxRequests.
-func (s *CreateSite) GetRateLimitMessageMaxRequests() OptFloat64 {
+func (s *CreateSite) GetRateLimitMessageMaxRequests() OptInt {
 	return s.RateLimitMessageMaxRequests
 }
 
@@ -4380,12 +4380,12 @@ func (s *CreateSite) GetDefaultCommentSortType() OptCommentSortType {
 }
 
 // GetDefaultItemsPerPage returns the value of DefaultItemsPerPage.
-func (s *CreateSite) GetDefaultItemsPerPage() OptFloat64 {
+func (s *CreateSite) GetDefaultItemsPerPage() OptInt {
 	return s.DefaultItemsPerPage
 }
 
 // GetDefaultPostTimeRangeSeconds returns the value of DefaultPostTimeRangeSeconds.
-func (s *CreateSite) GetDefaultPostTimeRangeSeconds() OptFloat64 {
+func (s *CreateSite) GetDefaultPostTimeRangeSeconds() OptInt {
 	return s.DefaultPostTimeRangeSeconds
 }
 
@@ -4445,7 +4445,7 @@ func (s *CreateSite) GetName() string {
 }
 
 // SetMaxInvitesPerUserAllowed sets the value of MaxInvitesPerUserAllowed.
-func (s *CreateSite) SetMaxInvitesPerUserAllowed(val OptFloat64) {
+func (s *CreateSite) SetMaxInvitesPerUserAllowed(val OptInt) {
 	s.MaxInvitesPerUserAllowed = val
 }
 
@@ -4460,27 +4460,27 @@ func (s *CreateSite) SetImageAllowVideoUploads(val OptBool) {
 }
 
 // SetImageMaxUploadSize sets the value of ImageMaxUploadSize.
-func (s *CreateSite) SetImageMaxUploadSize(val OptFloat64) {
+func (s *CreateSite) SetImageMaxUploadSize(val OptInt) {
 	s.ImageMaxUploadSize = val
 }
 
 // SetImageMaxBannerSize sets the value of ImageMaxBannerSize.
-func (s *CreateSite) SetImageMaxBannerSize(val OptFloat64) {
+func (s *CreateSite) SetImageMaxBannerSize(val OptInt) {
 	s.ImageMaxBannerSize = val
 }
 
 // SetImageMaxAvatarSize sets the value of ImageMaxAvatarSize.
-func (s *CreateSite) SetImageMaxAvatarSize(val OptFloat64) {
+func (s *CreateSite) SetImageMaxAvatarSize(val OptInt) {
 	s.ImageMaxAvatarSize = val
 }
 
 // SetImageMaxThumbnailSize sets the value of ImageMaxThumbnailSize.
-func (s *CreateSite) SetImageMaxThumbnailSize(val OptFloat64) {
+func (s *CreateSite) SetImageMaxThumbnailSize(val OptInt) {
 	s.ImageMaxThumbnailSize = val
 }
 
 // SetImageUploadTimeoutSeconds sets the value of ImageUploadTimeoutSeconds.
-func (s *CreateSite) SetImageUploadTimeoutSeconds(val OptFloat64) {
+func (s *CreateSite) SetImageUploadTimeoutSeconds(val OptInt) {
 	s.ImageUploadTimeoutSeconds = val
 }
 
@@ -4560,72 +4560,72 @@ func (s *CreateSite) SetFederationEnabled(val OptBool) {
 }
 
 // SetRateLimitImportUserSettingsIntervalSeconds sets the value of RateLimitImportUserSettingsIntervalSeconds.
-func (s *CreateSite) SetRateLimitImportUserSettingsIntervalSeconds(val OptFloat64) {
+func (s *CreateSite) SetRateLimitImportUserSettingsIntervalSeconds(val OptInt) {
 	s.RateLimitImportUserSettingsIntervalSeconds = val
 }
 
 // SetRateLimitImportUserSettingsMaxRequests sets the value of RateLimitImportUserSettingsMaxRequests.
-func (s *CreateSite) SetRateLimitImportUserSettingsMaxRequests(val OptFloat64) {
+func (s *CreateSite) SetRateLimitImportUserSettingsMaxRequests(val OptInt) {
 	s.RateLimitImportUserSettingsMaxRequests = val
 }
 
 // SetRateLimitSearchIntervalSeconds sets the value of RateLimitSearchIntervalSeconds.
-func (s *CreateSite) SetRateLimitSearchIntervalSeconds(val OptFloat64) {
+func (s *CreateSite) SetRateLimitSearchIntervalSeconds(val OptInt) {
 	s.RateLimitSearchIntervalSeconds = val
 }
 
 // SetRateLimitSearchMaxRequests sets the value of RateLimitSearchMaxRequests.
-func (s *CreateSite) SetRateLimitSearchMaxRequests(val OptFloat64) {
+func (s *CreateSite) SetRateLimitSearchMaxRequests(val OptInt) {
 	s.RateLimitSearchMaxRequests = val
 }
 
 // SetRateLimitCommentIntervalSeconds sets the value of RateLimitCommentIntervalSeconds.
-func (s *CreateSite) SetRateLimitCommentIntervalSeconds(val OptFloat64) {
+func (s *CreateSite) SetRateLimitCommentIntervalSeconds(val OptInt) {
 	s.RateLimitCommentIntervalSeconds = val
 }
 
 // SetRateLimitCommentMaxRequests sets the value of RateLimitCommentMaxRequests.
-func (s *CreateSite) SetRateLimitCommentMaxRequests(val OptFloat64) {
+func (s *CreateSite) SetRateLimitCommentMaxRequests(val OptInt) {
 	s.RateLimitCommentMaxRequests = val
 }
 
 // SetRateLimitImageIntervalSeconds sets the value of RateLimitImageIntervalSeconds.
-func (s *CreateSite) SetRateLimitImageIntervalSeconds(val OptFloat64) {
+func (s *CreateSite) SetRateLimitImageIntervalSeconds(val OptInt) {
 	s.RateLimitImageIntervalSeconds = val
 }
 
 // SetRateLimitImageMaxRequests sets the value of RateLimitImageMaxRequests.
-func (s *CreateSite) SetRateLimitImageMaxRequests(val OptFloat64) {
+func (s *CreateSite) SetRateLimitImageMaxRequests(val OptInt) {
 	s.RateLimitImageMaxRequests = val
 }
 
 // SetRateLimitRegisterIntervalSeconds sets the value of RateLimitRegisterIntervalSeconds.
-func (s *CreateSite) SetRateLimitRegisterIntervalSeconds(val OptFloat64) {
+func (s *CreateSite) SetRateLimitRegisterIntervalSeconds(val OptInt) {
 	s.RateLimitRegisterIntervalSeconds = val
 }
 
 // SetRateLimitRegisterMaxRequests sets the value of RateLimitRegisterMaxRequests.
-func (s *CreateSite) SetRateLimitRegisterMaxRequests(val OptFloat64) {
+func (s *CreateSite) SetRateLimitRegisterMaxRequests(val OptInt) {
 	s.RateLimitRegisterMaxRequests = val
 }
 
 // SetRateLimitPostIntervalSeconds sets the value of RateLimitPostIntervalSeconds.
-func (s *CreateSite) SetRateLimitPostIntervalSeconds(val OptFloat64) {
+func (s *CreateSite) SetRateLimitPostIntervalSeconds(val OptInt) {
 	s.RateLimitPostIntervalSeconds = val
 }
 
 // SetRateLimitPostMaxRequests sets the value of RateLimitPostMaxRequests.
-func (s *CreateSite) SetRateLimitPostMaxRequests(val OptFloat64) {
+func (s *CreateSite) SetRateLimitPostMaxRequests(val OptInt) {
 	s.RateLimitPostMaxRequests = val
 }
 
 // SetRateLimitMessageIntervalSeconds sets the value of RateLimitMessageIntervalSeconds.
-func (s *CreateSite) SetRateLimitMessageIntervalSeconds(val OptFloat64) {
+func (s *CreateSite) SetRateLimitMessageIntervalSeconds(val OptInt) {
 	s.RateLimitMessageIntervalSeconds = val
 }
 
 // SetRateLimitMessageMaxRequests sets the value of RateLimitMessageMaxRequests.
-func (s *CreateSite) SetRateLimitMessageMaxRequests(val OptFloat64) {
+func (s *CreateSite) SetRateLimitMessageMaxRequests(val OptInt) {
 	s.RateLimitMessageMaxRequests = val
 }
 
@@ -4655,12 +4655,12 @@ func (s *CreateSite) SetDefaultCommentSortType(val OptCommentSortType) {
 }
 
 // SetDefaultItemsPerPage sets the value of DefaultItemsPerPage.
-func (s *CreateSite) SetDefaultItemsPerPage(val OptFloat64) {
+func (s *CreateSite) SetDefaultItemsPerPage(val OptInt) {
 	s.DefaultItemsPerPage = val
 }
 
 // SetDefaultPostTimeRangeSeconds sets the value of DefaultPostTimeRangeSeconds.
-func (s *CreateSite) SetDefaultPostTimeRangeSeconds(val OptFloat64) {
+func (s *CreateSite) SetDefaultPostTimeRangeSeconds(val OptInt) {
 	s.DefaultPostTimeRangeSeconds = val
 }
 
@@ -4817,7 +4817,7 @@ func (s *CustomEmoji) SetID(val CustomEmojiId) {
 	s.ID = val
 }
 
-type CustomEmojiId float64
+type CustomEmojiId int
 
 // A custom keyword for an emoji.
 // Ref: #/components/schemas/CustomEmojiKeyword
@@ -5627,7 +5627,7 @@ func (s *EditOAuthProvider) SetID(val OAuthProviderId) {
 type EditPost struct {
 	Tags []CommunityTagId `json:"tags"`
 	// Time when this post should be scheduled. Null means publish immediately.
-	ScheduledPublishTimeAt OptFloat64 `json:"scheduled_publish_time_at"`
+	ScheduledPublishTimeAt OptInt `json:"scheduled_publish_time_at"`
 	// Instead of fetching a thumbnail, use a custom one.
 	CustomThumbnail OptString     `json:"custom_thumbnail"`
 	LanguageID      OptLanguageId `json:"language_id"`
@@ -5647,7 +5647,7 @@ func (s *EditPost) GetTags() []CommunityTagId {
 }
 
 // GetScheduledPublishTimeAt returns the value of ScheduledPublishTimeAt.
-func (s *EditPost) GetScheduledPublishTimeAt() OptFloat64 {
+func (s *EditPost) GetScheduledPublishTimeAt() OptInt {
 	return s.ScheduledPublishTimeAt
 }
 
@@ -5697,7 +5697,7 @@ func (s *EditPost) SetTags(val []CommunityTagId) {
 }
 
 // SetScheduledPublishTimeAt sets the value of ScheduledPublishTimeAt.
-func (s *EditPost) SetScheduledPublishTimeAt(val OptFloat64) {
+func (s *EditPost) SetScheduledPublishTimeAt(val OptInt) {
 	s.ScheduledPublishTimeAt = val
 }
 
@@ -5798,14 +5798,14 @@ func (s *EditPrivateMessage) SetPrivateMessageID(val PrivateMessageId) {
 // Edits a site.
 // Ref: #/components/schemas/EditSite
 type EditSite struct {
-	MaxInvitesPerUserAllowed  OptFloat64 `json:"max_invites_per_user_allowed"`
-	ImageUploadDisabled       OptBool    `json:"image_upload_disabled"`
-	ImageAllowVideoUploads    OptBool    `json:"image_allow_video_uploads"`
-	ImageMaxUploadSize        OptFloat64 `json:"image_max_upload_size"`
-	ImageMaxBannerSize        OptFloat64 `json:"image_max_banner_size"`
-	ImageMaxAvatarSize        OptFloat64 `json:"image_max_avatar_size"`
-	ImageMaxThumbnailSize     OptFloat64 `json:"image_max_thumbnail_size"`
-	ImageUploadTimeoutSeconds OptFloat64 `json:"image_upload_timeout_seconds"`
+	MaxInvitesPerUserAllowed  OptInt  `json:"max_invites_per_user_allowed"`
+	ImageUploadDisabled       OptBool `json:"image_upload_disabled"`
+	ImageAllowVideoUploads    OptBool `json:"image_allow_video_uploads"`
+	ImageMaxUploadSize        OptInt  `json:"image_max_upload_size"`
+	ImageMaxBannerSize        OptInt  `json:"image_max_banner_size"`
+	ImageMaxAvatarSize        OptInt  `json:"image_max_avatar_size"`
+	ImageMaxThumbnailSize     OptInt  `json:"image_max_thumbnail_size"`
+	ImageUploadTimeoutSeconds OptInt  `json:"image_upload_timeout_seconds"`
 	// Allows bypassing proxy for specific image hosts when using [[ImageMode.ProxyAllImages]]. Use a
 	// comma-delimited string.
 	//
@@ -5839,28 +5839,28 @@ type EditSite struct {
 	// A list of blocked URLs.
 	BlockedUrls []string `json:"blocked_urls"`
 	// Whether to enable federation.
-	FederationEnabled                          OptBool    `json:"federation_enabled"`
-	RateLimitImportUserSettingsIntervalSeconds OptFloat64 `json:"rate_limit_import_user_settings_interval_seconds"`
+	FederationEnabled                          OptBool `json:"federation_enabled"`
+	RateLimitImportUserSettingsIntervalSeconds OptInt  `json:"rate_limit_import_user_settings_interval_seconds"`
 	// The number of settings imports or exports allowed in a given time frame.
-	RateLimitImportUserSettingsMaxRequests OptFloat64 `json:"rate_limit_import_user_settings_max_requests"`
-	RateLimitSearchIntervalSeconds         OptFloat64 `json:"rate_limit_search_interval_seconds"`
+	RateLimitImportUserSettingsMaxRequests OptInt `json:"rate_limit_import_user_settings_max_requests"`
+	RateLimitSearchIntervalSeconds         OptInt `json:"rate_limit_search_interval_seconds"`
 	// The number of searches allowed in a given time frame.
-	RateLimitSearchMaxRequests      OptFloat64 `json:"rate_limit_search_max_requests"`
-	RateLimitCommentIntervalSeconds OptFloat64 `json:"rate_limit_comment_interval_seconds"`
+	RateLimitSearchMaxRequests      OptInt `json:"rate_limit_search_max_requests"`
+	RateLimitCommentIntervalSeconds OptInt `json:"rate_limit_comment_interval_seconds"`
 	// The number of comments allowed in a given time frame.
-	RateLimitCommentMaxRequests   OptFloat64 `json:"rate_limit_comment_max_requests"`
-	RateLimitImageIntervalSeconds OptFloat64 `json:"rate_limit_image_interval_seconds"`
+	RateLimitCommentMaxRequests   OptInt `json:"rate_limit_comment_max_requests"`
+	RateLimitImageIntervalSeconds OptInt `json:"rate_limit_image_interval_seconds"`
 	// The number of image uploads allowed in a given time frame.
-	RateLimitImageMaxRequests        OptFloat64 `json:"rate_limit_image_max_requests"`
-	RateLimitRegisterIntervalSeconds OptFloat64 `json:"rate_limit_register_interval_seconds"`
+	RateLimitImageMaxRequests        OptInt `json:"rate_limit_image_max_requests"`
+	RateLimitRegisterIntervalSeconds OptInt `json:"rate_limit_register_interval_seconds"`
 	// The number of registrations allowed in a given time frame.
-	RateLimitRegisterMaxRequests OptFloat64 `json:"rate_limit_register_max_requests"`
-	RateLimitPostIntervalSeconds OptFloat64 `json:"rate_limit_post_interval_seconds"`
+	RateLimitRegisterMaxRequests OptInt `json:"rate_limit_register_max_requests"`
+	RateLimitPostIntervalSeconds OptInt `json:"rate_limit_post_interval_seconds"`
 	// The number of posts allowed in a given time frame.
-	RateLimitPostMaxRequests        OptFloat64 `json:"rate_limit_post_max_requests"`
-	RateLimitMessageIntervalSeconds OptFloat64 `json:"rate_limit_message_interval_seconds"`
+	RateLimitPostMaxRequests        OptInt `json:"rate_limit_post_max_requests"`
+	RateLimitMessageIntervalSeconds OptInt `json:"rate_limit_message_interval_seconds"`
 	// The number of messages allowed in a given time frame.
-	RateLimitMessageMaxRequests OptFloat64 `json:"rate_limit_message_max_requests"`
+	RateLimitMessageMaxRequests OptInt `json:"rate_limit_message_max_requests"`
 	// A regex string of items to filter.
 	SlurFilterRegex OptString `json:"slur_filter_regex"`
 	// A list of allowed discussion languages.
@@ -5875,9 +5875,9 @@ type EditSite struct {
 	// The default comment sort, usually "hot".
 	DefaultCommentSortType OptCommentSortType `json:"default_comment_sort_type"`
 	// A default fetch limit for number of items returned.
-	DefaultItemsPerPage OptFloat64 `json:"default_items_per_page"`
+	DefaultItemsPerPage OptInt `json:"default_items_per_page"`
 	// A default time range limit to apply to post sorts, in seconds. 0 means none.
-	DefaultPostTimeRangeSeconds OptFloat64 `json:"default_post_time_range_seconds"`
+	DefaultPostTimeRangeSeconds OptInt `json:"default_post_time_range_seconds"`
 	// The default post sort, usually "active".
 	DefaultPostSortType OptPostSortType `json:"default_post_sort_type"`
 	// Default value for listing mode, usually "list".
@@ -5902,7 +5902,7 @@ type EditSite struct {
 }
 
 // GetMaxInvitesPerUserAllowed returns the value of MaxInvitesPerUserAllowed.
-func (s *EditSite) GetMaxInvitesPerUserAllowed() OptFloat64 {
+func (s *EditSite) GetMaxInvitesPerUserAllowed() OptInt {
 	return s.MaxInvitesPerUserAllowed
 }
 
@@ -5917,27 +5917,27 @@ func (s *EditSite) GetImageAllowVideoUploads() OptBool {
 }
 
 // GetImageMaxUploadSize returns the value of ImageMaxUploadSize.
-func (s *EditSite) GetImageMaxUploadSize() OptFloat64 {
+func (s *EditSite) GetImageMaxUploadSize() OptInt {
 	return s.ImageMaxUploadSize
 }
 
 // GetImageMaxBannerSize returns the value of ImageMaxBannerSize.
-func (s *EditSite) GetImageMaxBannerSize() OptFloat64 {
+func (s *EditSite) GetImageMaxBannerSize() OptInt {
 	return s.ImageMaxBannerSize
 }
 
 // GetImageMaxAvatarSize returns the value of ImageMaxAvatarSize.
-func (s *EditSite) GetImageMaxAvatarSize() OptFloat64 {
+func (s *EditSite) GetImageMaxAvatarSize() OptInt {
 	return s.ImageMaxAvatarSize
 }
 
 // GetImageMaxThumbnailSize returns the value of ImageMaxThumbnailSize.
-func (s *EditSite) GetImageMaxThumbnailSize() OptFloat64 {
+func (s *EditSite) GetImageMaxThumbnailSize() OptInt {
 	return s.ImageMaxThumbnailSize
 }
 
 // GetImageUploadTimeoutSeconds returns the value of ImageUploadTimeoutSeconds.
-func (s *EditSite) GetImageUploadTimeoutSeconds() OptFloat64 {
+func (s *EditSite) GetImageUploadTimeoutSeconds() OptInt {
 	return s.ImageUploadTimeoutSeconds
 }
 
@@ -6017,72 +6017,72 @@ func (s *EditSite) GetFederationEnabled() OptBool {
 }
 
 // GetRateLimitImportUserSettingsIntervalSeconds returns the value of RateLimitImportUserSettingsIntervalSeconds.
-func (s *EditSite) GetRateLimitImportUserSettingsIntervalSeconds() OptFloat64 {
+func (s *EditSite) GetRateLimitImportUserSettingsIntervalSeconds() OptInt {
 	return s.RateLimitImportUserSettingsIntervalSeconds
 }
 
 // GetRateLimitImportUserSettingsMaxRequests returns the value of RateLimitImportUserSettingsMaxRequests.
-func (s *EditSite) GetRateLimitImportUserSettingsMaxRequests() OptFloat64 {
+func (s *EditSite) GetRateLimitImportUserSettingsMaxRequests() OptInt {
 	return s.RateLimitImportUserSettingsMaxRequests
 }
 
 // GetRateLimitSearchIntervalSeconds returns the value of RateLimitSearchIntervalSeconds.
-func (s *EditSite) GetRateLimitSearchIntervalSeconds() OptFloat64 {
+func (s *EditSite) GetRateLimitSearchIntervalSeconds() OptInt {
 	return s.RateLimitSearchIntervalSeconds
 }
 
 // GetRateLimitSearchMaxRequests returns the value of RateLimitSearchMaxRequests.
-func (s *EditSite) GetRateLimitSearchMaxRequests() OptFloat64 {
+func (s *EditSite) GetRateLimitSearchMaxRequests() OptInt {
 	return s.RateLimitSearchMaxRequests
 }
 
 // GetRateLimitCommentIntervalSeconds returns the value of RateLimitCommentIntervalSeconds.
-func (s *EditSite) GetRateLimitCommentIntervalSeconds() OptFloat64 {
+func (s *EditSite) GetRateLimitCommentIntervalSeconds() OptInt {
 	return s.RateLimitCommentIntervalSeconds
 }
 
 // GetRateLimitCommentMaxRequests returns the value of RateLimitCommentMaxRequests.
-func (s *EditSite) GetRateLimitCommentMaxRequests() OptFloat64 {
+func (s *EditSite) GetRateLimitCommentMaxRequests() OptInt {
 	return s.RateLimitCommentMaxRequests
 }
 
 // GetRateLimitImageIntervalSeconds returns the value of RateLimitImageIntervalSeconds.
-func (s *EditSite) GetRateLimitImageIntervalSeconds() OptFloat64 {
+func (s *EditSite) GetRateLimitImageIntervalSeconds() OptInt {
 	return s.RateLimitImageIntervalSeconds
 }
 
 // GetRateLimitImageMaxRequests returns the value of RateLimitImageMaxRequests.
-func (s *EditSite) GetRateLimitImageMaxRequests() OptFloat64 {
+func (s *EditSite) GetRateLimitImageMaxRequests() OptInt {
 	return s.RateLimitImageMaxRequests
 }
 
 // GetRateLimitRegisterIntervalSeconds returns the value of RateLimitRegisterIntervalSeconds.
-func (s *EditSite) GetRateLimitRegisterIntervalSeconds() OptFloat64 {
+func (s *EditSite) GetRateLimitRegisterIntervalSeconds() OptInt {
 	return s.RateLimitRegisterIntervalSeconds
 }
 
 // GetRateLimitRegisterMaxRequests returns the value of RateLimitRegisterMaxRequests.
-func (s *EditSite) GetRateLimitRegisterMaxRequests() OptFloat64 {
+func (s *EditSite) GetRateLimitRegisterMaxRequests() OptInt {
 	return s.RateLimitRegisterMaxRequests
 }
 
 // GetRateLimitPostIntervalSeconds returns the value of RateLimitPostIntervalSeconds.
-func (s *EditSite) GetRateLimitPostIntervalSeconds() OptFloat64 {
+func (s *EditSite) GetRateLimitPostIntervalSeconds() OptInt {
 	return s.RateLimitPostIntervalSeconds
 }
 
 // GetRateLimitPostMaxRequests returns the value of RateLimitPostMaxRequests.
-func (s *EditSite) GetRateLimitPostMaxRequests() OptFloat64 {
+func (s *EditSite) GetRateLimitPostMaxRequests() OptInt {
 	return s.RateLimitPostMaxRequests
 }
 
 // GetRateLimitMessageIntervalSeconds returns the value of RateLimitMessageIntervalSeconds.
-func (s *EditSite) GetRateLimitMessageIntervalSeconds() OptFloat64 {
+func (s *EditSite) GetRateLimitMessageIntervalSeconds() OptInt {
 	return s.RateLimitMessageIntervalSeconds
 }
 
 // GetRateLimitMessageMaxRequests returns the value of RateLimitMessageMaxRequests.
-func (s *EditSite) GetRateLimitMessageMaxRequests() OptFloat64 {
+func (s *EditSite) GetRateLimitMessageMaxRequests() OptInt {
 	return s.RateLimitMessageMaxRequests
 }
 
@@ -6117,12 +6117,12 @@ func (s *EditSite) GetDefaultCommentSortType() OptCommentSortType {
 }
 
 // GetDefaultItemsPerPage returns the value of DefaultItemsPerPage.
-func (s *EditSite) GetDefaultItemsPerPage() OptFloat64 {
+func (s *EditSite) GetDefaultItemsPerPage() OptInt {
 	return s.DefaultItemsPerPage
 }
 
 // GetDefaultPostTimeRangeSeconds returns the value of DefaultPostTimeRangeSeconds.
-func (s *EditSite) GetDefaultPostTimeRangeSeconds() OptFloat64 {
+func (s *EditSite) GetDefaultPostTimeRangeSeconds() OptInt {
 	return s.DefaultPostTimeRangeSeconds
 }
 
@@ -6182,7 +6182,7 @@ func (s *EditSite) GetName() OptString {
 }
 
 // SetMaxInvitesPerUserAllowed sets the value of MaxInvitesPerUserAllowed.
-func (s *EditSite) SetMaxInvitesPerUserAllowed(val OptFloat64) {
+func (s *EditSite) SetMaxInvitesPerUserAllowed(val OptInt) {
 	s.MaxInvitesPerUserAllowed = val
 }
 
@@ -6197,27 +6197,27 @@ func (s *EditSite) SetImageAllowVideoUploads(val OptBool) {
 }
 
 // SetImageMaxUploadSize sets the value of ImageMaxUploadSize.
-func (s *EditSite) SetImageMaxUploadSize(val OptFloat64) {
+func (s *EditSite) SetImageMaxUploadSize(val OptInt) {
 	s.ImageMaxUploadSize = val
 }
 
 // SetImageMaxBannerSize sets the value of ImageMaxBannerSize.
-func (s *EditSite) SetImageMaxBannerSize(val OptFloat64) {
+func (s *EditSite) SetImageMaxBannerSize(val OptInt) {
 	s.ImageMaxBannerSize = val
 }
 
 // SetImageMaxAvatarSize sets the value of ImageMaxAvatarSize.
-func (s *EditSite) SetImageMaxAvatarSize(val OptFloat64) {
+func (s *EditSite) SetImageMaxAvatarSize(val OptInt) {
 	s.ImageMaxAvatarSize = val
 }
 
 // SetImageMaxThumbnailSize sets the value of ImageMaxThumbnailSize.
-func (s *EditSite) SetImageMaxThumbnailSize(val OptFloat64) {
+func (s *EditSite) SetImageMaxThumbnailSize(val OptInt) {
 	s.ImageMaxThumbnailSize = val
 }
 
 // SetImageUploadTimeoutSeconds sets the value of ImageUploadTimeoutSeconds.
-func (s *EditSite) SetImageUploadTimeoutSeconds(val OptFloat64) {
+func (s *EditSite) SetImageUploadTimeoutSeconds(val OptInt) {
 	s.ImageUploadTimeoutSeconds = val
 }
 
@@ -6297,72 +6297,72 @@ func (s *EditSite) SetFederationEnabled(val OptBool) {
 }
 
 // SetRateLimitImportUserSettingsIntervalSeconds sets the value of RateLimitImportUserSettingsIntervalSeconds.
-func (s *EditSite) SetRateLimitImportUserSettingsIntervalSeconds(val OptFloat64) {
+func (s *EditSite) SetRateLimitImportUserSettingsIntervalSeconds(val OptInt) {
 	s.RateLimitImportUserSettingsIntervalSeconds = val
 }
 
 // SetRateLimitImportUserSettingsMaxRequests sets the value of RateLimitImportUserSettingsMaxRequests.
-func (s *EditSite) SetRateLimitImportUserSettingsMaxRequests(val OptFloat64) {
+func (s *EditSite) SetRateLimitImportUserSettingsMaxRequests(val OptInt) {
 	s.RateLimitImportUserSettingsMaxRequests = val
 }
 
 // SetRateLimitSearchIntervalSeconds sets the value of RateLimitSearchIntervalSeconds.
-func (s *EditSite) SetRateLimitSearchIntervalSeconds(val OptFloat64) {
+func (s *EditSite) SetRateLimitSearchIntervalSeconds(val OptInt) {
 	s.RateLimitSearchIntervalSeconds = val
 }
 
 // SetRateLimitSearchMaxRequests sets the value of RateLimitSearchMaxRequests.
-func (s *EditSite) SetRateLimitSearchMaxRequests(val OptFloat64) {
+func (s *EditSite) SetRateLimitSearchMaxRequests(val OptInt) {
 	s.RateLimitSearchMaxRequests = val
 }
 
 // SetRateLimitCommentIntervalSeconds sets the value of RateLimitCommentIntervalSeconds.
-func (s *EditSite) SetRateLimitCommentIntervalSeconds(val OptFloat64) {
+func (s *EditSite) SetRateLimitCommentIntervalSeconds(val OptInt) {
 	s.RateLimitCommentIntervalSeconds = val
 }
 
 // SetRateLimitCommentMaxRequests sets the value of RateLimitCommentMaxRequests.
-func (s *EditSite) SetRateLimitCommentMaxRequests(val OptFloat64) {
+func (s *EditSite) SetRateLimitCommentMaxRequests(val OptInt) {
 	s.RateLimitCommentMaxRequests = val
 }
 
 // SetRateLimitImageIntervalSeconds sets the value of RateLimitImageIntervalSeconds.
-func (s *EditSite) SetRateLimitImageIntervalSeconds(val OptFloat64) {
+func (s *EditSite) SetRateLimitImageIntervalSeconds(val OptInt) {
 	s.RateLimitImageIntervalSeconds = val
 }
 
 // SetRateLimitImageMaxRequests sets the value of RateLimitImageMaxRequests.
-func (s *EditSite) SetRateLimitImageMaxRequests(val OptFloat64) {
+func (s *EditSite) SetRateLimitImageMaxRequests(val OptInt) {
 	s.RateLimitImageMaxRequests = val
 }
 
 // SetRateLimitRegisterIntervalSeconds sets the value of RateLimitRegisterIntervalSeconds.
-func (s *EditSite) SetRateLimitRegisterIntervalSeconds(val OptFloat64) {
+func (s *EditSite) SetRateLimitRegisterIntervalSeconds(val OptInt) {
 	s.RateLimitRegisterIntervalSeconds = val
 }
 
 // SetRateLimitRegisterMaxRequests sets the value of RateLimitRegisterMaxRequests.
-func (s *EditSite) SetRateLimitRegisterMaxRequests(val OptFloat64) {
+func (s *EditSite) SetRateLimitRegisterMaxRequests(val OptInt) {
 	s.RateLimitRegisterMaxRequests = val
 }
 
 // SetRateLimitPostIntervalSeconds sets the value of RateLimitPostIntervalSeconds.
-func (s *EditSite) SetRateLimitPostIntervalSeconds(val OptFloat64) {
+func (s *EditSite) SetRateLimitPostIntervalSeconds(val OptInt) {
 	s.RateLimitPostIntervalSeconds = val
 }
 
 // SetRateLimitPostMaxRequests sets the value of RateLimitPostMaxRequests.
-func (s *EditSite) SetRateLimitPostMaxRequests(val OptFloat64) {
+func (s *EditSite) SetRateLimitPostMaxRequests(val OptInt) {
 	s.RateLimitPostMaxRequests = val
 }
 
 // SetRateLimitMessageIntervalSeconds sets the value of RateLimitMessageIntervalSeconds.
-func (s *EditSite) SetRateLimitMessageIntervalSeconds(val OptFloat64) {
+func (s *EditSite) SetRateLimitMessageIntervalSeconds(val OptInt) {
 	s.RateLimitMessageIntervalSeconds = val
 }
 
 // SetRateLimitMessageMaxRequests sets the value of RateLimitMessageMaxRequests.
-func (s *EditSite) SetRateLimitMessageMaxRequests(val OptFloat64) {
+func (s *EditSite) SetRateLimitMessageMaxRequests(val OptInt) {
 	s.RateLimitMessageMaxRequests = val
 }
 
@@ -6397,12 +6397,12 @@ func (s *EditSite) SetDefaultCommentSortType(val OptCommentSortType) {
 }
 
 // SetDefaultItemsPerPage sets the value of DefaultItemsPerPage.
-func (s *EditSite) SetDefaultItemsPerPage(val OptFloat64) {
+func (s *EditSite) SetDefaultItemsPerPage(val OptInt) {
 	s.DefaultItemsPerPage = val
 }
 
 // SetDefaultPostTimeRangeSeconds sets the value of DefaultPostTimeRangeSeconds.
-func (s *EditSite) SetDefaultPostTimeRangeSeconds(val OptFloat64) {
+func (s *EditSite) SetDefaultPostTimeRangeSeconds(val OptInt) {
 	s.DefaultPostTimeRangeSeconds = val
 }
 
@@ -6744,7 +6744,7 @@ type FederationQueueState struct {
 	// Timestamp of the last retry attempt (when the last failing activity was resent).
 	LastRetryAt OptString `json:"last_retry_at"`
 	// How many failed attempts have been made to send the next activity.
-	FailCount                     float64   `json:"fail_count"`
+	FailCount                     int       `json:"fail_count"`
 	LastSuccessfulPublishedTimeAt OptString `json:"last_successful_published_time_at"`
 	// The last successfully sent activity id.
 	LastSuccessfulID OptActivityId `json:"last_successful_id"`
@@ -6757,7 +6757,7 @@ func (s *FederationQueueState) GetLastRetryAt() OptString {
 }
 
 // GetFailCount returns the value of FailCount.
-func (s *FederationQueueState) GetFailCount() float64 {
+func (s *FederationQueueState) GetFailCount() int {
 	return s.FailCount
 }
 
@@ -6782,7 +6782,7 @@ func (s *FederationQueueState) SetLastRetryAt(val OptString) {
 }
 
 // SetFailCount sets the value of FailCount.
-func (s *FederationQueueState) SetFailCount(val float64) {
+func (s *FederationQueueState) SetFailCount(val int) {
 	s.FailCount = val
 }
 
@@ -7139,7 +7139,7 @@ type GetSiteResponse struct {
 	// The number of seconds between the last application published, and approved / denied time.
 	//
 	// Useful for estimating when your application will be approved.
-	LastApplicationDurationSeconds OptFloat64              `json:"last_application_duration_seconds"`
+	LastApplicationDurationSeconds OptInt                  `json:"last_application_duration_seconds"`
 	ActivePlugins                  []PluginMetadata        `json:"active_plugins"`
 	BlockedUrls                    []LocalSiteUrlBlocklist `json:"blocked_urls"`
 	AdminOAuthProviders            []AdminOAuthProvider    `json:"admin_oauth_providers"`
@@ -7160,7 +7160,7 @@ func (s *GetSiteResponse) GetCaptchaEnabled() bool {
 }
 
 // GetLastApplicationDurationSeconds returns the value of LastApplicationDurationSeconds.
-func (s *GetSiteResponse) GetLastApplicationDurationSeconds() OptFloat64 {
+func (s *GetSiteResponse) GetLastApplicationDurationSeconds() OptInt {
 	return s.LastApplicationDurationSeconds
 }
 
@@ -7220,7 +7220,7 @@ func (s *GetSiteResponse) SetCaptchaEnabled(val bool) {
 }
 
 // SetLastApplicationDurationSeconds sets the value of LastApplicationDurationSeconds.
-func (s *GetSiteResponse) SetLastApplicationDurationSeconds(val OptFloat64) {
+func (s *GetSiteResponse) SetLastApplicationDurationSeconds(val OptInt) {
 	s.LastApplicationDurationSeconds = val
 }
 
@@ -7343,8 +7343,8 @@ func (s *HidePost) SetPostID(val PostId) {
 type ImageDetails struct {
 	Blurhash    OptString `json:"blurhash"`
 	ContentType string    `json:"content_type"`
-	Height      float64   `json:"height"`
-	Width       float64   `json:"width"`
+	Height      int       `json:"height"`
+	Width       int       `json:"width"`
 	Link        DbUrl     `json:"link"`
 }
 
@@ -7359,12 +7359,12 @@ func (s *ImageDetails) GetContentType() string {
 }
 
 // GetHeight returns the value of Height.
-func (s *ImageDetails) GetHeight() float64 {
+func (s *ImageDetails) GetHeight() int {
 	return s.Height
 }
 
 // GetWidth returns the value of Width.
-func (s *ImageDetails) GetWidth() float64 {
+func (s *ImageDetails) GetWidth() int {
 	return s.Width
 }
 
@@ -7384,12 +7384,12 @@ func (s *ImageDetails) SetContentType(val string) {
 }
 
 // SetHeight sets the value of Height.
-func (s *ImageDetails) SetHeight(val float64) {
+func (s *ImageDetails) SetHeight(val int) {
 	s.Height = val
 }
 
 // SetWidth sets the value of Width.
-func (s *ImageDetails) SetWidth(val float64) {
+func (s *ImageDetails) SetWidth(val int) {
 	s.Width = val
 }
 
@@ -7523,9 +7523,9 @@ func (s *Instance) SetID(val InstanceId) {
 	s.ID = val
 }
 
-type InstanceId float64
+type InstanceId int
 
-type InvitationId float64
+type InvitationId int
 
 // A language.
 // Ref: #/components/schemas/Language
@@ -7565,7 +7565,7 @@ func (s *Language) SetID(val LanguageId) {
 	s.ID = val
 }
 
-type LanguageId float64
+type LanguageId int
 
 // The like_type for a persons liked content.
 // Ref: #/components/schemas/LikeType
@@ -7620,24 +7620,24 @@ func (s *LikeType) UnmarshalText(data []byte) error {
 // Site metadata, from its opengraph tags.
 // Ref: #/components/schemas/LinkMetadata
 type LinkMetadata struct {
-	VideoHeight   OptFloat64 `json:"video_height"`
-	VideoWidth    OptFloat64 `json:"video_width"`
-	EmbedVideoURL OptDbUrl   `json:"embed_video_url"`
-	ImageHeight   OptFloat64 `json:"image_height"`
-	ImageWidth    OptFloat64 `json:"image_width"`
-	Image         OptDbUrl   `json:"image"`
-	Description   OptString  `json:"description"`
-	Title         OptString  `json:"title"`
-	ContentType   OptString  `json:"content_type"`
+	VideoHeight   OptInt    `json:"video_height"`
+	VideoWidth    OptInt    `json:"video_width"`
+	EmbedVideoURL OptDbUrl  `json:"embed_video_url"`
+	ImageHeight   OptInt    `json:"image_height"`
+	ImageWidth    OptInt    `json:"image_width"`
+	Image         OptDbUrl  `json:"image"`
+	Description   OptString `json:"description"`
+	Title         OptString `json:"title"`
+	ContentType   OptString `json:"content_type"`
 }
 
 // GetVideoHeight returns the value of VideoHeight.
-func (s *LinkMetadata) GetVideoHeight() OptFloat64 {
+func (s *LinkMetadata) GetVideoHeight() OptInt {
 	return s.VideoHeight
 }
 
 // GetVideoWidth returns the value of VideoWidth.
-func (s *LinkMetadata) GetVideoWidth() OptFloat64 {
+func (s *LinkMetadata) GetVideoWidth() OptInt {
 	return s.VideoWidth
 }
 
@@ -7647,12 +7647,12 @@ func (s *LinkMetadata) GetEmbedVideoURL() OptDbUrl {
 }
 
 // GetImageHeight returns the value of ImageHeight.
-func (s *LinkMetadata) GetImageHeight() OptFloat64 {
+func (s *LinkMetadata) GetImageHeight() OptInt {
 	return s.ImageHeight
 }
 
 // GetImageWidth returns the value of ImageWidth.
-func (s *LinkMetadata) GetImageWidth() OptFloat64 {
+func (s *LinkMetadata) GetImageWidth() OptInt {
 	return s.ImageWidth
 }
 
@@ -7677,12 +7677,12 @@ func (s *LinkMetadata) GetContentType() OptString {
 }
 
 // SetVideoHeight sets the value of VideoHeight.
-func (s *LinkMetadata) SetVideoHeight(val OptFloat64) {
+func (s *LinkMetadata) SetVideoHeight(val OptInt) {
 	s.VideoHeight = val
 }
 
 // SetVideoWidth sets the value of VideoWidth.
-func (s *LinkMetadata) SetVideoWidth(val OptFloat64) {
+func (s *LinkMetadata) SetVideoWidth(val OptInt) {
 	s.VideoWidth = val
 }
 
@@ -7692,12 +7692,12 @@ func (s *LinkMetadata) SetEmbedVideoURL(val OptDbUrl) {
 }
 
 // SetImageHeight sets the value of ImageHeight.
-func (s *LinkMetadata) SetImageHeight(val OptFloat64) {
+func (s *LinkMetadata) SetImageHeight(val OptInt) {
 	s.ImageHeight = val
 }
 
 // SetImageWidth sets the value of ImageWidth.
-func (s *LinkMetadata) SetImageWidth(val OptFloat64) {
+func (s *LinkMetadata) SetImageWidth(val OptInt) {
 	s.ImageWidth = val
 }
 
@@ -7907,17 +7907,17 @@ func (s *LocalImageView) SetLocalImage(val LocalImage) {
 // Ref: #/components/schemas/LocalSite
 type LocalSite struct {
 	// How many active invite links a user can have.
-	MaxInvitesPerUserAllowed float64 `json:"max_invites_per_user_allowed"`
-	ImageUploadDisabled      bool    `json:"image_upload_disabled"`
+	MaxInvitesPerUserAllowed int  `json:"max_invites_per_user_allowed"`
+	ImageUploadDisabled      bool `json:"image_upload_disabled"`
 	// This affects post and comment images, but not avatars and banners.
 	ImageAllowVideoUploads bool `json:"image_allow_video_uploads"`
 	// This affects post and comment images, but not avatar and banner sizes.
-	ImageMaxUploadSize float64 `json:"image_max_upload_size"`
-	ImageMaxBannerSize float64 `json:"image_max_banner_size"`
-	ImageMaxAvatarSize float64 `json:"image_max_avatar_size"`
+	ImageMaxUploadSize int `json:"image_max_upload_size"`
+	ImageMaxBannerSize int `json:"image_max_banner_size"`
+	ImageMaxAvatarSize int `json:"image_max_avatar_size"`
 	// These are pixel sizes. Larger images are automatically downscaled.
-	ImageMaxThumbnailSize     float64 `json:"image_max_thumbnail_size"`
-	ImageUploadTimeoutSeconds float64 `json:"image_upload_timeout_seconds"`
+	ImageMaxThumbnailSize     int `json:"image_max_thumbnail_size"`
+	ImageUploadTimeoutSeconds int `json:"image_upload_timeout_seconds"`
 	// Allows bypassing proxy for specific image hosts when using [[ImageMode.ProxyAllImages]]. Use a
 	// comma-delimited string.
 	//
@@ -7925,26 +7925,26 @@ type LocalSite struct {
 	ImageProxyBypassDomains OptString `json:"image_proxy_bypass_domains"`
 	// A mode for setting how pictrs handles images.
 	ImageMode                 ImageMode           `json:"image_mode"`
-	DefaultItemsPerPage       float64             `json:"default_items_per_page"`
+	DefaultItemsPerPage       int                 `json:"default_items_per_page"`
 	SuggestedMultiCommunityID OptMultiCommunityId `json:"suggested_multi_community_id"`
 	// Dont send email notifications to users for new replies, mentions etc.
 	EmailNotificationsDisabled bool `json:"email_notifications_disabled"`
 	// The number of users with any activity in the last half year.
-	UsersActiveHalfYear float64 `json:"users_active_half_year"`
+	UsersActiveHalfYear int `json:"users_active_half_year"`
 	// The number of users with any activity in the last month.
-	UsersActiveMonth float64 `json:"users_active_month"`
+	UsersActiveMonth int `json:"users_active_month"`
 	// The number of users with any activity in the last week.
-	UsersActiveWeek float64 `json:"users_active_week"`
+	UsersActiveWeek int `json:"users_active_week"`
 	// The number of users with any activity in the last day.
-	UsersActiveDay float64 `json:"users_active_day"`
-	Communities    float64 `json:"communities"`
-	Comments       float64 `json:"comments"`
-	Posts          float64 `json:"posts"`
-	Users          float64 `json:"users"`
+	UsersActiveDay int `json:"users_active_day"`
+	Communities    int `json:"communities"`
+	Comments       int `json:"comments"`
+	Posts          int `json:"posts"`
+	Users          int `json:"users"`
 	// Block NSFW content being created.
 	NsfwContentDisallowed bool `json:"nsfw_content_disallowed"`
 	// A default time range limit to apply to post sorts, in seconds.
-	DefaultPostTimeRangeSeconds OptFloat64 `json:"default_post_time_range_seconds"`
+	DefaultPostTimeRangeSeconds OptInt `json:"default_post_time_range_seconds"`
 	// What kind of comment downvotes your site allows.
 	CommentDownvotes FederationMode `json:"comment_downvotes"`
 	// What kind of comment upvotes your site allows.
@@ -7995,7 +7995,7 @@ type LocalSite struct {
 }
 
 // GetMaxInvitesPerUserAllowed returns the value of MaxInvitesPerUserAllowed.
-func (s *LocalSite) GetMaxInvitesPerUserAllowed() float64 {
+func (s *LocalSite) GetMaxInvitesPerUserAllowed() int {
 	return s.MaxInvitesPerUserAllowed
 }
 
@@ -8010,27 +8010,27 @@ func (s *LocalSite) GetImageAllowVideoUploads() bool {
 }
 
 // GetImageMaxUploadSize returns the value of ImageMaxUploadSize.
-func (s *LocalSite) GetImageMaxUploadSize() float64 {
+func (s *LocalSite) GetImageMaxUploadSize() int {
 	return s.ImageMaxUploadSize
 }
 
 // GetImageMaxBannerSize returns the value of ImageMaxBannerSize.
-func (s *LocalSite) GetImageMaxBannerSize() float64 {
+func (s *LocalSite) GetImageMaxBannerSize() int {
 	return s.ImageMaxBannerSize
 }
 
 // GetImageMaxAvatarSize returns the value of ImageMaxAvatarSize.
-func (s *LocalSite) GetImageMaxAvatarSize() float64 {
+func (s *LocalSite) GetImageMaxAvatarSize() int {
 	return s.ImageMaxAvatarSize
 }
 
 // GetImageMaxThumbnailSize returns the value of ImageMaxThumbnailSize.
-func (s *LocalSite) GetImageMaxThumbnailSize() float64 {
+func (s *LocalSite) GetImageMaxThumbnailSize() int {
 	return s.ImageMaxThumbnailSize
 }
 
 // GetImageUploadTimeoutSeconds returns the value of ImageUploadTimeoutSeconds.
-func (s *LocalSite) GetImageUploadTimeoutSeconds() float64 {
+func (s *LocalSite) GetImageUploadTimeoutSeconds() int {
 	return s.ImageUploadTimeoutSeconds
 }
 
@@ -8045,7 +8045,7 @@ func (s *LocalSite) GetImageMode() ImageMode {
 }
 
 // GetDefaultItemsPerPage returns the value of DefaultItemsPerPage.
-func (s *LocalSite) GetDefaultItemsPerPage() float64 {
+func (s *LocalSite) GetDefaultItemsPerPage() int {
 	return s.DefaultItemsPerPage
 }
 
@@ -8060,42 +8060,42 @@ func (s *LocalSite) GetEmailNotificationsDisabled() bool {
 }
 
 // GetUsersActiveHalfYear returns the value of UsersActiveHalfYear.
-func (s *LocalSite) GetUsersActiveHalfYear() float64 {
+func (s *LocalSite) GetUsersActiveHalfYear() int {
 	return s.UsersActiveHalfYear
 }
 
 // GetUsersActiveMonth returns the value of UsersActiveMonth.
-func (s *LocalSite) GetUsersActiveMonth() float64 {
+func (s *LocalSite) GetUsersActiveMonth() int {
 	return s.UsersActiveMonth
 }
 
 // GetUsersActiveWeek returns the value of UsersActiveWeek.
-func (s *LocalSite) GetUsersActiveWeek() float64 {
+func (s *LocalSite) GetUsersActiveWeek() int {
 	return s.UsersActiveWeek
 }
 
 // GetUsersActiveDay returns the value of UsersActiveDay.
-func (s *LocalSite) GetUsersActiveDay() float64 {
+func (s *LocalSite) GetUsersActiveDay() int {
 	return s.UsersActiveDay
 }
 
 // GetCommunities returns the value of Communities.
-func (s *LocalSite) GetCommunities() float64 {
+func (s *LocalSite) GetCommunities() int {
 	return s.Communities
 }
 
 // GetComments returns the value of Comments.
-func (s *LocalSite) GetComments() float64 {
+func (s *LocalSite) GetComments() int {
 	return s.Comments
 }
 
 // GetPosts returns the value of Posts.
-func (s *LocalSite) GetPosts() float64 {
+func (s *LocalSite) GetPosts() int {
 	return s.Posts
 }
 
 // GetUsers returns the value of Users.
-func (s *LocalSite) GetUsers() float64 {
+func (s *LocalSite) GetUsers() int {
 	return s.Users
 }
 
@@ -8105,7 +8105,7 @@ func (s *LocalSite) GetNsfwContentDisallowed() bool {
 }
 
 // GetDefaultPostTimeRangeSeconds returns the value of DefaultPostTimeRangeSeconds.
-func (s *LocalSite) GetDefaultPostTimeRangeSeconds() OptFloat64 {
+func (s *LocalSite) GetDefaultPostTimeRangeSeconds() OptInt {
 	return s.DefaultPostTimeRangeSeconds
 }
 
@@ -8240,7 +8240,7 @@ func (s *LocalSite) GetID() LocalSiteId {
 }
 
 // SetMaxInvitesPerUserAllowed sets the value of MaxInvitesPerUserAllowed.
-func (s *LocalSite) SetMaxInvitesPerUserAllowed(val float64) {
+func (s *LocalSite) SetMaxInvitesPerUserAllowed(val int) {
 	s.MaxInvitesPerUserAllowed = val
 }
 
@@ -8255,27 +8255,27 @@ func (s *LocalSite) SetImageAllowVideoUploads(val bool) {
 }
 
 // SetImageMaxUploadSize sets the value of ImageMaxUploadSize.
-func (s *LocalSite) SetImageMaxUploadSize(val float64) {
+func (s *LocalSite) SetImageMaxUploadSize(val int) {
 	s.ImageMaxUploadSize = val
 }
 
 // SetImageMaxBannerSize sets the value of ImageMaxBannerSize.
-func (s *LocalSite) SetImageMaxBannerSize(val float64) {
+func (s *LocalSite) SetImageMaxBannerSize(val int) {
 	s.ImageMaxBannerSize = val
 }
 
 // SetImageMaxAvatarSize sets the value of ImageMaxAvatarSize.
-func (s *LocalSite) SetImageMaxAvatarSize(val float64) {
+func (s *LocalSite) SetImageMaxAvatarSize(val int) {
 	s.ImageMaxAvatarSize = val
 }
 
 // SetImageMaxThumbnailSize sets the value of ImageMaxThumbnailSize.
-func (s *LocalSite) SetImageMaxThumbnailSize(val float64) {
+func (s *LocalSite) SetImageMaxThumbnailSize(val int) {
 	s.ImageMaxThumbnailSize = val
 }
 
 // SetImageUploadTimeoutSeconds sets the value of ImageUploadTimeoutSeconds.
-func (s *LocalSite) SetImageUploadTimeoutSeconds(val float64) {
+func (s *LocalSite) SetImageUploadTimeoutSeconds(val int) {
 	s.ImageUploadTimeoutSeconds = val
 }
 
@@ -8290,7 +8290,7 @@ func (s *LocalSite) SetImageMode(val ImageMode) {
 }
 
 // SetDefaultItemsPerPage sets the value of DefaultItemsPerPage.
-func (s *LocalSite) SetDefaultItemsPerPage(val float64) {
+func (s *LocalSite) SetDefaultItemsPerPage(val int) {
 	s.DefaultItemsPerPage = val
 }
 
@@ -8305,42 +8305,42 @@ func (s *LocalSite) SetEmailNotificationsDisabled(val bool) {
 }
 
 // SetUsersActiveHalfYear sets the value of UsersActiveHalfYear.
-func (s *LocalSite) SetUsersActiveHalfYear(val float64) {
+func (s *LocalSite) SetUsersActiveHalfYear(val int) {
 	s.UsersActiveHalfYear = val
 }
 
 // SetUsersActiveMonth sets the value of UsersActiveMonth.
-func (s *LocalSite) SetUsersActiveMonth(val float64) {
+func (s *LocalSite) SetUsersActiveMonth(val int) {
 	s.UsersActiveMonth = val
 }
 
 // SetUsersActiveWeek sets the value of UsersActiveWeek.
-func (s *LocalSite) SetUsersActiveWeek(val float64) {
+func (s *LocalSite) SetUsersActiveWeek(val int) {
 	s.UsersActiveWeek = val
 }
 
 // SetUsersActiveDay sets the value of UsersActiveDay.
-func (s *LocalSite) SetUsersActiveDay(val float64) {
+func (s *LocalSite) SetUsersActiveDay(val int) {
 	s.UsersActiveDay = val
 }
 
 // SetCommunities sets the value of Communities.
-func (s *LocalSite) SetCommunities(val float64) {
+func (s *LocalSite) SetCommunities(val int) {
 	s.Communities = val
 }
 
 // SetComments sets the value of Comments.
-func (s *LocalSite) SetComments(val float64) {
+func (s *LocalSite) SetComments(val int) {
 	s.Comments = val
 }
 
 // SetPosts sets the value of Posts.
-func (s *LocalSite) SetPosts(val float64) {
+func (s *LocalSite) SetPosts(val int) {
 	s.Posts = val
 }
 
 // SetUsers sets the value of Users.
-func (s *LocalSite) SetUsers(val float64) {
+func (s *LocalSite) SetUsers(val int) {
 	s.Users = val
 }
 
@@ -8350,7 +8350,7 @@ func (s *LocalSite) SetNsfwContentDisallowed(val bool) {
 }
 
 // SetDefaultPostTimeRangeSeconds sets the value of DefaultPostTimeRangeSeconds.
-func (s *LocalSite) SetDefaultPostTimeRangeSeconds(val OptFloat64) {
+func (s *LocalSite) SetDefaultPostTimeRangeSeconds(val OptInt) {
 	s.DefaultPostTimeRangeSeconds = val
 }
 
@@ -8484,37 +8484,37 @@ func (s *LocalSite) SetID(val LocalSiteId) {
 	s.ID = val
 }
 
-type LocalSiteId float64
+type LocalSiteId int
 
 // Rate limits for your site. Given in count / length of time.
 // Ref: #/components/schemas/LocalSiteRateLimit
 type LocalSiteRateLimit struct {
-	ImportUserSettingsIntervalSeconds float64     `json:"import_user_settings_interval_seconds"`
-	ImportUserSettingsMaxRequests     float64     `json:"import_user_settings_max_requests"`
+	ImportUserSettingsIntervalSeconds int         `json:"import_user_settings_interval_seconds"`
+	ImportUserSettingsMaxRequests     int         `json:"import_user_settings_max_requests"`
 	UpdatedAt                         OptString   `json:"updated_at"`
 	PublishedAt                       string      `json:"published_at"`
-	SearchIntervalSeconds             float64     `json:"search_interval_seconds"`
-	SearchMaxRequests                 float64     `json:"search_max_requests"`
-	CommentIntervalSeconds            float64     `json:"comment_interval_seconds"`
-	CommentMaxRequests                float64     `json:"comment_max_requests"`
-	ImageIntervalSeconds              float64     `json:"image_interval_seconds"`
-	ImageMaxRequests                  float64     `json:"image_max_requests"`
-	RegisterIntervalSeconds           float64     `json:"register_interval_seconds"`
-	RegisterMaxRequests               float64     `json:"register_max_requests"`
-	PostIntervalSeconds               float64     `json:"post_interval_seconds"`
-	PostMaxRequests                   float64     `json:"post_max_requests"`
-	MessageIntervalSeconds            float64     `json:"message_interval_seconds"`
-	MessageMaxRequests                float64     `json:"message_max_requests"`
+	SearchIntervalSeconds             int         `json:"search_interval_seconds"`
+	SearchMaxRequests                 int         `json:"search_max_requests"`
+	CommentIntervalSeconds            int         `json:"comment_interval_seconds"`
+	CommentMaxRequests                int         `json:"comment_max_requests"`
+	ImageIntervalSeconds              int         `json:"image_interval_seconds"`
+	ImageMaxRequests                  int         `json:"image_max_requests"`
+	RegisterIntervalSeconds           int         `json:"register_interval_seconds"`
+	RegisterMaxRequests               int         `json:"register_max_requests"`
+	PostIntervalSeconds               int         `json:"post_interval_seconds"`
+	PostMaxRequests                   int         `json:"post_max_requests"`
+	MessageIntervalSeconds            int         `json:"message_interval_seconds"`
+	MessageMaxRequests                int         `json:"message_max_requests"`
 	LocalSiteID                       LocalSiteId `json:"local_site_id"`
 }
 
 // GetImportUserSettingsIntervalSeconds returns the value of ImportUserSettingsIntervalSeconds.
-func (s *LocalSiteRateLimit) GetImportUserSettingsIntervalSeconds() float64 {
+func (s *LocalSiteRateLimit) GetImportUserSettingsIntervalSeconds() int {
 	return s.ImportUserSettingsIntervalSeconds
 }
 
 // GetImportUserSettingsMaxRequests returns the value of ImportUserSettingsMaxRequests.
-func (s *LocalSiteRateLimit) GetImportUserSettingsMaxRequests() float64 {
+func (s *LocalSiteRateLimit) GetImportUserSettingsMaxRequests() int {
 	return s.ImportUserSettingsMaxRequests
 }
 
@@ -8529,62 +8529,62 @@ func (s *LocalSiteRateLimit) GetPublishedAt() string {
 }
 
 // GetSearchIntervalSeconds returns the value of SearchIntervalSeconds.
-func (s *LocalSiteRateLimit) GetSearchIntervalSeconds() float64 {
+func (s *LocalSiteRateLimit) GetSearchIntervalSeconds() int {
 	return s.SearchIntervalSeconds
 }
 
 // GetSearchMaxRequests returns the value of SearchMaxRequests.
-func (s *LocalSiteRateLimit) GetSearchMaxRequests() float64 {
+func (s *LocalSiteRateLimit) GetSearchMaxRequests() int {
 	return s.SearchMaxRequests
 }
 
 // GetCommentIntervalSeconds returns the value of CommentIntervalSeconds.
-func (s *LocalSiteRateLimit) GetCommentIntervalSeconds() float64 {
+func (s *LocalSiteRateLimit) GetCommentIntervalSeconds() int {
 	return s.CommentIntervalSeconds
 }
 
 // GetCommentMaxRequests returns the value of CommentMaxRequests.
-func (s *LocalSiteRateLimit) GetCommentMaxRequests() float64 {
+func (s *LocalSiteRateLimit) GetCommentMaxRequests() int {
 	return s.CommentMaxRequests
 }
 
 // GetImageIntervalSeconds returns the value of ImageIntervalSeconds.
-func (s *LocalSiteRateLimit) GetImageIntervalSeconds() float64 {
+func (s *LocalSiteRateLimit) GetImageIntervalSeconds() int {
 	return s.ImageIntervalSeconds
 }
 
 // GetImageMaxRequests returns the value of ImageMaxRequests.
-func (s *LocalSiteRateLimit) GetImageMaxRequests() float64 {
+func (s *LocalSiteRateLimit) GetImageMaxRequests() int {
 	return s.ImageMaxRequests
 }
 
 // GetRegisterIntervalSeconds returns the value of RegisterIntervalSeconds.
-func (s *LocalSiteRateLimit) GetRegisterIntervalSeconds() float64 {
+func (s *LocalSiteRateLimit) GetRegisterIntervalSeconds() int {
 	return s.RegisterIntervalSeconds
 }
 
 // GetRegisterMaxRequests returns the value of RegisterMaxRequests.
-func (s *LocalSiteRateLimit) GetRegisterMaxRequests() float64 {
+func (s *LocalSiteRateLimit) GetRegisterMaxRequests() int {
 	return s.RegisterMaxRequests
 }
 
 // GetPostIntervalSeconds returns the value of PostIntervalSeconds.
-func (s *LocalSiteRateLimit) GetPostIntervalSeconds() float64 {
+func (s *LocalSiteRateLimit) GetPostIntervalSeconds() int {
 	return s.PostIntervalSeconds
 }
 
 // GetPostMaxRequests returns the value of PostMaxRequests.
-func (s *LocalSiteRateLimit) GetPostMaxRequests() float64 {
+func (s *LocalSiteRateLimit) GetPostMaxRequests() int {
 	return s.PostMaxRequests
 }
 
 // GetMessageIntervalSeconds returns the value of MessageIntervalSeconds.
-func (s *LocalSiteRateLimit) GetMessageIntervalSeconds() float64 {
+func (s *LocalSiteRateLimit) GetMessageIntervalSeconds() int {
 	return s.MessageIntervalSeconds
 }
 
 // GetMessageMaxRequests returns the value of MessageMaxRequests.
-func (s *LocalSiteRateLimit) GetMessageMaxRequests() float64 {
+func (s *LocalSiteRateLimit) GetMessageMaxRequests() int {
 	return s.MessageMaxRequests
 }
 
@@ -8594,12 +8594,12 @@ func (s *LocalSiteRateLimit) GetLocalSiteID() LocalSiteId {
 }
 
 // SetImportUserSettingsIntervalSeconds sets the value of ImportUserSettingsIntervalSeconds.
-func (s *LocalSiteRateLimit) SetImportUserSettingsIntervalSeconds(val float64) {
+func (s *LocalSiteRateLimit) SetImportUserSettingsIntervalSeconds(val int) {
 	s.ImportUserSettingsIntervalSeconds = val
 }
 
 // SetImportUserSettingsMaxRequests sets the value of ImportUserSettingsMaxRequests.
-func (s *LocalSiteRateLimit) SetImportUserSettingsMaxRequests(val float64) {
+func (s *LocalSiteRateLimit) SetImportUserSettingsMaxRequests(val int) {
 	s.ImportUserSettingsMaxRequests = val
 }
 
@@ -8614,62 +8614,62 @@ func (s *LocalSiteRateLimit) SetPublishedAt(val string) {
 }
 
 // SetSearchIntervalSeconds sets the value of SearchIntervalSeconds.
-func (s *LocalSiteRateLimit) SetSearchIntervalSeconds(val float64) {
+func (s *LocalSiteRateLimit) SetSearchIntervalSeconds(val int) {
 	s.SearchIntervalSeconds = val
 }
 
 // SetSearchMaxRequests sets the value of SearchMaxRequests.
-func (s *LocalSiteRateLimit) SetSearchMaxRequests(val float64) {
+func (s *LocalSiteRateLimit) SetSearchMaxRequests(val int) {
 	s.SearchMaxRequests = val
 }
 
 // SetCommentIntervalSeconds sets the value of CommentIntervalSeconds.
-func (s *LocalSiteRateLimit) SetCommentIntervalSeconds(val float64) {
+func (s *LocalSiteRateLimit) SetCommentIntervalSeconds(val int) {
 	s.CommentIntervalSeconds = val
 }
 
 // SetCommentMaxRequests sets the value of CommentMaxRequests.
-func (s *LocalSiteRateLimit) SetCommentMaxRequests(val float64) {
+func (s *LocalSiteRateLimit) SetCommentMaxRequests(val int) {
 	s.CommentMaxRequests = val
 }
 
 // SetImageIntervalSeconds sets the value of ImageIntervalSeconds.
-func (s *LocalSiteRateLimit) SetImageIntervalSeconds(val float64) {
+func (s *LocalSiteRateLimit) SetImageIntervalSeconds(val int) {
 	s.ImageIntervalSeconds = val
 }
 
 // SetImageMaxRequests sets the value of ImageMaxRequests.
-func (s *LocalSiteRateLimit) SetImageMaxRequests(val float64) {
+func (s *LocalSiteRateLimit) SetImageMaxRequests(val int) {
 	s.ImageMaxRequests = val
 }
 
 // SetRegisterIntervalSeconds sets the value of RegisterIntervalSeconds.
-func (s *LocalSiteRateLimit) SetRegisterIntervalSeconds(val float64) {
+func (s *LocalSiteRateLimit) SetRegisterIntervalSeconds(val int) {
 	s.RegisterIntervalSeconds = val
 }
 
 // SetRegisterMaxRequests sets the value of RegisterMaxRequests.
-func (s *LocalSiteRateLimit) SetRegisterMaxRequests(val float64) {
+func (s *LocalSiteRateLimit) SetRegisterMaxRequests(val int) {
 	s.RegisterMaxRequests = val
 }
 
 // SetPostIntervalSeconds sets the value of PostIntervalSeconds.
-func (s *LocalSiteRateLimit) SetPostIntervalSeconds(val float64) {
+func (s *LocalSiteRateLimit) SetPostIntervalSeconds(val int) {
 	s.PostIntervalSeconds = val
 }
 
 // SetPostMaxRequests sets the value of PostMaxRequests.
-func (s *LocalSiteRateLimit) SetPostMaxRequests(val float64) {
+func (s *LocalSiteRateLimit) SetPostMaxRequests(val int) {
 	s.PostMaxRequests = val
 }
 
 // SetMessageIntervalSeconds sets the value of MessageIntervalSeconds.
-func (s *LocalSiteRateLimit) SetMessageIntervalSeconds(val float64) {
+func (s *LocalSiteRateLimit) SetMessageIntervalSeconds(val int) {
 	s.MessageIntervalSeconds = val
 }
 
 // SetMessageMaxRequests sets the value of MessageMaxRequests.
-func (s *LocalSiteRateLimit) SetMessageMaxRequests(val float64) {
+func (s *LocalSiteRateLimit) SetMessageMaxRequests(val int) {
 	s.MessageMaxRequests = val
 }
 
@@ -8683,7 +8683,7 @@ type LocalSiteUrlBlocklist struct {
 	UpdatedAt   OptString `json:"updated_at"`
 	PublishedAt string    `json:"published_at"`
 	URL         string    `json:"url"`
-	ID          float64   `json:"id"`
+	ID          int       `json:"id"`
 }
 
 // GetUpdatedAt returns the value of UpdatedAt.
@@ -8702,7 +8702,7 @@ func (s *LocalSiteUrlBlocklist) GetURL() string {
 }
 
 // GetID returns the value of ID.
-func (s *LocalSiteUrlBlocklist) GetID() float64 {
+func (s *LocalSiteUrlBlocklist) GetID() int {
 	return s.ID
 }
 
@@ -8722,7 +8722,7 @@ func (s *LocalSiteUrlBlocklist) SetURL(val string) {
 }
 
 // SetID sets the value of ID.
-func (s *LocalSiteUrlBlocklist) SetID(val float64) {
+func (s *LocalSiteUrlBlocklist) SetID(val int) {
 	s.ID = val
 }
 
@@ -8732,14 +8732,14 @@ type LocalUser struct {
 	// Whether to show media in the UI.
 	ShowMedia            bool           `json:"show_media"`
 	InvitedByLocalUserID OptLocalUserId `json:"invited_by_local_user_id"`
-	DefaultItemsPerPage  float64        `json:"default_items_per_page"`
+	DefaultItemsPerPage  int            `json:"default_items_per_page"`
 	ShowPersonVotes      bool           `json:"show_person_votes"`
 	ShowUpvotePercentage bool           `json:"show_upvote_percentage"`
 	ShowDownvotes        VoteShow       `json:"show_downvotes"`
 	ShowUpvotes          bool           `json:"show_upvotes"`
 	ShowScore            bool           `json:"show_score"`
 	// A default time range limit to apply to post sorts, in seconds.
-	DefaultPostTimeRangeSeconds OptFloat64 `json:"default_post_time_range_seconds"`
+	DefaultPostTimeRangeSeconds OptInt `json:"default_post_time_range_seconds"`
 	// Whether to hide posts containing images/videos. Often labeled hide_memes.
 	HidePostsWithMedia bool `json:"hide_posts_with_media"`
 	// Whether to automatically mark fetched posts as read.
@@ -8799,7 +8799,7 @@ func (s *LocalUser) GetInvitedByLocalUserID() OptLocalUserId {
 }
 
 // GetDefaultItemsPerPage returns the value of DefaultItemsPerPage.
-func (s *LocalUser) GetDefaultItemsPerPage() float64 {
+func (s *LocalUser) GetDefaultItemsPerPage() int {
 	return s.DefaultItemsPerPage
 }
 
@@ -8829,7 +8829,7 @@ func (s *LocalUser) GetShowScore() bool {
 }
 
 // GetDefaultPostTimeRangeSeconds returns the value of DefaultPostTimeRangeSeconds.
-func (s *LocalUser) GetDefaultPostTimeRangeSeconds() OptFloat64 {
+func (s *LocalUser) GetDefaultPostTimeRangeSeconds() OptInt {
 	return s.DefaultPostTimeRangeSeconds
 }
 
@@ -8979,7 +8979,7 @@ func (s *LocalUser) SetInvitedByLocalUserID(val OptLocalUserId) {
 }
 
 // SetDefaultItemsPerPage sets the value of DefaultItemsPerPage.
-func (s *LocalUser) SetDefaultItemsPerPage(val float64) {
+func (s *LocalUser) SetDefaultItemsPerPage(val int) {
 	s.DefaultItemsPerPage = val
 }
 
@@ -9009,7 +9009,7 @@ func (s *LocalUser) SetShowScore(val bool) {
 }
 
 // SetDefaultPostTimeRangeSeconds sets the value of DefaultPostTimeRangeSeconds.
-func (s *LocalUser) SetDefaultPostTimeRangeSeconds(val OptFloat64) {
+func (s *LocalUser) SetDefaultPostTimeRangeSeconds(val OptInt) {
 	s.DefaultPostTimeRangeSeconds = val
 }
 
@@ -9148,14 +9148,14 @@ func (s *LocalUser) SetID(val LocalUserId) {
 	s.ID = val
 }
 
-type LocalUserId float64
+type LocalUserId int
 
 // Ref: #/components/schemas/LocalUserInvite
 type LocalUserInvite struct {
 	PublishedAt string       `json:"published_at"`
 	ExpiresAt   OptString    `json:"expires_at"`
-	UsesCount   float64      `json:"uses_count"`
-	MaxUses     OptFloat64   `json:"max_uses"`
+	UsesCount   int          `json:"uses_count"`
+	MaxUses     OptInt       `json:"max_uses"`
 	LocalUserID LocalUserId  `json:"local_user_id"`
 	Token       string       `json:"token"`
 	ID          InvitationId `json:"id"`
@@ -9172,12 +9172,12 @@ func (s *LocalUserInvite) GetExpiresAt() OptString {
 }
 
 // GetUsesCount returns the value of UsesCount.
-func (s *LocalUserInvite) GetUsesCount() float64 {
+func (s *LocalUserInvite) GetUsesCount() int {
 	return s.UsesCount
 }
 
 // GetMaxUses returns the value of MaxUses.
-func (s *LocalUserInvite) GetMaxUses() OptFloat64 {
+func (s *LocalUserInvite) GetMaxUses() OptInt {
 	return s.MaxUses
 }
 
@@ -9207,12 +9207,12 @@ func (s *LocalUserInvite) SetExpiresAt(val OptString) {
 }
 
 // SetUsesCount sets the value of UsesCount.
-func (s *LocalUserInvite) SetUsesCount(val float64) {
+func (s *LocalUserInvite) SetUsesCount(val int) {
 	s.UsesCount = val
 }
 
 // SetMaxUses sets the value of MaxUses.
-func (s *LocalUserInvite) SetMaxUses(val OptFloat64) {
+func (s *LocalUserInvite) SetMaxUses(val OptInt) {
 	s.MaxUses = val
 }
 
@@ -9667,7 +9667,7 @@ func (s *ModEditPost) SetPostID(val PostId) {
 
 // Ref: #/components/schemas/Modlog
 type Modlog struct {
-	ChildCount         float64     `json:"child_count"`
+	ChildCount         int         `json:"child_count"`
 	BulkActionParentID OptModlogId `json:"bulk_action_parent_id"`
 	PublishedAt        string      `json:"published_at"`
 	ExpiresAt          OptString   `json:"expires_at"`
@@ -9678,7 +9678,7 @@ type Modlog struct {
 }
 
 // GetChildCount returns the value of ChildCount.
-func (s *Modlog) GetChildCount() float64 {
+func (s *Modlog) GetChildCount() int {
 	return s.ChildCount
 }
 
@@ -9718,7 +9718,7 @@ func (s *Modlog) GetID() ModlogId {
 }
 
 // SetChildCount sets the value of ChildCount.
-func (s *Modlog) SetChildCount(val float64) {
+func (s *Modlog) SetChildCount(val int) {
 	s.ChildCount = val
 }
 
@@ -9757,7 +9757,7 @@ func (s *Modlog) SetID(val ModlogId) {
 	s.ID = val
 }
 
-type ModlogId float64
+type ModlogId int
 
 // A list of possible types for the various modlog actions.
 // Ref: #/components/schemas/ModlogKind
@@ -10020,9 +10020,9 @@ func (s *ModlogView) SetModlog(val Modlog) {
 type MultiCommunity struct {
 	// A sidebar in markdown.
 	Sidebar          OptString `json:"sidebar"`
-	Communities      float64   `json:"communities"`
-	SubscribersLocal float64   `json:"subscribers_local"`
-	Subscribers      float64   `json:"subscribers"`
+	Communities      int       `json:"communities"`
+	SubscribersLocal int       `json:"subscribers_local"`
+	Subscribers      int       `json:"subscribers"`
 	UpdatedAt        OptString `json:"updated_at"`
 	PublishedAt      string    `json:"published_at"`
 	LastRefreshedAt  string    `json:"last_refreshed_at"`
@@ -10044,17 +10044,17 @@ func (s *MultiCommunity) GetSidebar() OptString {
 }
 
 // GetCommunities returns the value of Communities.
-func (s *MultiCommunity) GetCommunities() float64 {
+func (s *MultiCommunity) GetCommunities() int {
 	return s.Communities
 }
 
 // GetSubscribersLocal returns the value of SubscribersLocal.
-func (s *MultiCommunity) GetSubscribersLocal() float64 {
+func (s *MultiCommunity) GetSubscribersLocal() int {
 	return s.SubscribersLocal
 }
 
 // GetSubscribers returns the value of Subscribers.
-func (s *MultiCommunity) GetSubscribers() float64 {
+func (s *MultiCommunity) GetSubscribers() int {
 	return s.Subscribers
 }
 
@@ -10124,17 +10124,17 @@ func (s *MultiCommunity) SetSidebar(val OptString) {
 }
 
 // SetCommunities sets the value of Communities.
-func (s *MultiCommunity) SetCommunities(val float64) {
+func (s *MultiCommunity) SetCommunities(val int) {
 	s.Communities = val
 }
 
 // SetSubscribersLocal sets the value of SubscribersLocal.
-func (s *MultiCommunity) SetSubscribersLocal(val float64) {
+func (s *MultiCommunity) SetSubscribersLocal(val int) {
 	s.SubscribersLocal = val
 }
 
 // SetSubscribers sets the value of Subscribers.
-func (s *MultiCommunity) SetSubscribers(val float64) {
+func (s *MultiCommunity) SetSubscribers(val int) {
 	s.Subscribers = val
 }
 
@@ -10198,7 +10198,7 @@ func (s *MultiCommunity) SetID(val MultiCommunityId) {
 	s.ID = val
 }
 
-type MultiCommunityId float64
+type MultiCommunityId int
 
 // A listing type for multi-community fetches.
 // Ref: #/components/schemas/MultiCommunityListingType
@@ -10664,18 +10664,18 @@ func (s *NodeInfoSoftware) SetName(val OptString) {
 
 // Ref: #/components/schemas/NodeInfoUsage
 type NodeInfoUsage struct {
-	LocalComments OptFloat64       `json:"localComments"`
-	LocalPosts    OptFloat64       `json:"localPosts"`
+	LocalComments OptInt           `json:"localComments"`
+	LocalPosts    OptInt           `json:"localPosts"`
 	Users         OptNodeInfoUsers `json:"users"`
 }
 
 // GetLocalComments returns the value of LocalComments.
-func (s *NodeInfoUsage) GetLocalComments() OptFloat64 {
+func (s *NodeInfoUsage) GetLocalComments() OptInt {
 	return s.LocalComments
 }
 
 // GetLocalPosts returns the value of LocalPosts.
-func (s *NodeInfoUsage) GetLocalPosts() OptFloat64 {
+func (s *NodeInfoUsage) GetLocalPosts() OptInt {
 	return s.LocalPosts
 }
 
@@ -10685,12 +10685,12 @@ func (s *NodeInfoUsage) GetUsers() OptNodeInfoUsers {
 }
 
 // SetLocalComments sets the value of LocalComments.
-func (s *NodeInfoUsage) SetLocalComments(val OptFloat64) {
+func (s *NodeInfoUsage) SetLocalComments(val OptInt) {
 	s.LocalComments = val
 }
 
 // SetLocalPosts sets the value of LocalPosts.
-func (s *NodeInfoUsage) SetLocalPosts(val OptFloat64) {
+func (s *NodeInfoUsage) SetLocalPosts(val OptInt) {
 	s.LocalPosts = val
 }
 
@@ -10701,38 +10701,38 @@ func (s *NodeInfoUsage) SetUsers(val OptNodeInfoUsers) {
 
 // Ref: #/components/schemas/NodeInfoUsers
 type NodeInfoUsers struct {
-	ActiveMonth    OptFloat64 `json:"activeMonth"`
-	ActiveHalfyear OptFloat64 `json:"activeHalfyear"`
-	Total          OptFloat64 `json:"total"`
+	ActiveMonth    OptInt `json:"activeMonth"`
+	ActiveHalfyear OptInt `json:"activeHalfyear"`
+	Total          OptInt `json:"total"`
 }
 
 // GetActiveMonth returns the value of ActiveMonth.
-func (s *NodeInfoUsers) GetActiveMonth() OptFloat64 {
+func (s *NodeInfoUsers) GetActiveMonth() OptInt {
 	return s.ActiveMonth
 }
 
 // GetActiveHalfyear returns the value of ActiveHalfyear.
-func (s *NodeInfoUsers) GetActiveHalfyear() OptFloat64 {
+func (s *NodeInfoUsers) GetActiveHalfyear() OptInt {
 	return s.ActiveHalfyear
 }
 
 // GetTotal returns the value of Total.
-func (s *NodeInfoUsers) GetTotal() OptFloat64 {
+func (s *NodeInfoUsers) GetTotal() OptInt {
 	return s.Total
 }
 
 // SetActiveMonth sets the value of ActiveMonth.
-func (s *NodeInfoUsers) SetActiveMonth(val OptFloat64) {
+func (s *NodeInfoUsers) SetActiveMonth(val OptInt) {
 	s.ActiveMonth = val
 }
 
 // SetActiveHalfyear sets the value of ActiveHalfyear.
-func (s *NodeInfoUsers) SetActiveHalfyear(val OptFloat64) {
+func (s *NodeInfoUsers) SetActiveHalfyear(val OptInt) {
 	s.ActiveHalfyear = val
 }
 
 // SetTotal sets the value of Total.
-func (s *NodeInfoUsers) SetTotal(val OptFloat64) {
+func (s *NodeInfoUsers) SetTotal(val OptInt) {
 	s.Total = val
 }
 
@@ -11641,7 +11641,7 @@ func (s *NotificationData3Type) UnmarshalText(data []byte) error {
 	}
 }
 
-type NotificationId float64
+type NotificationId int
 
 // Types of notifications which can be received in inbox.
 // Ref: #/components/schemas/NotificationType
@@ -11733,7 +11733,7 @@ func (s *NotificationView) SetNotification(val Notification) {
 	s.Notification = val
 }
 
-type OAuthProviderId float64
+type OAuthProviderId int
 
 // NewOptActivityId returns new OptActivityId with value set to v.
 func NewOptActivityId(v ActivityId) OptActivityId {
@@ -12655,52 +12655,6 @@ func (o OptFederationQueueState) Or(d FederationQueueState) FederationQueueState
 	return d
 }
 
-// NewOptFloat64 returns new OptFloat64 with value set to v.
-func NewOptFloat64(v float64) OptFloat64 {
-	return OptFloat64{
-		Value: v,
-		Set:   true,
-	}
-}
-
-// OptFloat64 is optional float64.
-type OptFloat64 struct {
-	Value float64
-	Set   bool
-}
-
-// IsSet returns true if OptFloat64 was set.
-func (o OptFloat64) IsSet() bool { return o.Set }
-
-// Reset unsets value.
-func (o *OptFloat64) Reset() {
-	var v float64
-	o.Value = v
-	o.Set = false
-}
-
-// SetTo sets value to v.
-func (o *OptFloat64) SetTo(v float64) {
-	o.Set = true
-	o.Value = v
-}
-
-// Get returns value and boolean that denotes whether value was set.
-func (o OptFloat64) Get() (v float64, ok bool) {
-	if !o.Set {
-		return v, false
-	}
-	return o.Value, true
-}
-
-// Or returns value if set, or given parameter if does not.
-func (o OptFloat64) Or(d float64) float64 {
-	if v, ok := o.Get(); ok {
-		return v
-	}
-	return d
-}
-
 // NewOptImageDetails returns new OptImageDetails with value set to v.
 func NewOptImageDetails(v ImageDetails) OptImageDetails {
 	return OptImageDetails{
@@ -12833,6 +12787,52 @@ func (o OptInstance) Get() (v Instance, ok bool) {
 
 // Or returns value if set, or given parameter if does not.
 func (o OptInstance) Or(d Instance) Instance {
+	if v, ok := o.Get(); ok {
+		return v
+	}
+	return d
+}
+
+// NewOptInt returns new OptInt with value set to v.
+func NewOptInt(v int) OptInt {
+	return OptInt{
+		Value: v,
+		Set:   true,
+	}
+}
+
+// OptInt is optional int.
+type OptInt struct {
+	Value int
+	Set   bool
+}
+
+// IsSet returns true if OptInt was set.
+func (o OptInt) IsSet() bool { return o.Set }
+
+// Reset unsets value.
+func (o *OptInt) Reset() {
+	var v int
+	o.Value = v
+	o.Set = false
+}
+
+// SetTo sets value to v.
+func (o *OptInt) SetTo(v int) {
+	o.Set = true
+	o.Value = v
+}
+
+// Get returns value and boolean that denotes whether value was set.
+func (o OptInt) Get() (v int, ok bool) {
+	if !o.Set {
+		return v, false
+	}
+	return o.Value, true
+}
+
+// Or returns value if set, or given parameter if does not.
+func (o OptInt) Or(d int) int {
 	if v, ok := o.Get(); ok {
 		return v
 	}
@@ -15452,8 +15452,8 @@ func (s *PendingFollowerView) SetPerson(val Person) {
 // A person.
 // Ref: #/components/schemas/Person
 type Person struct {
-	CommentCount float64    `json:"comment_count"`
-	PostCount    float64    `json:"post_count"`
+	CommentCount int        `json:"comment_count"`
+	PostCount    int        `json:"post_count"`
 	InstanceID   InstanceId `json:"instance_id"`
 	// Whether the person is a bot account.
 	BotAccount bool `json:"bot_account"`
@@ -15481,12 +15481,12 @@ type Person struct {
 }
 
 // GetCommentCount returns the value of CommentCount.
-func (s *Person) GetCommentCount() float64 {
+func (s *Person) GetCommentCount() int {
 	return s.CommentCount
 }
 
 // GetPostCount returns the value of PostCount.
-func (s *Person) GetPostCount() float64 {
+func (s *Person) GetPostCount() int {
 	return s.PostCount
 }
 
@@ -15566,12 +15566,12 @@ func (s *Person) GetID() PersonId {
 }
 
 // SetCommentCount sets the value of CommentCount.
-func (s *Person) SetCommentCount(val float64) {
+func (s *Person) SetCommentCount(val int) {
 	s.CommentCount = val
 }
 
 // SetPostCount sets the value of PostCount.
-func (s *Person) SetPostCount(val float64) {
+func (s *Person) SetPostCount(val int) {
 	s.PostCount = val
 }
 
@@ -15653,9 +15653,9 @@ func (s *Person) SetID(val PersonId) {
 // Ref: #/components/schemas/PersonActions
 type PersonActions struct {
 	// A total of downvotes given to this person.
-	Downvotes OptFloat64 `json:"downvotes"`
+	Downvotes OptInt `json:"downvotes"`
 	// A total of upvotes given to this person.
-	Upvotes OptFloat64 `json:"upvotes"`
+	Upvotes OptInt `json:"upvotes"`
 	// When the person was voted on.
 	VotedAt OptString `json:"voted_at"`
 	// A note about the person.
@@ -15667,12 +15667,12 @@ type PersonActions struct {
 }
 
 // GetDownvotes returns the value of Downvotes.
-func (s *PersonActions) GetDownvotes() OptFloat64 {
+func (s *PersonActions) GetDownvotes() OptInt {
 	return s.Downvotes
 }
 
 // GetUpvotes returns the value of Upvotes.
-func (s *PersonActions) GetUpvotes() OptFloat64 {
+func (s *PersonActions) GetUpvotes() OptInt {
 	return s.Upvotes
 }
 
@@ -15697,12 +15697,12 @@ func (s *PersonActions) GetBlockedAt() OptString {
 }
 
 // SetDownvotes sets the value of Downvotes.
-func (s *PersonActions) SetDownvotes(val OptFloat64) {
+func (s *PersonActions) SetDownvotes(val OptInt) {
 	s.Downvotes = val
 }
 
 // SetUpvotes sets the value of Upvotes.
-func (s *PersonActions) SetUpvotes(val OptFloat64) {
+func (s *PersonActions) SetUpvotes(val OptInt) {
 	s.Upvotes = val
 }
 
@@ -15776,7 +15776,7 @@ func (s *PersonContentType) UnmarshalText(data []byte) error {
 	}
 }
 
-type PersonId float64
+type PersonId int
 
 // A listing type for person fetches.
 // Ref: #/components/schemas/PersonListingType
@@ -16005,17 +16005,17 @@ func (s *PluginMetadata) SetName(val string) {
 // A post.
 // Ref: #/components/schemas/Post
 type Post struct {
-	EmbedVideoHeight OptFloat64 `json:"embed_video_height"`
-	EmbedVideoWidth  OptFloat64 `json:"embed_video_width"`
+	EmbedVideoHeight OptInt `json:"embed_video_height"`
+	EmbedVideoWidth  OptInt `json:"embed_video_width"`
 	// If a local user posts in a remote community, the comment is hidden until it is confirmed accepted by
 	// the community (by receiving it back via federation).
-	FederationPending     bool    `json:"federation_pending"`
-	UnresolvedReportCount float64 `json:"unresolved_report_count"`
-	ReportCount           float64 `json:"report_count"`
-	Downvotes             float64 `json:"downvotes"`
-	Upvotes               float64 `json:"upvotes"`
-	Score                 float64 `json:"score"`
-	Comments              float64 `json:"comments"`
+	FederationPending     bool `json:"federation_pending"`
+	UnresolvedReportCount int  `json:"unresolved_report_count"`
+	ReportCount           int  `json:"report_count"`
+	Downvotes             int  `json:"downvotes"`
+	Upvotes               int  `json:"upvotes"`
+	Score                 int  `json:"score"`
+	Comments              int  `json:"comments"`
 	// The time of the newest comment in the post, if the post has any comments.
 	NewestCommentTimeAt OptString `json:"newest_comment_time_at"`
 	// Time at which the post will be published. None means publish immediately.
@@ -16061,12 +16061,12 @@ type Post struct {
 }
 
 // GetEmbedVideoHeight returns the value of EmbedVideoHeight.
-func (s *Post) GetEmbedVideoHeight() OptFloat64 {
+func (s *Post) GetEmbedVideoHeight() OptInt {
 	return s.EmbedVideoHeight
 }
 
 // GetEmbedVideoWidth returns the value of EmbedVideoWidth.
-func (s *Post) GetEmbedVideoWidth() OptFloat64 {
+func (s *Post) GetEmbedVideoWidth() OptInt {
 	return s.EmbedVideoWidth
 }
 
@@ -16076,32 +16076,32 @@ func (s *Post) GetFederationPending() bool {
 }
 
 // GetUnresolvedReportCount returns the value of UnresolvedReportCount.
-func (s *Post) GetUnresolvedReportCount() float64 {
+func (s *Post) GetUnresolvedReportCount() int {
 	return s.UnresolvedReportCount
 }
 
 // GetReportCount returns the value of ReportCount.
-func (s *Post) GetReportCount() float64 {
+func (s *Post) GetReportCount() int {
 	return s.ReportCount
 }
 
 // GetDownvotes returns the value of Downvotes.
-func (s *Post) GetDownvotes() float64 {
+func (s *Post) GetDownvotes() int {
 	return s.Downvotes
 }
 
 // GetUpvotes returns the value of Upvotes.
-func (s *Post) GetUpvotes() float64 {
+func (s *Post) GetUpvotes() int {
 	return s.Upvotes
 }
 
 // GetScore returns the value of Score.
-func (s *Post) GetScore() float64 {
+func (s *Post) GetScore() int {
 	return s.Score
 }
 
 // GetComments returns the value of Comments.
-func (s *Post) GetComments() float64 {
+func (s *Post) GetComments() int {
 	return s.Comments
 }
 
@@ -16231,12 +16231,12 @@ func (s *Post) GetID() PostId {
 }
 
 // SetEmbedVideoHeight sets the value of EmbedVideoHeight.
-func (s *Post) SetEmbedVideoHeight(val OptFloat64) {
+func (s *Post) SetEmbedVideoHeight(val OptInt) {
 	s.EmbedVideoHeight = val
 }
 
 // SetEmbedVideoWidth sets the value of EmbedVideoWidth.
-func (s *Post) SetEmbedVideoWidth(val OptFloat64) {
+func (s *Post) SetEmbedVideoWidth(val OptInt) {
 	s.EmbedVideoWidth = val
 }
 
@@ -16246,32 +16246,32 @@ func (s *Post) SetFederationPending(val bool) {
 }
 
 // SetUnresolvedReportCount sets the value of UnresolvedReportCount.
-func (s *Post) SetUnresolvedReportCount(val float64) {
+func (s *Post) SetUnresolvedReportCount(val int) {
 	s.UnresolvedReportCount = val
 }
 
 // SetReportCount sets the value of ReportCount.
-func (s *Post) SetReportCount(val float64) {
+func (s *Post) SetReportCount(val int) {
 	s.ReportCount = val
 }
 
 // SetDownvotes sets the value of Downvotes.
-func (s *Post) SetDownvotes(val float64) {
+func (s *Post) SetDownvotes(val int) {
 	s.Downvotes = val
 }
 
 // SetUpvotes sets the value of Upvotes.
-func (s *Post) SetUpvotes(val float64) {
+func (s *Post) SetUpvotes(val int) {
 	s.Upvotes = val
 }
 
 // SetScore sets the value of Score.
-func (s *Post) SetScore(val float64) {
+func (s *Post) SetScore(val int) {
 	s.Score = val
 }
 
 // SetComments sets the value of Comments.
-func (s *Post) SetComments(val float64) {
+func (s *Post) SetComments(val int) {
 	s.Comments = val
 }
 
@@ -16406,7 +16406,7 @@ type PostActions struct {
 	// True if upvoted, false if downvoted. Upvote is greater than downvote.
 	VoteIsUpvote OptBool `json:"vote_is_upvote"`
 	// The number of comments you read last. Subtract this from total comments to get an unread count.
-	ReadCommentsAmount OptFloat64 `json:"read_comments_amount"`
+	ReadCommentsAmount OptInt `json:"read_comments_amount"`
 	// When the post was hidden.
 	HiddenAt OptString `json:"hidden_at"`
 	// When the post was upvoted or downvoted.
@@ -16430,7 +16430,7 @@ func (s *PostActions) GetVoteIsUpvote() OptBool {
 }
 
 // GetReadCommentsAmount returns the value of ReadCommentsAmount.
-func (s *PostActions) GetReadCommentsAmount() OptFloat64 {
+func (s *PostActions) GetReadCommentsAmount() OptInt {
 	return s.ReadCommentsAmount
 }
 
@@ -16470,7 +16470,7 @@ func (s *PostActions) SetVoteIsUpvote(val OptBool) {
 }
 
 // SetReadCommentsAmount sets the value of ReadCommentsAmount.
-func (s *PostActions) SetReadCommentsAmount(val OptFloat64) {
+func (s *PostActions) SetReadCommentsAmount(val OptInt) {
 	s.ReadCommentsAmount = val
 }
 
@@ -17040,7 +17040,7 @@ func (s *PostFeatureType) UnmarshalText(data []byte) error {
 	}
 }
 
-type PostId float64
+type PostId int
 
 // A post-view mode that changes how multiple post listings look.
 // Ref: #/components/schemas/PostListingMode
@@ -17293,7 +17293,7 @@ func (s *PostReport) SetID(val PostReportId) {
 	s.ID = val
 }
 
-type PostReportId float64
+type PostReportId int
 
 // The post report response.
 // Ref: #/components/schemas/PostReportResponse
@@ -17896,7 +17896,7 @@ func (s *PrivateMessage) SetID(val PrivateMessageId) {
 	s.ID = val
 }
 
-type PrivateMessageId float64
+type PrivateMessageId int
 
 // The private message report.
 // Ref: #/components/schemas/PrivateMessageReport
@@ -18014,7 +18014,7 @@ func (s *PrivateMessageReport) SetID(val PrivateMessageReportId) {
 	s.ID = val
 }
 
-type PrivateMessageReportId float64
+type PrivateMessageReportId int
 
 // A private message report response.
 // Ref: #/components/schemas/PrivateMessageReportResponse
@@ -18579,7 +18579,7 @@ func (s *RegistrationApplication) SetID(val RegistrationApplicationId) {
 	s.ID = val
 }
 
-type RegistrationApplicationId float64
+type RegistrationApplicationId int
 
 // The response of an action done to a registration application.
 // Ref: #/components/schemas/RegistrationApplicationResponse
@@ -21018,9 +21018,9 @@ type SaveUserSettings struct {
 	// The default comment sort, usually "hot".
 	DefaultCommentSortType OptCommentSortType `json:"default_comment_sort_type"`
 	// A default fetch limit for number of items returned.
-	DefaultItemsPerPage OptFloat64 `json:"default_items_per_page"`
+	DefaultItemsPerPage OptInt `json:"default_items_per_page"`
 	// A default time range limit to apply to post sorts, in seconds. 0 means none.
-	DefaultPostTimeRangeSeconds OptFloat64 `json:"default_post_time_range_seconds"`
+	DefaultPostTimeRangeSeconds OptInt `json:"default_post_time_range_seconds"`
 	// The default post sort, usually "active".
 	DefaultPostSortType OptPostSortType `json:"default_post_sort_type"`
 	// A post-view mode that changes how multiple post listings look.
@@ -21166,12 +21166,12 @@ func (s *SaveUserSettings) GetDefaultCommentSortType() OptCommentSortType {
 }
 
 // GetDefaultItemsPerPage returns the value of DefaultItemsPerPage.
-func (s *SaveUserSettings) GetDefaultItemsPerPage() OptFloat64 {
+func (s *SaveUserSettings) GetDefaultItemsPerPage() OptInt {
 	return s.DefaultItemsPerPage
 }
 
 // GetDefaultPostTimeRangeSeconds returns the value of DefaultPostTimeRangeSeconds.
-func (s *SaveUserSettings) GetDefaultPostTimeRangeSeconds() OptFloat64 {
+func (s *SaveUserSettings) GetDefaultPostTimeRangeSeconds() OptInt {
 	return s.DefaultPostTimeRangeSeconds
 }
 
@@ -21336,12 +21336,12 @@ func (s *SaveUserSettings) SetDefaultCommentSortType(val OptCommentSortType) {
 }
 
 // SetDefaultItemsPerPage sets the value of DefaultItemsPerPage.
-func (s *SaveUserSettings) SetDefaultItemsPerPage(val OptFloat64) {
+func (s *SaveUserSettings) SetDefaultItemsPerPage(val OptInt) {
 	s.DefaultItemsPerPage = val
 }
 
 // SetDefaultPostTimeRangeSeconds sets the value of DefaultPostTimeRangeSeconds.
-func (s *SaveUserSettings) SetDefaultPostTimeRangeSeconds(val OptFloat64) {
+func (s *SaveUserSettings) SetDefaultPostTimeRangeSeconds(val OptInt) {
 	s.DefaultPostTimeRangeSeconds = val
 }
 
@@ -21702,7 +21702,7 @@ func (s *Site) SetID(val SiteId) {
 	s.ID = val
 }
 
-type SiteId float64
+type SiteId int
 
 // The response for a site.
 // Ref: #/components/schemas/SiteResponse
@@ -21933,7 +21933,7 @@ func (s *Tagline) SetID(val TaglineId) {
 	s.ID = val
 }
 
-type TaglineId float64
+type TaglineId int
 
 // Ref: #/components/schemas/TaglineResponse
 type TaglineResponse struct {
@@ -21982,49 +21982,49 @@ func (s *TransferCommunity) SetCommunityID(val CommunityId) {
 // applications and pending follows to private communities.
 // Ref: #/components/schemas/UnreadCountsResponse
 type UnreadCountsResponse struct {
-	RegistrationApplicationCount OptFloat64 `json:"registration_application_count"`
-	PendingFollowCount           OptFloat64 `json:"pending_follow_count"`
-	ReportCount                  OptFloat64 `json:"report_count"`
-	NotificationCount            float64    `json:"notification_count"`
+	RegistrationApplicationCount OptInt `json:"registration_application_count"`
+	PendingFollowCount           OptInt `json:"pending_follow_count"`
+	ReportCount                  OptInt `json:"report_count"`
+	NotificationCount            int    `json:"notification_count"`
 }
 
 // GetRegistrationApplicationCount returns the value of RegistrationApplicationCount.
-func (s *UnreadCountsResponse) GetRegistrationApplicationCount() OptFloat64 {
+func (s *UnreadCountsResponse) GetRegistrationApplicationCount() OptInt {
 	return s.RegistrationApplicationCount
 }
 
 // GetPendingFollowCount returns the value of PendingFollowCount.
-func (s *UnreadCountsResponse) GetPendingFollowCount() OptFloat64 {
+func (s *UnreadCountsResponse) GetPendingFollowCount() OptInt {
 	return s.PendingFollowCount
 }
 
 // GetReportCount returns the value of ReportCount.
-func (s *UnreadCountsResponse) GetReportCount() OptFloat64 {
+func (s *UnreadCountsResponse) GetReportCount() OptInt {
 	return s.ReportCount
 }
 
 // GetNotificationCount returns the value of NotificationCount.
-func (s *UnreadCountsResponse) GetNotificationCount() float64 {
+func (s *UnreadCountsResponse) GetNotificationCount() int {
 	return s.NotificationCount
 }
 
 // SetRegistrationApplicationCount sets the value of RegistrationApplicationCount.
-func (s *UnreadCountsResponse) SetRegistrationApplicationCount(val OptFloat64) {
+func (s *UnreadCountsResponse) SetRegistrationApplicationCount(val OptInt) {
 	s.RegistrationApplicationCount = val
 }
 
 // SetPendingFollowCount sets the value of PendingFollowCount.
-func (s *UnreadCountsResponse) SetPendingFollowCount(val OptFloat64) {
+func (s *UnreadCountsResponse) SetPendingFollowCount(val OptInt) {
 	s.PendingFollowCount = val
 }
 
 // SetReportCount sets the value of ReportCount.
-func (s *UnreadCountsResponse) SetReportCount(val OptFloat64) {
+func (s *UnreadCountsResponse) SetReportCount(val OptInt) {
 	s.ReportCount = val
 }
 
 // SetNotificationCount sets the value of NotificationCount.
-func (s *UnreadCountsResponse) SetNotificationCount(val float64) {
+func (s *UnreadCountsResponse) SetNotificationCount(val int) {
 	s.NotificationCount = val
 }
 
